@@ -1,31 +1,28 @@
 //
-//  NewWorkViewController.swift
+//  WorkInfoViewController.swift
 //  Hourglass
 //
-//  Created by 김문옥 on 2018. 8. 31..
+//  Created by 김문옥 on 2018. 9. 12..
 //  Copyright © 2018년 김문옥. All rights reserved.
 //
 
 import UIKit
 
-class NewWorkViewController: UIViewController {
-    
-    @IBOutlet var closeButton: UIBarButtonItem!
-    @IBOutlet var addButton: UIBarButtonItem!
-    
-    @IBAction func closeView(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+class WorkInfoViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print("WorkInfoViewController!!!")
+        
+        // 네비게이션 컨트롤러 하위의 뷰에서는 large title 비활성화 하기
+        navigationItem.largeTitleDisplayMode = .never
         
         // navigationBar 색상바꾸는 법.
-        // self.toolbarItems?..tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
-        closeButton.tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
-        addButton.tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
+        self.navigationController?.navigationBar.tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
+        
+        navigationItem.title = "작업정보"
     }
 
     override func didReceiveMemoryWarning() {

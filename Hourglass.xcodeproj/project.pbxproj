@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B55792521481A3E00CE51FC /* WorkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B55792421481A3E00CE51FC /* WorkInfoViewController.swift */; };
+		6B55792721481B6700CE51FC /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B55792621481B6700CE51FC /* RecordTableViewController.swift */; };
+		6B55792921481CB100CE51FC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B55792821481CB100CE51FC /* SettingViewController.swift */; };
+		6B55792B21481D2400CE51FC /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B55792A21481D2400CE51FC /* MoreViewController.swift */; };
 		6B8D5A2A2139556400AB9122 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D5A292139556400AB9122 /* MainViewController.swift */; };
 		6B8D5A2C2139584F00AB9122 /* NewWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D5A2B2139584F00AB9122 /* NewWorkViewController.swift */; };
 		6B8D5A2E21395DE800AB9122 /* WorkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D5A2D21395DE800AB9122 /* WorkingViewController.swift */; };
@@ -18,6 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B55792421481A3E00CE51FC /* WorkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkInfoViewController.swift; sourceTree = "<group>"; };
+		6B55792621481B6700CE51FC /* RecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
+		6B55792821481CB100CE51FC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		6B55792A21481D2400CE51FC /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		6B8D5A292139556400AB9122 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6B8D5A2B2139584F00AB9122 /* NewWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkViewController.swift; sourceTree = "<group>"; };
 		6B8D5A2D21395DE800AB9122 /* WorkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingViewController.swift; sourceTree = "<group>"; };
@@ -63,8 +71,12 @@
 				6BC01B7E21140CCA00BD81BE /* AppDelegate.swift */,
 				6BC01B8021140CCA00BD81BE /* ViewController.swift */,
 				6B8D5A292139556400AB9122 /* MainViewController.swift */,
-				6B8D5A2D21395DE800AB9122 /* WorkingViewController.swift */,
 				6B8D5A2B2139584F00AB9122 /* NewWorkViewController.swift */,
+				6B8D5A2D21395DE800AB9122 /* WorkingViewController.swift */,
+				6B55792421481A3E00CE51FC /* WorkInfoViewController.swift */,
+				6B55792621481B6700CE51FC /* RecordTableViewController.swift */,
+				6B55792821481CB100CE51FC /* SettingViewController.swift */,
+				6B55792A21481D2400CE51FC /* MoreViewController.swift */,
 				6BC01B8221140CCA00BD81BE /* Main.storyboard */,
 				6BC01B8521140CCB00BD81BE /* Assets.xcassets */,
 				6BC01B8721140CCB00BD81BE /* LaunchScreen.storyboard */,
@@ -144,11 +156,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B55792B21481D2400CE51FC /* MoreViewController.swift in Sources */,
 				6B8D5A2A2139556400AB9122 /* MainViewController.swift in Sources */,
 				6BC01B8121140CCA00BD81BE /* ViewController.swift in Sources */,
 				6B8D5A2E21395DE800AB9122 /* WorkingViewController.swift in Sources */,
+				6B55792921481CB100CE51FC /* SettingViewController.swift in Sources */,
+				6B55792721481B6700CE51FC /* RecordTableViewController.swift in Sources */,
 				6B8D5A2C2139584F00AB9122 /* NewWorkViewController.swift in Sources */,
 				6BC01B7F21140CCA00BD81BE /* AppDelegate.swift in Sources */,
+				6B55792521481A3E00CE51FC /* WorkInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
