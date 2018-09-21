@@ -9,6 +9,8 @@
 import UIKit
 
 class WorkingViewController: UIViewController {
+    
+    var selectedIndex: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +21,7 @@ class WorkingViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
+        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
         print("WorkingViewController!!!")
     }

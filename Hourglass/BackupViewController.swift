@@ -1,14 +1,14 @@
 //
-//  MoreViewController.swift
+//  BackupViewController.swift
 //  Hourglass
 //
-//  Created by 김문옥 on 2018. 9. 12..
+//  Created by 김문옥 on 2018. 9. 20..
 //  Copyright © 2018년 김문옥. All rights reserved.
 //
 
 import UIKit
 
-class MoreViewController: UITableViewController {
+class BackupViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +18,9 @@ class MoreViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        print("MoreViewController!!!")
-        
-        // 네비게이션 컨트롤러 하위의 뷰에서는 large title 비활성화 하기
-        navigationItem.largeTitleDisplayMode = .never
         
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
-        
-//        self.navigationController?.navigationItem.title = "더 보기"
+        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,15 +30,15 @@ class MoreViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

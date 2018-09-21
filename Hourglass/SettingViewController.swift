@@ -10,6 +10,11 @@ import UIKit
 
 class SettingViewController: UITableViewController {
 
+    @IBAction func closeSetting(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,11 +25,8 @@ class SettingViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         print("SettingViewController!!!")
         
-        // 네비게이션 컨트롤러 하위의 뷰에서는 large title 비활성화 하기
-        navigationItem.largeTitleDisplayMode = .never
-        
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
+        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
 //        self.navigationController?.navigationItem.title = "설정"
         
@@ -38,15 +40,15 @@ class SettingViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

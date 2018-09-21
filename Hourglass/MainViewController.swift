@@ -7,61 +7,31 @@
 //
 
 import UIKit
+import CoreData
 
 class MainViewController: UITableViewController {
-
-    @IBAction func addWorkBtn(_ sender: Any) {
-        
-        if let view = self.storyboard?.instantiateViewController(withIdentifier: "NewWorkViewController") {
-            self.present(view, animated: true, completion: nil)
-        }
-    }
     
-    @IBAction func popupMenuToggle(_ sender: Any) {
-        
-        let alert = UIAlertController(title: "세부메뉴", message: nil, preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "편집", style: .default) { _ in
-            
-            // 편집 기능
-            
-        })
-        
-        alert.addAction(UIAlertAction(title: "작업 기록 보기", style: .default) { _ in
-            
-            // RecordTableViewController 로 이동
-            if let view = self.storyboard?.instantiateViewController(withIdentifier: "RecordTableViewController") {
-                self.navigationController?.pushViewController(view, animated: true)
-            }
-        })
-        
-        alert.addAction(UIAlertAction(title: "설정", style: .default) { _ in
-            
-            // SettingViewController 로 이동
-            if let view = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController") {
-                self.navigationController?.pushViewController(view, animated: true)
-            }
-        })
-        
-        alert.addAction(UIAlertAction(title: "더 보기", style: .default) { _ in
-            
-            // MoreViewController 로 이동
-            if let view = self.storyboard?.instantiateViewController(withIdentifier: "MoreViewController") {
-                self.navigationController?.pushViewController(view, animated: true)
-            }
-        })
-        
-        alert.addAction(UIAlertAction(title: "취소", style: .cancel) { _ in
-            
-        })
-        
-        alert.view.tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
-        
-        present(alert, animated: true)
+    var selectedIndex: Int?
 
-    }
+//    @IBAction func goToNewWork(_ sender: Any) {
+//
+//        if let view = self.storyboard?.instantiateViewController(withIdentifier: "NewWorkViewController") {
+//            self.present(view, animated: true, completion: nil)
+//        }
+//    }
+    
+//    @IBAction func goToSetting(_ sender: Any) {
+//
+//        if let view = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController") {
+//            self.present(view, animated: true, completion: nil)
+//        }
+//    }
     
     @IBOutlet var mainTableView: UITableView!
+    
+    let context = AppDelegate.viewContext
+    
+    var resultsArray = [WorkInfo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +46,7 @@ class MainViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
+        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
         // 셀간 구분선 없애기
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none;
@@ -90,6 +60,36 @@ class MainViewController: UITableViewController {
 //        self.mainTableView.setContentOffset(CGPoint(x: 0, y: 44), animated: true)
 //        self.searchDisplayController?.setActive(false, animated: true)
         
+        
+        contextFetchToResultsArray()
+        
+        // Add Observer
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self, selector: #selector(contextFetchToResultsArray), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context)
+        
+    }
+    
+    @objc func contextFetchToResultsArray() {
+        
+        // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
+        let request: NSFetchRequest<WorkInfo> = WorkInfo.fetchRequest()
+        
+        do {
+            resultsArray = try context.fetch(request)
+            
+            for work in resultsArray {
+                print("WORK's Name : \(work.workName)")
+            }
+            
+            DispatchQueue.main.async {
+                
+                self.mainTableView.reloadData()
+            }
+            
+        } catch let nserror as NSError {
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,7 +106,7 @@ class MainViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return resultsArray.count
     }
 
     
@@ -119,36 +119,29 @@ class MainViewController: UITableViewController {
 
         // Configure the cell...
         
-//        let goInfoBtn = UIButton();
-//
-//        goInfoBtn.setImage(UIImage(named: "iosInformation.png"), for: .normal)
-//        goInfoBtn.frame = CGRect(x: 0, y: 0, width: 28, height: 34)
-//        goInfoBtn.addTarget(self, action: #selector(goToWorkInfo), for: .touchUpInside)
-//        goInfoBtn.tintColor = UIColor(red:0.87, green:0.42, blue:0.19, alpha:1.00) // Sorbus
-//
-//        self.view.addSubview(goInfoBtn)
+        cell.estimatedWorkTimeLabel.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
-        cell.workInfoBtn.addTarget(self, action: #selector(goToWorkInfo), for: .touchUpInside)
+        cell.workNameLabel.text = resultsArray[indexPath.row].workName!
+        cell.estimatedWorkTimeLabel.text = resultsArray[indexPath.row].estimatedWorkTime.secondsToString
+        
+        // 셀 하단에 라인 추가하기
 
         return cell
     }
  
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // go to workingVC
-        if let view = self.storyboard?.instantiateViewController(withIdentifier: "WorkingViewController") {
-            self.navigationController?.pushViewController(view, animated: true)
-        }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        // go to workingVC
+//        if let view = self.storyboard?.instantiateViewController(withIdentifier: "WorkingViewController") {
+//            self.navigationController?.pushViewController(view, animated: true)
+//        }
+//    }
+
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedIndex = indexPath.row
+        return indexPath
     }
     
-    @objc func goToWorkInfo() {
-        
-        // go to WorkInfoVC
-        if let view = self.storyboard?.instantiateViewController(withIdentifier: "WorkInfoViewController") {
-            self.navigationController?.pushViewController(view, animated: true)
-        }
-    }
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -184,20 +177,69 @@ class MainViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "WorkingSegue" {
+            
+            if let vc = segue.destination as? WorkingViewController {
+                
+                print("selectedIndex is : \(String(describing: self.selectedIndex))")
+                vc.selectedIndex = self.selectedIndex
+            }
+        }
+        
+        if segue.identifier == "WorkInfoSegue" {
+            
+            if let vc = segue.destination as? WorkInfoViewController {
+                
+                print("selectedIndex is : \(String(describing: self.selectedIndex))")
+                vc.selectedIndex = self.selectedIndex
+            }
+        }
     }
-    */
+ 
 
 }
 
 class WorkCell: UITableViewCell {
 
+    @IBOutlet var iconImageView: UIImageView!
+    @IBOutlet var workNameLabel: UILabel!
+    @IBOutlet var estimatedWorkTimeLabel: UILabel!
+    @IBOutlet var latestTimeLabel: UILabel!
     @IBOutlet var workInfoBtn: UIButton!
 
 }
+
+extension Int32{
+    
+    var secondsToString: String {
+        
+        var hours: Int = Int(self/3600)
+        let minutes: Int = Int(self%3600/60)
+        
+        if hours != 0 {
+            return "\(String(hours))시간 \(String(minutes))분"
+        } else {
+            
+            return "\(String(minutes))분"
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

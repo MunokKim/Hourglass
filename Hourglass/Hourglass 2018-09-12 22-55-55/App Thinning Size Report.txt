@@ -1,0 +1,36 @@
+
+App Thinning Size Report for All Variants of Hourglass
+
+Variant: Hourglass-iPad mini 2-etc.ipa
+Supported devices: iPad (5th generation), iPad (6th generation), iPad Air, iPad Air 2, iPad Pro (12.9-inch), iPad mini 2, iPad mini 3, iPad mini 4, iPhone 5s, iPhone 6, iPhone 6s, iPhone SE, and iPod touch (6th generation)
+App + On Demand Resources size: 2.4 MB compressed, 6.8 MB uncompressed
+App size: 2.4 MB compressed, 6.8 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Hourglass-iPhone 6s Plus-etc.ipa
+Supported devices: iPhone 6 Plus and iPhone 6s Plus
+App + On Demand Resources size: 2.4 MB compressed, 6.8 MB uncompressed
+App size: 2.4 MB compressed, 6.8 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Hourglass-iPhone 7 Plus-etc.ipa
+Supported devices: iPhone 7 Plus, iPhone 8 Plus, and iPhone X
+App + On Demand Resources size: 2.4 MB compressed, 6.8 MB uncompressed
+App size: 2.4 MB compressed, 6.8 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Hourglass-iPhone 8-etc.ipa
+Supported devices: iPad Pro (10.5-inch), iPad Pro (12.9-inch) (2nd generation), iPad Pro (9.7-inch), iPhone 7, and iPhone 8
+App + On Demand Resources size: 2.4 MB compressed, 6.8 MB uncompressed
+App size: 2.4 MB compressed, 6.8 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Hourglass.ipa
+Supported devices: Universal
+App + On Demand Resources size: 2.6 MB compressed, 7.1 MB uncompressed
+App size: 2.6 MB compressed, 7.1 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
