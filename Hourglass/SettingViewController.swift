@@ -15,6 +15,19 @@ class SettingViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBOutlet var alertSwitch: UISwitch!
+    @IBOutlet var soundSwitch: UISwitch!
+    
+    @IBAction func alertSwitchChanged(_ sender: Any) {
+        
+        UserDefaults.standard.set(alertSwitch.isOn, forKey: "alertSwitchState")
+    }
+    
+    @IBAction func soundSwitchChanged(_ sender: Any) {
+        
+        UserDefaults.standard.set(soundSwitch.isOn, forKey: "soundSwitchState")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,14 +36,19 @@ class SettingViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        print("SettingViewController!!!")
         
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
-//        self.navigationController?.navigationItem.title = "설정"
+        // userDefaults 가 설정된 적이 한번도 없으면 기본값 설정하기
+        if !UserDefaults.standard.bool(forKey: "notTheFirstTime") {
+            UserDefaults.standard.set(true, forKey: "alertSwitchState")
+            UserDefaults.standard.set(true, forKey: "soundSwitchState")
+            UserDefaults.standard.set(true, forKey: "notTheFirstTime")
+        }
         
-        
+        alertSwitch.isOn = UserDefaults.standard.bool(forKey: "alertSwitchState")
+        soundSwitch.isOn = UserDefaults.standard.bool(forKey: "soundSwitchState")
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,15 +68,19 @@ class SettingViewController: UITableViewController {
 //        return 0
 //    }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchCell", for: indexPath)
+//
+//        // Configure the cell...
+//
+//        let switchView = UISwitch(frame: .zero)
+//        switchView.setOn(true, animated: true)
+//        switchView.tag = indexPath.row // for detect which row switch Changed
+//        switchView.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
+//        cell.accessoryView = switchView
+//
+//        return cell
+//    }
 
     /*
     // Override to support conditional editing of the table view.

@@ -1,26 +1,12 @@
 PODS:
-  - MaterialComponents/AnimationTiming (63.0.0)
-  - MaterialComponents/Palettes (63.0.0)
-  - MaterialComponents/private/Application (63.0.0)
-  - MaterialComponents/private/Math (63.0.0)
-  - MaterialComponents/TextFields (63.0.0):
-    - MaterialComponents/AnimationTiming
-    - MaterialComponents/Palettes
-    - MaterialComponents/private/Math
-    - MaterialComponents/Typography
-    - MDFInternationalization
-  - MaterialComponents/Typography (63.0.0):
-    - MaterialComponents/private/Application
-    - MaterialComponents/private/Math
-  - MDFInternationalization (1.1.0)
+  - SnapKit (4.0.1)
 
 DEPENDENCIES:
-  - MaterialComponents/TextFields
+  - SnapKit (~> 4.0.0)
 
 SPEC CHECKSUMS:
-  MaterialComponents: 4e0c0ee000e0dcbf5214b0054767ef9f8f812264
-  MDFInternationalization: b5b8626628abf026e630e5ebaeee563037712cbb
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 88fc050b164ef44b1d309c0d5c40b09094731444
+PODFILE CHECKSUM: 6b95521aa7e8d23bc1f74523a339e9991b2b317a
 
 COCOAPODS: 1.4.0

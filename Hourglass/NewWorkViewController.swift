@@ -8,112 +8,252 @@
 
 import UIKit
 import CoreData
+import SnapKit
 
-class NewWorkViewController: UIViewController {
+class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     let context = AppDelegate.viewContext
     
+    let hourComponent: Int = 0
+    let minuteComponent: Int = 1
+    let hoursPickerData: [Int] = Array(0...9) // 타임피커의 시간제한 기본값 10시간 -1초
+    let minutesPickerData: [Int] = Array(0...59)
+    let componentWidth: CGFloat = 80
+    let componentHeight: CGFloat = 32
+    let largeNumber: Int = 400
+    lazy var pickerViewMiddle: Int = ((largeNumber / minutesPickerData.count) / 2) * minutesPickerData.count
+    
+    internal var isCellHeightExpanded: Bool = false {
+        didSet{
+            //(own internal logic removed)
+            
+            // 셀 높이를 확인하고 애니메이션을 적용한다.
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }
+    }
+    
+    func valueForRow(row: Int) -> Int {
+            // the rows repeat every `pickerViewData.count` items
+            return minutesPickerData[row % minutesPickerData.count]
+    }
+    
+    func rowForValue(value: Int) -> Int? {
+        if let valueIndex = minutesPickerData.firstIndex(of: value) {
+            return pickerViewMiddle + value
+        }
+        return nil
+    }
+    
     @IBAction func saveWorkInfo(_ sender: Any) {
         
-        // Core Data 영구 저장소에 WorkInfo 데이터 추가하기
-        let workInfo = WorkInfo(context: context)
-        
-        workInfo.workName = workNameTextField?.text
-        
-        if let countDownDurationToInt32 = estimatedWorkTimeDatePicker?.countDownDuration {
-            workInfo.estimatedWorkTime = Int32(countDownDurationToInt32)
-        }
-        
-        do {
-            try context.save()
-            
-            print("Context Save Success!")
-            
-        } catch let nserror as NSError {
-            
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
-        
-        self.dismiss(animated: true, completion: nil)
+//                // Core Data 영구 저장소에 WorkInfo 데이터 추가하기
+//                let workInfo = WorkInfo(context: context)
+//
+//                workInfo.workName = workNameTextField?.text
+//
+//                if let countDownDurationToInt32 = estimatedWorkTimeDatePicker?.countDownDuration {
+//                    workInfo.estimatedWorkTime = Int32(countDownDurationToInt32)
+//                }
+//
+//                do {
+//                    try context.save()
+//
+//                    print("Context Save Success!")
+//
+//                } catch let nserror as NSError {
+//
+//                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//                }
+//
+//                self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelAndClose(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
     }
-
+    
     @IBOutlet var workNameTextField: UITextField!
     @IBOutlet var workIconImageView: UIImageView!
-    @IBOutlet var estimatedWorkTimeDatePicker: UIDatePicker!
-    
-    
-    @IBOutlet var textTopConstraint: NSLayoutConstraint!
-    @IBOutlet var imageTopConstraint: NSLayoutConstraint!
-    @IBOutlet var imageHeightConstrint: NSLayoutConstraint!
-    @IBOutlet var labelTopConstraint: NSLayoutConstraint!
-    @IBOutlet var pickerHeightConstrint: NSLayoutConstraint!
-    
+    @IBOutlet var estimatedWorkTimePicker: UIPickerView!
+    @IBOutlet var addButton: UIBarButtonItem!
+    @IBOutlet var IconCell: UITableViewCell!
+    @IBOutlet var showEstimatedWorkTimeCell: UITableViewCell!
+    @IBOutlet var pickerCell: UITableViewCell!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
-        if UIDevice.current.isiPadPro12 {
-            // iPad Pro 12.9
-            
-        } else if UIDevice.current.isiPad {
-            // iPad Air2, iPad Pro 9.7
-            
-        } else if UIDevice.current.isiPhonePlus {
-            // iPhone 7+
-            textTopConstraint.constant = 50
-            imageTopConstraint.constant = 50
-            imageHeightConstrint.constant = 150
-            labelTopConstraint.constant = 80
-            pickerHeightConstrint.constant = 250
-            
-        } else if UIDevice.current.isiPhoneX {
-            // iPhone X
-            textTopConstraint.constant = 60
-            imageTopConstraint.constant = 60
-            labelTopConstraint.constant = 140
-            pickerHeightConstrint.constant = 250
-            
-        } else if UIDevice.current.isiPhoneSE {
-            // iPhone SE
-            textTopConstraint.constant = 30
-            imageTopConstraint.constant = 30
-            imageHeightConstrint.constant = 100
-            labelTopConstraint.constant = 50
-            pickerHeightConstrint.constant = 200
-            
-        } else {
-            // iPhone 7
-        }
+        workNameTextField.delegate = self
+        
+        addButton.isEnabled = false
         
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
-        workNameTextField.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
-        workIconImageView.backgroundColor = UIColor(red:0.75, green:0.75, blue:0.75, alpha:1.00)
+        workNameTextField.borderStyle = .none
+        workNameTextField.backgroundColor = UIColor.clear
+        workNameTextField.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        workNameTextField.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
         
-        estimatedWorkTimeDatePicker.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
-        estimatedWorkTimeDatePicker.countDownDuration = 1800
+        workIconImageView.backgroundColor = UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.00)
+        workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
+        workIconImageView.clipsToBounds = true
+        
+        showEstimatedWorkTimeCell.detailTextLabel?.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        
+        estimatedWorkTimePicker.delegate = self
+        estimatedWorkTimePicker.dataSource = self
+        
+        let initValue = 30 // 분단위 초기값
+        if let row = rowForValue(value: initValue) {
+            estimatedWorkTimePicker.selectRow(row, inComponent: 1, animated: false)
+        }
+        
+        // 그냥 가운데에서 시작
+//        estimatedWorkTimePicker.selectRow(pickerViewMiddle, inComponent: 1, animated: false)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // 빈곳을 터치하면 키보드나 데이트피커 등을 숨긴다
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         self.view.endEditing(true)
     }
+    
+    @IBAction func pressReturnInWorkName(_ sender: Any) {
+        
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func editingChangedInWorkName(_ sender: Any) {
+        
+        // 텍스트필드가 공백이거나 글자가 아닌 경우(공백, 특수문자 등)
+        if workNameTextField.text == "" || workNameTextField.text?.rangeOfCharacter(from: CharacterSet.letters) == nil {
+            
+            addButton.isEnabled = false
+        } else {
+            
+            addButton.isEnabled = true
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let maxLength = 20
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+        
+        return newString.length <= maxLength
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.row == 1 {
+            return 86
+        } else if indexPath.row == 3 {
+            if self.isCellHeightExpanded {
+                // 확대
+                pickerCell.contentView.isHidden = false
+                
+                return 217
+            } else {
+                // 축소
+                pickerCell.contentView.isHidden = true
+                
+                return 0
+            }
+        }
+        
+        return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // 선택한 셀을 바로 선택해제하여 하이라이트 안보이게 하기
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard indexPath.row == 2 else { return }
+        
+            if self.isCellHeightExpanded {
+                self.isCellHeightExpanded = false
+            } else {
+                self.isCellHeightExpanded = true
+            }
+    }
+    
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+        if indexPath.row != 2 {
+            let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+            selectedCell.isSelected = false
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
+        return 2
+    }
 
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case hourComponent: return hoursPickerData.count
+        case minuteComponent: return largeNumber
+        default: break
+        }
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        // 피커뷰의 선택된 인덱스 글자색 적용
+        
+        // 피커뷰의 선택된 인덱스 상하에 있는 가로줄 색상 적용
+        pickerView.subviews[1].backgroundColor = UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00)
+        pickerView.subviews[2].backgroundColor = UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00)
+        
+        var viewWithLabel: UIView?
+        
+        if viewWithLabel == nil {
+            viewWithLabel = UIView(frame: CGRect(x: 0, y: 0, width: componentWidth, height: componentHeight))
+            
+            let label: UILabel = UILabel(frame: CGRect(x: 11, y: 0, width: 30, height: componentHeight))
+            label.font = UIFont(name: "systemFont", size: 23)
+            label.textAlignment = NSTextAlignment.right
+            viewWithLabel?.addSubview(label)
+        }
+        
+        if let label: UILabel = viewWithLabel?.subviews[0] as? UILabel {
+
+            label.text = String(valueForRow(row: row))
+        }
+        
+        return viewWithLabel!
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return componentHeight
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return 106
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        let newRow = pickerViewMiddle + (row % minutesPickerData.count)
+        pickerView.selectRow(newRow, inComponent: 1, animated: false)
+        print("Resetting row to \(newRow)")
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -125,3 +265,4 @@ class NewWorkViewController: UIViewController {
     */
 
 }
+

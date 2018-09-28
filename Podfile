@@ -10,7 +10,7 @@ target 'Hourglass' do
 
 
 
-pod 'MaterialComponents/TextFields'
+pod 'SnapKit', '~> 4.0.0'
 
 
 

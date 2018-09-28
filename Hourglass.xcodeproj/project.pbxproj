@@ -10,6 +10,7 @@
 		6B55792521481A3E00CE51FC /* WorkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B55792421481A3E00CE51FC /* WorkInfoViewController.swift */; };
 		6B55792721481B6700CE51FC /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B55792621481B6700CE51FC /* RecordTableViewController.swift */; };
 		6B55792921481CB100CE51FC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B55792821481CB100CE51FC /* SettingViewController.swift */; };
+		6B5BAA70215A4C5800B9A8F1 /* FadeInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BAA6F215A4C5800B9A8F1 /* FadeInSegue.swift */; };
 		6B6FEF042153EB57000653FF /* BackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6FEF032153EB57000653FF /* BackupViewController.swift */; };
 		6B6FEF062153EB86000653FF /* PreviousBackupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6FEF052153EB86000653FF /* PreviousBackupTableViewController.swift */; };
 		6B6FEF082154558E000653FF /* ScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6FEF072154558E000653FF /* ScreenExtension.swift */; };
@@ -21,6 +22,7 @@
 		6B8D5A2A2139556400AB9122 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D5A292139556400AB9122 /* MainViewController.swift */; };
 		6B8D5A2C2139584F00AB9122 /* NewWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D5A2B2139584F00AB9122 /* NewWorkViewController.swift */; };
 		6B8D5A2E21395DE800AB9122 /* WorkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D5A2D21395DE800AB9122 /* WorkingViewController.swift */; };
+		6B9EF607215A7F1200871E3F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EF606215A7F1200871E3F /* GradientView.swift */; };
 		6BC01B7F21140CCA00BD81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC01B7E21140CCA00BD81BE /* AppDelegate.swift */; };
 		6BC01B8121140CCA00BD81BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC01B8021140CCA00BD81BE /* ViewController.swift */; };
 		6BC01B8421140CCA00BD81BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC01B8221140CCA00BD81BE /* Main.storyboard */; };
@@ -34,6 +36,7 @@
 		6B55792421481A3E00CE51FC /* WorkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkInfoViewController.swift; sourceTree = "<group>"; };
 		6B55792621481B6700CE51FC /* RecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		6B55792821481CB100CE51FC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		6B5BAA6F215A4C5800B9A8F1 /* FadeInSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInSegue.swift; sourceTree = "<group>"; };
 		6B6FEF032153EB57000653FF /* BackupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupViewController.swift; sourceTree = "<group>"; };
 		6B6FEF052153EB86000653FF /* PreviousBackupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousBackupTableViewController.swift; sourceTree = "<group>"; };
 		6B6FEF072154558E000653FF /* ScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenExtension.swift; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 		6B8D5A292139556400AB9122 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6B8D5A2B2139584F00AB9122 /* NewWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkViewController.swift; sourceTree = "<group>"; };
 		6B8D5A2D21395DE800AB9122 /* WorkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingViewController.swift; sourceTree = "<group>"; };
+		6B9EF606215A7F1200871E3F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		6BC01B7B21140CCA00BD81BE /* Hourglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hourglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC01B7E21140CCA00BD81BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BC01B8021140CCA00BD81BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +72,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6B6FEF122154F985000653FF /* MODEL */ = {
+		6B6FEF122154F985000653FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				6B8B3A47215524C600E682B6 /* TimeMeasurementInfo+CoreDataClass.swift */,
@@ -77,7 +81,7 @@
 				6B8B3A4A215524C600E682B6 /* WorkInfo+CoreDataProperties.swift */,
 				6B6FEF092154E3D1000653FF /* Hourglass.xcdatamodeld */,
 			);
-			path = MODEL;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6B8B3A4F2155272700E682B6 /* ViewControllers */ = {
@@ -117,7 +121,7 @@
 		6BC01B7D21140CCA00BD81BE /* Hourglass */ = {
 			isa = PBXGroup;
 			children = (
-				6B6FEF122154F985000653FF /* MODEL */,
+				6B6FEF122154F985000653FF /* Model */,
 				6B8B3A4F2155272700E682B6 /* ViewControllers */,
 				6BC01B7E21140CCA00BD81BE /* AppDelegate.swift */,
 				6BC01B8221140CCA00BD81BE /* Main.storyboard */,
@@ -125,6 +129,8 @@
 				6BC01B8721140CCB00BD81BE /* LaunchScreen.storyboard */,
 				6BC01B8A21140CCB00BD81BE /* Info.plist */,
 				6B6FEF072154558E000653FF /* ScreenExtension.swift */,
+				6B5BAA6F215A4C5800B9A8F1 /* FadeInSegue.swift */,
+				6B9EF606215A7F1200871E3F /* GradientView.swift */,
 			);
 			path = Hourglass;
 			sourceTree = "<group>";
@@ -181,6 +187,7 @@
 				TargetAttributes = {
 					6BC01B7A21140CCA00BD81BE = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -223,13 +230,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hourglass/Pods-Hourglass-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
-				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -284,12 +289,14 @@
 				6B55792921481CB100CE51FC /* SettingViewController.swift in Sources */,
 				6B55792721481B6700CE51FC /* RecordTableViewController.swift in Sources */,
 				6B8B3A4B215524C600E682B6 /* TimeMeasurementInfo+CoreDataClass.swift in Sources */,
+				6B9EF607215A7F1200871E3F /* GradientView.swift in Sources */,
 				6B8D5A2C2139584F00AB9122 /* NewWorkViewController.swift in Sources */,
 				6B6FEF062153EB86000653FF /* PreviousBackupTableViewController.swift in Sources */,
 				6BC01B7F21140CCA00BD81BE /* AppDelegate.swift in Sources */,
 				6B55792521481A3E00CE51FC /* WorkInfoViewController.swift in Sources */,
 				6B6FEF082154558E000653FF /* ScreenExtension.swift in Sources */,
 				6B8B3A4C215524C600E682B6 /* TimeMeasurementInfo+CoreDataProperties.swift in Sources */,
+				6B5BAA70215A4C5800B9A8F1 /* FadeInSegue.swift in Sources */,
 				6B6FEF0B2154E3D1000653FF /* Hourglass.xcdatamodeld in Sources */,
 				6B6FEF042153EB57000653FF /* BackupViewController.swift in Sources */,
 			);
@@ -436,7 +443,8 @@
 			baseConfigurationReference = 48399129BC9C3D5610DFD73B /* Pods-Hourglass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L2N9WY9T58;
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -445,7 +453,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = HelloWorld.Munok.Hourglass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = HourglassDevelopmentProfile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -455,7 +465,9 @@
 			baseConfigurationReference = EBFE5B0F2189A611532C8E32 /* Pods-Hourglass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L2N9WY9T58;
 				INFOPLIST_FILE = Hourglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -464,7 +476,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = HelloWorld.Munok.Hourglass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = HourglassProfile;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

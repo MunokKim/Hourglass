@@ -49,7 +49,7 @@ class MainViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
         // 셀간 구분선 없애기
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none;
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none;
         
         // 높이 자동 조절
 //        tableView.estimatedRowHeight = 175;
@@ -68,6 +68,7 @@ class MainViewController: UITableViewController {
         
         notificationCenter.addObserver(self, selector: #selector(contextFetchToResultsArray), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context)
         
+
     }
     
     @objc func contextFetchToResultsArray() {
@@ -189,7 +190,7 @@ class MainViewController: UITableViewController {
             
             if let vc = segue.destination as? WorkingViewController {
                 
-                print("selectedIndex is : \(String(describing: self.selectedIndex))")
+                print("selectedIndex is : \(self.selectedIndex)")
                 vc.selectedIndex = self.selectedIndex
             }
         }
@@ -221,13 +222,12 @@ extension Int32{
     
     var secondsToString: String {
         
-        var hours: Int = Int(self/3600)
+        let hours: Int = Int(self/3600)
         let minutes: Int = Int(self%3600/60)
         
         if hours != 0 {
             return "\(String(hours))시간 \(String(minutes))분"
         } else {
-            
             return "\(String(minutes))분"
         }
     }
