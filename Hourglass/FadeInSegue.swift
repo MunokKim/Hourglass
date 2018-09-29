@@ -28,7 +28,7 @@ class FadeInSegue: UIStoryboardSegue {
         let window = UIApplication.shared.keyWindow
         window?.insertSubview(destinationView, aboveSubview: self.source.view)
         
-        UIView.animate(withDuration: CATransaction.animationDuration(), animations: {
+        UIView.animate(withDuration: 1, animations: {
             
             destinationView.alpha = 1
         }, completion: { _ in

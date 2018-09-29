@@ -22,6 +22,8 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     let componentHeight: CGFloat = 32
     let largeNumber: Int = 400
     lazy var pickerViewMiddle: Int = ((largeNumber / minutesPickerData.count) / 2) * minutesPickerData.count
+    var selectedHours: Int?
+    var selectedMinutes: Int?
     
     internal var isCellHeightExpanded: Bool = false {
         didSet{
@@ -34,8 +36,8 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     }
     
     func valueForRow(row: Int) -> Int {
-            // the rows repeat every `pickerViewData.count` items
-            return minutesPickerData[row % minutesPickerData.count]
+        // the rows repeat every `pickerViewData.count` items
+        return minutesPickerData[row % minutesPickerData.count]
     }
     
     func rowForValue(value: Int) -> Int? {
@@ -47,26 +49,29 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func saveWorkInfo(_ sender: Any) {
         
-//                // Core Data 영구 저장소에 WorkInfo 데이터 추가하기
-//                let workInfo = WorkInfo(context: context)
-//
-//                workInfo.workName = workNameTextField?.text
-//
-//                if let countDownDurationToInt32 = estimatedWorkTimeDatePicker?.countDownDuration {
-//                    workInfo.estimatedWorkTime = Int32(countDownDurationToInt32)
-//                }
-//
-//                do {
-//                    try context.save()
-//
-//                    print("Context Save Success!")
-//
-//                } catch let nserror as NSError {
-//
-//                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-//                }
-//
-//                self.dismiss(animated: true, completion: nil)
+        presistentObjectStoreSave()
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func presistentObjectStoreSave() {
+        
+        // Core Data 영구 저장소에 WorkInfo 데이터 추가하기
+        
+        let workInfo = WorkInfo(context: context)
+        
+        workInfo.workName = workNameTextField?.text
+        workInfo.estimatedWorkTime = Int32((selectedHours! * 3600) + (selectedMinutes! * 60))
+        
+        do {
+            try context.save()
+            
+            print("Context Save Success!")
+            
+        } catch let nserror as NSError {
+            
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
     }
     
     @IBAction func cancelAndClose(_ sender: Any) {
@@ -115,7 +120,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         }
         
         // 그냥 가운데에서 시작
-//        estimatedWorkTimePicker.selectRow(pickerViewMiddle, inComponent: 1, animated: false)
+        //        estimatedWorkTimePicker.selectRow(pickerViewMiddle, inComponent: 1, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -136,8 +141,13 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func editingChangedInWorkName(_ sender: Any) {
         
-        // 텍스트필드가 공백이거나 글자가 아닌 경우(공백, 특수문자 등)
-        if workNameTextField.text == "" || workNameTextField.text?.rangeOfCharacter(from: CharacterSet.letters) == nil {
+        saveButtonValidation()
+    }
+    
+    func saveButtonValidation() {
+        
+        // 텍스트필드가 공백이거나 글자가 아닌 경우(공백, 특수문자 등) 그리고 selectedMinutes를 아직 설정하지 않은 경우
+        if workNameTextField.text == "" || workNameTextField.text?.rangeOfCharacter(from: CharacterSet.letters) == nil || selectedMinutes == nil {
             
             addButton.isEnabled = false
         } else {
@@ -183,11 +193,11 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         guard indexPath.row == 2 else { return }
         
-            if self.isCellHeightExpanded {
-                self.isCellHeightExpanded = false
-            } else {
-                self.isCellHeightExpanded = true
-            }
+        if self.isCellHeightExpanded {
+            self.isCellHeightExpanded = false
+        } else {
+            self.isCellHeightExpanded = true
+        }
     }
     
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
@@ -202,7 +212,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         return 2
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case hourComponent: return hoursPickerData.count
@@ -232,7 +242,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         }
         
         if let label: UILabel = viewWithLabel?.subviews[0] as? UILabel {
-
+            
             label.text = String(valueForRow(row: row))
         }
         
@@ -249,20 +259,29 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        let newRow = pickerViewMiddle + (row % minutesPickerData.count)
-        pickerView.selectRow(newRow, inComponent: 1, animated: false)
-        print("Resetting row to \(newRow)")
+        selectedHours = hoursPickerData[pickerView.selectedRow(inComponent: 0)]
+        selectedMinutes = minutesPickerData[pickerView.selectedRow(inComponent: 1) % minutesPickerData.count]
+        
+        saveButtonValidation()
+        
+        var estimatedWorkTimeString: String = "\(selectedHours!)시간 \(selectedMinutes!)분"
+        
+        if selectedHours == 0 {
+            estimatedWorkTimeString = "\(selectedMinutes!)분"
+        }
+        
+        showEstimatedWorkTimeCell.detailTextLabel?.text = estimatedWorkTimeString
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 

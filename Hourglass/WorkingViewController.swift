@@ -20,27 +20,48 @@ class WorkingViewController: UIViewController {
 
     @IBOutlet var workIconImageView: UIImageView!
     @IBOutlet var workNameLabel: UILabel!
+    @IBOutlet var remainingTextLabel: UILabel!
     @IBOutlet var remainingTimeLabel: UILabel!
     @IBOutlet var stopButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var completeButton: UIButton!
+    @IBOutlet var workStartTextLabel: UILabel!
     @IBOutlet var workStartTimeLabel: UILabel!
+    @IBOutlet var estimatedCompletionTextLabel: UILabel!
     @IBOutlet var estimatedCompletionTimeLabel: UILabel!
     
     @IBOutlet var cancelButtonCenterXConstraint: NSLayoutConstraint!
     @IBOutlet var completeButtonCenterXConstraint: NSLayoutConstraint!
     
-    @IBAction func stopTimer(_ sender: Any) {
+    @IBAction func zoomOutView(_ sender: Any) {
         
-        animationForStopOrResume()
+        // 임시로 그냥 창 닫기로 해놓음
+        dismiss(animated: true)
     }
     
-    func animationForStopOrResume() {
+    @IBAction func stopTimer(_ sender: Any) {
         
-        if isTimerRunning {
+        timerOperationBy(state: isTimerRunning)
+        
+        animateBy(state: isTimerRunning)
+    }
+    
+    func timerOperationBy(state: Bool) {
+        
+        if state {
             
             // 남은 시간 타이머 중단
             // 예상 완료 타이머 재개
+        } else {
+            
+            // 남은 시간 타이머 재개
+            // 예상 완료 타이머 중단
+        }
+    }
+    
+    func animateBy(state: Bool) {
+        
+        if state {
             
             stopButton.setImage(playImage, for: .normal)
             
@@ -68,9 +89,6 @@ class WorkingViewController: UIViewController {
             isTimerRunning = false
             
         } else {
-            
-            // 남은 시간 타이머 재개
-            // 예상 완료 타이머 중단
             
             stopButton.setImage(pauseImage, for: .normal)
             
@@ -132,29 +150,71 @@ class WorkingViewController: UIViewController {
         completeButton.clipsToBounds = true
         completeButton.isHidden = true
         
+        workNameLabel.layer.shadowColor = UIColor.white.cgColor
+        workNameLabel.layer.shadowRadius = 2.0
+        workNameLabel.layer.shadowOpacity = 0.75
+        workNameLabel.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        workNameLabel.layer.masksToBounds = false
+        
+        remainingTextLabel.layer.shadowColor = UIColor.white.cgColor
+        remainingTextLabel.layer.shadowRadius = 1.5
+        remainingTextLabel.layer.shadowOpacity = 0.5
+        remainingTextLabel.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        remainingTextLabel.layer.masksToBounds = false
+        
+        remainingTimeLabel.layer.shadowColor = UIColor.white.cgColor
+        remainingTimeLabel.layer.shadowRadius = 2.0
+        remainingTimeLabel.layer.shadowOpacity = 1.0
+        remainingTimeLabel.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        remainingTimeLabel.layer.masksToBounds = false
+        
+        workStartTimeLabel.layer.shadowColor = UIColor.white.cgColor
+        workStartTimeLabel.layer.shadowRadius = 1.5
+        workStartTimeLabel.layer.shadowOpacity = 0.5
+        workStartTimeLabel.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        workStartTimeLabel.layer.masksToBounds = false
+        
+        estimatedCompletionTimeLabel.layer.shadowColor = UIColor.white.cgColor
+        estimatedCompletionTimeLabel.layer.shadowRadius = 1.5
+        estimatedCompletionTimeLabel.layer.shadowOpacity = 0.5
+        estimatedCompletionTimeLabel.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        estimatedCompletionTimeLabel.layer.masksToBounds = false
+        
+        workStartTextLabel.layer.shadowColor = UIColor.white.cgColor
+        workStartTextLabel.layer.shadowRadius = 1.5
+        workStartTextLabel.layer.shadowOpacity = 0.5
+        workStartTextLabel.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        workStartTextLabel.layer.masksToBounds = false
+        
+        estimatedCompletionTextLabel.layer.shadowColor = UIColor.white.cgColor
+        estimatedCompletionTextLabel.layer.shadowRadius = 1.5
+        estimatedCompletionTextLabel.layer.shadowOpacity = 0.5
+        estimatedCompletionTextLabel.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        estimatedCompletionTextLabel.layer.masksToBounds = false
+        
+        stopButton.layer.shadowColor = UIColor.white.cgColor
+        stopButton.layer.shadowRadius = 4.0
+        stopButton.layer.shadowOpacity = 1.0
+        stopButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        stopButton.layer.masksToBounds = false
+        
+        cancelButton.layer.shadowColor = UIColor.white.cgColor
+        cancelButton.layer.shadowRadius = 4.0
+        cancelButton.layer.shadowOpacity = 1.0
+        cancelButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        cancelButton.layer.masksToBounds = false
+        
+        completeButton.layer.shadowColor = UIColor.white.cgColor
+        completeButton.layer.shadowRadius = 4.0
+        completeButton.layer.shadowOpacity = 1.0
+        completeButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        completeButton.layer.masksToBounds = false
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func addGradientToView() {
-        
-//        let screenWidth = UIScreen.main.bounds.size.width
-//        let screenHeight = UIScreen.main.bounds.size.height
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
-        let gradient = CAGradientLayer()
-        
-        gradient.startPoint = CGPoint(x: 0.3, y: 0)
-        gradient.endPoint = CGPoint(x: 0.7, y: 1)
-        gradient.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]
-        gradient.locations = [0.0, 1.0]
-        gradient.frame = view.bounds
-        
-        view.layer.addSublayer(gradient)
-    }
-    
 
     /*
     // MARK: - Navigation

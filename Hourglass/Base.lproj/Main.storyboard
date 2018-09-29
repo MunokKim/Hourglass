@@ -274,7 +274,7 @@
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <action selector="editingChangedInWorkName:" destination="bAQ-dS-PAd" eventType="editingChanged" id="0O4-lx-TSu"/>
-                        <action selector="pressReturnInWorkName:" destination="bAQ-dS-PAd" eventType="editingDidEnd" id="ZEa-Qw-6xr"/>
+                        <action selector="pressReturnInWorkName:" destination="bAQ-dS-PAd" eventType="primaryActionTriggered" id="xLw-j9-kmm"/>
                     </connections>
                 </textField>
             </objects>
@@ -298,6 +298,9 @@
                                             <constraint firstAttribute="height" constant="30" id="lCn-3U-ZAo"/>
                                         </constraints>
                                         <state key="normal" image="zoomoutIcon"/>
+                                        <connections>
+                                            <action selector="zoomOutView:" destination="M4F-Va-rGN" eventType="touchUpInside" id="gNA-Lg-9an"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vxy-bY-jrV">
                                         <rect key="frame" x="162.5" y="65" width="50" height="50"/>
@@ -438,11 +441,14 @@
                         <outlet property="cancelButtonCenterXConstraint" destination="ivf-Hd-man" id="qv6-3e-k4R"/>
                         <outlet property="completeButton" destination="Fr1-fB-GUs" id="m2s-se-TOk"/>
                         <outlet property="completeButtonCenterXConstraint" destination="d3P-Pj-1GF" id="WW9-wU-19x"/>
+                        <outlet property="estimatedCompletionTextLabel" destination="aIK-nb-eGb" id="lNI-qm-k7Y"/>
                         <outlet property="estimatedCompletionTimeLabel" destination="4ta-dS-YiI" id="wAq-ML-ZNf"/>
+                        <outlet property="remainingTextLabel" destination="IdG-mm-nH3" id="tgx-nS-FCw"/>
                         <outlet property="remainingTimeLabel" destination="RCJ-rT-Mku" id="0lo-R8-qvK"/>
                         <outlet property="stopButton" destination="OSK-9l-kVC" id="Zv7-8P-ad1"/>
                         <outlet property="workIconImageView" destination="vxy-bY-jrV" id="1Fu-9Q-u1W"/>
                         <outlet property="workNameLabel" destination="vwB-9M-7vs" id="bwN-V9-dN8"/>
+                        <outlet property="workStartTextLabel" destination="cxJ-dX-FVX" id="tEQ-Rl-1pN"/>
                         <outlet property="workStartTimeLabel" destination="V1Z-yY-XqX" id="FjL-LC-T3Q"/>
                     </connections>
                 </viewController>
