@@ -12,26 +12,24 @@ import CoreData
 class MainViewController: UITableViewController {
     
     var selectedIndex: Int?
-
-//    @IBAction func goToNewWork(_ sender: Any) {
-//
-//        if let view = self.storyboard?.instantiateViewController(withIdentifier: "NewWorkViewController") {
-//            self.present(view, animated: true, completion: nil)
-//        }
-//    }
-    
-//    @IBAction func goToSetting(_ sender: Any) {
-//
-//        if let view = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController") {
-//            self.present(view, animated: true, completion: nil)
-//        }
-//    }
     
     @IBOutlet var mainTableView: UITableView!
     
     let context = AppDelegate.viewContext
     
     var resultsArray = [WorkInfo]()
+    
+    @IBOutlet var editButton: UIBarButtonItem!
+    
+    @IBAction func editButtonPressed(_ sender: Any) {
+        
+        mainTableView.setEditing(!tableView.isEditing, animated: true)
+        if tableView.isEditing == true{
+            editButton.title = "완료"
+        }else{
+            editButton.title = "편집"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,24 +46,31 @@ class MainViewController: UITableViewController {
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
-        // 셀간 구분선 없애기
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none;
+//        // 셀간 구분선 없애기
+//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none;
+        // 셀 구분선 왼쪽 띄움
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 0);
+        
+        // userDefaults 가 설정된 적이 한번도 없으면 기본값(전부 켜짐) 설정하기
+        if UserDefaults.standard.object(forKey: "alertSwitchState") == nil {
+            UserDefaults.standard.set(true, forKey: "alertSwitchState")
+            UserDefaults.standard.set(true, forKey: "soundSwitchState")
+        }
         
         // 높이 자동 조절
-//        tableView.estimatedRowHeight = 175;
-//        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = 75;
+//        tableView.rowHeight = UITableView.automaticDimension
         
 //        let searchController = UISearchController(searchResultsController: nil)
 //
 //        self.mainTableView.setContentOffset(CGPoint(x: 0, y: 44), animated: true)
 //        self.searchDisplayController?.setActive(false, animated: true)
         
-        
         contextFetchToResultsArray()
         
         // Add Observer
         let notificationCenter = NotificationCenter.default
-        
+
         notificationCenter.addObserver(self, selector: #selector(contextFetchToResultsArray), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context)
         
 
@@ -75,6 +80,9 @@ class MainViewController: UITableViewController {
         
         // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
         let request: NSFetchRequest<WorkInfo> = WorkInfo.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "workID", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
         
         do {
             resultsArray = try context.fetch(request)
@@ -120,12 +128,20 @@ class MainViewController: UITableViewController {
 
         // Configure the cell...
         
+        cell.iconImageView.backgroundColor = UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.00)
+        cell.iconImageView.layer.cornerRadius = cell.iconImageView.layer.frame.width / 2.66
+        cell.iconImageView.clipsToBounds = true
+        
+        cell.iconImageView.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.iconImageView.layer.shadowRadius = 2.0
+        cell.iconImageView.layer.shadowOpacity = 0.5
+        cell.iconImageView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        cell.iconImageView.layer.masksToBounds = false
+        
         cell.estimatedWorkTimeLabel.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
         cell.workNameLabel.text = resultsArray[indexPath.row].workName!
         cell.estimatedWorkTimeLabel.text = resultsArray[indexPath.row].estimatedWorkTime.secondsToString
-        
-        // 셀 하단에 라인 추가하기
 
         return cell
     }
@@ -218,7 +234,7 @@ class WorkCell: UITableViewCell {
 
 }
 
-extension Int32{
+extension Int32 {
     
     var secondsToString: String {
         

@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import SnapKit
 
 class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
@@ -18,7 +17,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     let minuteComponent: Int = 1
     let hoursPickerData: [Int] = Array(0...9) // 타임피커의 시간제한 기본값 10시간 -1초
     let minutesPickerData: [Int] = Array(0...59)
-    let componentWidth: CGFloat = 80
+    let componentWidth: CGFloat = 120
     let componentHeight: CGFloat = 32
     let largeNumber: Int = 400
     lazy var pickerViewMiddle: Int = ((largeNumber / minutesPickerData.count) / 2) * minutesPickerData.count
@@ -62,6 +61,15 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         workInfo.workName = workNameTextField?.text
         workInfo.estimatedWorkTime = Int32((selectedHours! * 3600) + (selectedMinutes! * 60))
+        
+        if UserDefaults.standard.object(forKey: "AutoIncrementID") == nil {
+            UserDefaults.standard.set(1, forKey: "AutoIncrementID")
+            workInfo.workID = Int16(UserDefaults.standard.integer(forKey: "AutoIncrementID"))
+        } else {
+            let autoIncrementID = UserDefaults.standard.integer(forKey: "AutoIncrementID") + 1
+            UserDefaults.standard.set(autoIncrementID, forKey: "AutoIncrementID")
+            workInfo.workID = Int16(autoIncrementID)
+        }
         
         do {
             try context.save()
@@ -224,7 +232,20 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
-        // 피커뷰의 선택된 인덱스 글자색 적용
+        // "시간", "분" 레이블 삽입
+        let insertRef = pickerView.subviews[0].subviews[0].subviews[2]
+        let hoursLabel: UILabel = UILabel(frame: CGRect(x: 130.5, y: 0, width: 60, height: componentHeight))
+        let minutesLabel: UILabel = UILabel(frame: CGRect(x: 239.5, y: 0, width: 60, height: componentHeight))
+        
+        hoursLabel.font = UIFont(name: "systemFont", size: 23)
+        hoursLabel.textAlignment = NSTextAlignment.left
+        insertRef.addSubview(hoursLabel)
+        hoursLabel.text = "시간"
+        
+        minutesLabel.font = UIFont(name: "systemFont", size: 23)
+        minutesLabel.textAlignment = NSTextAlignment.left
+        insertRef.addSubview(minutesLabel)
+        minutesLabel.text = "분"
         
         // 피커뷰의 선택된 인덱스 상하에 있는 가로줄 색상 적용
         pickerView.subviews[1].backgroundColor = UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00)

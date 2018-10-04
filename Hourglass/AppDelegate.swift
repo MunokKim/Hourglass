@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // sqlite 파일 위치 출력
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        print("sqlite File Location : \(urls[urls.count-1] as URL)")
+        
         return true
     }
 
