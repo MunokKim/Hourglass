@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="TimeMeasurementInfo" representedClassName="TimeMeasurementInfo" syncable="YES">
         <attribute name="actualCompletion" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="eachTurnOfWorkID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -13,6 +13,7 @@
     <entity name="WorkInfo" representedClassName=".WorkInfo" syncable="YES">
         <attribute name="averageElapsedTime" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="averageRemainingTime" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentSuccessiveAchievementWhether" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="estimatedWorkTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="goalFail" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -26,7 +27,7 @@
         <relationship name="eachTurnsOfWork" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TimeMeasurementInfo" inverseName="work" inverseEntity="TimeMeasurementInfo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="WorkInfo" positionX="-171" positionY="-36" width="243" height="238"/>
         <element name="TimeMeasurementInfo" positionX="-452" positionY="8" width="191" height="163"/>
+        <element name="WorkInfo" positionX="-171" positionY="-36" width="243" height="255"/>
     </elements>
 </model>

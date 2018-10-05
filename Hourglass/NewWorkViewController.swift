@@ -61,6 +61,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         workInfo.workName = workNameTextField?.text
         workInfo.estimatedWorkTime = Int32((selectedHours! * 3600) + (selectedMinutes! * 60))
+        workInfo.createdDate = Date()
         
         if UserDefaults.standard.object(forKey: "AutoIncrementID") == nil {
             UserDefaults.standard.set(1, forKey: "AutoIncrementID")
