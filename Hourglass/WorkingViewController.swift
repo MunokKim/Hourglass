@@ -12,21 +12,21 @@ import CoreData
 
 class WorkingViewController: UIViewController {
     
-    var selectedIndex: Int?
+    var elapsedTime: Int32?
     var workStart: NSDate?
     var estimatedWorkTime: Int32?
-    var elapsedTime: Int32?
     var remainingTime: Int32?
+    var selectedIndex: Int?
     var estimatedCompletion: NSDate?
-    var resumeTimer: Timer = Timer()
-    var pauseTimer: Timer = Timer()
-    var accumulator: Int32?
+    var firstEstimatedCompletion: NSDate?
+    var resumeTimer: Timer? = Timer()
+    var pauseTimer: Timer? = Timer()
     var pauseMoment: NSDate?
     var resumeMoment: NSDate?
     
     let context = AppDelegate.viewContext
     
-    var fetchResult = [WorkInfo]()
+    var fetchResult = WorkInfo()
     
     var isTimerRunning: Bool = false
     
@@ -74,6 +74,11 @@ class WorkingViewController: UIViewController {
     
     @IBAction func zoomOutView(_ sender: Any) {
         
+        resumeTimer?.invalidate()
+        resumeTimer = nil
+        pauseTimer?.invalidate()
+        pauseTimer = nil
+        
         // 임시로 그냥 창 닫기로 해놓음
         dismiss(animated: true)
     }
@@ -91,23 +96,30 @@ class WorkingViewController: UIViewController {
         }
     }
     
+    @IBAction func workComplete(_ sender: Any) {
+        
+        saveTimeMeasurementInfo()
+        
+        showResultView()
+    }
+    
     func timerOperationBy(state: Bool) {
         
         if state {
             // 남은 시간 타이머 중단
-            resumeTimer.invalidate()
+            resumeTimer?.invalidate()
             
-            pauseMoment = NSDate()
+            pauseMoment = NSDate() // 백그라운드 기능을 위한 변수
             
             // 예상 완료 타이머 재개
             pauseTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalOfPause), userInfo: nil, repeats: true)
         } else {
-            // 남은 시간 타이머 재개
-            pauseTimer.invalidate()
-            
-            resumeMoment = NSDate()
-            
             // 예상 완료 타이머 중단
+            pauseTimer?.invalidate()
+            
+            resumeMoment = NSDate() // 백그라운드 기능을 위한 변수
+            
+            // 남은 시간 타이머 재개
             resumeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalOfResume), userInfo: nil, repeats: true)
         }
     }
@@ -117,7 +129,7 @@ class WorkingViewController: UIViewController {
         estimatedCompletion = estimatedCompletion!.addingTimeInterval(1)
         
         
-        print("<<estimatedWorkTime>> \((estimatedWorkTime?.secondsToStopwatch)!) <<elapsedTime>> \(elapsedTime!) <<remainingTime>> \(remainingTime!) <<workStart>> \(workStart!) <<estimatedCompletion>> \(estimatedCompletion!)")
+        print("<<estimatedWorkTime>> \(estimatedWorkTime?.secondsToStopwatch) <<elapsedTime>> \(elapsedTime!) <<remainingTime>> \(remainingTime!) <<workStart>> \(workStart!) <<estimatedCompletion>> \(estimatedCompletion!)")
         
         estimatedCompletionTimeLabel.text = estimatedCompletion?.stringFromDate
         
@@ -125,23 +137,21 @@ class WorkingViewController: UIViewController {
     
     @objc func renewalOfResume() {
         
-        if elapsedTime == nil {
-            elapsedTime = 0
-        }
-        
-        elapsedTime = elapsedTime! + 1 // 소요 시간
+        // 소요 시간 누적
+        elapsedTime = (elapsedTime ?? 0) + 1
         
         // 남은 시간 계산
-        remainingTime = estimatedWorkTime! - elapsedTime!
+        remainingTime = (estimatedWorkTime)! - (elapsedTime)!
         
-        print("<<estimatedWorkTime>> \((estimatedWorkTime?.secondsToStopwatch)!) <<elapsedTime>> \(elapsedTime!) <<remainingTime>> \(remainingTime!) <<workStart>> \(workStart!) <<estimatedCompletion>> \(estimatedCompletion!)")
+        print("<<estimatedWorkTime>> \(estimatedWorkTime?.secondsToStopwatch) <<elapsedTime>> \(elapsedTime!) <<remainingTime>> \(remainingTime!) <<workStart>> \(workStart!) <<estimatedCompletion>> \(estimatedCompletion!)")
         
         remainingTimeLabel.text = remainingTime?.secondsToStopwatch
         
-        if remainingTime! <= Int32(0) {
-            resumeTimer.invalidate()
+        if (remainingTime! <= Int32(0)) {
+            resumeTimer?.invalidate()
+            resumeTimer = nil
+            pauseTimer = nil
         }
-        
     }
     
     func animateBy(state: Bool) {
@@ -199,6 +209,50 @@ class WorkingViewController: UIViewController {
         }
     }
     
+    func saveTimeMeasurementInfo() {
+        
+        // Core Data 영구 저장소에 TimeMeasurementInfo 데이터 추가하기
+        let timeMeasurementInfo = TimeMeasurementInfo(context: context)
+        
+        timeMeasurementInfo.workStart = workStart
+        let now = NSDate()
+        timeMeasurementInfo.actualCompletion = now
+        timeMeasurementInfo.goalSuccessOrFailWhether = {
+            return (firstEstimatedCompletion?.timeIntervalSinceReferenceDate)! >= now.timeIntervalSinceReferenceDate
+        }() // 목표 달성/실패 여부 -> 작업을 시작했을때의 최초예상완료와 현재시간을 비교한다.
+        timeMeasurementInfo.successiveGoalAchievement = {
+            return timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0
+        }() // 연속목표달성
+        timeMeasurementInfo.estimatedWorkTime = fetchResult.estimatedWorkTime // 예상작업시간
+        timeMeasurementInfo.elapsedTime = (elapsedTime)!
+        timeMeasurementInfo.remainingTime = (remainingTime)!
+        timeMeasurementInfo.work = fetchResult // 어떤 작업에 해당하는 시간측정정보인지
+        
+        fetchResult.currentSuccessiveAchievementWhether = {
+            return timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0
+        }() // 현재연속달성여부
+        fetchResult.successiveAchievementHighestRecord = {
+            return fetchResult.currentSuccessiveAchievementWhether >= fetchResult.successiveAchievementHighestRecord ? fetchResult.currentSuccessiveAchievementWhether : fetchResult.successiveAchievementHighestRecord
+        }() // 연속달성최고기록
+        
+        do {
+            try context.save()
+            
+            print("Context Save Success!")
+            print("timeMeasurementInfo >>>>>>>>>> \(timeMeasurementInfo)")
+            print("workInfo >>>>>>>>>> \(fetchResult)")
+            
+        } catch let nserror as NSError {
+            
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
+    
+    func showResultView() {
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -243,16 +297,18 @@ class WorkingViewController: UIViewController {
         request.predicate = NSPredicate(format: "workID == \(selectedIndex!)")
         
         do {
-            fetchResult = try context.fetch(request)
+            let resultArray = try context.fetch(request)
             
+            fetchResult = resultArray[0]
             print(fetchResult)
             
             workStart = NSDate()
-            estimatedWorkTime = fetchResult[0].estimatedWorkTime
-            estimatedCompletion = workStart!.addingTimeInterval(TimeInterval(estimatedWorkTime!))
+            estimatedWorkTime = fetchResult.estimatedWorkTime
+            estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!))
+            firstEstimatedCompletion = estimatedCompletion
             
-            //            iconImagePath = fetchResult[0].iconImagePath
-            workNameLabel.text = fetchResult[0].workName!
+            //            iconImagePath = fetchResult.iconImagePath
+            workNameLabel.text = fetchResult.workName!
             workStartTimeLabel.text = workStart?.stringFromDate
             remainingTimeLabel.text = estimatedWorkTime?.secondsToStopwatch
             estimatedCompletionTimeLabel.text = estimatedCompletion?.stringFromDate

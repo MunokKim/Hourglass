@@ -139,7 +139,7 @@ class MainViewController: UITableViewController {
         
         cell.estimatedWorkTimeLabel.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
-        cell.workNameLabel.text = resultsArray[indexPath.row].workName!
+        cell.workNameLabel.text = resultsArray[indexPath.row].workName ?? nil
         cell.estimatedWorkTimeLabel.text = resultsArray[indexPath.row].estimatedWorkTime.secondsToString
         
         return cell

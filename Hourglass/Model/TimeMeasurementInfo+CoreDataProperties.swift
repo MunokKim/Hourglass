@@ -17,13 +17,14 @@ extension TimeMeasurementInfo {
         return NSFetchRequest<TimeMeasurementInfo>(entityName: "TimeMeasurementInfo")
     }
 
-    @NSManaged public var eachTurnOfWorkID: Int32
     @NSManaged public var elapsedTime: Int32
     @NSManaged public var workStart: NSDate?
     @NSManaged public var goalSuccessOrFailWhether: Bool
     @NSManaged public var successiveGoalAchievement: Int16
+    @NSManaged public var estimatedWorkTime: Int32
     @NSManaged public var actualCompletion: NSDate?
     @NSManaged public var remainingTime: Int32
     @NSManaged public var work: WorkInfo?
 
+    
 }

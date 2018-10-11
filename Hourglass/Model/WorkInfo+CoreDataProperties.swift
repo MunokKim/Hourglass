@@ -20,7 +20,7 @@ extension WorkInfo {
     @NSManaged public var averageElapsedTime: Float
     @NSManaged public var averageRemainingTime: Float
     @NSManaged public var currentSuccessiveAchievementWhether: Int16
-    @NSManaged public var createdDate: Date
+    @NSManaged public var createdDate: NSDate
     @NSManaged public var estimatedWorkTime: Int32
     @NSManaged public var goalFail: Int32
     @NSManaged public var goalSuccess: Int32

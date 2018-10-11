@@ -282,7 +282,7 @@
                     </connections>
                 </textField>
             </objects>
-            <point key="canvasLocation" x="2045.5999999999999" y="450.22488755622192"/>
+            <point key="canvasLocation" x="2047" y="464"/>
         </scene>
         <!--Working View Controller-->
         <scene sceneID="J3J-kh-L8r">
@@ -352,6 +352,9 @@
                                         <state key="normal" image="check">
                                             <color key="titleColor" red="0.97647058823529409" green="0.61960784313725492" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="workComplete:" destination="M4F-Va-rGN" eventType="touchUpInside" id="tPf-sZ-syi"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSK-9l-kVC">
                                         <rect key="frame" x="152.5" y="451" width="70" height="70"/>
@@ -473,7 +476,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tM-uA-gHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2821.5999999999999" y="451.12443778110946"/>
+            <point key="canvasLocation" x="2822" y="464"/>
         </scene>
         <!--작업 정보-->
         <scene sceneID="VFq-VY-73n">
@@ -893,7 +896,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12l-Cp-bfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="452"/>
+            <point key="canvasLocation" x="1273" y="464"/>
         </scene>
     </scenes>
     <resources>

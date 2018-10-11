@@ -48,12 +48,12 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func saveWorkInfo(_ sender: Any) {
         
-        presistentObjectStoreSave()
+        persistentObjectStoreSave()
         
         self.dismiss(animated: true, completion: nil)
     }
     
-    func presistentObjectStoreSave() {
+    func persistentObjectStoreSave() {
         
         // Core Data 영구 저장소에 WorkInfo 데이터 추가하기
         
@@ -61,7 +61,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         workInfo.workName = workNameTextField?.text
         workInfo.estimatedWorkTime = Int32((selectedHours! * 3600) + (selectedMinutes! * 60))
-        workInfo.createdDate = Date()
+        workInfo.createdDate = NSDate()
         
         if UserDefaults.standard.object(forKey: "AutoIncrementID") == nil {
             UserDefaults.standard.set(1, forKey: "AutoIncrementID")
