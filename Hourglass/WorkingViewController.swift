@@ -21,8 +21,8 @@ class WorkingViewController: UIViewController {
     var firstEstimatedCompletion: NSDate?
     var resumeTimer: Timer? = Timer()
     var pauseTimer: Timer? = Timer()
-    var pauseMoment: NSDate?
-    var resumeMoment: NSDate?
+    var momentForEnterBackground: NSDate?
+    var momentForEnterForeground: NSDate?
     
     let context = AppDelegate.viewContext
     
@@ -74,65 +74,109 @@ class WorkingViewController: UIViewController {
     
     @IBAction func zoomOutView(_ sender: Any) {
         
-        resumeTimer?.invalidate()
-        resumeTimer = nil
-        pauseTimer?.invalidate()
-        pauseTimer = nil
         
-        // 임시로 그냥 창 닫기로 해놓음
-        dismiss(animated: true)
     }
     
-    @IBAction func resumeOrPauseTimer(_ sender: Any) {
+    @IBAction func workCancel(_ sender: Any) {
         
-        timerOperationBy(state: isTimerRunning)
+        let alert = UIAlertController(title: nil, message: "작업을 종료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel, handler: nil)
+        let endAction = UIAlertAction(title: "종료", style: UIAlertAction.Style.destructive, handler: { _ in
+            self.resumeTimer?.invalidate()
+            self.resumeTimer = nil
+            self.pauseTimer?.invalidate()
+            self.pauseTimer = nil
+            
+            self.dismiss(animated: true)
+        })
         
-        animateBy(state: isTimerRunning)
+        cancelAction.setValue(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), forKey: "titleTextColor")
+        alert.addAction(cancelAction)
+        alert.addAction(endAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func workResumeOrPause(_ sender: Any) {
         
         if isTimerRunning {
+
+            pause()
+            
+            animateBy(state: isTimerRunning)
+            
             isTimerRunning = false
+            
         } else {
+            
+            resume()
+            
+            animateBy(state: isTimerRunning)
+            
             isTimerRunning = true
         }
     }
     
-    @IBAction func workComplete(_ sender: Any) {
+    func pause() {
         
-        saveTimeMeasurementInfo()
+        // 남은 시간 타이머 중단
+        resumeTimer?.invalidate()
         
-        showResultView()
+        // 예상 완료 타이머 재개
+        pauseTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalOfPause), userInfo: nil, repeats: true)
     }
     
-    func timerOperationBy(state: Bool) {
+    func resume() {
         
-        if state {
-            // 남은 시간 타이머 중단
-            resumeTimer?.invalidate()
+        // 예상 완료 타이머 중단
+        pauseTimer?.invalidate()
+        
+        // 남은 시간 타이머 재개
+        resumeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalOfResume), userInfo: nil, repeats: true)
+    }
+    
+    @IBAction func workComplete(_ sender: Any) {
+        
+        let alert = UIAlertController(title: nil, message: "작업을 완료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel, handler: nil)
+        let completionAction = UIAlertAction(title: "완료", style: UIAlertAction.Style.default, handler: { _ in
+            self.resumeTimer?.invalidate()
+            self.resumeTimer = nil
+            self.pauseTimer?.invalidate()
+            self.pauseTimer = nil
             
-            pauseMoment = NSDate() // 백그라운드 기능을 위한 변수
-            
-            // 예상 완료 타이머 재개
-            pauseTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalOfPause), userInfo: nil, repeats: true)
-        } else {
-            // 예상 완료 타이머 중단
-            pauseTimer?.invalidate()
-            
-            resumeMoment = NSDate() // 백그라운드 기능을 위한 변수
-            
-            // 남은 시간 타이머 재개
-            resumeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalOfResume), userInfo: nil, repeats: true)
-        }
+            self.saveTimeMeasurementInfo()
+            self.showResultView()
+        })
+        
+        cancelAction.setValue(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), forKey: "titleTextColor")
+        completionAction.setValue(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), forKey: "titleTextColor")
+        alert.addAction(cancelAction)
+        alert.addAction(completionAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func renewalOfPause() {
         
-        estimatedCompletion = estimatedCompletion!.addingTimeInterval(1)
-        
+        if remainingTime! >= Int32(0) {
+            estimatedCompletion = estimatedCompletion?.addingTimeInterval(1)
+        }
         
         print("<<estimatedWorkTime>> \(estimatedWorkTime?.secondsToStopwatch) <<elapsedTime>> \(elapsedTime!) <<remainingTime>> \(remainingTime!) <<workStart>> \(workStart!) <<estimatedCompletion>> \(estimatedCompletion!)")
         
         estimatedCompletionTimeLabel.text = estimatedCompletion?.stringFromDate
+        view.layoutIfNeeded()
         
+        if remainingTime! >= Int32(0) {
+            
+            UIView.animate(withDuration: 0.7, delay: 0.2, options: .curveEaseIn, animations: {
+                self.estimatedCompletionTextLabel.alpha = 0.0
+                self.estimatedCompletionTimeLabel.alpha = 0.0
+                self.view.layoutIfNeeded()
+            }) { _ in
+                self.estimatedCompletionTextLabel.alpha = 1.0
+                self.estimatedCompletionTimeLabel.alpha = 1.0
+            }
+        }
     }
     
     @objc func renewalOfResume() {
@@ -145,12 +189,11 @@ class WorkingViewController: UIViewController {
         
         print("<<estimatedWorkTime>> \(estimatedWorkTime?.secondsToStopwatch) <<elapsedTime>> \(elapsedTime!) <<remainingTime>> \(remainingTime!) <<workStart>> \(workStart!) <<estimatedCompletion>> \(estimatedCompletion!)")
         
-        remainingTimeLabel.text = remainingTime?.secondsToStopwatch
-        
-        if (remainingTime! <= Int32(0)) {
-            resumeTimer?.invalidate()
-            resumeTimer = nil
-            pauseTimer = nil
+        if (remainingTime! >= Int32(0)) {
+            remainingTimeLabel.text = remainingTime?.secondsToStopwatch
+        } else {
+            remainingTimeLabel.text = "+\(abs(remainingTime!).secondsToStopwatch)"
+            remainingTextLabel.text = "지난 시간"
         }
     }
     
@@ -215,7 +258,7 @@ class WorkingViewController: UIViewController {
         let timeMeasurementInfo = TimeMeasurementInfo(context: context)
         
         timeMeasurementInfo.workStart = workStart
-        let now = NSDate()
+        let now = NSDate().addingTimeInterval(60*60*9)
         timeMeasurementInfo.actualCompletion = now
         timeMeasurementInfo.goalSuccessOrFailWhether = {
             return (firstEstimatedCompletion?.timeIntervalSinceReferenceDate)! >= now.timeIntervalSinceReferenceDate
@@ -285,8 +328,39 @@ class WorkingViewController: UIViewController {
         
         contextFetchToSelectedIndex()
         
-        resumeOrPauseTimer((Any).self)
+        workResumeOrPause((Any).self)
         
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name:UIApplication.didEnterBackgroundNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(didBecomeActive), name:UIApplication.didBecomeActiveNotification, object: nil)
+        
+    }
+    
+    @objc func didEnterBackground() {
+        
+        resumeTimer?.invalidate()
+        resumeTimer = nil
+        pauseTimer?.invalidate()
+        pauseTimer = nil
+        
+        momentForEnterBackground = NSDate().addingTimeInterval(60*60*9)
+    }
+    
+    @objc func didBecomeActive() {
+        
+        momentForEnterForeground = NSDate().addingTimeInterval(60*60*9)
+        
+        let lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
+        
+        if isTimerRunning {
+            // elapsedTime + lostTime
+            elapsedTime = elapsedTime! + Int32(lostTime)
+            resume()
+        } else {
+            // estimatedCompletion.add~~~(lostTime)
+            estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
+            pause()
+        }
     }
     
     func contextFetchToSelectedIndex() {
@@ -302,7 +376,7 @@ class WorkingViewController: UIViewController {
             fetchResult = resultArray[0]
             print(fetchResult)
             
-            workStart = NSDate()
+            workStart = NSDate().addingTimeInterval(60*60*9)
             estimatedWorkTime = fetchResult.estimatedWorkTime
             estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!))
             firstEstimatedCompletion = estimatedCompletion

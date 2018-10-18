@@ -61,7 +61,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         workInfo.workName = workNameTextField?.text
         workInfo.estimatedWorkTime = Int32((selectedHours! * 3600) + (selectedMinutes! * 60))
-        workInfo.createdDate = NSDate()
+        workInfo.createdDate = NSDate().addingTimeInterval(60*60*9)
         
         if UserDefaults.standard.object(forKey: "AutoIncrementID") == nil {
             UserDefaults.standard.set(1, forKey: "AutoIncrementID")
@@ -238,13 +238,23 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         let hoursLabel: UILabel = UILabel(frame: CGRect(x: 130.5, y: 0, width: 60, height: componentHeight))
         let minutesLabel: UILabel = UILabel(frame: CGRect(x: 239.5, y: 0, width: 60, height: componentHeight))
         
+        if UIScreen.main.bounds.width > 320 {
+            hoursLabel.textAlignment = NSTextAlignment.center
+        } else {
+            hoursLabel.textAlignment = NSTextAlignment.left
+        }
+        
         hoursLabel.font = UIFont(name: "systemFont", size: 23)
-        hoursLabel.textAlignment = NSTextAlignment.left
         insertRef.addSubview(hoursLabel)
         hoursLabel.text = "시간"
         
+        if UIScreen.main.bounds.width > 320 {
+            minutesLabel.textAlignment = NSTextAlignment.center
+        } else {
+            minutesLabel.textAlignment = NSTextAlignment.left
+        }
+        
         minutesLabel.font = UIFont(name: "systemFont", size: 23)
-        minutesLabel.textAlignment = NSTextAlignment.left
         insertRef.addSubview(minutesLabel)
         minutesLabel.text = "분"
         
