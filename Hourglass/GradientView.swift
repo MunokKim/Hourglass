@@ -18,21 +18,44 @@ class GradientView: UIView {
     }
     */
     
-    @IBInspectable var firstColor: UIColor = UIColor.clear {
+    @IBInspectable var startColor: UIColor = UIColor.clear {
         didSet {
             updateView()
         }
     }
     
-    @IBInspectable var secondColor: UIColor = UIColor.clear {
+    @IBInspectable var middleColor: UIColor = UIColor.clear {
         didSet {
             updateView()
         }
     }
     
-    @IBInspectable var isHorizontal : Bool = true {
+    @IBInspectable var endColor: UIColor = UIColor.clear {
         didSet {
-            updateView ()
+            updateView()
+        }
+    }
+    
+    enum Directions: Int {
+        case Horizontal
+        case Vertical
+        case Diagonal_1
+        case Diagonal_2
+    }
+    
+    var direction: Directions = .Horizontal {
+        didSet {
+            updateView()
+        }
+    }
+    
+    // IB: use the adapter
+    @IBInspectable var directionAdapter: Int {
+        get {
+            return self.direction.rawValue
+        }
+        set( directionIndex ) {
+            self.direction = Directions(rawValue: directionIndex) ?? .Horizontal
         }
     }
     
@@ -42,21 +65,72 @@ class GradientView: UIView {
         }
     }
     
+    var fromColors: [CGColor]?
+    
+    var toColors: [CGColor]? {
+        didSet {
+            updateView()
+        }
+    }
+    
     func updateView() {
         
         let layer = self.layer as! CAGradientLayer
         
-        layer.colors = [firstColor, secondColor].map{$0.cgColor}
+//        if middleColor == nil {
+//            layer.locations = [0.0, 1.0]
+//            layer.colors = [startColor, endColor].map{$0.cgColor}
+//        } else {
+//            layer.locations = [0.0, 0.5, 1.0]
+//            layer.colors = [startColor, middleColor!, endColor].map{$0.cgColor}
+//        }
         
-        if (self.isHorizontal) {
-            
-            layer.startPoint = CGPoint(x: 0, y: 0.6)
-            layer.endPoint = CGPoint (x: 1, y: 0.4)
-        } else {
-            
-            layer.startPoint = CGPoint(x: 0.4, y: 0)
-            layer.endPoint = CGPoint (x: 0.6, y: 1)
+        layer.locations = [0.0, 0.5, 1.0]
+        layer.colors = [startColor, middleColor, endColor].map{$0.cgColor}
+        
+        switch (self.direction) {
+        case .Horizontal:
+            layer.startPoint = CGPoint(x: 0, y: 0.5)
+            layer.endPoint = CGPoint (x: 1, y: 0.5)
+            break
+        case .Vertical:
+            layer.startPoint = CGPoint(x: 0.5, y: 0)
+            layer.endPoint = CGPoint (x: 0.5, y: 1)
+            break
+        case .Diagonal_1:
+//            gradient.startPoint = CGPoint(x: -0.19444444444, y: 0.109375)
+//            gradient.endPoint = CGPoint (x: 1.19444444444, y: 0.890625)
+            layer.startPoint = CGPoint(x: 0.25, y: 0)
+            layer.endPoint = CGPoint (x: 0.75, y: 1)
+//            gradient.startPoint = CGPoint(x: 0, y: 0.21875)
+//            gradient.endPoint = CGPoint (x: 1, y: 0.78125)
+            break
+        case .Diagonal_2:
+            layer.startPoint = CGPoint(x: 0.75, y: 0)
+            layer.endPoint = CGPoint (x: 0.25, y: 1)
+            break
         }
+        
+        animateLayer(gradient: layer)
     }
-
+    
+    func animateLayer(gradient: CAGradientLayer) {
+        
+        fromColors = fromColors ?? [startColor, middleColor, endColor].map{$0.cgColor}
+//        var toColors = [ UIColor.blue.cgColor, UIColor.blue.cgColor, UIColor.blue.cgColor]
+        
+        let animation : CABasicAnimation = CABasicAnimation(keyPath: "colors")
+        
+        animation.fromValue = fromColors
+        animation.toValue = toColors
+        animation.isRemovedOnCompletion = false
+        animation.duration = 0.275
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.delegate = self as? CAAnimationDelegate
+        
+        gradient.add(animation, forKey:"animateGradient")
+        
+        fromColors = toColors
+    }
 }

@@ -12,7 +12,7 @@ class SettingViewController: UITableViewController {
 
     @IBAction func closeSetting(_ sender: Any) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet var alertSwitch: UISwitch!

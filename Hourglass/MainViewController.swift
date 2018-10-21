@@ -239,12 +239,29 @@ extension Int32 {
         
         let hours: Int = Int(self/3600)
         let minutes: Int = Int(self%3600/60)
+        let seconds: Int = Int(self%3600%60)
+        var hms: String = ""
         
         if hours != 0 {
-            return "\(String(hours))시간 \(String(minutes))분"
-        } else {
-            return "\(String(minutes))분"
+            hms = "\(String(hours))시간"
         }
+        if (hours != 0 && minutes != 0) || (hours != 0 && seconds != 0) {
+            hms = hms + " "
+        }
+        if minutes != 0 {
+            hms = hms + "\(String(minutes))분"
+        }
+        if minutes != 0 && seconds != 0 {
+            hms = hms + " "
+        }
+        if seconds != 0 {
+            hms = hms + "\(String(seconds))초"
+        }
+        if hours == 0 && minutes == 0 && seconds == 0 {
+            hms = "0초"
+        }
+        
+        return hms
     }
     
     var secondsToStopwatch: String {

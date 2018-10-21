@@ -27,14 +27,25 @@ class WorkingViewController: UIViewController {
     let context = AppDelegate.viewContext
     
     var fetchResult = WorkInfo()
+    var workResultInfo: TimeMeasurementInfo?
     
-    var isTimerRunning: Bool = false
+    var isStopwatchRunning: Bool = false
     
     let playImage = UIImage(named: "play.png")
     let pauseImage = UIImage(named: "pause.png")
     
     @IBOutlet var zoomOutButton: UIButton!
-    @IBOutlet var workIconImageView: UIImageView!
+    @IBOutlet var workIconImageView: UIImageView! {
+        didSet {
+            workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
+            workIconImageView.clipsToBounds = true
+            workIconImageView.layer.shadowColor = UIColor.lightGray.cgColor
+            workIconImageView.layer.shadowRadius = 2.0
+            workIconImageView.layer.shadowOpacity = 0.5
+            workIconImageView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+            workIconImageView.layer.masksToBounds = false
+        }
+    }
     @IBOutlet var workNameLabel: UILabel!
     @IBOutlet var remainingTextLabel: UILabel!
     @IBOutlet var remainingTimeLabel: UILabel!
@@ -54,18 +65,28 @@ class WorkingViewController: UIViewController {
                 button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
                 button.layer.masksToBounds = false
                 button.layer.cornerRadius = button.layer.frame.width / 2.66
+                button.layer.borderColor = UIColor.white.cgColor
             }
         }
     }
     @IBOutlet var labels: [UILabel]! {
         didSet {
             for label in labels {
+                label.font = label.font.withSize(label.font.pointSize.sizeByDeviceResolution)
+                
                 label.layer.shadowColor = UIColor.lightGray.cgColor
                 label.layer.shadowRadius = 2.0
                 label.layer.shadowOpacity = 0.5
                 label.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
                 label.layer.masksToBounds = false
             }
+        }
+    }
+    
+    @IBOutlet var gradientView: GradientView!
+    @IBOutlet var completeGradientView: GradientView! {
+        didSet {
+            completeGradientView.isHidden = true
         }
     }
     
@@ -87,7 +108,7 @@ class WorkingViewController: UIViewController {
             self.pauseTimer?.invalidate()
             self.pauseTimer = nil
             
-            self.dismiss(animated: true)
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
         })
         
         cancelAction.setValue(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), forKey: "titleTextColor")
@@ -98,21 +119,21 @@ class WorkingViewController: UIViewController {
     
     @IBAction func workResumeOrPause(_ sender: Any) {
         
-        if isTimerRunning {
+        if isStopwatchRunning {
 
             pause()
             
-            animateBy(state: isTimerRunning)
+            animateBy()
             
-            isTimerRunning = false
+            isStopwatchRunning = false
             
         } else {
             
             resume()
             
-            animateBy(state: isTimerRunning)
+            animateBy()
             
-            isTimerRunning = true
+            isStopwatchRunning = true
         }
     }
     
@@ -145,7 +166,8 @@ class WorkingViewController: UIViewController {
             self.pauseTimer = nil
             
             self.saveTimeMeasurementInfo()
-            self.showResultView()
+            
+            self.performSegue(withIdentifier: "WorkResultSegue", sender: nil)
         })
         
         cancelAction.setValue(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), forKey: "titleTextColor")
@@ -197,9 +219,9 @@ class WorkingViewController: UIViewController {
         }
     }
     
-    func animateBy(state: Bool) {
+    func animateBy() {
         
-        if state {
+        if isStopwatchRunning {
             
             stopButton.setImage(playImage, for: .normal)
             
@@ -213,10 +235,13 @@ class WorkingViewController: UIViewController {
             cancelButtonCenterXConstraint.constant = 105
             completeButtonCenterXConstraint.constant = 105
             
-            UIView.animate(withDuration: 0.25, animations: ({
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: ({
                 
-                self.cancelButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                self.completeButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                // 'between the clouds' 그라디언트
+                self.gradientView.toColors = [UIColor(red:0.46, green:0.78, blue:0.66, alpha:1.00),
+                                              UIColor(red:0.33, green:0.50, blue:0.46, alpha:1.00),
+                                              UIColor(red:0.22, green:0.23, blue:0.27, alpha:1.00)].map{$0.cgColor}
+
                 self.view.layoutIfNeeded()
             }), completion: { _ in
                 self.stopButton.isEnabled = true
@@ -235,10 +260,13 @@ class WorkingViewController: UIViewController {
             cancelButtonCenterXConstraint.constant = 0
             completeButtonCenterXConstraint.constant = 0
             
-            UIView.animate(withDuration: 0.25, animations: ({
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: ({
                 
-                self.cancelButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
-                self.completeButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+                // 'sunrise' 그라디언트
+                self.gradientView.toColors = [UIColor(red:0.99, green:0.34, blue:0.23, alpha:1.00),
+                                              UIColor(red:0.96, green:0.47, blue:0.20, alpha:1.00),
+                                              UIColor(red:0.94, green:0.60, blue:0.18, alpha:1.00)].map{$0.cgColor}
+                
                 self.view.layoutIfNeeded()
             }), completion: { _ in
                 self.cancelButton.isHidden = true
@@ -258,7 +286,7 @@ class WorkingViewController: UIViewController {
         let timeMeasurementInfo = TimeMeasurementInfo(context: context)
         
         timeMeasurementInfo.workStart = workStart
-        let now = NSDate().addingTimeInterval(60*60*9)
+        let now = NSDate()
         timeMeasurementInfo.actualCompletion = now
         timeMeasurementInfo.goalSuccessOrFailWhether = {
             return (firstEstimatedCompletion?.timeIntervalSinceReferenceDate)! >= now.timeIntervalSinceReferenceDate
@@ -285,15 +313,51 @@ class WorkingViewController: UIViewController {
             print("timeMeasurementInfo >>>>>>>>>> \(timeMeasurementInfo)")
             print("workInfo >>>>>>>>>> \(fetchResult)")
             
+            workResultInfo = timeMeasurementInfo
+            
         } catch let nserror as NSError {
             
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
     
-    func showResultView() {
+    func showResultView(timeMeasurementInfo: TimeMeasurementInfo) {
         
+        completeGradientView.isHidden = false
+        self.view.layoutIfNeeded()
         
+        let toColors: [CGColor]?
+        
+        if timeMeasurementInfo.goalSuccessOrFailWhether {
+            toColors = [UIColor(red:0.99, green:0.74, blue:0.24, alpha:1.00),
+                        UIColor(red:0.57, green:0.75, blue:0.51, alpha:1.00),
+                        UIColor(red:0.17, green:0.75, blue:0.76, alpha:1.00)].map{$0.cgColor}
+            
+        } else {
+            toColors = [UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.00),
+                        UIColor(red:0.34, green:0.12, blue:0.10, alpha:1.00),
+                        UIColor(red:0.68, green:0.24, blue:0.20, alpha:1.00)].map{$0.cgColor}
+        }
+        
+        UIView.animate(withDuration: 1, delay: 0.3, options: .curveLinear, animations: ({
+            
+            // 'rainbow blue' 그라디언트
+            self.completeGradientView.toColors = toColors
+            
+            self.view.layoutIfNeeded()
+        }), completion: { _ in
+            
+        })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
     
     override func viewDidLoad() {
@@ -301,30 +365,11 @@ class WorkingViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        // 네비게이션 컨트롤러 하위의 뷰에서는 large title 비활성화 하기
-        //        navigationItem.largeTitleDisplayMode = .never
-        
-        // navigationBar 색상바꾸는 법.
-        //        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         print("WorkingViewController!!!")
-        //        self.view.backgroundColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        //        addGradientToView()
         
-        workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
-        workIconImageView.clipsToBounds = true
-        
-        stopButton.layer.borderColor = UIColor.white.cgColor
         stopButton.layer.borderWidth = 5
-        
-        cancelButton.backgroundColor = UIColor(red:1.0, green:1.0, blue:1.0, alpha:0.0)
-        
-        completeButton.backgroundColor = UIColor(red:1.0, green:1.0, blue:1.0, alpha:0.0)
-        
-        workIconImageView.layer.shadowColor = UIColor.lightGray.cgColor
-        workIconImageView.layer.shadowRadius = 2.0
-        workIconImageView.layer.shadowOpacity = 0.5
-        workIconImageView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        workIconImageView.layer.masksToBounds = false
+        cancelButton.layer.borderWidth = 5
+        completeButton.layer.borderWidth = 5
         
         contextFetchToSelectedIndex()
         
@@ -332,8 +377,7 @@ class WorkingViewController: UIViewController {
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name:UIApplication.didEnterBackgroundNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(didBecomeActive), name:UIApplication.didBecomeActiveNotification, object: nil)
-        
+        notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name:UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     @objc func didEnterBackground() {
@@ -343,21 +387,21 @@ class WorkingViewController: UIViewController {
         pauseTimer?.invalidate()
         pauseTimer = nil
         
-        momentForEnterBackground = NSDate().addingTimeInterval(60*60*9)
+        momentForEnterBackground = NSDate()
     }
     
-    @objc func didBecomeActive() {
+    @objc func willEnterForeground() {
         
-        momentForEnterForeground = NSDate().addingTimeInterval(60*60*9)
+        momentForEnterForeground = NSDate()
         
         let lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
         
-        if isTimerRunning {
-            // elapsedTime + lostTime
+        if isStopwatchRunning {
+            
             elapsedTime = elapsedTime! + Int32(lostTime)
             resume()
         } else {
-            // estimatedCompletion.add~~~(lostTime)
+            
             estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
             pause()
         }
@@ -376,7 +420,7 @@ class WorkingViewController: UIViewController {
             fetchResult = resultArray[0]
             print(fetchResult)
             
-            workStart = NSDate().addingTimeInterval(60*60*9)
+            workStart = NSDate()
             estimatedWorkTime = fetchResult.estimatedWorkTime
             estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!))
             firstEstimatedCompletion = estimatedCompletion
@@ -397,15 +441,24 @@ class WorkingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "WorkResultSegue" {
+            
+            if let vc = segue.destination as? workResultViewController {
+                
+                print("workResult is : \(self.workResultInfo)")
+                vc.currentWork = self.fetchResult
+                vc.workResultInfo = self.workResultInfo
+            }
+        }
      }
-     */
     
 }
 
@@ -416,12 +469,21 @@ extension NSDate {
         let formatter = DateFormatter()
         
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.dateFormat = "a h:mm:ss"
+        formatter.amSymbol = "오전"
+        formatter.pmSymbol = "오후"
         
         return formatter.string(from: self as Date)
     }
     
     var dateToInt32: Int32 {
         return Int32(self.timeIntervalSince1970)
+    }
+}
+
+extension CGFloat {
+    
+    var sizeByDeviceResolution: CGFloat {
+        return (self / 375) * (UIScreen.main.bounds.width)
     }
 }

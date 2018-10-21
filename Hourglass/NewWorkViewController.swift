@@ -50,7 +50,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         persistentObjectStoreSave()
         
-        self.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     func persistentObjectStoreSave() {
@@ -85,7 +85,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func cancelAndClose(_ sender: Any) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet var workNameTextField: UITextField!
