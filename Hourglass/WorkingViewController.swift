@@ -39,11 +39,6 @@ class WorkingViewController: UIViewController {
         didSet {
             workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
             workIconImageView.clipsToBounds = true
-            workIconImageView.layer.shadowColor = UIColor.lightGray.cgColor
-            workIconImageView.layer.shadowRadius = 2.0
-            workIconImageView.layer.shadowOpacity = 0.5
-            workIconImageView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-            workIconImageView.layer.masksToBounds = false
         }
     }
     @IBOutlet var workNameLabel: UILabel!
@@ -59,11 +54,6 @@ class WorkingViewController: UIViewController {
     @IBOutlet var buttons: [UIButton]! {
         didSet {
             for button in buttons {
-                button.layer.shadowColor = UIColor.lightGray.cgColor
-                button.layer.shadowRadius = 2.0
-                button.layer.shadowOpacity = 0.5
-                button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-                button.layer.masksToBounds = false
                 button.layer.cornerRadius = button.layer.frame.width / 2.66
                 button.layer.borderColor = UIColor.white.cgColor
             }
@@ -73,12 +63,17 @@ class WorkingViewController: UIViewController {
         didSet {
             for label in labels {
                 label.font = label.font.withSize(label.font.pointSize.sizeByDeviceResolution)
-                
-                label.layer.shadowColor = UIColor.lightGray.cgColor
-                label.layer.shadowRadius = 2.0
-                label.layer.shadowOpacity = 0.5
-                label.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-                label.layer.masksToBounds = false
+            }
+        }
+    }
+    @IBOutlet var subviews: [UIView]! {
+        didSet {
+            for subview in subviews {
+                subview.layer.shadowColor = UIColor.gray.cgColor
+                subview.layer.shadowRadius = 2.0
+                subview.layer.shadowOpacity = 0.5
+                subview.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+                subview.layer.masksToBounds = false
             }
         }
     }
@@ -232,8 +227,8 @@ class WorkingViewController: UIViewController {
             cancelButton.isHidden = false
             completeButton.isHidden = false
             
-            cancelButtonCenterXConstraint.constant = 105
-            completeButtonCenterXConstraint.constant = 105
+            cancelButtonCenterXConstraint.constant = -(UIScreen.main.bounds.width / 4 + 17.5)
+            completeButtonCenterXConstraint.constant = UIScreen.main.bounds.width / 4 + 17.5
             
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: ({
                 
@@ -289,14 +284,14 @@ class WorkingViewController: UIViewController {
         let now = NSDate()
         timeMeasurementInfo.actualCompletion = now
         timeMeasurementInfo.goalSuccessOrFailWhether = {
-            return (firstEstimatedCompletion?.timeIntervalSinceReferenceDate)! >= now.timeIntervalSinceReferenceDate
+            return elapsedTime ?? 0 <= fetchResult.estimatedWorkTime
         }() // 목표 달성/실패 여부 -> 작업을 시작했을때의 최초예상완료와 현재시간을 비교한다.
         timeMeasurementInfo.successiveGoalAchievement = {
             return timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0
         }() // 연속목표달성
         timeMeasurementInfo.estimatedWorkTime = fetchResult.estimatedWorkTime // 예상작업시간
-        timeMeasurementInfo.elapsedTime = (elapsedTime)!
-        timeMeasurementInfo.remainingTime = (remainingTime)!
+        timeMeasurementInfo.elapsedTime = elapsedTime ?? 0
+        timeMeasurementInfo.remainingTime = remainingTime ?? 0
         timeMeasurementInfo.work = fetchResult // 어떤 작업에 해당하는 시간측정정보인지
         
         fetchResult.currentSuccessiveAchievementWhether = {
@@ -319,35 +314,6 @@ class WorkingViewController: UIViewController {
             
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
-    }
-    
-    func showResultView(timeMeasurementInfo: TimeMeasurementInfo) {
-        
-        completeGradientView.isHidden = false
-        self.view.layoutIfNeeded()
-        
-        let toColors: [CGColor]?
-        
-        if timeMeasurementInfo.goalSuccessOrFailWhether {
-            toColors = [UIColor(red:0.99, green:0.74, blue:0.24, alpha:1.00),
-                        UIColor(red:0.57, green:0.75, blue:0.51, alpha:1.00),
-                        UIColor(red:0.17, green:0.75, blue:0.76, alpha:1.00)].map{$0.cgColor}
-            
-        } else {
-            toColors = [UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.00),
-                        UIColor(red:0.34, green:0.12, blue:0.10, alpha:1.00),
-                        UIColor(red:0.68, green:0.24, blue:0.20, alpha:1.00)].map{$0.cgColor}
-        }
-        
-        UIView.animate(withDuration: 1, delay: 0.3, options: .curveLinear, animations: ({
-            
-            // 'rainbow blue' 그라디언트
-            self.completeGradientView.toColors = toColors
-            
-            self.view.layoutIfNeeded()
-        }), completion: { _ in
-            
-        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -451,7 +417,7 @@ class WorkingViewController: UIViewController {
         
         if segue.identifier == "WorkResultSegue" {
             
-            if let vc = segue.destination as? workResultViewController {
+            if let vc = segue.destination as? WorkResultViewController {
                 
                 print("workResult is : \(self.workResultInfo)")
                 vc.currentWork = self.fetchResult
@@ -484,6 +450,11 @@ extension NSDate {
 extension CGFloat {
     
     var sizeByDeviceResolution: CGFloat {
-        return (self / 375) * (UIScreen.main.bounds.width)
+        
+        if UIScreen.main.bounds.width > 414 {
+            return (self / 375) * (414)
+        } else {
+            return (self / 375) * (UIScreen.main.bounds.width)
+        }
     }
 }

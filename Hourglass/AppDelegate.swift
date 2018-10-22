@@ -22,6 +22,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print("sqlite File Location : \(urls[urls.count-1] as URL)")
         
+        // 내비게이션 바의 폰트 변경
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont(name: "GodoB", size: 18)!
+        ]
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            NSAttributedString.Key.font: UIFont(name: "GodoB", size: 30)!
+        ]
+        
+        
+        UIBarButtonItem.appearance().setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "GodoM", size: 17)!
+        ],for: UIControl.State.normal)
+
+        
         return true
     }
 

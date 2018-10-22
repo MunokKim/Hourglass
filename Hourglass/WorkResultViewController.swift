@@ -10,16 +10,16 @@ import UIKit
 
 class WorkResultViewController: UIViewController {
     
+    @IBOutlet var subviews: [UIView]! {
+        didSet {
+            Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(layoutShadows), userInfo: nil, repeats: false)
+        }
+    }
     @IBOutlet var gradientView: GradientView!
     @IBOutlet var workIconImageView: UIImageView! {
         didSet {
             workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
             workIconImageView.clipsToBounds = true
-            workIconImageView.layer.shadowColor = UIColor.lightGray.cgColor
-            workIconImageView.layer.shadowRadius = 2.0
-            workIconImageView.layer.shadowOpacity = 0.5
-            workIconImageView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-            workIconImageView.layer.masksToBounds = false
         }
     }
     @IBOutlet var workNameLabel: UILabel!
@@ -30,29 +30,10 @@ class WorkResultViewController: UIViewController {
     @IBOutlet var actualCompletionLabel: UILabel!
     @IBOutlet var remainingTimeLabel: UILabel!
     @IBOutlet var remainingTextLabel: UILabel!
-    @IBOutlet var buttons: [UIButton]! {
-        didSet {
-            for button in buttons {
-                button.layer.shadowColor = UIColor.lightGray.cgColor
-                button.layer.shadowRadius = 2.0
-                button.layer.shadowOpacity = 0.5
-                button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-                button.layer.masksToBounds = false
-                button.layer.cornerRadius = button.layer.frame.width / 2.66
-                button.layer.borderColor = UIColor.white.cgColor
-            }
-        }
-    }
     @IBOutlet var labels: [UILabel]! {
         didSet {
             for label in labels {
                 label.font = label.font.withSize(label.font.pointSize.sizeByDeviceResolution)
-                
-                label.layer.shadowColor = UIColor.lightGray.cgColor
-                label.layer.shadowRadius = 2.0
-                label.layer.shadowOpacity = 0.5
-                label.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-                label.layer.masksToBounds = false
             }
         }
     }
@@ -69,7 +50,7 @@ class WorkResultViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let toColors: [CGColor]?
-        var goalString: String?
+        var goalString: String? 
         let remainingText: String?
         let remainingTime: String?
         
@@ -107,6 +88,27 @@ class WorkResultViewController: UIViewController {
         remainingTimeLabel.text = remainingTime
         
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(animateText), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+    }
+    
+    @objc func layoutShadows() {
+        
+        for subview in subviews {
+            subview.layer.shadowColor = UIColor.gray.cgColor
+            subview.layer.shadowRadius = 2.0
+            subview.layer.shadowOpacity = 0.5
+            subview.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+            subview.layer.masksToBounds = false
+        }
     }
     
     @objc func animateText() {

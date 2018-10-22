@@ -234,27 +234,20 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
         // "시간", "분" 레이블 삽입
+        let screenWidth = UIScreen.main.bounds.width
         let insertRef = pickerView.subviews[0].subviews[0].subviews[2]
-        let hoursLabel: UILabel = UILabel(frame: CGRect(x: 130.5, y: 0, width: 60, height: componentHeight))
-        let minutesLabel: UILabel = UILabel(frame: CGRect(x: 239.5, y: 0, width: 60, height: componentHeight))
+//        let hoursLabel: UILabel = UILabel(frame: CGRect(x: 130.5, y: 0, width: 60, height: componentHeight))
+//        let minutesLabel: UILabel = UILabel(frame: CGRect(x: 239.5, y: 0, width: 60, height: componentHeight))
+        let hoursLabel: UILabel = UILabel(frame: CGRect(x: screenWidth/2 - 60, y: 0, width: 60, height: componentHeight))
+        let minutesLabel: UILabel = UILabel(frame: CGRect(x: screenWidth/2 + 50, y: 0, width: 60, height: componentHeight))
         
-        if UIScreen.main.bounds.width > 320 {
-            hoursLabel.textAlignment = NSTextAlignment.center
-        } else {
-            hoursLabel.textAlignment = NSTextAlignment.left
-        }
-        
-        hoursLabel.font = UIFont(name: "systemFont", size: 23)
+        hoursLabel.textAlignment = NSTextAlignment.left
+        hoursLabel.font = UIFont(name: "GodoM", size: 17)
         insertRef.addSubview(hoursLabel)
         hoursLabel.text = "시간"
         
-        if UIScreen.main.bounds.width > 320 {
-            minutesLabel.textAlignment = NSTextAlignment.center
-        } else {
-            minutesLabel.textAlignment = NSTextAlignment.left
-        }
-        
-        minutesLabel.font = UIFont(name: "systemFont", size: 23)
+        minutesLabel.textAlignment = NSTextAlignment.left
+        minutesLabel.font = UIFont(name: "GodoM", size: 17)
         insertRef.addSubview(minutesLabel)
         minutesLabel.text = "분"
         
@@ -268,7 +261,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
             viewWithLabel = UIView(frame: CGRect(x: 0, y: 0, width: componentWidth, height: componentHeight))
             
             let label: UILabel = UILabel(frame: CGRect(x: 11, y: 0, width: 30, height: componentHeight))
-            label.font = UIFont(name: "systemFont", size: 23)
+            label.font = UIFont(name: "GodoM", size: 17)
             label.textAlignment = NSTextAlignment.right
             viewWithLabel?.addSubview(label)
         }

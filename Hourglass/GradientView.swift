@@ -121,12 +121,18 @@ class GradientView: UIView {
         
         let animation : CABasicAnimation = CABasicAnimation(keyPath: "colors")
         
+        if self.viewWithTag(1) == nil {
+            animation.duration = 0.275
+            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        } else {
+            animation.duration = 2.5
+            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+        }
+        
         animation.fromValue = fromColors
         animation.toValue = toColors
         animation.isRemovedOnCompletion = false
-        animation.duration = 0.275
         animation.fillMode = CAMediaTimingFillMode.forwards
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.delegate = self as? CAAnimationDelegate
         
         gradient.add(animation, forKey:"animateGradient")
