@@ -96,7 +96,6 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     @IBOutlet var showEstimatedWorkTimeCell: UITableViewCell!
     @IBOutlet var pickerCell: UITableViewCell!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -122,6 +121,10 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         estimatedWorkTimePicker.delegate = self
         estimatedWorkTimePicker.dataSource = self
+        
+        tableView.keyboardDismissMode = .interactive
+        
+        
         
         let initValue = 30 // 분단위 초기값
         if let row = rowForValue(value: initValue) {

@@ -90,7 +90,7 @@ class WorkingViewController: UIViewController {
     
     @IBAction func zoomOutView(_ sender: Any) {
         
-        
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func workCancel(_ sender: Any) {
@@ -283,23 +283,16 @@ class WorkingViewController: UIViewController {
         timeMeasurementInfo.workStart = workStart
         let now = NSDate()
         timeMeasurementInfo.actualCompletion = now
-        timeMeasurementInfo.goalSuccessOrFailWhether = {
-            return elapsedTime ?? 0 <= fetchResult.estimatedWorkTime
-        }() // 목표 달성/실패 여부 -> 작업을 시작했을때의 최초예상완료와 현재시간을 비교한다.
-        timeMeasurementInfo.successiveGoalAchievement = {
-            return timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0
-        }() // 연속목표달성
+        timeMeasurementInfo.goalSuccessOrFailWhether = elapsedTime ?? 0 <= fetchResult.estimatedWorkTime // 목표 달성/실패 여부 = 소요시간 <= 작업예상시간
+        timeMeasurementInfo.successiveGoalAchievement = timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0 // 연속목표달성
         timeMeasurementInfo.estimatedWorkTime = fetchResult.estimatedWorkTime // 예상작업시간
         timeMeasurementInfo.elapsedTime = elapsedTime ?? 0
         timeMeasurementInfo.remainingTime = remainingTime ?? 0
         timeMeasurementInfo.work = fetchResult // 어떤 작업에 해당하는 시간측정정보인지
         
-        fetchResult.currentSuccessiveAchievementWhether = {
-            return timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0
-        }() // 현재연속달성여부
-        fetchResult.successiveAchievementHighestRecord = {
-            return fetchResult.currentSuccessiveAchievementWhether >= fetchResult.successiveAchievementHighestRecord ? fetchResult.currentSuccessiveAchievementWhether : fetchResult.successiveAchievementHighestRecord
-        }() // 연속달성최고기록
+        fetchResult.currentSuccessiveAchievementWhether = timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0 // 현재 연속 달성 여부 = 목표 달성/실패 여부 ? 현재 연속 달성 여부 + 1 : 0
+        fetchResult.successiveAchievementHighestRecord = fetchResult.currentSuccessiveAchievementWhether >= fetchResult.successiveAchievementHighestRecord ? fetchResult.currentSuccessiveAchievementWhether : fetchResult.successiveAchievementHighestRecord // 연속 달성 최고기록 = 현재 연속 달성 여부 >= 연속 달성 최고기록 ? 현재 연속 달성 여부 : 연속 달성 최고기록
+        fetchResult.mutableSetValue(forKey: "eachTurnsOfWork").add(timeMeasurementInfo)
         
         do {
             try context.save()
@@ -337,7 +330,18 @@ class WorkingViewController: UIViewController {
         cancelButton.layer.borderWidth = 5
         completeButton.layer.borderWidth = 5
         
-        contextFetchToSelectedIndex()
+        fetchResult = contextFetchToSelectedIndex(index: selectedIndex)
+        
+        workStart = NSDate()
+        estimatedWorkTime = fetchResult.estimatedWorkTime
+        estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!))
+        firstEstimatedCompletion = estimatedCompletion
+        
+        //            iconImagePath = fetchResult.iconImagePath
+        workNameLabel.text = fetchResult.workName!
+        workStartTimeLabel.text = workStart?.stringFromDate
+        remainingTimeLabel.text = estimatedWorkTime?.secondsToStopwatch
+        estimatedCompletionTimeLabel.text = estimatedCompletion?.stringFromDate
         
         workResumeOrPause((Any).self)
         
@@ -373,29 +377,19 @@ class WorkingViewController: UIViewController {
         }
     }
     
-    func contextFetchToSelectedIndex() {
+    func contextFetchToSelectedIndex(index: Int?) -> WorkInfo {
         
         // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
         let request: NSFetchRequest<WorkInfo> = WorkInfo.fetchRequest()
         
-        request.predicate = NSPredicate(format: "workID == \(selectedIndex!)")
+        request.predicate = NSPredicate(format: "workID == \(index ?? 1)")
         
         do {
             let resultArray = try context.fetch(request)
             
-            fetchResult = resultArray[0]
-            print(fetchResult)
+            print(resultArray[0])
             
-            workStart = NSDate()
-            estimatedWorkTime = fetchResult.estimatedWorkTime
-            estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!))
-            firstEstimatedCompletion = estimatedCompletion
-            
-            //            iconImagePath = fetchResult.iconImagePath
-            workNameLabel.text = fetchResult.workName!
-            workStartTimeLabel.text = workStart?.stringFromDate
-            remainingTimeLabel.text = estimatedWorkTime?.secondsToStopwatch
-            estimatedCompletionTimeLabel.text = estimatedCompletion?.stringFromDate
+            return resultArray[0]
             
         } catch let nserror as NSError {
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")

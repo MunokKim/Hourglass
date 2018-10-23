@@ -87,7 +87,7 @@ class MainViewController: UITableViewController {
             resultsArray = try context.fetch(request)
             
             for work in resultsArray {
-                print("WORK's Name : \(work.workName)")
+                print("WORK's Name : \(work.workName)") // 한번씩 사용을 해주어야 실제 값이 들어있게 된다.
             }
             
             DispatchQueue.main.async {
@@ -141,6 +141,12 @@ class MainViewController: UITableViewController {
         
         cell.workNameLabel.text = resultsArray[indexPath.row].workName ?? nil
         cell.estimatedWorkTimeLabel.text = resultsArray[indexPath.row].estimatedWorkTime.secondsToString
+        
+        cell.shouldSelectRow = { (selectedCell) in
+            
+            let indexPathRow = self.tableView.indexPath(for: selectedCell)?.row
+            self.selectedIndex = Int(self.resultsArray[indexPathRow!].workID)
+        }
         
         return cell
     }
@@ -212,7 +218,7 @@ class MainViewController: UITableViewController {
         
         if segue.identifier == "WorkInfoSegue" {
             
-            if let vc = segue.destination as? WorkInfoViewController {
+            if let vc = segue.destination as? WorkInfoTableViewController {
                 
                 print("selectedIndex is : \(String(describing: self.selectedIndex))")
                 vc.selectedIndex = self.selectedIndex
@@ -229,7 +235,20 @@ class WorkCell: UITableViewCell {
     @IBOutlet var workNameLabel: UILabel!
     @IBOutlet var estimatedWorkTimeLabel: UILabel!
     @IBOutlet var latestTimeLabel: UILabel!
-    @IBOutlet var workInfoBtn: UIButton!
+    @IBOutlet var workInfoBtn: UIButton! {
+        didSet {
+            // 버튼 이미지 주위의 사각형에 대한 여백
+            workInfoBtn.imageEdgeInsets = UIEdgeInsets(top: 15, left: 16, bottom: 15, right: 15)
+        }
+    }
+    
+    var shouldSelectRow: ((WorkCell) -> Void)?
+    
+    @IBAction func didTapWorkInfoButton(_ sender: Any) {
+        // 사용자가 버튼을 탭할 때마다 클로저 호출
+        shouldSelectRow?(self)
+    }
+    
     
 }
 
@@ -246,16 +265,16 @@ extension Int32 {
             hms = "\(String(hours))시간"
         }
         if (hours != 0 && minutes != 0) || (hours != 0 && seconds != 0) {
-            hms = hms + " "
+            hms += " "
         }
         if minutes != 0 {
-            hms = hms + "\(String(minutes))분"
+            hms += "\(String(minutes))분"
         }
         if minutes != 0 && seconds != 0 {
-            hms = hms + " "
+            hms += " "
         }
         if seconds != 0 {
-            hms = hms + "\(String(seconds))초"
+            hms += "\(String(seconds))초"
         }
         if hours == 0 && minutes == 0 && seconds == 0 {
             hms = "0초"
@@ -273,27 +292,27 @@ extension Int32 {
         var stringFragment: String = ""
         
         if (hours != 0) {
-            stringFragment = stringFragment + "\(hours):"
+            stringFragment += "\(hours):"
             switch (minutes) {
             case 0:
-                stringFragment = stringFragment + "00:"
+                stringFragment += "00:"
                 break
             case 1...9:
-                stringFragment = stringFragment + "0\(minutes):"
+                stringFragment += "0\(minutes):"
                 break
             case 10...59:
-                stringFragment = stringFragment + "\(minutes):"
+                stringFragment += "\(minutes):"
                 break
             default: break
             }
         } else {
             switch (minutes) {
             case 0:
-                stringFragment = stringFragment + "0:"
+                stringFragment += "0:"
                 break
             case 1...9: fallthrough
             case 10...59:
-                stringFragment = stringFragment + "\(minutes):"
+                stringFragment += "\(minutes):"
                 break
             default: break
             }
@@ -301,11 +320,11 @@ extension Int32 {
         
         switch (seconds) {
         case 0:
-            stringFragment = stringFragment + "00"
+            stringFragment += "00"
         case 1...9:
-            stringFragment = stringFragment + "0\(seconds)"
+            stringFragment += "0\(seconds)"
         case 10...59:
-            stringFragment = stringFragment + "\(seconds)"
+            stringFragment += "\(seconds)"
         default: break
         }
         
