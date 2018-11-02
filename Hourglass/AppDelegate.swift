@@ -35,6 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSAttributedString.Key.font: UIFont(name: "GodoM", size: 17)!
         ],for: UIControl.State.normal)
 
+//        // 테마 적용
+//        if UserDefaults.standard.bool(forKey: "themeSwitchState") {
+//            application.statusBarStyle = .lightContent
+//        } else {
+//            application.statusBarStyle = .default
+//        }
         
         return true
     }

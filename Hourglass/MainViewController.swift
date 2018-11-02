@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import MarqueeLabel
+import NightNight
 
 class MainViewController: UITableViewController {
     
@@ -31,6 +33,9 @@ class MainViewController: UITableViewController {
         }
     }
     
+    // 하위 뷰컨트롤러 어디에서든 최상위 MainVC으로 돌아올수 있는 unwind segue
+    @IBAction func unwindToMainVC(segue: UIStoryboardSegue) {}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +44,18 @@ class MainViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // 테마 적용
+        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x161718)
+//        tableView.mixedBackgroundColor = MixedColor(normal: 0xff0000, night: 0x222222)
+        navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
+        
+        if NightNight.theme == .night {
+            navigationController?.navigationBar.barStyle = .black
+        } else if NightNight.theme == .normal {
+            navigationController?.navigationBar.barStyle = .default
+        }
+        tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
         
         // 네비게이션 컨트롤러에서 large title 켜기
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -55,6 +72,7 @@ class MainViewController: UITableViewController {
         if UserDefaults.standard.object(forKey: "alertSwitchState") == nil {
             UserDefaults.standard.set(true, forKey: "alertSwitchState")
             UserDefaults.standard.set(true, forKey: "soundSwitchState")
+            UserDefaults.standard.set(true, forKey: "themeSwitchState")
         }
         
         // 높이 자동 조절
@@ -105,12 +123,27 @@ class MainViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        
+        return MixedStatusBarStyle(normal: .default, night: .lightContent).unfold()
+    }
+    
     // MARK: - Table view data source
     
     //    override func numberOfSections(in tableView: UITableView) -> Int {
     //        // #warning Incomplete implementation, return the number of sections
     //        return 0
     //    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+        
+        let viewForSelectedCell = UIView()
+        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        cell.selectedBackgroundView = viewForSelectedCell
+
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -126,6 +159,11 @@ class MainViewController: UITableViewController {
         }
         
         // Configure the cell...
+        
+        // 테마 적용
+        cell.workNameLabel.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        cell.latestTimeLabel.mixedTextColor = MixedColor(normal: UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0
+        ), night: UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0))
         
         cell.iconImageView.backgroundColor = UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.00)
         cell.iconImageView.layer.cornerRadius = cell.iconImageView.layer.frame.width / 2.66
@@ -162,6 +200,10 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         selectedIndex = Int(resultsArray[indexPath.row].workID)
         return indexPath
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     /*
@@ -249,7 +291,23 @@ class WorkCell: UITableViewCell {
         shouldSelectRow?(self)
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        let color = iconImageView.backgroundColor
+        super.setSelected(selected, animated: animated)
+        
+        if selected {
+            iconImageView.backgroundColor = color
+        }
+    }
     
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        let color = iconImageView.backgroundColor
+        super.setHighlighted(highlighted, animated: animated)
+        
+        if highlighted {
+            iconImageView.backgroundColor = color
+        }
+    }
 }
 
 extension Int32 {

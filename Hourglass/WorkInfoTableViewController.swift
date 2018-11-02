@@ -8,15 +8,54 @@
 
 import UIKit
 import CoreData
+import MarqueeLabel
+import NightNight
 
-class WorkInfoTableViewController: UITableViewController {
-
+class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
+    
     var selectedIndex: Int?
     let context = AppDelegate.viewContext
+    let workingVC = WorkingViewController()
+    var workInfoFetch: WorkInfo?
+    var estimatedWorkTimeForPopover: Int32?
     
-    @IBOutlet var workNameLabel: UILabel! {
+    @objc func individualUpdateWorkInfo() {
+        
+        if let workinfo = workInfoFetch {
+            
+            workinfo.setValue(workNameTextField.text, forKey: "workName")
+            // icon
+            if let value = estimatedWorkTimeForPopover {
+                workinfo.setValue(value, forKey: "estimatedWorkTime")
+            }
+            
+            do {
+                try context.save()
+                
+            } catch let nserror as NSError {
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+    @IBOutlet var workNameLabel: MarqueeLabel! {
         didSet {
             workNameLabel.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+            
+            // 레이블을 터치하면 텍스트필드로 바꾸고 입력받기
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.workNameLabelTapped))
+            tapGesture.numberOfTapsRequired = 1
+            workNameLabel.addGestureRecognizer(tapGesture)
+            workNameLabel.isUserInteractionEnabled = true
+        }
+    }
+    @IBOutlet var workNameTextField: UITextField! {
+        didSet {
+            workNameTextField.borderStyle = .none
+            workNameTextField.backgroundColor = UIColor.clear
+            
+            workNameTextField.delegate = self
+            workNameTextField.isHidden = true
         }
     }
     @IBOutlet var workIconImageView: UIImageView! {
@@ -26,11 +65,7 @@ class WorkInfoTableViewController: UITableViewController {
             workIconImageView.clipsToBounds = true
         }
     }
-    @IBOutlet var estimatedWorkTimeLabel: UILabel! {
-        didSet {
-            estimatedWorkTimeLabel.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
-        }
-    }
+    @IBOutlet var justLabel: UILabel!
     @IBOutlet var currentSuccessiveAchievementWhetherLabel: UILabel!
     @IBOutlet var successiveAchievementHighestRecordLabel: UILabel!
     @IBOutlet var totalWorkLabel: UILabel!
@@ -40,12 +75,23 @@ class WorkInfoTableViewController: UITableViewController {
     @IBOutlet var averageElapsedTimeLabel: UILabel!
     @IBOutlet var averageRemainingTimeLabel: UILabel!
     
+    @IBOutlet var estimatedWorkTimePickerButton: UIButton! {
+        didSet {
+            estimatedWorkTimePickerButton.setTitleColor(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), for: .normal)
+        }
+    }
+    
     @IBOutlet var workRecordButton: UIButton! {
         didSet {
             workRecordButton.backgroundColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
             workRecordButton.layer.cornerRadius = 10
             workRecordButton.layer.masksToBounds = true
         }
+    }
+    
+    @IBAction func popoverWorkTimePicker(_ sender: UIButton) {
+        
+        
     }
     
     override func viewDidLoad() {
@@ -57,95 +103,144 @@ class WorkInfoTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        // 테마 적용
+        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x161718)
+        navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
+        tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
+        justLabel.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        workNameTextField.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        
+        self.hideKeyboardWhenTappedAround()
+        tableView.keyboardDismissMode = .interactive
+        
         // 네비게이션 컨트롤러 하위의 뷰에서는 large title 비활성화 하기
         navigationItem.largeTitleDisplayMode = .never
         
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
-        let workingVC = WorkingViewController()
-        var fetchResult = workingVC.contextFetchToSelectedIndex(index: selectedIndex) // 메인에서 터치해서 선택된 인덱스로 불러온 WorkInfo객체
-        
-        let fetchArray = contextFetchFor(ThisWork: fetchResult) // 선택된 WorkInfo객체로 불러온 TimeMeasurementInfo객체
-        
-        fetchResult = updateWorkInfo(workInfo: fetchResult, timeMeasurementInfo: fetchArray) // 합계, 평균 등을 구한 뒤 WorkInfo 엔티티의 필드 업데이트
-        
-        workNameLabel.text = fetchResult.workName
-        // icon
-        estimatedWorkTimeLabel.text = fetchResult.estimatedWorkTime.secondsToString
-        currentSuccessiveAchievementWhetherLabel.text = "\(fetchResult.currentSuccessiveAchievementWhether)회" // 현재 연속 달성 여부
-        successiveAchievementHighestRecordLabel.text = "\(fetchResult.successiveAchievementHighestRecord)회" // 연속 달성 최고기록
-        
-        totalWorkLabel.text = "\(fetchArray.count)회" // 총 작업
-        goalSuccessLabel.text = "\(fetchResult.goalSuccess)회" // 목표 달성
-        goalFailLabel.text = "\(fetchResult.goalFail)회" // 목표 실패
-        successRateLabel.text = String(format: "%.2f", fetchResult.successRate * 100) + "%" // 성공률
-        averageElapsedTimeLabel.text = Int32(fetchResult.averageElapsedTime).secondsToString // 평균 소요시간
-        averageRemainingTimeLabel.text = Int32(fetchResult.averageRemainingTime).secondsToString // 평균 남은 시간
+        fetchAndRenewal()
         
         // UIButton의 setBackgroundImage를 이용한 메서드를 익스텐션으로 만들어서 사용
-        workRecordButton.setBackgroundColor(color: UIColor(red:0.49, green:0.31, blue:0.14, alpha:1.00), forState: UIControl.State.highlighted)
+        workRecordButton.setBackgroundColor(color: UIColor(red:0.99, green:0.81, blue:0.64, alpha:1.00), forState: UIControl.State.highlighted)
         
+        // Add Observer
+        let notificationCenter = NotificationCenter.default
+//        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.fetchAndRenewal), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.fetchAndRenewal), name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.individualUpdateWorkInfo), name: NSNotification.Name(rawValue: "UpdateWorkInfoNoti"), object: nil)
     }
     
-    func updateWorkInfo(workInfo: WorkInfo, timeMeasurementInfo: [TimeMeasurementInfo]) -> WorkInfo {
+    @objc func fetchAndRenewal() {
         
-        guard timeMeasurementInfo.count != 0 else { return workInfo }
+        // 메인에서 터치해서 선택된 인덱스로 불러온 WorkInfo객체
+        workInfoFetch = workingVC.contextFetchToSelectedIndex(selectedIndex)
         
-        var goalSuccess = 0
-        var averageElapsed = 0
-        var averageRemaining = 0
+        guard workInfoFetch != nil else { return }
         
-        for timeMeasurementInfo in timeMeasurementInfo {
-            if timeMeasurementInfo.goalSuccessOrFailWhether {
-                goalSuccess += 1
-            }
-            averageElapsed += Int(timeMeasurementInfo.elapsedTime)
-            averageRemaining += Int(timeMeasurementInfo.remainingTime)
-        }
-        averageElapsed /= timeMeasurementInfo.count
-        averageRemaining /= timeMeasurementInfo.count
+        workNameLabel.text = workInfoFetch!.workName
+        // icon
+        estimatedWorkTimePickerButton.setTitle(workInfoFetch!.estimatedWorkTime.secondsToString, for: .normal)
+        currentSuccessiveAchievementWhetherLabel.text = "\(workInfoFetch!.currentSuccessiveAchievementWhether) 회" // 현재 연속 달성 여부
+        successiveAchievementHighestRecordLabel.text = "\(workInfoFetch!.successiveAchievementHighestRecord) 회" // 연속 달성 최고기록
         
-        workInfo.setValue(timeMeasurementInfo.count, forKey: "totalWork")
-        workInfo.setValue(goalSuccess, forKey: "goalSuccess")
-        workInfo.setValue(timeMeasurementInfo.count - goalSuccess, forKey: "goalFail")
-        workInfo.setValue(Float(goalSuccess) / Float(timeMeasurementInfo.count), forKey: "successRate")
-        workInfo.setValue(averageElapsed, forKey: "averageElapsedTime")
-        workInfo.setValue(averageRemaining, forKey: "averageRemainingTime")
+        totalWorkLabel.text = "\(workInfoFetch!.totalWork) 회" // 총 작업
+        goalSuccessLabel.text = "\(workInfoFetch!.goalSuccess) 회" // 목표 달성
+        goalFailLabel.text = "\(workInfoFetch!.goalFail) 회" // 목표 실패
+        successRateLabel.text = String(format: "%.0f", workInfoFetch!.successRate * 100) + " %" // 성공률
+        averageElapsedTimeLabel.text = Int32(workInfoFetch!.averageElapsedTime).secondsToString // 평균 소요시간
+        averageRemainingTimeLabel.text = Int32(workInfoFetch!.averageRemainingTime).secondsToString // 평균 남은 시간
         
-        do {
-            try context.save()
+        if workInfoFetch!.totalWork == 0 {
+            // 진행한 작업이 없을 때
+            let noticeView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 45))
+            noticeView.mixedBackgroundColor = MixedColor(normal: UIColor.black, night: UIColor.white)
+            noticeView.alpha = 0.5
             
-            return workInfo
+            let noticeLabel = UILabel()
+            noticeLabel.center = CGPoint(x: noticeView.frame.size.width / 2, y: noticeView.frame.size.height / 2)
+            noticeLabel.text = "진행한 작업이 없습니다. 작업을 시작해보세요."
+            noticeLabel.mixedTextColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+            noticeLabel.font = UIFont(name: "GodoM", size: 15)
+            noticeLabel.textAlignment = .center
+            noticeLabel.frame = noticeView.frame
             
-        } catch let nserror as NSError {
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            noticeView.addSubview(noticeLabel)
+            self.tableView.addSubview(noticeView)
+            
+            workRecordButton.isEnabled = false
+            workRecordButton.backgroundColor = UIColor(red:0.99, green:0.81, blue:0.64, alpha:1.00)
         }
     }
     
-    func contextFetchFor(ThisWork: WorkInfo) -> [TimeMeasurementInfo] {
+//        // 빈곳을 터치하면 키보드나 데이트피커 등을 숨긴다
+//        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//            super.touchesBegan(touches, with: event)
+//
+//            self.tableView.endEditing(true)
+//        }
+    
+    @objc func workNameLabelTapped(gesture: UITapGestureRecognizer) {
         
-        // Core Data 영구 저장소에서 TimeMeasurementInfo 데이터 가져오기
-        let request: NSFetchRequest<TimeMeasurementInfo> = TimeMeasurementInfo.fetchRequest()
-        
-        request.predicate = NSPredicate(format: "work == \(selectedIndex ?? 1)")
-        
-        do {
-            let fetchArray = try context.fetch(request)
-            
-            print(fetchArray)
-            
-            return fetchArray
-            
-        } catch let nserror as NSError {
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
-        
-        
+        gesture.view?.isHidden = true
+        workNameTextField.isHidden = false
+        workNameTextField.text = workNameLabel.text
+        workNameTextField.becomeFirstResponder()
     }
-
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        
+        return .none
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        
+        return .none
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        textField.resignFirstResponder()
+        textField.isHidden = true
+        workNameLabel.isHidden = false
+        workNameLabel.text = textField.text
+        
+        // WorkInfo 업데이트
+        individualUpdateWorkInfo()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let maxLength = 30
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+        
+        return newString.length <= maxLength
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        
+        return MixedStatusBarStyle(normal: .default, night: .lightContent).unfold()
+    }
+    
     // MARK: - Table view data source
 
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+        cell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        
+        let viewForSelectedCell = UIView()
+        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        cell.selectedBackgroundView = viewForSelectedCell
+    }
+    
     /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -203,16 +298,57 @@ class WorkInfoTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "WorkingSegue" {
+            
+            if let vc = segue.destination as? WorkingViewController {
+                
+                print("selectedIndex is : \(self.selectedIndex)")
+                vc.selectedIndex = self.selectedIndex
+            }
+        }
+        
+        if segue.identifier == "popoverSegue" {
+            
+            if let vc = segue.destination as? PopoverPickerViewController {
+                
+                vc.modalPresentationStyle = .popover
+                
+                if let popoverVC = vc.popoverPresentationController {
+                    popoverVC.permittedArrowDirections = .any
+                    popoverVC.sourceView = self.estimatedWorkTimePickerButton
+                    popoverVC.sourceRect = CGRect(x: self.estimatedWorkTimePickerButton.bounds.minX, y: self.estimatedWorkTimePickerButton.bounds.minY, width: self.estimatedWorkTimePickerButton.bounds.width, height: self.estimatedWorkTimePickerButton.bounds.height)
+                    popoverVC.presentedView?.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+                    popoverVC.delegate = self
+                }
+                
+                vc.delegation = self as? PopoverPickerViewControllerDelegate
+                
+                vc.estimatedWorkTimeForPopover = workInfoFetch!.estimatedWorkTime
+            }
+            
+            // 예상작업시간 팝오버에 넘겨주기
+            
+        }
     }
-    */
 
+}
+
+extension WorkInfoTableViewController: PopoverPickerViewControllerDelegate {
+    
+    func sendValue(value: Int32) {
+        
+        estimatedWorkTimePickerButton.setTitle(value.secondsToString, for: .normal)
+        estimatedWorkTimeForPopover = value
+        
+        individualUpdateWorkInfo()
+    }
 }
 
 extension UIButton {

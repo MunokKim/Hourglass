@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nx3-jv-2mN">
-    <device id="retina6_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nx3-jv-2mN">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Abel-Regular.ttf">
+            <string>Abel-Regular</string>
+        </array>
         <array key="GodoB.otf">
             <string>GodoB</string>
         </array>
@@ -23,66 +26,77 @@
             <objects>
                 <tableViewController id="6GR-79-Gq1" customClass="MainViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dxH-Pc-100">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="mainCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainCell" rowHeight="75" id="BE8-oJ-dao" customClass="WorkCell" customModule="Hourglass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="75"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BE8-oJ-dao" id="ZZV-G4-8Lc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="74.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fh6-8s-Zo1">
-                                            <rect key="frame" x="355" y="0.0" width="59" height="74.666666666666671"/>
+                                            <rect key="frame" x="316" y="0.0" width="59" height="74.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="59" id="UJ0-zV-C1g"/>
                                                 <constraint firstAttribute="height" constant="74.670000000000002" id="eKX-0u-VeX"/>
                                             </constraints>
-                                            <state key="normal" image="iosInformation"/>
+                                            <state key="normal" image="iosInformationOutline"/>
                                             <connections>
                                                 <action selector="didTapWorkInfoButton:" destination="BE8-oJ-dao" eventType="touchUpInside" id="yWE-sL-2ly"/>
                                                 <segue destination="bUP-lT-cEa" kind="show" identifier="WorkInfoSegue" id="psX-M1-qQS"/>
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Td9-6p-iD9">
-                                            <rect key="frame" x="15" y="13.333333333333336" width="47" height="47"/>
+                                            <rect key="frame" x="15" y="13.5" width="47" height="47"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="47" id="6V5-Vq-hkK"/>
                                                 <constraint firstAttribute="width" constant="47" id="OoJ-eg-k5f"/>
                                             </constraints>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LtB-68-AhA">
-                                            <rect key="frame" x="70" y="5" width="285" height="64"/>
+                                            <rect key="frame" x="70" y="5" width="246" height="64"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개와 산책하기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lE6-Jj-xsC">
-                                                    <rect key="frame" x="8" y="8.0000000000000018" width="110.33333333333333" height="21.666666666666671"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개와 산책하기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lE6-Jj-xsC" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                                    <rect key="frame" x="8" y="8" width="110.5" height="22"/>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                            <real key="value" value="50"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1시간 15분" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogX-Qs-Khy">
-                                                    <rect key="frame" x="8" y="35.666666666666664" width="66.666666666666671" height="17"/>
+                                                    <rect key="frame" x="8" y="36" width="66.5" height="17"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="30분 전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMo-J0-g9Y">
-                                                    <rect key="frame" x="246" y="25" width="39" height="14"/>
+                                                    <rect key="frame" x="207" y="25" width="39" height="14"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
                                                     <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="bMo-J0-g9Y" firstAttribute="centerY" secondItem="LtB-68-AhA" secondAttribute="centerY" id="2Iy-xc-Qs2"/>
                                                 <constraint firstItem="ogX-Qs-Khy" firstAttribute="leading" secondItem="lE6-Jj-xsC" secondAttribute="leading" id="VpG-kS-qML"/>
                                                 <constraint firstItem="lE6-Jj-xsC" firstAttribute="top" secondItem="LtB-68-AhA" secondAttribute="top" constant="8" id="W7r-KC-AAh"/>
                                                 <constraint firstItem="lE6-Jj-xsC" firstAttribute="leading" secondItem="LtB-68-AhA" secondAttribute="leading" constant="8" id="c3X-ID-u0n"/>
                                                 <constraint firstAttribute="height" constant="64" id="hr1-Ai-f0r"/>
-                                                <constraint firstItem="bMo-J0-g9Y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lE6-Jj-xsC" secondAttribute="trailing" id="mcR-uv-fhU"/>
+                                                <constraint firstItem="bMo-J0-g9Y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lE6-Jj-xsC" secondAttribute="trailing" constant="5" id="mcR-uv-fhU"/>
                                                 <constraint firstItem="ogX-Qs-Khy" firstAttribute="top" secondItem="lE6-Jj-xsC" secondAttribute="bottom" constant="6" id="poI-rR-noo"/>
                                                 <constraint firstAttribute="trailing" secondItem="bMo-J0-g9Y" secondAttribute="trailing" id="t3l-vV-ph0"/>
                                             </constraints>
@@ -106,7 +120,7 @@
                                     <outlet property="latestTimeLabel" destination="bMo-J0-g9Y" id="WBa-O7-4Ek"/>
                                     <outlet property="workInfoBtn" destination="Fh6-8s-Zo1" id="cOd-C2-1oc"/>
                                     <outlet property="workNameLabel" destination="lE6-Jj-xsC" id="hz9-sh-SmS"/>
-                                    <segue destination="M4F-Va-rGN" kind="presentation" identifier="WorkingSegue" customClass="FadeInSegue" customModule="Hourglass" customModuleProvider="target" id="RPq-cW-jTP"/>
+                                    <segue destination="M4F-Va-rGN" kind="presentation" identifier="WorkingSegue" customClass="FadeInSegue" customModule="Hourglass" customModuleProvider="target" modalPresentationStyle="overCurrentContext" id="RPq-cW-jTP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -116,20 +130,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="시간추정" largeTitleDisplayMode="always" id="wNx-v0-cXn">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="OEp-8v-ovH">
+                        <barButtonItem key="leftBarButtonItem" title="편집" id="5jk-JB-xwt">
                             <connections>
-                                <segue destination="kmL-TZ-FZo" kind="presentation" id="qR0-ha-QW6"/>
+                                <action selector="editButtonPressed:" destination="6GR-79-Gq1" id="S2K-4K-bhv"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="OEp-8v-ovH">
+                                <connections>
+                                    <segue destination="kmL-TZ-FZo" kind="presentation" id="qR0-ha-QW6"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Item" image="iosMore" id="zYo-De-E5A">
                                 <connections>
                                     <segue destination="lQ9-hn-SXx" kind="presentation" id="nIs-YI-6Yx"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="편집" id="5jk-JB-xwt">
-                                <connections>
-                                    <action selector="editButtonPressed:" destination="6GR-79-Gq1" id="S2K-4K-bhv"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -148,21 +162,21 @@
             <objects>
                 <tableViewController storyboardIdentifier="NewWorkViewController" id="bAQ-dS-PAd" customClass="NewWorkViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="to2-lJ-z1o">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="나만의 작업을 만들고 시간추정을 연습하세요." footerTitle="작업에 소요될 시간을 직접 예상해보고 실제 경과 시간과 비교하여 시간추정 능력을 기를 수 있습니다." id="UXG-s4-ROB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Gd9-lJ-Wvy" style="IBUITableViewCellStyleDefault" id="jQD-wO-ZNF">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jQD-wO-ZNF" id="kJf-vm-UKK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gd9-lJ-Wvy">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -174,50 +188,50 @@
                                             <outlet property="accessoryView" destination="goV-hL-WoR" id="W52-2M-Qbw"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="3Wv-XW-6P1">
-                                        <rect key="frame" x="0.0" y="99.333333333333343" width="414" height="86"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="3Wv-XW-6P1" customClass="IconCell" customModule="Hourglass" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Wv-XW-6P1" id="m9O-Yg-R14">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="85.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="85.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="78g-xd-MJL">
-                                                    <rect key="frame" x="301" y="11" width="64" height="64"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="1uc-mf-4eK"/>
-                                                        <constraint firstAttribute="width" secondItem="78g-xd-MJL" secondAttribute="height" multiplier="1:1" id="5jw-XC-bsj"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="아이콘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZc-Ua-pXx">
-                                                    <rect key="frame" x="16" y="32.000000000000028" width="47" height="20"/>
+                                                    <rect key="frame" x="16" y="31.666666666666657" width="47" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="78g-xd-MJL">
+                                                    <rect key="frame" x="277" y="11" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="1uc-mf-4eK"/>
+                                                        <constraint firstAttribute="width" secondItem="78g-xd-MJL" secondAttribute="height" multiplier="1:1" id="5jw-XC-bsj"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="78g-xd-MJL" firstAttribute="centerY" secondItem="m9O-Yg-R14" secondAttribute="centerY" id="Nf7-b5-iUJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="78g-xd-MJL" secondAttribute="trailing" constant="11" id="grN-Rd-Ukq"/>
+                                                <constraint firstAttribute="trailing" secondItem="78g-xd-MJL" secondAttribute="trailing" id="grN-Rd-Ukq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Czm-rJ-JEz" detailTextLabel="VcU-i4-k2g" style="IBUITableViewCellStyleValue1" id="yUS-f8-7Ls">
-                                        <rect key="frame" x="0.0" y="185.33333333333334" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="185.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yUS-f8-7Ls" id="k8W-CA-25V">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="예상 작업 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Czm-rJ-JEz">
-                                                    <rect key="frame" x="19.999999999999993" y="12.999999999999998" width="102.33333333333333" height="19.333333333333332"/>
+                                                    <rect key="frame" x="16" y="12" width="102.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="시간 선택" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VcU-i4-k2g">
-                                                    <rect key="frame" x="327" y="12.999999999999998" width="67" height="19.333333333333332"/>
+                                                    <rect key="frame" x="292" y="12" width="67" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -227,15 +241,19 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickerCell" rowHeight="217" id="Uew-Tv-uyM">
-                                        <rect key="frame" x="0.0" y="229.33333333333337" width="414" height="217"/>
+                                        <rect key="frame" x="0.0" y="229.5" width="375" height="217"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uew-Tv-uyM" id="nyg-Mx-FJG">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="216.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="216.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afg-Ba-z20">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="216.66666666666666"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afg-Ba-z20" customClass="WorkTimePicker" customModule="Hourglass" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="216.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="bAQ-dS-PAd" id="4PS-LK-GLB"/>
+                                                        <outlet property="delegate" destination="bAQ-dS-PAd" id="aVd-Lw-d8y"/>
+                                                    </connections>
                                                 </pickerView>
                                             </subviews>
                                             <constraints>
@@ -270,16 +288,17 @@
                     <connections>
                         <outlet property="IconCell" destination="3Wv-XW-6P1" id="jfF-Nr-ADk"/>
                         <outlet property="addButton" destination="gWy-gA-Sh3" id="R6o-2n-w0i"/>
-                        <outlet property="estimatedWorkTimePicker" destination="Afg-Ba-z20" id="Yp2-sI-KgZ"/>
+                        <outlet property="estimatedWorkTimePicker" destination="Afg-Ba-z20" id="vyZ-l4-cO7"/>
+                        <outlet property="iconCellLabel" destination="KZc-Ua-pXx" id="il0-fU-iFw"/>
                         <outlet property="pickerCell" destination="Uew-Tv-uyM" id="n1J-9v-hJv"/>
                         <outlet property="showEstimatedWorkTimeCell" destination="yUS-f8-7Ls" id="N9w-dn-83j"/>
-                        <outlet property="workIconImageView" destination="78g-xd-MJL" id="R0i-8O-Cd8"/>
+                        <outlet property="workIconImageView" destination="78g-xd-MJL" id="OG5-BN-oPm"/>
                         <outlet property="workNameTextField" destination="goV-hL-WoR" id="NBf-cO-ONF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GQI-9x-Nns" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="작업 이름 입력" textAlignment="right" minimumFontSize="13" id="goV-hL-WoR">
-                    <rect key="frame" x="0.0" y="0.0" width="197" height="30"/>
+                    <rect key="frame" x="0.0" y="0.0" width="248" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="textColor"/>
@@ -296,16 +315,16 @@
         <!--Working View Controller-->
         <scene sceneID="J3J-kh-L8r">
             <objects>
-                <viewController storyboardIdentifier="WorkingViewController" id="M4F-Va-rGN" customClass="WorkingViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WorkingViewController" modalPresentationStyle="overFullScreen" id="M4F-Va-rGN" customClass="WorkingViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kll-Al-wlI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbi-Bg-8If" customClass="GradientView" customModule="Hourglass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPu-UA-tSI">
-                                        <rect key="frame" x="20" y="56" width="30" height="30"/>
+                                        <rect key="frame" x="20" y="41.5" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="OPS-4q-Srs"/>
                                             <constraint firstAttribute="height" constant="30" id="lCn-3U-ZAo"/>
@@ -316,36 +335,47 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vxy-bY-jrV">
-                                        <rect key="frame" x="182" y="89.666666666666671" width="50" height="50.000000000000014"/>
+                                        <rect key="frame" x="162.5" y="66.5" width="50" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="vxy-bY-jrV" secondAttribute="height" multiplier="1:1" id="TRg-D3-dZH"/>
                                             <constraint firstAttribute="height" constant="50" id="zww-xJ-LJm"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="개와 산책하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwB-9M-7vs">
-                                        <rect key="frame" x="114" y="144.66666666666666" width="186" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="개와 산책하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwB-9M-7vs" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                        <rect key="frame" x="94.5" y="121.5" width="186" height="36.5"/>
                                         <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="남은 시간" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdG-mm-nH3">
-                                        <rect key="frame" x="173.66666666666666" y="313.66666666666669" width="67" height="20"/>
+                                        <rect key="frame" x="154" y="233.5" width="67" height="20"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="50" translatesAutoresizingMaskIntoConstraints="NO" id="RCJ-rT-Mku">
-                                        <rect key="frame" x="207" y="339.66666666666669" width="0.0" height="110"/>
+                                        <rect key="frame" x="187.5" y="259.5" width="0.0" height="110"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="G8T-C5-BLN"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="120"/>
+                                        <fontDescription key="fontDescription" name="Abel-Regular" family="Abel" pointSize="120"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2a-MY-gaz">
-                                        <rect key="frame" x="172" y="582.33333333333337" width="70" height="70"/>
+                                        <rect key="frame" x="152.5" y="433.5" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="e2a-MY-gaz" secondAttribute="height" multiplier="1:1" id="5k3-sf-O3d"/>
                                         </constraints>
@@ -355,7 +385,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fr1-fB-GUs">
-                                        <rect key="frame" x="172" y="582.33333333333337" width="70" height="70"/>
+                                        <rect key="frame" x="152.5" y="433.5" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Fr1-fB-GUs" secondAttribute="height" multiplier="1:1" id="jjZ-PS-y5z"/>
                                         </constraints>
@@ -367,7 +397,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSK-9l-kVC">
-                                        <rect key="frame" x="172" y="582.33333333333337" width="70" height="70"/>
+                                        <rect key="frame" x="152.5" y="433.5" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="X6X-uS-cpD"/>
                                             <constraint firstAttribute="width" secondItem="OSK-9l-kVC" secondAttribute="height" multiplier="1:1" id="bEs-ba-Rei"/>
@@ -381,25 +411,25 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예상 완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIK-nb-eGb">
-                                        <rect key="frame" x="34" y="826.33333333333337" width="87" height="25"/>
+                                        <rect key="frame" x="34" y="608.5" width="87" height="25"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작업 시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxJ-dX-FVX">
-                                        <rect key="frame" x="34" y="782.33333333333337" width="86" height="25"/>
+                                        <rect key="frame" x="34" y="564.5" width="86" height="25"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:57:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ta-dS-YiI">
-                                        <rect key="frame" x="264" y="826.33333333333337" width="116" height="25"/>
+                                        <rect key="frame" x="225" y="608.5" width="116" height="25"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:27:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1Z-yY-XqX">
-                                        <rect key="frame" x="264" y="782.33333333333337" width="116" height="25"/>
+                                        <rect key="frame" x="225" y="564.5" width="116" height="25"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -485,7 +515,7 @@
                         <outlet property="remainingTimeLabel" destination="RCJ-rT-Mku" id="0lo-R8-qvK"/>
                         <outlet property="stopButton" destination="OSK-9l-kVC" id="Zv7-8P-ad1"/>
                         <outlet property="workIconImageView" destination="vxy-bY-jrV" id="dTz-0U-1eL"/>
-                        <outlet property="workNameLabel" destination="vwB-9M-7vs" id="bwN-V9-dN8"/>
+                        <outlet property="workNameLabel" destination="vwB-9M-7vs" id="Fv6-Kr-pmB"/>
                         <outlet property="workStartTextLabel" destination="cxJ-dX-FVX" id="tEQ-Rl-1pN"/>
                         <outlet property="workStartTimeLabel" destination="V1Z-yY-XqX" id="FjL-LC-T3Q"/>
                         <outlet property="zoomOutButton" destination="sPu-UA-tSI" id="6VZ-Fd-0oo"/>
@@ -493,7 +523,6 @@
                         <outletCollection property="buttons" destination="e2a-MY-gaz" collectionClass="NSMutableArray" id="all-rN-HIc"/>
                         <outletCollection property="buttons" destination="Fr1-fB-GUs" collectionClass="NSMutableArray" id="SO5-KZ-zcP"/>
                         <outletCollection property="buttons" destination="OSK-9l-kVC" collectionClass="NSMutableArray" id="2DJ-Iu-jiE"/>
-                        <outletCollection property="labels" destination="vwB-9M-7vs" collectionClass="NSMutableArray" id="yPz-f3-SAo"/>
                         <outletCollection property="labels" destination="IdG-mm-nH3" collectionClass="NSMutableArray" id="e81-TO-Duo"/>
                         <outletCollection property="labels" destination="cxJ-dX-FVX" collectionClass="NSMutableArray" id="sAC-Oc-ky5"/>
                         <outletCollection property="labels" destination="aIK-nb-eGb" collectionClass="NSMutableArray" id="DHO-SH-PkS"/>
@@ -502,7 +531,6 @@
                         <outletCollection property="labels" destination="RCJ-rT-Mku" collectionClass="NSMutableArray" id="1bg-3J-wh6"/>
                         <outletCollection property="subviews" destination="sPu-UA-tSI" collectionClass="NSMutableArray" id="FE8-Lp-ula"/>
                         <outletCollection property="subviews" destination="vxy-bY-jrV" collectionClass="NSMutableArray" id="471-Vg-1VT"/>
-                        <outletCollection property="subviews" destination="vwB-9M-7vs" collectionClass="NSMutableArray" id="exO-qb-mEj"/>
                         <outletCollection property="subviews" destination="IdG-mm-nH3" collectionClass="NSMutableArray" id="3Gu-9p-o5k"/>
                         <outletCollection property="subviews" destination="RCJ-rT-Mku" collectionClass="NSMutableArray" id="bXt-tJ-SFe"/>
                         <outletCollection property="subviews" destination="e2a-MY-gaz" collectionClass="NSMutableArray" id="YyP-Rb-3Ma"/>
@@ -517,21 +545,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tM-uA-gHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2822" y="464"/>
+            <point key="canvasLocation" x="2822" y="463"/>
         </scene>
         <!--Work Result View Controller-->
         <scene sceneID="mNC-8G-BNU">
             <objects>
                 <viewController id="UVY-03-bvO" customClass="WorkResultViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8CG-AS-qiu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fjm-Xi-SSo" customClass="GradientView" customModule="Hourglass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작업 완료" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4K-9X-BLK">
-                                        <rect key="frame" x="173" y="44.666666666666664" width="68" height="29.999999999999993"/>
+                                        <rect key="frame" x="153.5" y="33.5" width="68" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ACA-v8-lMH"/>
                                         </constraints>
@@ -540,7 +568,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lef-GB-wUb">
-                                        <rect key="frame" x="20" y="44.666666666666664" width="30" height="29.999999999999993"/>
+                                        <rect key="frame" x="20" y="33.5" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="Qom-Rr-ehh"/>
                                             <constraint firstAttribute="height" constant="30" id="ea2-dK-zlL"/>
@@ -548,7 +576,7 @@
                                         <state key="normal" image="share"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyR-qp-Ygt">
-                                        <rect key="frame" x="364" y="44.666666666666664" width="30" height="29.999999999999993"/>
+                                        <rect key="frame" x="325" y="33.5" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="lgz-Yb-Ci7"/>
                                             <constraint firstAttribute="height" constant="30" id="xX1-di-Ul3"/>
@@ -559,117 +587,152 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CPz-vK-M7I">
-                                        <rect key="frame" x="182" y="134.33333333333334" width="50" height="50"/>
+                                        <rect key="frame" x="162.5" y="116.5" width="50" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="S6d-EE-gbD"/>
                                             <constraint firstAttribute="width" secondItem="CPz-vK-M7I" secondAttribute="height" multiplier="1:1" id="Ygf-q8-MHF"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개와 산책하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1E-mf-SSs">
-                                        <rect key="frame" x="114" y="189.33333333333334" width="186" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개와 산책하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1E-mf-SSs" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                        <rect key="frame" x="94.5" y="171.5" width="186" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="147" id="0Pl-iI-FDQ"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개와 산책하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUu-oW-FcC">
-                                        <rect key="frame" x="158.66666666666666" y="231.33333333333334" width="97" height="20"/>
+                                        <rect key="frame" x="139" y="213.5" width="97" height="20"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소요 시간" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJD-8Q-h9x">
-                                        <rect key="frame" x="173.66666666666666" y="380.66666666666669" width="67" height="20"/>
+                                        <rect key="frame" x="154" y="300" width="67" height="20"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="50" translatesAutoresizingMaskIntoConstraints="NO" id="fLg-Kj-SHv">
-                                        <rect key="frame" x="207" y="406.66666666666669" width="0.0" height="110.00000000000006"/>
+                                        <rect key="frame" x="187.5" y="326" width="0.0" height="110"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="k9M-GM-gNm"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="120"/>
+                                        <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="90"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:57:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVK-ao-j7W">
-                                        <rect key="frame" x="284.66666666666669" y="699.33333333333337" width="105.33333333333331" height="23"/>
+                                        <rect key="frame" x="245.5" y="481.5" width="105.5" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:57:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1K5-gl-dGL">
-                                        <rect key="frame" x="284.66666666666669" y="742.33333333333337" width="105.33333333333331" height="23"/>
+                                        <rect key="frame" x="245.5" y="524.5" width="105.5" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:57:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KV-34-Yq4">
-                                        <rect key="frame" x="284.66666666666669" y="785.33333333333337" width="105.33333333333331" height="23"/>
+                                        <rect key="frame" x="245.5" y="567.5" width="105.5" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:57:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvh-zg-PR3">
-                                        <rect key="frame" x="284.66666666666669" y="828.33333333333337" width="105.33333333333331" height="23"/>
+                                        <rect key="frame" x="245.5" y="610.5" width="105.5" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작업 시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsT-G2-kxW">
-                                        <rect key="frame" x="24" y="702.33333333333337" width="78.666666666666671" height="23"/>
+                                        <rect key="frame" x="24" y="484.5" width="78.5" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="완료 예상" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIb-Dn-7Ql">
-                                        <rect key="frame" x="24" y="744.33333333333337" width="79" height="23"/>
+                                        <rect key="frame" x="24" y="526.5" width="79" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="실제 완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jd-EQ-FmY">
-                                        <rect key="frame" x="24" y="786.33333333333337" width="79" height="23"/>
+                                        <rect key="frame" x="24" y="568.5" width="79" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="남은 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6u1-ff-axj">
-                                        <rect key="frame" x="24" y="828.33333333333337" width="78.666666666666671" height="23"/>
+                                        <rect key="frame" x="24" y="610.5" width="78.5" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Laurel_right" translatesAutoresizingMaskIntoConstraints="NO" id="IiM-PD-kyk">
+                                        <rect key="frame" x="283.5" y="121.5" width="47" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="47" id="EFU-rt-65X"/>
+                                            <constraint firstAttribute="height" constant="100" id="Y6L-vo-DPy"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Laurel_left" translatesAutoresizingMaskIntoConstraints="NO" id="Rpn-Sz-FyH">
+                                        <rect key="frame" x="44.5" y="121.5" width="47" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="47" id="ltb-U5-4Tp"/>
+                                            <constraint firstAttribute="height" constant="100" id="rqd-Up-RPa"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="zVK-ao-j7W" firstAttribute="trailing" secondItem="1K5-gl-dGL" secondAttribute="trailing" id="0hY-4i-ooO"/>
                                     <constraint firstItem="O4K-9X-BLK" firstAttribute="centerX" secondItem="Fjm-Xi-SSo" secondAttribute="centerX" id="24n-zR-am7"/>
-                                    <constraint firstItem="CPz-vK-M7I" firstAttribute="top" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="0.3" id="2aC-tT-znQ"/>
+                                    <constraint firstItem="CPz-vK-M7I" firstAttribute="top" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="0.35" id="2aC-tT-znQ"/>
                                     <constraint firstItem="4jd-EQ-FmY" firstAttribute="leading" secondItem="6u1-ff-axj" secondAttribute="leading" id="7Lp-hg-QCn"/>
                                     <constraint firstItem="4jd-EQ-FmY" firstAttribute="top" secondItem="pIb-Dn-7Ql" secondAttribute="bottom" constant="19" id="7it-zT-iVs"/>
+                                    <constraint firstItem="Rpn-Sz-FyH" firstAttribute="centerY" secondItem="M1E-mf-SSs" secondAttribute="top" id="8Uo-4R-9hY"/>
                                     <constraint firstItem="6u1-ff-axj" firstAttribute="bottom" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="1.9" id="9Pn-MQ-uYC"/>
+                                    <constraint firstItem="Rpn-Sz-FyH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fjm-Xi-SSo" secondAttribute="leading" constant="3" id="9dT-KP-QUy"/>
                                     <constraint firstItem="M1E-mf-SSs" firstAttribute="centerX" secondItem="Fjm-Xi-SSo" secondAttribute="centerX" id="AU9-jF-hEB"/>
-                                    <constraint firstItem="pJD-8Q-h9x" firstAttribute="top" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="0.85" id="CZu-T6-1Y6"/>
+                                    <constraint firstItem="pJD-8Q-h9x" firstAttribute="top" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="0.9" id="CZu-T6-1Y6"/>
                                     <constraint firstItem="O4K-9X-BLK" firstAttribute="top" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="0.1" id="GEs-Hj-6yo"/>
                                     <constraint firstItem="NsT-G2-kxW" firstAttribute="leading" secondItem="pIb-Dn-7Ql" secondAttribute="leading" id="Jfm-Iu-JsB"/>
                                     <constraint firstAttribute="trailing" secondItem="Lvh-zg-PR3" secondAttribute="trailing" constant="24" id="Jps-aa-vH0"/>
                                     <constraint firstItem="fLg-Kj-SHv" firstAttribute="top" secondItem="pJD-8Q-h9x" secondAttribute="bottom" constant="6" id="KS4-yc-53Z"/>
                                     <constraint firstAttribute="trailing" secondItem="yyR-qp-Ygt" secondAttribute="trailing" constant="20" id="LaF-ff-xlH"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IiM-PD-kyk" secondAttribute="trailing" constant="3" id="MlB-bl-5xt"/>
                                     <constraint firstItem="fLg-Kj-SHv" firstAttribute="centerX" secondItem="Fjm-Xi-SSo" secondAttribute="centerX" id="N2D-YJ-wFb"/>
                                     <constraint firstItem="pIb-Dn-7Ql" firstAttribute="leading" secondItem="4jd-EQ-FmY" secondAttribute="leading" id="Nq8-YK-WTl"/>
                                     <constraint firstItem="CPz-vK-M7I" firstAttribute="centerX" secondItem="Fjm-Xi-SSo" secondAttribute="centerX" id="Qhp-MD-ip1"/>
+                                    <constraint firstItem="M1E-mf-SSs" firstAttribute="leading" secondItem="Rpn-Sz-FyH" secondAttribute="trailing" constant="3" id="R1j-sR-jWl"/>
                                     <constraint firstItem="yyR-qp-Ygt" firstAttribute="centerY" secondItem="O4K-9X-BLK" secondAttribute="centerY" id="R4L-Li-Lyw"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fLg-Kj-SHv" secondAttribute="trailing" constant="5" id="RnI-AQ-bCx"/>
                                     <constraint firstItem="fLg-Kj-SHv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fjm-Xi-SSo" secondAttribute="leading" constant="5" id="Ruv-tM-Nyn"/>
                                     <constraint firstItem="lef-GB-wUb" firstAttribute="leading" secondItem="Fjm-Xi-SSo" secondAttribute="leading" constant="20" id="XT2-3G-hZX"/>
+                                    <constraint firstItem="IiM-PD-kyk" firstAttribute="leading" secondItem="M1E-mf-SSs" secondAttribute="trailing" constant="3" id="XyV-bV-vGO"/>
                                     <constraint firstItem="1K5-gl-dGL" firstAttribute="trailing" secondItem="9KV-34-Yq4" secondAttribute="trailing" id="aIa-lY-I6A"/>
                                     <constraint firstItem="9KV-34-Yq4" firstAttribute="trailing" secondItem="Lvh-zg-PR3" secondAttribute="trailing" id="dIs-aC-xnB"/>
                                     <constraint firstItem="lef-GB-wUb" firstAttribute="centerY" secondItem="O4K-9X-BLK" secondAttribute="centerY" id="fp2-Ju-fwF"/>
                                     <constraint firstItem="NUu-oW-FcC" firstAttribute="centerX" secondItem="Fjm-Xi-SSo" secondAttribute="centerX" id="fw6-f0-sqs"/>
                                     <constraint firstItem="6u1-ff-axj" firstAttribute="leading" secondItem="Fjm-Xi-SSo" secondAttribute="leading" constant="24" id="iT9-gq-EUq"/>
                                     <constraint firstItem="Lvh-zg-PR3" firstAttribute="bottom" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="1.9" id="jes-b9-Gcn"/>
+                                    <constraint firstItem="IiM-PD-kyk" firstAttribute="centerY" secondItem="M1E-mf-SSs" secondAttribute="top" id="l89-pt-w8k"/>
                                     <constraint firstItem="pJD-8Q-h9x" firstAttribute="centerX" secondItem="Fjm-Xi-SSo" secondAttribute="centerX" id="m7B-Kg-njp"/>
                                     <constraint firstItem="6u1-ff-axj" firstAttribute="top" secondItem="4jd-EQ-FmY" secondAttribute="bottom" constant="19" id="mX8-Lm-Tow"/>
                                     <constraint firstItem="NUu-oW-FcC" firstAttribute="top" secondItem="M1E-mf-SSs" secondAttribute="bottom" constant="5" id="nBI-1L-DXn"/>
@@ -693,6 +756,9 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="V2y-sE-oOc" appends="YES" id="wWS-bM-fBX"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -708,12 +774,13 @@
                         <outlet property="actualCompletionLabel" destination="9KV-34-Yq4" id="ASo-06-F8F"/>
                         <outlet property="elapsedTimeLabel" destination="fLg-Kj-SHv" id="qNU-TJ-TDD"/>
                         <outlet property="estimatedCompletionLabel" destination="1K5-gl-dGL" id="pB7-eW-Eon"/>
+                        <outlet property="gestureView" destination="8CG-AS-qiu" id="SB4-7D-3kb"/>
                         <outlet property="gradientView" destination="Fjm-Xi-SSo" id="Rxe-HT-P18"/>
                         <outlet property="remainingTextLabel" destination="6u1-ff-axj" id="Sdd-pq-Av2"/>
                         <outlet property="remainingTimeLabel" destination="Lvh-zg-PR3" id="fiA-fD-cpU"/>
                         <outlet property="workGoalLabel" destination="NUu-oW-FcC" id="ixI-LW-6sE"/>
                         <outlet property="workIconImageView" destination="CPz-vK-M7I" id="Rnx-hd-cSp"/>
-                        <outlet property="workNameLabel" destination="M1E-mf-SSs" id="erZ-rE-eq8"/>
+                        <outlet property="workNameLabel" destination="M1E-mf-SSs" id="vKC-LV-d5x"/>
                         <outlet property="workStartLabel" destination="zVK-ao-j7W" id="No9-9P-SUG"/>
                         <outletCollection property="labels" destination="zVK-ao-j7W" collectionClass="NSMutableArray" id="0IO-LV-M1c"/>
                         <outletCollection property="labels" destination="1K5-gl-dGL" collectionClass="NSMutableArray" id="3E3-e6-8qW"/>
@@ -724,7 +791,6 @@
                         <outletCollection property="labels" destination="4jd-EQ-FmY" collectionClass="NSMutableArray" id="jd2-q9-eoS"/>
                         <outletCollection property="labels" destination="6u1-ff-axj" collectionClass="NSMutableArray" id="9OW-sg-1me"/>
                         <outletCollection property="labels" destination="O4K-9X-BLK" collectionClass="NSMutableArray" id="t4g-kL-x1j"/>
-                        <outletCollection property="labels" destination="M1E-mf-SSs" collectionClass="NSMutableArray" id="mhF-QK-kvL"/>
                         <outletCollection property="labels" destination="NUu-oW-FcC" collectionClass="NSMutableArray" id="DdC-sT-Daf"/>
                         <outletCollection property="labels" destination="pJD-8Q-h9x" collectionClass="NSMutableArray" id="bZG-Nj-0Uy"/>
                         <outletCollection property="labels" destination="fLg-Kj-SHv" collectionClass="NSMutableArray" id="RJC-vK-2ue"/>
@@ -732,7 +798,6 @@
                         <outletCollection property="subviews" destination="yyR-qp-Ygt" collectionClass="NSMutableArray" id="7lw-Cc-WWS"/>
                         <outletCollection property="subviews" destination="O4K-9X-BLK" collectionClass="NSMutableArray" id="fCu-9Y-LlO"/>
                         <outletCollection property="subviews" destination="CPz-vK-M7I" collectionClass="NSMutableArray" id="JA6-Pq-T0Y"/>
-                        <outletCollection property="subviews" destination="M1E-mf-SSs" collectionClass="NSMutableArray" id="raz-Yk-9At"/>
                         <outletCollection property="subviews" destination="NUu-oW-FcC" collectionClass="NSMutableArray" id="u2P-EO-1ou"/>
                         <outletCollection property="subviews" destination="pJD-8Q-h9x" collectionClass="NSMutableArray" id="kuL-ec-iD9"/>
                         <outletCollection property="subviews" destination="fLg-Kj-SHv" collectionClass="NSMutableArray" id="FAP-gP-ymN"/>
@@ -744,9 +809,20 @@
                         <outletCollection property="subviews" destination="pIb-Dn-7Ql" collectionClass="NSMutableArray" id="BxK-0b-Ea2"/>
                         <outletCollection property="subviews" destination="4jd-EQ-FmY" collectionClass="NSMutableArray" id="iFG-T4-qeR"/>
                         <outletCollection property="subviews" destination="6u1-ff-axj" collectionClass="NSMutableArray" id="78g-Jr-XXz"/>
+                        <outletCollection property="subviews" destination="Rpn-Sz-FyH" collectionClass="NSMutableArray" id="2Mk-23-BuN"/>
+                        <outletCollection property="subviews" destination="IiM-PD-kyk" collectionClass="NSMutableArray" id="6dH-78-XHr"/>
+                        <outletCollection property="laurels" destination="IiM-PD-kyk" collectionClass="NSMutableArray" id="G4d-P7-gLi"/>
+                        <outletCollection property="laurels" destination="Rpn-Sz-FyH" collectionClass="NSMutableArray" id="ref-jk-xeu"/>
+                        <segue destination="Sn9-dK-y6j" kind="unwind" identifier="unwindSegueToMainVC" unwindAction="unwindToMainVCWithSegue:" id="hjp-IG-87B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGh-XC-gYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Sn9-dK-y6j" userLabel="Exit" sceneMemberID="exit"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="V2y-sE-oOc">
+                    <connections>
+                        <action selector="panGestureRecognizerHandler:" destination="UVY-03-bvO" id="vhu-PX-dPt"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3609" y="464"/>
         </scene>
@@ -755,27 +831,45 @@
             <objects>
                 <tableViewController storyboardIdentifier="WorkInfoViewController" id="bUP-lT-cEa" customClass="WorkInfoTableViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sK7-db-07e">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection id="9M1-nn-PAg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="ntJ-Td-jNX">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ntJ-Td-jNX" id="9Ib-Wi-mnc">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="운동하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-U9-XX4">
-                                                    <rect key="frame" x="152" y="25" width="110" height="34"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="운동하기" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KOv-Vj-0Bs">
+                                                    <rect key="frame" x="122" y="23" width="131" height="38"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="30"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="운동하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-U9-XX4" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                                    <rect key="frame" x="122" y="25" width="131" height="34"/>
+                                                    <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="30"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                            <real key="value" value="50"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="03b-OV-7jh">
-                                                    <rect key="frame" x="270" y="41" width="18" height="18"/>
+                                                    <rect key="frame" x="261" y="41" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="8bS-Qj-Gu5"/>
                                                         <constraint firstAttribute="width" constant="18" id="gTs-Fl-NcA"/>
@@ -783,29 +877,35 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Jze-U9-XX4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9Ib-Wi-mnc" secondAttribute="leadingMargin" id="1WL-dB-gAJ"/>
                                                 <constraint firstItem="03b-OV-7jh" firstAttribute="bottom" secondItem="Jze-U9-XX4" secondAttribute="bottom" id="58q-YQ-1OK"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="03b-OV-7jh" secondAttribute="trailing" id="D5d-X7-KuH"/>
                                                 <constraint firstItem="03b-OV-7jh" firstAttribute="leading" secondItem="Jze-U9-XX4" secondAttribute="trailing" constant="8" id="G9F-I4-N7A"/>
                                                 <constraint firstItem="Jze-U9-XX4" firstAttribute="centerY" secondItem="9Ib-Wi-mnc" secondAttribute="centerY" id="Gpe-rQ-PEP"/>
+                                                <constraint firstItem="KOv-Vj-0Bs" firstAttribute="centerY" secondItem="9Ib-Wi-mnc" secondAttribute="centerY" id="NP4-sN-X52"/>
+                                                <constraint firstItem="KOv-Vj-0Bs" firstAttribute="centerX" secondItem="9Ib-Wi-mnc" secondAttribute="centerX" id="QBa-zc-0yd"/>
+                                                <constraint firstItem="KOv-Vj-0Bs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9Ib-Wi-mnc" secondAttribute="leadingMargin" id="Slc-zS-M4d"/>
+                                                <constraint firstItem="03b-OV-7jh" firstAttribute="leading" secondItem="KOv-Vj-0Bs" secondAttribute="trailing" constant="8" id="aK6-nU-YDB"/>
                                                 <constraint firstItem="Jze-U9-XX4" firstAttribute="centerX" secondItem="9Ib-Wi-mnc" secondAttribute="centerX" id="nQU-eH-qCH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="125" id="8vo-ms-DPf">
-                                        <rect key="frame" x="0.0" y="84" width="414" height="125"/>
+                                        <rect key="frame" x="0.0" y="84" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8vo-ms-DPf" id="T4d-gJ-Qma">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x3D-R2-I7C">
-                                                    <rect key="frame" x="144.66666666666666" y="0.0" width="124.99999999999997" height="125"/>
+                                                    <rect key="frame" x="125" y="0.0" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="K62-da-TRr"/>
                                                         <constraint firstAttribute="width" constant="125" id="W8w-XY-a76"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="yTb-R4-D70">
-                                                    <rect key="frame" x="277.66666666666669" y="107" width="18" height="18"/>
+                                                    <rect key="frame" x="258" y="107" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="9LG-3T-GGS"/>
                                                         <constraint firstAttribute="width" constant="18" id="YJJ-Rc-5Ex"/>
@@ -821,26 +921,31 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="120" id="j8g-hd-221">
-                                        <rect key="frame" x="0.0" y="209" width="414" height="120"/>
+                                        <rect key="frame" x="0.0" y="209" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j8g-hd-221" id="Mlb-Ic-xQG">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예상 작업 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScS-MK-4VP">
-                                                    <rect key="frame" x="162" y="31" width="90.333333333333314" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예상 작업 시간" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScS-MK-4VP">
+                                                    <rect key="frame" x="142.5" y="30.5" width="90" height="17"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1시간 15분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwJ-jO-SYM">
-                                                    <rect key="frame" x="151" y="56.000000000000007" width="112.33333333333331" height="28.333333333333336"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPS-Vu-81B">
+                                                    <rect key="frame" x="131" y="49.5" width="113" height="41"/>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="25"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <state key="normal" title="1시간 14분"/>
+                                                    <connections>
+                                                        <action selector="popoverWorkTimePicker:" destination="bUP-lT-cEa" eventType="touchUpInside" id="n1D-hp-N2u"/>
+                                                        <segue destination="5bo-7H-Pfz" kind="popoverPresentation" identifier="popoverSegue" popoverAnchorView="iPS-Vu-81B" id="xff-9E-cBM">
+                                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                        </segue>
+                                                    </connections>
+                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="4Hg-cU-KAg">
-                                                    <rect key="frame" x="271.33333333333331" y="66.333333333333329" width="18" height="18"/>
+                                                    <rect key="frame" x="252" y="66.5" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="18" id="VwQ-m9-MXA"/>
                                                         <constraint firstAttribute="height" constant="18" id="gp6-DR-e24"/>
@@ -848,31 +953,31 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SwJ-jO-SYM" firstAttribute="centerY" secondItem="Mlb-Ic-xQG" secondAttribute="centerY" constant="10" id="4Pu-d8-NVf"/>
-                                                <constraint firstItem="SwJ-jO-SYM" firstAttribute="centerX" secondItem="Mlb-Ic-xQG" secondAttribute="centerX" id="7u1-gV-hPJ"/>
                                                 <constraint firstItem="ScS-MK-4VP" firstAttribute="centerX" secondItem="Mlb-Ic-xQG" secondAttribute="centerX" id="A4r-NO-1me"/>
-                                                <constraint firstItem="4Hg-cU-KAg" firstAttribute="leading" secondItem="SwJ-jO-SYM" secondAttribute="trailing" constant="8" id="Jod-ZL-Kam"/>
-                                                <constraint firstItem="SwJ-jO-SYM" firstAttribute="top" secondItem="ScS-MK-4VP" secondAttribute="bottom" constant="8" id="hYI-aZ-PAI"/>
-                                                <constraint firstItem="4Hg-cU-KAg" firstAttribute="bottom" secondItem="SwJ-jO-SYM" secondAttribute="bottom" id="idY-xX-aQb"/>
+                                                <constraint firstItem="4Hg-cU-KAg" firstAttribute="leading" secondItem="iPS-Vu-81B" secondAttribute="trailing" constant="8" id="HwW-KL-Q6G"/>
+                                                <constraint firstItem="iPS-Vu-81B" firstAttribute="centerX" secondItem="Mlb-Ic-xQG" secondAttribute="centerX" id="Zod-HG-U3U"/>
+                                                <constraint firstItem="iPS-Vu-81B" firstAttribute="centerY" secondItem="Mlb-Ic-xQG" secondAttribute="centerY" constant="10" id="hfq-CC-tWX"/>
+                                                <constraint firstItem="iPS-Vu-81B" firstAttribute="top" secondItem="ScS-MK-4VP" secondAttribute="bottom" constant="2" id="jPY-Ew-tgN"/>
+                                                <constraint firstItem="4Hg-cU-KAg" firstAttribute="bottom" secondItem="iPS-Vu-81B" secondAttribute="bottom" constant="-6" id="zbu-4k-dkc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="pia-f9-8ns" detailTextLabel="5Y5-GK-862" style="IBUITableViewCellStyleValue1" id="Gtu-vy-Ax2">
-                                        <rect key="frame" x="0.0" y="329" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="329" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gtu-vy-Ax2" id="RkW-bd-P9a">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="현재 연속 달성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pia-f9-8ns">
-                                                    <rect key="frame" x="20" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="98" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Y5-GK-862">
-                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
+                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -882,21 +987,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="eUG-q1-7Lg" detailTextLabel="3sH-2r-HFX" style="IBUITableViewCellStyleValue1" id="Gyc-Bo-opD">
-                                        <rect key="frame" x="0.0" y="373" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="373" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gyc-Bo-opD" id="cEy-MM-nIn">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="연속 달성 최고기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eUG-q1-7Lg">
-                                                    <rect key="frame" x="19.999999999999993" y="12" width="127.33333333333333" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="127.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3sH-2r-HFX">
-                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
+                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -906,21 +1011,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="aIz-dW-lvD" detailTextLabel="fOb-bg-lGl" style="IBUITableViewCellStyleValue1" id="kKc-KP-h72">
-                                        <rect key="frame" x="0.0" y="417" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="417" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kKc-KP-h72" id="Yp0-e6-VTR">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="총 작업" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aIz-dW-lvD">
-                                                    <rect key="frame" x="20" y="12" width="49" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="49" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fOb-bg-lGl">
-                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
+                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -930,21 +1035,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="VRE-4r-Bwa" detailTextLabel="rA9-4w-XiV" style="IBUITableViewCellStyleValue1" id="cVw-T2-v1g">
-                                        <rect key="frame" x="0.0" y="461" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="461" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cVw-T2-v1g" id="jjk-Xj-PYB">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="목표 달성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VRE-4r-Bwa">
-                                                    <rect key="frame" x="19.999999999999996" y="12" width="63.666666666666664" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="64" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rA9-4w-XiV">
-                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
+                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -954,21 +1059,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="joM-Jb-jBG" detailTextLabel="3mr-uF-IWf" style="IBUITableViewCellStyleValue1" id="myO-Wo-81e">
-                                        <rect key="frame" x="0.0" y="505" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="505" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="myO-Wo-81e" id="brL-5M-bGk">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="목표 실패" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="joM-Jb-jBG">
-                                                    <rect key="frame" x="19.999999999999996" y="12" width="63.666666666666664" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="64" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3mr-uF-IWf">
-                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
+                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -978,21 +1083,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="B8M-2C-oZa" detailTextLabel="aPY-c5-kdL" style="IBUITableViewCellStyleValue1" id="Wu3-q2-nMa">
-                                        <rect key="frame" x="0.0" y="549" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="549" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wu3-q2-nMa" id="fn0-MV-t3l">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="성공률" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B8M-2C-oZa">
-                                                    <rect key="frame" x="20.000000000000004" y="12" width="44.333333333333336" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="44.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aPY-c5-kdL">
-                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
+                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1002,21 +1107,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="nD3-hs-qjC" detailTextLabel="1qF-F6-mNJ" style="IBUITableViewCellStyleValue1" id="jZp-Ar-PSg">
-                                        <rect key="frame" x="0.0" y="593" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="593" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jZp-Ar-PSg" id="j0a-ja-lQJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="평균 소요 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nD3-hs-qjC">
-                                                    <rect key="frame" x="20" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="98" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1qF-F6-mNJ">
-                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
+                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1026,21 +1131,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="qUZ-Rp-LpN" detailTextLabel="9cS-NJ-oV5" style="IBUITableViewCellStyleValue1" id="RVS-W0-vfm">
-                                        <rect key="frame" x="0.0" y="637" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="637" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RVS-W0-vfm" id="gMy-yR-zJT">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="평균 남은 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qUZ-Rp-LpN">
-                                                    <rect key="frame" x="20" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="15" y="12" width="98" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9cS-NJ-oV5">
-                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
+                                                    <rect key="frame" x="316.5" y="12" width="43.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1049,23 +1154,20 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="83" id="mfG-ab-VA6">
-                                        <rect key="frame" x="0.0" y="681" width="414" height="83"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="93" id="mfG-ab-VA6">
+                                        <rect key="frame" x="0.0" y="681" width="375" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mfG-ab-VA6" id="gbG-QO-voa">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMb-vz-swp">
-                                                    <rect key="frame" x="20" y="21" width="374" height="45"/>
+                                                    <rect key="frame" x="8" y="25.5" width="398" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="axV-DG-AVP"/>
+                                                        <constraint firstAttribute="height" constant="50" id="axV-DG-AVP"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="18"/>
-                                                    <state key="normal" title="기록 보기"/>
-                                                    <connections>
-                                                        <segue destination="TWD-RP-IVy" kind="show" id="cKT-5Q-HeE"/>
-                                                    </connections>
+                                                    <state key="normal" title="기록 보기 (업데이트 예정)"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1086,7 +1188,7 @@
                     <navigationItem key="navigationItem" title="작업 정보" id="M0a-fW-4cQ">
                         <barButtonItem key="rightBarButtonItem" title="작업 시작" id="Z15-t2-QPm">
                             <connections>
-                                <segue destination="M4F-Va-rGN" kind="custom" customClass="FadeInSegue" customModule="Hourglass" customModuleProvider="target" id="kQG-6C-KOA"/>
+                                <segue destination="M4F-Va-rGN" kind="custom" identifier="WorkingSegue" customClass="FadeInSegue" customModule="Hourglass" customModuleProvider="target" id="kQG-6C-KOA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1094,14 +1196,16 @@
                         <outlet property="averageElapsedTimeLabel" destination="1qF-F6-mNJ" id="IZf-Ks-wyt"/>
                         <outlet property="averageRemainingTimeLabel" destination="9cS-NJ-oV5" id="Qfm-f1-Rc9"/>
                         <outlet property="currentSuccessiveAchievementWhetherLabel" destination="5Y5-GK-862" id="aZe-SF-Bpl"/>
-                        <outlet property="estimatedWorkTimeLabel" destination="SwJ-jO-SYM" id="xgU-GV-Zfh"/>
+                        <outlet property="estimatedWorkTimePickerButton" destination="iPS-Vu-81B" id="ZRM-an-m4M"/>
                         <outlet property="goalFailLabel" destination="3mr-uF-IWf" id="ZZl-jC-2F8"/>
                         <outlet property="goalSuccessLabel" destination="rA9-4w-XiV" id="zDC-yP-cL7"/>
+                        <outlet property="justLabel" destination="ScS-MK-4VP" id="PRW-Vn-oz1"/>
                         <outlet property="successRateLabel" destination="aPY-c5-kdL" id="B8o-a3-NX3"/>
                         <outlet property="successiveAchievementHighestRecordLabel" destination="3sH-2r-HFX" id="4FR-zM-ldb"/>
                         <outlet property="totalWorkLabel" destination="fOb-bg-lGl" id="lzx-gA-aCK"/>
                         <outlet property="workIconImageView" destination="x3D-R2-I7C" id="C5O-L1-D2K"/>
-                        <outlet property="workNameLabel" destination="Jze-U9-XX4" id="Dch-wy-Gc9"/>
+                        <outlet property="workNameLabel" destination="Jze-U9-XX4" id="XfI-xV-6UT"/>
+                        <outlet property="workNameTextField" destination="KOv-Vj-0Bs" id="cBV-XY-3CT"/>
                         <outlet property="workRecordButton" destination="DMb-vz-swp" id="vwh-yV-NXZ"/>
                     </connections>
                 </tableViewController>
@@ -1109,26 +1213,66 @@
             </objects>
             <point key="canvasLocation" x="2044.9275362318842" y="1175.8928571428571"/>
         </scene>
+        <!--Popover Picker View Controller-->
+        <scene sceneID="GSU-qW-D83">
+            <objects>
+                <viewController id="5bo-7H-Pfz" customClass="PopoverPickerViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ob6-Ri-Wbi">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="217"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTc-a1-E7L" customClass="WorkTimePicker" customModule="Hourglass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="217"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="217" id="Vzs-07-P9B"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="5bo-7H-Pfz" id="yq9-pw-8T5"/>
+                                    <outlet property="delegate" destination="5bo-7H-Pfz" id="6D8-6Y-bGS"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yTc-a1-E7L" secondAttribute="trailing" id="0M1-cX-Tr9"/>
+                            <constraint firstItem="yTc-a1-E7L" firstAttribute="bottom" secondItem="Ob6-Ri-Wbi" secondAttribute="bottom" id="C8G-e5-GSS"/>
+                            <constraint firstItem="yTc-a1-E7L" firstAttribute="leading" secondItem="Ob6-Ri-Wbi" secondAttribute="leading" id="Eg8-uc-BX9"/>
+                            <constraint firstItem="yTc-a1-E7L" firstAttribute="top" secondItem="Ob6-Ri-Wbi" secondAttribute="top" id="yrB-B9-swe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cia-I3-N8y"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="217"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="217"/>
+                    <connections>
+                        <outlet property="popoverPicker" destination="yTc-a1-E7L" id="Xt3-SZ-XEm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ppe-9M-v56" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2822" y="1176"/>
+        </scene>
         <!--백업-->
         <scene sceneID="iig-sq-1dw">
             <objects>
                 <tableViewController storyboardIdentifier="BackupViewController" id="4dD-kt-u9U" customClass="BackupViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wdy-Gf-pWP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection id="zeO-PN-FX1">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="7Ry-h9-8oP" style="IBUITableViewCellStyleDefault" id="gPx-Gn-MUw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gPx-Gn-MUw" id="apy-vp-LWz">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="iCloud에 업로드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Ry-h9-8oP">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1138,14 +1282,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TaM-wG-yRE" style="IBUITableViewCellStyleDefault" id="2hm-mr-u13">
-                                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2hm-mr-u13" id="5li-zh-JaX">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="이전 백업" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TaM-wG-yRE">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1176,15 +1320,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="PreviousBackupTableViewController" id="2Ib-jG-MrY" customClass="PreviousBackupTableViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dBM-HZ-mWS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="1YP-jx-rVZ">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1YP-jx-rVZ" id="2fy-rx-EK2">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1205,21 +1349,21 @@
             <objects>
                 <tableViewController storyboardIdentifier="SettingViewController" title="설정" id="UPf-x9-ogT" customClass="SettingViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="oGL-F5-G1W">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="설정" id="o7s-84-z8a">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SwitchCell" textLabel="212-CA-q6T" style="IBUITableViewCellStyleDefault" id="15R-X1-Lx9">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="15R-X1-Lx9" id="sa5-xG-6Ve">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="212-CA-q6T">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1232,21 +1376,21 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SwitchCell" textLabel="i1q-Xs-GAp" detailTextLabel="Yhc-Xg-Joc" style="IBUITableViewCellStyleSubtitle" id="528-fq-fbz">
-                                        <rect key="frame" x="0.0" y="99.333333333333343" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="528-fq-fbz" id="rYB-1G-ceR">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="소리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i1q-Xs-GAp">
-                                                    <rect key="frame" x="20" y="6" width="30.666666666666668" height="19.333333333333332"/>
+                                                    <rect key="frame" x="16" y="5" width="31" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="작업을 완료하면 재생됩니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yhc-Xg-Joc">
-                                                    <rect key="frame" x="20" y="25.333333333333332" width="141" height="13.666666666666666"/>
+                                                    <rect key="frame" x="16" y="24.5" width="141" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1259,21 +1403,21 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BackupCell" textLabel="uYT-iO-jnx" detailTextLabel="OAV-RI-zRQ" style="IBUITableViewCellStyleValue1" id="uNR-xZ-Htr">
-                                        <rect key="frame" x="0.0" y="143.33333333333334" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uNR-xZ-Htr" id="QNu-9g-dfw">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="달성 효과음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uYT-iO-jnx">
-                                                    <rect key="frame" x="20" y="12.999999999999998" width="82.333333333333329" height="19.333333333333332"/>
+                                                    <rect key="frame" x="16" y="12" width="82.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="레벨 업" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OAV-RI-zRQ">
-                                                    <rect key="frame" x="330.66666666666669" y="15" width="45.333333333333336" height="17"/>
+                                                    <rect key="frame" x="294.5" y="14" width="45.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -1286,21 +1430,21 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BackupCell" textLabel="0Ug-2u-E8T" detailTextLabel="n5H-YV-HXl" style="IBUITableViewCellStyleValue1" id="rGx-FX-gaA">
-                                        <rect key="frame" x="0.0" y="187.33333333333334" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rGx-FX-gaA" id="3sy-PQ-ffj">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="실패 효과음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Ug-2u-E8T">
-                                                    <rect key="frame" x="20" y="12.999999999999998" width="82.333333333333329" height="19.333333333333332"/>
+                                                    <rect key="frame" x="16" y="12" width="82.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="게임 오버" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n5H-YV-HXl">
-                                                    <rect key="frame" x="317.66666666666669" y="15" width="58.333333333333336" height="17"/>
+                                                    <rect key="frame" x="281.5" y="14" width="58.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -1309,19 +1453,39 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="BackupCell" textLabel="pH7-Ji-sta" style="IBUITableViewCellStyleDefault" id="uRS-GN-tii">
+                                        <rect key="frame" x="0.0" y="231.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uRS-GN-tii" id="63L-A6-Rxt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="다크 모드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pH7-Ji-sta">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accessoryView" destination="1H8-F8-Qwr" id="gfn-aJ-RVh"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="업데이트 예정" footerTitle="“Siri야, 모래시계에서 ‘개와 산책하기’을(를) 시작 / 중지 / 완료”" id="kq9-HJ-94M">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="44b-kA-rK4" style="IBUITableViewCellStyleDefault" id="Q44-Rd-kXl">
-                                        <rect key="frame" x="0.0" y="294.66666666666669" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="44b-kA-rK4" style="IBUITableViewCellStyleDefault" id="Q44-Rd-kXl">
+                                        <rect key="frame" x="0.0" y="339" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q44-Rd-kXl" id="5eY-K0-HPf">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="iCloud 장치 간 동기화" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="44b-kA-rK4">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1330,15 +1494,15 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8Wb-F3-66s" style="IBUITableViewCellStyleDefault" id="gYd-hK-BSi">
-                                        <rect key="frame" x="0.0" y="338.66666666666669" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="8Wb-F3-66s" style="IBUITableViewCellStyleDefault" id="gYd-hK-BSi">
+                                        <rect key="frame" x="0.0" y="383" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gYd-hK-BSi" id="Ct5-Ad-aGa">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="위젯 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Wb-F3-66s">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1347,15 +1511,32 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bL1-ML-952" style="IBUITableViewCellStyleDefault" id="KIF-rN-AQ6">
-                                        <rect key="frame" x="0.0" y="382.66666666666669" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="bL1-ML-952" style="IBUITableViewCellStyleDefault" id="KIF-rN-AQ6">
+                                        <rect key="frame" x="0.0" y="427" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KIF-rN-AQ6" id="RDa-RI-3CP">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Siri야" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bL1-ML-952">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Apple Watch 앱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bL1-ML-952">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="ij0-1S-09f" style="IBUITableViewCellStyleDefault" id="6l9-ib-18D">
+                                        <rect key="frame" x="0.0" y="471" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6l9-ib-18D" id="hEK-eR-BON">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Siri야" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ij0-1S-09f">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1369,14 +1550,14 @@
                             <tableViewSection footerTitle="앱이 마음에 드신다면 앱스토어에 평가를 남겨주세요. 새로운 기능을 추가하고 신속하게 앱을 개선하는 데 큰 도움이 됩니다." id="gzA-eT-sd5">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="QrV-aN-cOA" style="IBUITableViewCellStyleDefault" id="XKH-IB-P5X">
-                                        <rect key="frame" x="0.0" y="474.66666666666669" width="414" height="44.000000000000057"/>
+                                        <rect key="frame" x="0.0" y="563" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XKH-IB-P5X" id="ZlL-zv-AA2">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="도움말" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QrV-aN-cOA">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1386,14 +1567,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="dbW-aF-zBc" style="IBUITableViewCellStyleDefault" id="aQQ-yg-kZ5">
-                                        <rect key="frame" x="0.0" y="518.66666666666674" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="607" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aQQ-yg-kZ5" id="h6k-gd-rrD">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="피드백" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dbW-aF-zBc">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1403,14 +1584,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="NrN-6C-OlN" style="IBUITableViewCellStyleDefault" id="Iwb-SK-srZ">
-                                        <rect key="frame" x="0.0" y="562.66666666666674" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="651" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iwb-SK-srZ" id="PW7-IC-V9e">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="앱스토어에 리뷰 남기기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NrN-6C-OlN">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1437,6 +1618,7 @@
                     <connections>
                         <outlet property="alertSwitch" destination="lSz-7N-zbW" id="8gQ-jY-YdY"/>
                         <outlet property="soundSwitch" destination="Byp-yu-ZnB" id="NYF-Tw-cmI"/>
+                        <outlet property="themeSwitch" destination="1H8-F8-Qwr" id="3EP-IN-86Q"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bD-Q1-bfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1456,6 +1638,14 @@
                         <action selector="soundSwitchChanged:" destination="UPf-x9-ogT" eventType="valueChanged" id="MVO-mP-r5m"/>
                     </connections>
                 </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="1H8-F8-Qwr">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="onTintColor" red="0.97647058819999999" green="0.61960784310000006" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="themeSwitchChanged:" destination="UPf-x9-ogT" eventType="valueChanged" id="DOb-VJ-GZ5"/>
+                    </connections>
+                </switch>
             </objects>
             <point key="canvasLocation" x="2048" y="1882"/>
         </scene>
@@ -1464,15 +1654,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="RecordTableViewController" title="작업 기록" id="TWD-RP-IVy" customClass="RecordTableViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nkg-DF-B8z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hSy-9i-3t6">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hSy-9i-3t6" id="egY-wP-kf0">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1485,7 +1675,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WsC-vy-6PK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2822" y="1176"/>
+            <point key="canvasLocation" x="3609" y="1176"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NDs-w8-dmS">
@@ -1493,7 +1683,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nx3-jv-2mN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xn9-X1-89h">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1511,7 +1701,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lQ9-hn-SXx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Gl1-qX-zZZ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1529,7 +1719,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kmL-TZ-FZo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cMT-WF-rBa">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1543,15 +1733,17 @@
         </scene>
     </scenes>
     <resources>
-        <image name="check" width="43" height="54"/>
-        <image name="close" width="32" height="45"/>
-        <image name="closeRound" width="24" height="33"/>
-        <image name="iosInformation" width="40" height="51"/>
-        <image name="iosMore" width="38" height="60"/>
-        <image name="pause" width="26" height="60"/>
-        <image name="pencil" width="43.200000762939453" height="43.200000762939453"/>
-        <image name="share" width="57.599998474121094" height="57.599998474121094"/>
-        <image name="zoomoutIcon" width="60" height="60"/>
+        <image name="Laurel_left" width="46.5" height="100"/>
+        <image name="Laurel_right" width="46.5" height="100"/>
+        <image name="check" width="29" height="36"/>
+        <image name="close" width="22" height="30"/>
+        <image name="closeRound" width="16" height="22"/>
+        <image name="iosInformationOutline" width="27" height="34"/>
+        <image name="iosMore" width="25" height="40"/>
+        <image name="pause" width="17" height="40"/>
+        <image name="pencil" width="28.799999237060547" height="28.799999237060547"/>
+        <image name="share" width="38.400001525878906" height="38.400001525878906"/>
+        <image name="zoomoutIcon" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kQG-6C-KOA"/>

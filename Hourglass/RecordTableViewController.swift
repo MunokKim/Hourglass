@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NightNight
 
 class RecordTableViewController: UITableViewController {
 
@@ -33,6 +34,11 @@ class RecordTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        
+        return MixedStatusBarStyle(normal: .default, night: .lightContent).unfold()
     }
 
     // MARK: - Table view data source

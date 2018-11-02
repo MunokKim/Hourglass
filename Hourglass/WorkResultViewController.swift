@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MarqueeLabel
+import CoreData
 
 class WorkResultViewController: UIViewController {
     
@@ -22,7 +24,13 @@ class WorkResultViewController: UIViewController {
             workIconImageView.clipsToBounds = true
         }
     }
-    @IBOutlet var workNameLabel: UILabel!
+    @IBOutlet var workNameLabel: MarqueeLabel! {
+        didSet {
+            Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(layoutShadows), userInfo: nil, repeats: false)
+            
+            workNameLabel.font = UIFont(name: "GodoB", size: CGFloat(32).sizeByDeviceResolution)
+        }
+    }
     @IBOutlet var workGoalLabel: UILabel!
     @IBOutlet var elapsedTimeLabel: UILabel!
     @IBOutlet var workStartLabel: UILabel!
@@ -37,17 +45,59 @@ class WorkResultViewController: UIViewController {
             }
         }
     }
+    @IBOutlet var laurels: [UIImageView]! {
+        didSet {
+            for laurel in laurels {
+                laurel.isHidden = true
+            }
+        }
+    }
+    @IBOutlet var gestureView: UIView!
+    
     @IBAction func closeView(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    // 초기 터치 위치
+    var initialTouchPoint: CGPoint = CGPoint(x: 0, y: 0)
+    
+    @IBAction func panGestureRecognizerHandler(_ sender: UIPanGestureRecognizer) {
+        
+        let touchPoint = sender.location (in : self.view? .window)
+        
+        if sender.state == UIGestureRecognizer.State.began {
+            initialTouchPoint = touchPoint
+        } else if sender.state == UIGestureRecognizer.State.changed {
+            if touchPoint.y - initialTouchPoint.y > 0 {
+                self.view.frame = CGRect (x : 0, y : touchPoint.y - initialTouchPoint.y, width : self.view.frame.size.width, height : self.view.frame.size.height)
+            }
+        } else if sender.state == UIGestureRecognizer.State.ended || sender.state == UIGestureRecognizer.State.cancelled {
+            if touchPoint.y - initialTouchPoint.y > 100 {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
+                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            } else {
+                UIView.animate(withDuration : 0.3, animations: {
+                    self.view.frame = CGRect (x : 0, y : 0, width : self.view.frame.size.width, height : self.view.frame.size.height)
+                })
+            }
+        }
+    }
+    
+    let context = AppDelegate.viewContext
     var currentWork: WorkInfo?
     var workResultInfo: TimeMeasurementInfo?
+    var panGesture = UIPanGestureRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // 손가락 내려서 창 닫기 제스처
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panGestureRecognizerHandler(_:)))
+        gestureView.isUserInteractionEnabled = true
+        gestureView.addGestureRecognizer(panGesture)
         
         let toColors: [CGColor]?
         var goalString: String? 
@@ -55,19 +105,30 @@ class WorkResultViewController: UIViewController {
         let remainingTime: String?
         
         if workResultInfo?.goalSuccessOrFailWhether ?? true {
-            
+            // 목표 달성
             toColors = [UIColor(red:0.99, green:0.74, blue:0.24, alpha:1.00),
                         UIColor(red:0.57, green:0.75, blue:0.51, alpha:1.00),
                         UIColor(red:0.17, green:0.75, blue:0.76, alpha:1.00)].map{$0.cgColor}
             goalString = "목표 달성"
             
-            if let achievement = workResultInfo?.successiveGoalAchievement, achievement >= Int16(1) {
+            // 2회 이상 연속 목표 달성
+            if let achievement = workResultInfo?.successiveGoalAchievement, achievement >= Int16(2) {
+                
                 goalString = "\(achievement)회 연속 " + goalString!
+                
+                // 레이블 깜빡임
+                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(animateText), userInfo: nil, repeats: true)
+                
+                // 월계수 이미지 표시
+                for laurel in laurels {
+                    laurel.isHidden = false
+                }
             }
             
             remainingText = "남은 시간"
             remainingTime = workResultInfo?.remainingTime.secondsToString
         } else {
+            // 목표 실패
             toColors = [UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.00),
                         UIColor(red:0.34, green:0.12, blue:0.10, alpha:1.00),
                         UIColor(red:0.68, green:0.24, blue:0.20, alpha:1.00)].map{$0.cgColor}
@@ -79,6 +140,7 @@ class WorkResultViewController: UIViewController {
         gradientView.toColors = toColors
         
         workNameLabel.text = currentWork?.workName
+        // icon
         workGoalLabel.text = goalString
         elapsedTimeLabel.text = workResultInfo?.elapsedTime.secondsToString
         workStartLabel.text = workResultInfo?.workStart?.stringFromDate
@@ -87,17 +149,89 @@ class WorkResultViewController: UIViewController {
         remainingTextLabel.text = remainingText
         remainingTimeLabel.text = remainingTime
         
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(animateText), userInfo: nil, repeats: true)
+        if let workInfo = currentWork {
+            // 선택된 WorkInfo객체로 불러온 TimeMeasurementInfo객체
+            let timeMeasurementInfoFetchArray = contextFetchFor(ThisWork: workInfo)
+            // 합계, 평균 등을 구한 뒤 WorkInfo 엔티티의 필드 업데이트
+            updateWorkInfo(workInfo: workInfo, timeMeasurementInfo: timeMeasurementInfoFetchArray)
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
+    func contextFetchFor(ThisWork: WorkInfo) -> [TimeMeasurementInfo] {
+        
+        // Core Data 영구 저장소에서 TimeMeasurementInfo 데이터 가져오기
+        let request: NSFetchRequest<TimeMeasurementInfo> = TimeMeasurementInfo.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "work == \(ThisWork.workID)")
+        
+        do {
+            let fetchArray = try context.fetch(request)
+            
+            print(fetchArray)
+            
+            return fetchArray
+            
+        } catch let nserror as NSError {
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+    func updateWorkInfo(workInfo: WorkInfo, timeMeasurementInfo: [TimeMeasurementInfo]) {
+        
+        guard timeMeasurementInfo.count != 0 else { return }
+        
+        var goalSuccess = 0
+        var averageElapsed = 0
+        var averageRemaining = 0
+        
+         // 현재 연속 달성 여부 = 목표 달성/실패 여부 ? 현재 연속 달성 여부 + 1 : 0
+        let currentSuccessiveAchievementWhether = workResultInfo!.goalSuccessOrFailWhether ? workInfo.currentSuccessiveAchievementWhether + 1 : 0
+        // 연속 달성 최고기록 = 현재 연속 달성 여부 >= 연속 달성 최고기록 ? 현재 연속 달성 여부 : 연속 달성 최고기록
+        let successiveAchievementHighestRecord = currentSuccessiveAchievementWhether >= workInfo.successiveAchievementHighestRecord ? currentSuccessiveAchievementWhether : workInfo.successiveAchievementHighestRecord
+        
+        // 작업달성, 평균 남은시간, 평균 지난시간 계산하기
+        for timeMeasurementInfo in timeMeasurementInfo {
+            if timeMeasurementInfo.goalSuccessOrFailWhether {
+                goalSuccess += 1
+            }
+            averageElapsed += Int(timeMeasurementInfo.elapsedTime)
+            averageRemaining += Int(timeMeasurementInfo.remainingTime)
+        }
+        averageElapsed /= timeMeasurementInfo.count
+        averageRemaining /= timeMeasurementInfo.count
+        
+        
+        workInfo.setValue(currentSuccessiveAchievementWhether, forKey: "currentSuccessiveAchievementWhether")
+        workInfo.setValue(successiveAchievementHighestRecord, forKey: "successiveAchievementHighestRecord")
+        workInfo.setValue(timeMeasurementInfo.count, forKey: "totalWork")
+        workInfo.setValue(goalSuccess, forKey: "goalSuccess")
+        workInfo.setValue(timeMeasurementInfo.count - goalSuccess, forKey: "goalFail")
+        workInfo.setValue(Float(goalSuccess) / Float(timeMeasurementInfo.count), forKey: "successRate")
+        workInfo.setValue(averageElapsed, forKey: "averageElapsedTime")
+        workInfo.setValue(averageRemaining, forKey: "averageRemainingTime")
+//        workInfo.setValue(timeMeasurementInfo, forKey: "eachTurnsOfWork")
+        
+        do {
+            try context.save()
+            
+        } catch let nserror as NSError {
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        UIApplication.shared.statusBarStyle = .lightContent
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        UIApplication.shared.statusBarStyle = .default
+//    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        
+        return UIStatusBarStyle.lightContent
     }
     
     @objc func layoutShadows() {

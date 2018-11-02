@@ -8,21 +8,11 @@
 
 import UIKit
 import CoreData
+import NightNight
 
-class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class NewWorkViewController: UITableViewController, UITextFieldDelegate {
     
     let context = AppDelegate.viewContext
-    
-    let hourComponent: Int = 0
-    let minuteComponent: Int = 1
-    let hoursPickerData: [Int] = Array(0...9) // 타임피커의 시간제한 기본값 10시간 -1초
-    let minutesPickerData: [Int] = Array(0...59)
-    let componentWidth: CGFloat = 120
-    let componentHeight: CGFloat = 32
-    let largeNumber: Int = 400
-    lazy var pickerViewMiddle: Int = ((largeNumber / minutesPickerData.count) / 2) * minutesPickerData.count
-    var selectedHours: Int?
-    var selectedMinutes: Int?
     
     internal var isCellHeightExpanded: Bool = false {
         didSet{
@@ -34,17 +24,12 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         }
     }
     
-    func valueForRow(row: Int) -> Int {
-        // the rows repeat every `pickerViewData.count` items
-        return minutesPickerData[row % minutesPickerData.count]
-    }
-    
-    func rowForValue(value: Int) -> Int? {
-        if let valueIndex = minutesPickerData.firstIndex(of: value) {
-            return pickerViewMiddle + value
-        }
-        return nil
-    }
+//    // 빈곳을 터치하면 키보드나 데이트피커 등을 숨긴다
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//
+//        self.tableView.endEditing(true)
+//    }
     
     @IBAction func saveWorkInfo(_ sender: Any) {
         
@@ -60,7 +45,7 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         let workInfo = WorkInfo(context: context)
         
         workInfo.workName = workNameTextField?.text
-        workInfo.estimatedWorkTime = Int32((selectedHours! * 3600) + (selectedMinutes! * 60))
+        workInfo.estimatedWorkTime = Int32((estimatedWorkTimePicker.selectedHours! * 3600) + (estimatedWorkTimePicker.selectedMinutes! * 60))
         workInfo.createdDate = NSDate().addingTimeInterval(60*60*9)
         
         if UserDefaults.standard.object(forKey: "AutoIncrementID") == nil {
@@ -90,9 +75,10 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
     @IBOutlet var workNameTextField: UITextField!
     @IBOutlet var workIconImageView: UIImageView!
-    @IBOutlet var estimatedWorkTimePicker: UIPickerView!
+    @IBOutlet var estimatedWorkTimePicker: WorkTimePicker!
     @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var IconCell: UITableViewCell!
+    @IBOutlet var iconCellLabel: UILabel!
     @IBOutlet var showEstimatedWorkTimeCell: UITableViewCell!
     @IBOutlet var pickerCell: UITableViewCell!
     
@@ -105,6 +91,19 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         addButton.isEnabled = false
         
+        // 테마 적용
+        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x161718)
+        navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
+        
+        if NightNight.theme == .night {
+            navigationController?.navigationBar.barStyle = .black
+        } else if NightNight.theme == .normal {
+            navigationController?.navigationBar.barStyle = .default
+        }
+        
+        tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
+        iconCellLabel.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
@@ -112,6 +111,9 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         workNameTextField.backgroundColor = UIColor.clear
         workNameTextField.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
         workNameTextField.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        let attributedString = NSMutableAttributedString(string: "작업 이름 입력")
+        attributedString.setMixedAttributes([NNForegroundColorAttributeName: MixedColor(normal: 0xdcdcdc, night: 0x2c2c2c)], range: NSRange(location: 0, length: 8))
+        workNameTextField.attributedPlaceholder = attributedString
         
         workIconImageView.backgroundColor = UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.00)
         workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
@@ -119,31 +121,21 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         
         showEstimatedWorkTimeCell.detailTextLabel?.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
         
-        estimatedWorkTimePicker.delegate = self
-        estimatedWorkTimePicker.dataSource = self
-        
+        self.hideKeyboardWhenTappedAround()
         tableView.keyboardDismissMode = .interactive
         
-        
-        
         let initValue = 30 // 분단위 초기값
-        if let row = rowForValue(value: initValue) {
+        if let row = estimatedWorkTimePicker.rowForValue(value: initValue) {
             estimatedWorkTimePicker.selectRow(row, inComponent: 1, animated: false)
         }
         
         // 그냥 가운데에서 시작
-        //        estimatedWorkTimePicker.selectRow(pickerViewMiddle, inComponent: 1, animated: false)
+//        estimatedWorkTimePicker.selectRow(pickerViewMiddle, inComponent: 1, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // 빈곳을 터치하면 키보드나 데이트피커 등을 숨긴다
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        self.view.endEditing(true)
     }
     
     @IBAction func pressReturnInWorkName(_ sender: Any) {
@@ -158,23 +150,51 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
     func saveButtonValidation() {
         
-        // 텍스트필드가 공백이거나 글자가 아닌 경우(공백, 특수문자 등) 그리고 selectedMinutes를 아직 설정하지 않은 경우
-        if workNameTextField.text == "" || workNameTextField.text?.rangeOfCharacter(from: CharacterSet.letters) == nil || selectedMinutes == nil {
+        // 텍스트필드가 공백이거나 글자가 아닌 경우(공백, 특수문자 등) 또는 selectedMinutes를 아직 설정하지 않은 경우
+        if workNameTextField.text == "" || workNameTextField.text?.rangeOfCharacter(from: CharacterSet.letters) == nil || estimatedWorkTimePicker.selectedMinutes == nil {
             
             addButton.isEnabled = false
         } else {
             
             addButton.isEnabled = true
         }
+        
+        // selectedHours와 selectedMinutes가 0일 경우
+        if estimatedWorkTimePicker.selectedHours == 0 && estimatedWorkTimePicker.selectedMinutes == 0 {
+            
+            if let row = estimatedWorkTimePicker.rowForValue(value: 1) {
+                
+                estimatedWorkTimePicker.selectRow(row, inComponent: 1, animated: true)
+                estimatedWorkTimePicker.selectedMinutes = 1
+            }
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let maxLength = 20
+        let maxLength = 30
         let currentString: NSString = textField.text! as NSString
         let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
         
         return newString.length <= maxLength
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        
+        return MixedStatusBarStyle(normal: .default, night: .lightContent).unfold()
+    }
+    
+    // MARK: tableview
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+        cell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+//        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        
+        let viewForSelectedCell = UIView()
+        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        cell.selectedBackgroundView = viewForSelectedCell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -220,87 +240,6 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
         }
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        
-        return 2
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component {
-        case hourComponent: return hoursPickerData.count
-        case minuteComponent: return largeNumber
-        default: break
-        }
-        return 0
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
-        // "시간", "분" 레이블 삽입
-        let screenWidth = UIScreen.main.bounds.width
-        let insertRef = pickerView.subviews[0].subviews[0].subviews[2]
-//        let hoursLabel: UILabel = UILabel(frame: CGRect(x: 130.5, y: 0, width: 60, height: componentHeight))
-//        let minutesLabel: UILabel = UILabel(frame: CGRect(x: 239.5, y: 0, width: 60, height: componentHeight))
-        let hoursLabel: UILabel = UILabel(frame: CGRect(x: screenWidth/2 - 60, y: 0, width: 60, height: componentHeight))
-        let minutesLabel: UILabel = UILabel(frame: CGRect(x: screenWidth/2 + 50, y: 0, width: 60, height: componentHeight))
-        
-        hoursLabel.textAlignment = NSTextAlignment.left
-        hoursLabel.font = UIFont(name: "GodoM", size: 17)
-        insertRef.addSubview(hoursLabel)
-        hoursLabel.text = "시간"
-        
-        minutesLabel.textAlignment = NSTextAlignment.left
-        minutesLabel.font = UIFont(name: "GodoM", size: 17)
-        insertRef.addSubview(minutesLabel)
-        minutesLabel.text = "분"
-        
-        // 피커뷰의 선택된 인덱스 상하에 있는 가로줄 색상 적용
-        pickerView.subviews[1].backgroundColor = UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00)
-        pickerView.subviews[2].backgroundColor = UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00)
-        
-        var viewWithLabel: UIView?
-        
-        if viewWithLabel == nil {
-            viewWithLabel = UIView(frame: CGRect(x: 0, y: 0, width: componentWidth, height: componentHeight))
-            
-            let label: UILabel = UILabel(frame: CGRect(x: 11, y: 0, width: 30, height: componentHeight))
-            label.font = UIFont(name: "GodoM", size: 17)
-            label.textAlignment = NSTextAlignment.right
-            viewWithLabel?.addSubview(label)
-        }
-        
-        if let label: UILabel = viewWithLabel?.subviews[0] as? UILabel {
-            
-            label.text = String(valueForRow(row: row))
-        }
-        
-        return viewWithLabel!
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return componentHeight
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return 106
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        selectedHours = hoursPickerData[pickerView.selectedRow(inComponent: 0)]
-        selectedMinutes = minutesPickerData[pickerView.selectedRow(inComponent: 1) % minutesPickerData.count]
-        
-        saveButtonValidation()
-        
-        var estimatedWorkTimeString: String = "\(selectedHours!)시간 \(selectedMinutes!)분"
-        
-        if selectedHours == 0 {
-            estimatedWorkTimeString = "\(selectedMinutes!)분"
-        }
-        
-        showEstimatedWorkTimeCell.detailTextLabel?.text = estimatedWorkTimeString
-    }
-    
     /*
      // MARK: - Navigation
      
@@ -313,3 +252,107 @@ class NewWorkViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
 }
 
+extension NewWorkViewController: UIPickerViewDelegate {
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        // "시간", "분" 레이블 삽입
+        let screenWidth = UIScreen.main.bounds.width
+        let insertRef = pickerView.subviews[0].subviews[0].subviews[2]
+        //        let hoursLabel: UILabel = UILabel(frame: CGRect(x: 130.5, y: 0, width: 60, height: componentHeight))
+        //        let minutesLabel: UILabel = UILabel(frame: CGRect(x: 239.5, y: 0, width: 60, height: componentHeight))
+        let hoursLabel: UILabel = UILabel(frame: CGRect(x: screenWidth/2 - 60, y: 0, width: 60, height: estimatedWorkTimePicker.componentHeight))
+        let minutesLabel: UILabel = UILabel(frame: CGRect(x: screenWidth/2 + 50, y: 0, width: 60, height: estimatedWorkTimePicker.componentHeight))
+        
+        hoursLabel.textAlignment = NSTextAlignment.left
+        hoursLabel.font = UIFont(name: "GodoM", size: 17)
+        hoursLabel.mixedTextColor = MixedColor(normal: UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 1.0), night: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0))
+        insertRef.addSubview(hoursLabel)
+        hoursLabel.text = "시간"
+        
+        minutesLabel.textAlignment = NSTextAlignment.left
+        minutesLabel.font = UIFont(name: "GodoM", size: 17)
+        minutesLabel.mixedTextColor = MixedColor(normal: UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 1.0), night: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0))
+        insertRef.addSubview(minutesLabel)
+        minutesLabel.text = "분"
+        
+        // 피커뷰의 선택된 인덱스 상하에 있는 가로줄 색상 적용
+        pickerView.subviews[1].mixedBackgroundColor = MixedColor(normal: UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00), night: UIColor(red:0.14, green:0.14, blue:0.12, alpha:1.00))
+        pickerView.subviews[2].mixedBackgroundColor = MixedColor(normal: UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00), night: UIColor(red:0.14, green:0.14, blue:0.12, alpha:1.00))
+        
+        var viewWithLabel: UIView?
+        
+        if viewWithLabel == nil {
+            viewWithLabel = UIView(frame: CGRect(x: 0, y: 0, width: estimatedWorkTimePicker.componentWidth, height: estimatedWorkTimePicker.componentHeight))
+            
+            let label: UILabel = UILabel(frame: CGRect(x: 11, y: 0, width: 30, height: estimatedWorkTimePicker.componentHeight))
+            label.font = UIFont(name: "GodoM", size: 17)
+            label.mixedTextColor = MixedColor(normal: UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 1.0), night: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0))
+            label.textAlignment = NSTextAlignment.right
+            viewWithLabel?.addSubview(label)
+        }
+        
+        if let label: UILabel = viewWithLabel?.subviews[0] as? UILabel {
+            
+            label.text = String(estimatedWorkTimePicker.valueForRow(row: row))
+        }
+        
+        return viewWithLabel!
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        
+        return estimatedWorkTimePicker.componentHeight
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        
+        return 106
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        estimatedWorkTimePicker.selectedHours = estimatedWorkTimePicker.hoursPickerData[pickerView.selectedRow(inComponent: 0)]
+        estimatedWorkTimePicker.selectedMinutes = estimatedWorkTimePicker.minutesPickerData[pickerView.selectedRow(inComponent: 1) % estimatedWorkTimePicker.minutesPickerData.count]
+        
+        saveButtonValidation()
+        
+        var estimatedWorkTimeString: String = "\(estimatedWorkTimePicker.selectedHours!)시간 \(estimatedWorkTimePicker.selectedMinutes!)분"
+        
+        if estimatedWorkTimePicker.selectedHours == 0 {
+            estimatedWorkTimeString = "\(estimatedWorkTimePicker.selectedMinutes!)분"
+        }
+        
+        showEstimatedWorkTimeCell.detailTextLabel?.text = estimatedWorkTimeString
+    }
+}
+
+extension NewWorkViewController: UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        switch component {
+        case estimatedWorkTimePicker.hourComponent: return estimatedWorkTimePicker.hoursPickerData.count
+        case estimatedWorkTimePicker.minuteComponent: return estimatedWorkTimePicker.largeNumber
+        default: break
+        }
+        return 0
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

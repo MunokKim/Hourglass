@@ -9,8 +9,14 @@
 import UIKit
 import QuartzCore
 import CoreData
+import MarqueeLabel
 
 class WorkingViewController: UIViewController {
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        
+        return .lightContent
+    }
     
     var elapsedTime: Int32?
     var workStart: NSDate?
@@ -34,14 +40,30 @@ class WorkingViewController: UIViewController {
     let playImage = UIImage(named: "play.png")
     let pauseImage = UIImage(named: "pause.png")
     
-    @IBOutlet var zoomOutButton: UIButton!
+    @IBOutlet var zoomOutButton: UIButton! {
+        didSet {
+            zoomOutButton.isHidden = true
+        }
+    }
     @IBOutlet var workIconImageView: UIImageView! {
         didSet {
             workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
             workIconImageView.clipsToBounds = true
         }
     }
-    @IBOutlet var workNameLabel: UILabel!
+    @IBOutlet var workNameLabel: MarqueeLabel! {
+        didSet {
+            workNameLabel.layer.shadowColor = UIColor.gray.cgColor
+            workNameLabel.layer.shadowRadius = 2.0
+            workNameLabel.layer.shadowOpacity = 0.5
+            workNameLabel.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+            workNameLabel.layer.masksToBounds = false
+            
+            workNameLabel.font = UIFont(name: "GodoB", size: CGFloat(32).sizeByDeviceResolution)
+            
+            workNameLabel.tapToScroll = true
+        }
+    }
     @IBOutlet var remainingTextLabel: UILabel!
     @IBOutlet var remainingTimeLabel: UILabel!
     @IBOutlet var stopButton: UIButton!
@@ -90,7 +112,7 @@ class WorkingViewController: UIViewController {
     
     @IBAction func zoomOutView(_ sender: Any) {
         
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func workCancel(_ sender: Any) {
@@ -290,10 +312,6 @@ class WorkingViewController: UIViewController {
         timeMeasurementInfo.remainingTime = remainingTime ?? 0
         timeMeasurementInfo.work = fetchResult // 어떤 작업에 해당하는 시간측정정보인지
         
-        fetchResult.currentSuccessiveAchievementWhether = timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0 // 현재 연속 달성 여부 = 목표 달성/실패 여부 ? 현재 연속 달성 여부 + 1 : 0
-        fetchResult.successiveAchievementHighestRecord = fetchResult.currentSuccessiveAchievementWhether >= fetchResult.successiveAchievementHighestRecord ? fetchResult.currentSuccessiveAchievementWhether : fetchResult.successiveAchievementHighestRecord // 연속 달성 최고기록 = 현재 연속 달성 여부 >= 연속 달성 최고기록 ? 현재 연속 달성 여부 : 연속 달성 최고기록
-        fetchResult.mutableSetValue(forKey: "eachTurnsOfWork").add(timeMeasurementInfo)
-        
         do {
             try context.save()
             
@@ -309,15 +327,15 @@ class WorkingViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        UIApplication.shared.statusBarStyle = .lightContent
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -330,11 +348,13 @@ class WorkingViewController: UIViewController {
         cancelButton.layer.borderWidth = 5
         completeButton.layer.borderWidth = 5
         
-        fetchResult = contextFetchToSelectedIndex(index: selectedIndex)
+        fetchResult = contextFetchToSelectedIndex(selectedIndex)
         
-        workStart = NSDate()
+        workStart = NSDate() // 작업시작은 현재
         estimatedWorkTime = fetchResult.estimatedWorkTime
-        estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!))
+        elapsedTime = 0
+        remainingTime = fetchResult.estimatedWorkTime // 남은시간의 초기값은 예상작업시간
+        estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!)) // 예상완료는 작업시작에 예상작업시간을 더한 값
         firstEstimatedCompletion = estimatedCompletion
         
         //            iconImagePath = fetchResult.iconImagePath
@@ -348,6 +368,10 @@ class WorkingViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name:UIApplication.didEnterBackgroundNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name:UIApplication.willEnterForegroundNotification, object: nil)
+        
+        // 테마 적용 안되게 하기
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.modalPresentationCapturesStatusBarAppearance = true // 전체 화면이 아닌 상태로 표시된 VC가 표시되는 VC에서 status bar 모양을 제어할지 여부를 지정합니다.
     }
     
     @objc func didEnterBackground() {
@@ -377,7 +401,7 @@ class WorkingViewController: UIViewController {
         }
     }
     
-    func contextFetchToSelectedIndex(index: Int?) -> WorkInfo {
+    func contextFetchToSelectedIndex(_ index: Int?) -> WorkInfo {
         
         // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
         let request: NSFetchRequest<WorkInfo> = WorkInfo.fetchRequest()
@@ -400,7 +424,6 @@ class WorkingViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
      // MARK: - Navigation
      

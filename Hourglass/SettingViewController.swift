@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NightNight
 
 class SettingViewController: UITableViewController {
 
@@ -17,6 +18,7 @@ class SettingViewController: UITableViewController {
     
     @IBOutlet var alertSwitch: UISwitch!
     @IBOutlet var soundSwitch: UISwitch!
+    @IBOutlet var themeSwitch: UISwitch!
     
     @IBAction func alertSwitchChanged(_ sender: Any) {
         
@@ -28,6 +30,17 @@ class SettingViewController: UITableViewController {
         UserDefaults.standard.set(soundSwitch.isOn, forKey: "soundSwitchState")
     }
     
+    @IBAction func themeSwitchChanged(_ sender: Any) {
+        
+        UserDefaults.standard.set(themeSwitch.isOn, forKey: "themeSwitchState")
+        
+        if UserDefaults.standard.bool(forKey: "themeSwitchState") {
+            NightNight.theme = .night
+        } else {
+            NightNight.theme = .normal
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,19 +50,52 @@ class SettingViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        // 테마 적용
+        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x161718)
+        navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
+        
+        if NightNight.theme == .night {
+            navigationController?.navigationBar.barStyle = .black
+        } else if NightNight.theme == .normal {
+            navigationController?.navigationBar.barStyle = .default
+        }
+        
+        tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
+        
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
         alertSwitch.isOn = UserDefaults.standard.bool(forKey: "alertSwitchState")
         soundSwitch.isOn = UserDefaults.standard.bool(forKey: "soundSwitchState")
+        themeSwitch.isOn = UserDefaults.standard.bool(forKey: "themeSwitchState")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        
+        return MixedStatusBarStyle(normal: .default, night: .lightContent).unfold()
+    }
+    
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+        cell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        
+        let viewForSelectedCell = UIView()
+        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        cell.selectedBackgroundView = viewForSelectedCell
+        
+        if indexPath.section == 1 {
+            cell.textLabel?.mixedTextColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        }
+    }
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {
 //        // #warning Incomplete implementation, return the number of sections
