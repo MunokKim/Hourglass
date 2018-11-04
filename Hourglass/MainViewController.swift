@@ -68,11 +68,15 @@ class MainViewController: UITableViewController {
         // 셀 구분선 왼쪽 띄움
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 0);
         
-        // userDefaults 가 설정된 적이 한번도 없으면 기본값(전부 켜짐) 설정하기
+        // userDefaults 가 설정된 적이 한번도 없으면 기본값 설정하기
         if UserDefaults.standard.object(forKey: "alertSwitchState") == nil {
-            UserDefaults.standard.set(true, forKey: "alertSwitchState")
+            UserDefaults.standard.set(false, forKey: "alertSwitchState")
             UserDefaults.standard.set(true, forKey: "soundSwitchState")
-            UserDefaults.standard.set(true, forKey: "themeSwitchState")
+            UserDefaults.standard.set(false, forKey: "themeSwitchState")
+            UserDefaults.standard.set(true, forKey: "vibrationSwitchState")
+            UserDefaults.standard.set(0, forKey: "timeOverSoundState")
+            UserDefaults.standard.set(0, forKey: "successSoundState")
+            UserDefaults.standard.set(0, forKey: "failSoundState")
         }
         
         // 높이 자동 조절
@@ -140,7 +144,7 @@ class MainViewController: UITableViewController {
         cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
         
         let viewForSelectedCell = UIView()
-        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)
         cell.selectedBackgroundView = viewForSelectedCell
 
     }

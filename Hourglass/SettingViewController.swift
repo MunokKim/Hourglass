@@ -19,6 +19,8 @@ class SettingViewController: UITableViewController {
     @IBOutlet var alertSwitch: UISwitch!
     @IBOutlet var soundSwitch: UISwitch!
     @IBOutlet var themeSwitch: UISwitch!
+    @IBOutlet var vibrationSwitch: UISwitch!
+    @IBOutlet var subCells: [UITableViewCell]!
     
     @IBAction func alertSwitchChanged(_ sender: Any) {
         
@@ -28,6 +30,33 @@ class SettingViewController: UITableViewController {
     @IBAction func soundSwitchChanged(_ sender: Any) {
         
         UserDefaults.standard.set(soundSwitch.isOn, forKey: "soundSwitchState")
+        
+        changeSelection()
+    }
+    
+    func changeSelection() {
+        
+        for subCell in subCells {
+            if UserDefaults.standard.bool(forKey: "soundSwitchState") {
+                subCell.selectionStyle = .default
+                subCell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+                subCell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x555555, night: 0xbababa)
+                subCell.accessoryType = .disclosureIndicator
+            } else {
+                subCell.selectionStyle = .none
+                subCell.textLabel?.mixedTextColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+                subCell.detailTextLabel?.mixedTextColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+                subCell.accessoryType = .none
+            }
+        }
+    }
+    
+    @IBAction func vibrationSwitchChanged(_ sender: Any) {
+        
+        UserDefaults.standard.set(vibrationSwitch.isOn, forKey: "vibrationSwitchState")
+        
+        // 진동 기능 켜기
+        SoundEffect().vibrate(situation: .timeOver)
     }
     
     @IBAction func themeSwitchChanged(_ sender: Any) {
@@ -65,9 +94,21 @@ class SettingViewController: UITableViewController {
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
+        alertSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        soundSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        themeSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        vibrationSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        
         alertSwitch.isOn = UserDefaults.standard.bool(forKey: "alertSwitchState")
         soundSwitch.isOn = UserDefaults.standard.bool(forKey: "soundSwitchState")
         themeSwitch.isOn = UserDefaults.standard.bool(forKey: "themeSwitchState")
+        vibrationSwitch.isOn = UserDefaults.standard.bool(forKey: "vibrationSwitchState")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,14 +127,32 @@ class SettingViewController: UITableViewController {
         
         cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
         cell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
-        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x555555, night: 0xbababa)
+        
+        cell.textLabel?.font = UIFont(name: "GodoM", size: 17)
         
         let viewForSelectedCell = UIView()
-        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)
         cell.selectedBackgroundView = viewForSelectedCell
         
-        if indexPath.section == 1 {
-            cell.textLabel?.mixedTextColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        if indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 {
+            
+            changeSelection()
+        }
+        
+        if indexPath.row == 2 {
+            let index = UserDefaults.standard.integer(forKey: "timeOverSoundState")
+            cell.detailTextLabel?.text = SoundEffect().timeOverSoundExplanation[index+1]
+        }
+        
+        if indexPath.row == 3 {
+            let index = UserDefaults.standard.integer(forKey: "successSoundState")
+            cell.detailTextLabel?.text = SoundEffect().successSoundExplanation[index+1]
+        }
+        
+        if indexPath.row == 4 {
+            let index = UserDefaults.standard.integer(forKey: "failSoundState")
+            cell.detailTextLabel?.text = SoundEffect().failSoundExplanation[index+1]
         }
     }
 
@@ -165,5 +224,13 @@ class SettingViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        if identifier == "SoundSegue" {
+            return UserDefaults.standard.bool(forKey: "soundSwitchState") ? true : false
+        }
+        return true
+    }
 
 }

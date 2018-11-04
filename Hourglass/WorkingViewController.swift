@@ -160,7 +160,7 @@ class WorkingViewController: UIViewController {
         resumeTimer?.invalidate()
         
         // 예상 완료 타이머 재개
-        pauseTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalOfPause), userInfo: nil, repeats: true)
+        pauseTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalForPause), userInfo: nil, repeats: true)
     }
     
     func resume() {
@@ -169,7 +169,7 @@ class WorkingViewController: UIViewController {
         pauseTimer?.invalidate()
         
         // 남은 시간 타이머 재개
-        resumeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalOfResume), userInfo: nil, repeats: true)
+        resumeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalForResume), userInfo: nil, repeats: true)
     }
     
     @IBAction func workComplete(_ sender: Any) {
@@ -194,7 +194,7 @@ class WorkingViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @objc func renewalOfPause() {
+    @objc func renewalForPause() {
         
         if remainingTime! >= Int32(0) {
             estimatedCompletion = estimatedCompletion?.addingTimeInterval(1)
@@ -218,7 +218,7 @@ class WorkingViewController: UIViewController {
         }
     }
     
-    @objc func renewalOfResume() {
+    @objc func renewalForResume() {
         
         // 소요 시간 누적
         elapsedTime = (elapsedTime ?? 0) + 1
@@ -230,6 +230,23 @@ class WorkingViewController: UIViewController {
         
         if (remainingTime! >= Int32(0)) {
             remainingTimeLabel.text = remainingTime?.secondsToStopwatch
+            
+            if remainingTime == Int32(0) {
+                
+                let play = SoundEffect()
+                play.playSound(situation: .timeOver)
+                play.vibrate(situation: .timeOver)
+                
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: ({
+                    
+                    // 'silvia' 그라디언트
+                    self.gradientView.toColors = [UIColor(red:101/255, green:153/255, blue:153/255, alpha:1.00),
+                                                  UIColor(red:172/255, green:137/255, blue:92/255, alpha:1.00),
+                                                  UIColor(red:244/255, green:121/255, blue:31/255, alpha:1.00)].map{$0.cgColor}
+                    
+                    self.view.layoutIfNeeded()
+                }), completion: nil)
+            }
         } else {
             remainingTimeLabel.text = "+\(abs(remainingTime!).secondsToStopwatch)"
             remainingTextLabel.text = "지난 시간"
@@ -253,12 +270,10 @@ class WorkingViewController: UIViewController {
             completeButtonCenterXConstraint.constant = UIScreen.main.bounds.width / 4 + 17.5
             
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: ({
-                
-                // 'between the clouds' 그라디언트
-                self.gradientView.toColors = [UIColor(red:0.46, green:0.78, blue:0.66, alpha:1.00),
-                                              UIColor(red:0.33, green:0.50, blue:0.46, alpha:1.00),
-                                              UIColor(red:0.22, green:0.23, blue:0.27, alpha:1.00)].map{$0.cgColor}
-
+                // 'Moss' 그라디언트
+                self.gradientView.toColors = [UIColor(red:113/255, green:178/255, blue:128/255, alpha:1.00),
+                                              UIColor(red:47/255, green:128/255, blue:111/255, alpha:1.00),
+                                              UIColor(red:19/255, green:78/255, blue:94/255, alpha:1.00)].map{$0.cgColor}
                 self.view.layoutIfNeeded()
             }), completion: { _ in
                 self.stopButton.isEnabled = true
@@ -279,11 +294,17 @@ class WorkingViewController: UIViewController {
             
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: ({
                 
-                // 'sunrise' 그라디언트
-                self.gradientView.toColors = [UIColor(red:0.99, green:0.34, blue:0.23, alpha:1.00),
-                                              UIColor(red:0.96, green:0.47, blue:0.20, alpha:1.00),
-                                              UIColor(red:0.94, green:0.60, blue:0.18, alpha:1.00)].map{$0.cgColor}
-                
+                if self.remainingTime! >= Int32(0) {
+                    // 'light orange' 그라디언트
+                    self.gradientView.toColors = [UIColor(red:235/255, green:163/255, blue:74/255, alpha:1.00),
+                                                  UIColor(red:236/255, green:153/255, blue:38/255, alpha:1.00),
+                                                  UIColor(red:237/255, green:143/255, blue:3/255, alpha:1.00)].map{$0.cgColor}
+                } else if self.remainingTime! < Int32(0) {
+                    // 'silvia' 그라디언트
+                    self.gradientView.toColors = [UIColor(red:101/255, green:153/255, blue:153/255, alpha:1.00),
+                                                  UIColor(red:172/255, green:137/255, blue:92/255, alpha:1.00),
+                                                  UIColor(red:244/255, green:121/255, blue:31/255, alpha:1.00)].map{$0.cgColor}
+                }
                 self.view.layoutIfNeeded()
             }), completion: { _ in
                 self.cancelButton.isHidden = true
@@ -372,6 +393,9 @@ class WorkingViewController: UIViewController {
         // 테마 적용 안되게 하기
         self.setNeedsStatusBarAppearanceUpdate()
         self.modalPresentationCapturesStatusBarAppearance = true // 전체 화면이 아닌 상태로 표시된 VC가 표시되는 VC에서 status bar 모양을 제어할지 여부를 지정합니다.
+        
+        // 스탑워치 줄간격 줄이기
+//        remainingTimeLabel.setLineSpacing(lineSpacing: 111.0)
     }
     
     @objc func didEnterBackground() {
@@ -475,3 +499,27 @@ extension CGFloat {
         }
     }
 }
+
+//extension UILabel {
+//
+//    func setLineSpacing(lineSpacing: CGFloat = 0.0, lineHeightMultiple: CGFloat = 0.0) {
+//
+//        guard let labelText = self.text else { return }
+//
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.lineSpacing = lineSpacing
+//        paragraphStyle.lineHeightMultiple = lineHeightMultiple
+//
+//        let attributedString:NSMutableAttributedString
+//        if let labelattributedText = self.attributedText {
+//            attributedString = NSMutableAttributedString(attributedString: labelattributedText)
+//        } else {
+//            attributedString = NSMutableAttributedString(string: labelText)
+//        }
+//
+//        // (Swift 4.2 and above) Line spacing attribute
+//        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+//
+//        self.attributedText = attributedString
+//    }
+//}

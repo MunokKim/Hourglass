@@ -193,7 +193,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
 //        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
         
         let viewForSelectedCell = UIView()
-        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)
         cell.selectedBackgroundView = viewForSelectedCell
     }
     
@@ -225,11 +225,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
         
         guard indexPath.row == 2 else { return }
         
-        if self.isCellHeightExpanded {
-            self.isCellHeightExpanded = false
-        } else {
-            self.isCellHeightExpanded = true
-        }
+        self.isCellHeightExpanded = self.isCellHeightExpanded ? false : true
     }
     
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {

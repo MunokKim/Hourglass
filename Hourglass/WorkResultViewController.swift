@@ -103,13 +103,16 @@ class WorkResultViewController: UIViewController {
         var goalString: String? 
         let remainingText: String?
         let remainingTime: String?
+        let situation: Bool?
         
         if workResultInfo?.goalSuccessOrFailWhether ?? true {
             // 목표 달성
-            toColors = [UIColor(red:0.99, green:0.74, blue:0.24, alpha:1.00),
-                        UIColor(red:0.57, green:0.75, blue:0.51, alpha:1.00),
-                        UIColor(red:0.17, green:0.75, blue:0.76, alpha:1.00)].map{$0.cgColor}
+            // 'Atlas' 그라디언트
+            toColors = [UIColor(red:75/255, green:192/255, blue:200/255, alpha:1.00),
+                        UIColor(red:199/255, green:121/255, blue:208/255, alpha:1.00),
+                        UIColor(red:211/255, green:131/255, blue:18/255, alpha:1.00)].map{$0.cgColor}
             goalString = "목표 달성"
+            situation = true
             
             // 2회 이상 연속 목표 달성
             if let achievement = workResultInfo?.successiveGoalAchievement, achievement >= Int16(2) {
@@ -129,10 +132,12 @@ class WorkResultViewController: UIViewController {
             remainingTime = workResultInfo?.remainingTime.secondsToString
         } else {
             // 목표 실패
-            toColors = [UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.00),
-                        UIColor(red:0.34, green:0.12, blue:0.10, alpha:1.00),
-                        UIColor(red:0.68, green:0.24, blue:0.20, alpha:1.00)].map{$0.cgColor}
+            // 'sunset' 그라디언트
+            toColors = [UIColor(red:11/255, green:72/255, blue:107/255, alpha:1.00),
+                        UIColor(red:113/255, green:85/255, blue:65/255, alpha:1.00),
+                        UIColor(red:215/255, green:98/255, blue:23/255, alpha:1.00)].map{$0.cgColor}
             goalString = "목표 실패"
+            situation = false
             remainingText = "지난 시간"
             remainingTime = "+ " + abs((workResultInfo?.remainingTime) ?? 0).secondsToString
         }
@@ -154,6 +159,18 @@ class WorkResultViewController: UIViewController {
             let timeMeasurementInfoFetchArray = contextFetchFor(ThisWork: workInfo)
             // 합계, 평균 등을 구한 뒤 WorkInfo 엔티티의 필드 업데이트
             updateWorkInfo(workInfo: workInfo, timeMeasurementInfo: timeMeasurementInfoFetchArray)
+        }
+        
+        // 사운드 재생
+        let play = SoundEffect()
+        if let situation = situation {
+            if situation {
+                play.playSound(situation: .success)
+                play.vibrate(situation: .success)
+            } else {
+                play.playSound(situation: .fail)
+                play.vibrate(situation: .fail)
+            }
         }
     }
     

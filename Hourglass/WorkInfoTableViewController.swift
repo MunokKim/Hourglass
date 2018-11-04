@@ -136,22 +136,22 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         // 메인에서 터치해서 선택된 인덱스로 불러온 WorkInfo객체
         workInfoFetch = workingVC.contextFetchToSelectedIndex(selectedIndex)
         
-        guard workInfoFetch != nil else { return }
+        guard let workInfoFetch = workInfoFetch else { return }
         
-        workNameLabel.text = workInfoFetch!.workName
+        workNameLabel.text = workInfoFetch.workName
         // icon
-        estimatedWorkTimePickerButton.setTitle(workInfoFetch!.estimatedWorkTime.secondsToString, for: .normal)
-        currentSuccessiveAchievementWhetherLabel.text = "\(workInfoFetch!.currentSuccessiveAchievementWhether) 회" // 현재 연속 달성 여부
-        successiveAchievementHighestRecordLabel.text = "\(workInfoFetch!.successiveAchievementHighestRecord) 회" // 연속 달성 최고기록
+        estimatedWorkTimePickerButton.setTitle(workInfoFetch.estimatedWorkTime.secondsToString, for: .normal)
+        currentSuccessiveAchievementWhetherLabel.text = "\(workInfoFetch.currentSuccessiveAchievementWhether) 회" // 현재 연속 달성 여부
+        successiveAchievementHighestRecordLabel.text = "\(workInfoFetch.successiveAchievementHighestRecord) 회" // 연속 달성 최고기록
         
-        totalWorkLabel.text = "\(workInfoFetch!.totalWork) 회" // 총 작업
-        goalSuccessLabel.text = "\(workInfoFetch!.goalSuccess) 회" // 목표 달성
-        goalFailLabel.text = "\(workInfoFetch!.goalFail) 회" // 목표 실패
-        successRateLabel.text = String(format: "%.0f", workInfoFetch!.successRate * 100) + " %" // 성공률
-        averageElapsedTimeLabel.text = Int32(workInfoFetch!.averageElapsedTime).secondsToString // 평균 소요시간
-        averageRemainingTimeLabel.text = Int32(workInfoFetch!.averageRemainingTime).secondsToString // 평균 남은 시간
+        totalWorkLabel.text = "\(workInfoFetch.totalWork) 회" // 총 작업
+        goalSuccessLabel.text = "\(workInfoFetch.goalSuccess) 회" // 목표 달성
+        goalFailLabel.text = "\(workInfoFetch.goalFail) 회" // 목표 실패
+        successRateLabel.text = String(format: "%.0f", workInfoFetch.successRate * 100) + " %" // 성공률
+        averageElapsedTimeLabel.text = Int32(workInfoFetch.averageElapsedTime).secondsToString // 평균 소요시간
+        averageRemainingTimeLabel.text = Int32(workInfoFetch.averageRemainingTime).secondsToString // 평균 남은 시간
         
-        if workInfoFetch!.totalWork == 0 {
+        if workInfoFetch.totalWork == 0 {
             // 진행한 작업이 없을 때
             let noticeView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 45))
             noticeView.mixedBackgroundColor = MixedColor(normal: UIColor.black, night: UIColor.white)
@@ -237,7 +237,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
         
         let viewForSelectedCell = UIView()
-        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)
         cell.selectedBackgroundView = viewForSelectedCell
     }
     
