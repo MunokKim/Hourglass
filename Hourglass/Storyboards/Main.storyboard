@@ -10,14 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Assistant-ExtraLight.ttf">
+            <string>Assistant-ExtraLight</string>
+        </array>
         <array key="GodoB.otf">
             <string>GodoB</string>
         </array>
         <array key="GodoM.otf">
             <string>GodoM</string>
-        </array>
-        <array key="Tall___Lean.ttf">
-            <string>Tall&amp;Lean</string>
         </array>
     </customFonts>
     <scenes>
@@ -343,8 +343,8 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="개와 산책하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwB-9M-7vs" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                        <rect key="frame" x="94.5" y="121.5" width="186" height="36.5"/>
-                                        <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="32"/>
+                                        <rect key="frame" x="96.5" y="121.5" width="182.5" height="36.5"/>
+                                        <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -360,17 +360,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="남은 시간" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdG-mm-nH3">
-                                        <rect key="frame" x="154.5" y="250" width="66.5" height="20"/>
+                                        <rect key="frame" x="154.5" y="320" width="66.5" height="20"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="RCJ-rT-Mku">
-                                        <rect key="frame" x="191.5" y="245" width="0.0" height="110"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="G8T-C5-BLN"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Tall&amp;Lean" family="Tall &amp; Lean" pointSize="200"/>
+                                        <rect key="frame" x="187.5" y="300" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Assistant-ExtraLight" family="Assistant" pointSize="170"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -440,7 +437,7 @@
                                     <constraint firstItem="aIK-nb-eGb" firstAttribute="leading" secondItem="cxJ-dX-FVX" secondAttribute="leading" id="1B5-7n-BPa"/>
                                     <constraint firstItem="aIK-nb-eGb" firstAttribute="bottom" secondItem="cbi-Bg-8If" secondAttribute="centerY" multiplier="1.9" id="1fB-X1-ezL"/>
                                     <constraint firstItem="aIK-nb-eGb" firstAttribute="leading" secondItem="cbi-Bg-8If" secondAttribute="leading" constant="34" id="4O7-7k-hWq"/>
-                                    <constraint firstItem="RCJ-rT-Mku" firstAttribute="centerX" secondItem="cbi-Bg-8If" secondAttribute="centerX" constant="4" id="5M8-We-eda"/>
+                                    <constraint firstItem="RCJ-rT-Mku" firstAttribute="centerX" secondItem="cbi-Bg-8If" secondAttribute="centerX" id="5M8-We-eda"/>
                                     <constraint firstItem="RCJ-rT-Mku" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cbi-Bg-8If" secondAttribute="leading" constant="5" id="91s-fZ-es8"/>
                                     <constraint firstItem="RCJ-rT-Mku" firstAttribute="centerY" secondItem="cbi-Bg-8If" secondAttribute="centerY" multiplier="0.9" id="BPA-qA-cs9"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vwB-9M-7vs" secondAttribute="trailing" constant="15" id="Bsg-Ef-5Ww"/>
@@ -452,7 +449,7 @@
                                     <constraint firstItem="OSK-9l-kVC" firstAttribute="width" secondItem="e2a-MY-gaz" secondAttribute="width" id="Utl-bi-BJz"/>
                                     <constraint firstItem="Fr1-fB-GUs" firstAttribute="height" secondItem="e2a-MY-gaz" secondAttribute="height" id="X7X-E1-X9t"/>
                                     <constraint firstItem="IdG-mm-nH3" firstAttribute="centerX" secondItem="cbi-Bg-8If" secondAttribute="centerX" id="Zo6-pH-4xY"/>
-                                    <constraint firstItem="RCJ-rT-Mku" firstAttribute="top" secondItem="IdG-mm-nH3" secondAttribute="bottom" constant="-25" id="Zsi-fp-BdM"/>
+                                    <constraint firstItem="RCJ-rT-Mku" firstAttribute="top" secondItem="IdG-mm-nH3" secondAttribute="bottom" constant="-40" id="Zsi-fp-BdM"/>
                                     <constraint firstItem="vwB-9M-7vs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cbi-Bg-8If" secondAttribute="leading" constant="15" id="a53-jz-1le"/>
                                     <constraint firstItem="OSK-9l-kVC" firstAttribute="top" secondItem="cbi-Bg-8If" secondAttribute="centerY" multiplier="1.3" id="aMw-qt-GWh"/>
                                     <constraint firstItem="Fr1-fB-GUs" firstAttribute="centerX" secondItem="cbi-Bg-8If" secondAttribute="centerX" id="d3P-Pj-1GF"/>
@@ -627,7 +624,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="50" translatesAutoresizingMaskIntoConstraints="NO" id="fLg-Kj-SHv">
-                                        <rect key="frame" x="187.5" y="326" width="0.0" height="110"/>
+                                        <rect key="frame" x="187.5" y="314" width="0.0" height="110"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="k9M-GM-gNm"/>
                                         </constraints>
@@ -714,7 +711,7 @@
                                     <constraint firstItem="O4K-9X-BLK" firstAttribute="top" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="0.1" id="GEs-Hj-6yo"/>
                                     <constraint firstItem="NsT-G2-kxW" firstAttribute="leading" secondItem="pIb-Dn-7Ql" secondAttribute="leading" id="Jfm-Iu-JsB"/>
                                     <constraint firstAttribute="trailing" secondItem="Lvh-zg-PR3" secondAttribute="trailing" constant="24" id="Jps-aa-vH0"/>
-                                    <constraint firstItem="fLg-Kj-SHv" firstAttribute="top" secondItem="pJD-8Q-h9x" secondAttribute="bottom" constant="6" id="KS4-yc-53Z"/>
+                                    <constraint firstItem="fLg-Kj-SHv" firstAttribute="top" secondItem="pJD-8Q-h9x" secondAttribute="bottom" constant="-6" id="KS4-yc-53Z"/>
                                     <constraint firstAttribute="trailing" secondItem="yyR-qp-Ygt" secondAttribute="trailing" constant="20" id="LaF-ff-xlH"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IiM-PD-kyk" secondAttribute="trailing" constant="3" id="MlB-bl-5xt"/>
                                     <constraint firstItem="fLg-Kj-SHv" firstAttribute="centerX" secondItem="Fjm-Xi-SSo" secondAttribute="centerX" id="N2D-YJ-wFb"/>
@@ -2281,6 +2278,6 @@
         <image name="zoomoutIcon" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kQG-6C-KOA"/>
+        <segue reference="RPq-cW-jTP"/>
     </inferredMetricsTieBreakers>
 </document>

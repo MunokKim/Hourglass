@@ -10,6 +10,7 @@ import UIKit
 import QuartzCore
 import CoreData
 import MarqueeLabel
+import UserNotifications
 
 class WorkingViewController: UIViewController {
     
@@ -250,6 +251,16 @@ class WorkingViewController: UIViewController {
         } else {
             remainingTimeLabel.text = "+\(abs(remainingTime!).secondsToStopwatch)"
             remainingTextLabel.text = "지난 시간"
+            
+            if elapsedTime! >= Int32(36000) {
+                
+                self.resumeTimer?.invalidate()
+                self.resumeTimer = nil
+                self.pauseTimer?.invalidate()
+                self.pauseTimer = nil
+                
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
@@ -365,9 +376,19 @@ class WorkingViewController: UIViewController {
         
         print("WorkingViewController!!!")
         
-        stopButton.layer.borderWidth = 5
-        cancelButton.layer.borderWidth = 5
-        completeButton.layer.borderWidth = 5
+        // 유저에게 알림 허락(권한) 받기
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, Error in
+            print(didAllow)
+            if didAllow {
+                UserDefaults.standard.set(true, forKey: "alertSwitchState")
+            } else {
+                UserDefaults.standard.set(false, forKey: "alertSwitchState")
+            }
+        })
+        
+        stopButton.layer.borderWidth = 3.5
+        cancelButton.layer.borderWidth = 3.5
+        completeButton.layer.borderWidth = 3.5
         
         fetchResult = contextFetchToSelectedIndex(selectedIndex)
         
@@ -399,19 +420,57 @@ class WorkingViewController: UIViewController {
     }
     
     @objc func didEnterBackground() {
-        
+        // 모든 타이머 중단
         resumeTimer?.invalidate()
         resumeTimer = nil
         pauseTimer?.invalidate()
         pauseTimer = nil
         
+        // 백그라운드 진입 시점 저장
         momentForEnterBackground = NSDate()
+        
+        let didAllow = UserDefaults.standard.bool(forKey: "alertSwitchState")
+        
+        if didAllow && isStopwatchRunning && (remainingTime! >= Int32(0)) {
+            
+            // push 알림 메시지 설정
+            let content = UNMutableNotificationContent()
+            content.title = fetchResult.workName ?? "시간추정작업"
+            content.subtitle = fetchResult.estimatedWorkTime.secondsToString
+            content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 경과하였습니다."
+            content.sound = UNNotificationSound.default
+            content.badge = 1
+            
+            guard let triggerTime = remainingTime else { return }
+            
+            var date = DateComponents()
+            date.hour = Int(triggerTime/3600)
+            date.minute = Int(triggerTime%3600/60)
+            date.second = Int(triggerTime%3600%60)
+
+            // 알림 트리거 지정
+            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+            
+            // 알림 요청
+            let request = UNNotificationRequest(identifier: "stopwatchDone", content: content, trigger: trigger)
+            
+            // 알림 요청을 알림센터에 추가
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print(error)
+                }
+            }
+            
+            
+        }
+        
     }
     
     @objc func willEnterForeground() {
-        
+        // 백그라운드 복귀 시점 저장
         momentForEnterForeground = NSDate()
         
+        // 백그라운드 진입 시점과 복귀 시점간의 차이
         let lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
         
         if isStopwatchRunning {

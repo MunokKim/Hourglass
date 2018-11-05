@@ -46,6 +46,16 @@
 		6B9347AA218EC35D007ACC19 /* end_sound_5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347A9218EC35D007ACC19 /* end_sound_5.wav */; };
 		6B9347AC218ECCCD007ACC19 /* success_sound_5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347AB218ECCCD007ACC19 /* success_sound_5.wav */; };
 		6B9347AE218F1156007ACC19 /* success_sound_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347AD218F1156007ACC19 /* success_sound_1.wav */; };
+		6B9347B121908B07007ACC19 /* sf-theramin-gothic-condensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347B021908B07007ACC19 /* sf-theramin-gothic-condensed.ttf */; };
+		6B9347B321908F07007ACC19 /* standaris-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347B221908F07007ACC19 /* standaris-regular.otf */; };
+		6B9347B52190945F007ACC19 /* EUR42.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347B42190945E007ACC19 /* EUR42.otf */; };
+		6B9347B721909468007ACC19 /* new-standard-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347B621909468007ACC19 /* new-standard-regular.otf */; };
+		6B9347BE21909875007ACC19 /* Assistant-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347B821909874007ACC19 /* Assistant-Regular.ttf */; };
+		6B9347BF21909875007ACC19 /* Assistant-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347B921909875007ACC19 /* Assistant-SemiBold.ttf */; };
+		6B9347C021909875007ACC19 /* Assistant-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347BA21909875007ACC19 /* Assistant-ExtraLight.ttf */; };
+		6B9347C121909875007ACC19 /* Assistant-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347BB21909875007ACC19 /* Assistant-Bold.ttf */; };
+		6B9347C221909875007ACC19 /* Assistant-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347BC21909875007ACC19 /* Assistant-ExtraBold.ttf */; };
+		6B9347C321909875007ACC19 /* Assistant-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347BD21909875007ACC19 /* Assistant-Light.ttf */; };
 		6B9EF607215A7F1200871E3F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EF606215A7F1200871E3F /* GradientView.swift */; };
 		6BADA75D2185F39200177CE1 /* Abel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BADA75C2185F39100177CE1 /* Abel-Regular.ttf */; };
 		6BADA76F2189686100177CE1 /* WorkTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BADA76E2189686100177CE1 /* WorkTimePicker.swift */; };
@@ -98,6 +108,17 @@
 		6B9347A9218EC35D007ACC19 /* end_sound_5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = end_sound_5.wav; sourceTree = "<group>"; };
 		6B9347AB218ECCCD007ACC19 /* success_sound_5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success_sound_5.wav; sourceTree = "<group>"; };
 		6B9347AD218F1156007ACC19 /* success_sound_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success_sound_1.wav; sourceTree = "<group>"; };
+		6B9347AF21906B4A007ACC19 /* Hourglass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hourglass.entitlements; sourceTree = "<group>"; };
+		6B9347B021908B07007ACC19 /* sf-theramin-gothic-condensed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-theramin-gothic-condensed.ttf"; sourceTree = "<group>"; };
+		6B9347B221908F07007ACC19 /* standaris-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "standaris-regular.otf"; sourceTree = "<group>"; };
+		6B9347B42190945E007ACC19 /* EUR42.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EUR42.otf; sourceTree = "<group>"; };
+		6B9347B621909468007ACC19 /* new-standard-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "new-standard-regular.otf"; sourceTree = "<group>"; };
+		6B9347B821909874007ACC19 /* Assistant-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Assistant-Regular.ttf"; sourceTree = "<group>"; };
+		6B9347B921909875007ACC19 /* Assistant-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Assistant-SemiBold.ttf"; sourceTree = "<group>"; };
+		6B9347BA21909875007ACC19 /* Assistant-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Assistant-ExtraLight.ttf"; sourceTree = "<group>"; };
+		6B9347BB21909875007ACC19 /* Assistant-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Assistant-Bold.ttf"; sourceTree = "<group>"; };
+		6B9347BC21909875007ACC19 /* Assistant-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Assistant-ExtraBold.ttf"; sourceTree = "<group>"; };
+		6B9347BD21909875007ACC19 /* Assistant-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Assistant-Light.ttf"; sourceTree = "<group>"; };
 		6B9EF606215A7F1200871E3F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		6BADA75C2185F39100177CE1 /* Abel-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Abel-Regular.ttf"; sourceTree = "<group>"; };
 		6BADA76E2189686100177CE1 /* WorkTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimePicker.swift; sourceTree = "<group>"; };
@@ -127,6 +148,16 @@
 		6B0D723B217E11EF00F3A0F6 /* CustomFonts */ = {
 			isa = PBXGroup;
 			children = (
+				6B9347BB21909875007ACC19 /* Assistant-Bold.ttf */,
+				6B9347BC21909875007ACC19 /* Assistant-ExtraBold.ttf */,
+				6B9347BA21909875007ACC19 /* Assistant-ExtraLight.ttf */,
+				6B9347BD21909875007ACC19 /* Assistant-Light.ttf */,
+				6B9347B821909874007ACC19 /* Assistant-Regular.ttf */,
+				6B9347B921909875007ACC19 /* Assistant-SemiBold.ttf */,
+				6B9347B621909468007ACC19 /* new-standard-regular.otf */,
+				6B9347B42190945E007ACC19 /* EUR42.otf */,
+				6B9347B221908F07007ACC19 /* standaris-regular.otf */,
+				6B9347B021908B07007ACC19 /* sf-theramin-gothic-condensed.ttf */,
 				6B0D723D217E122800F3A0F6 /* GodoB.otf */,
 				6B0D723C217E122800F3A0F6 /* GodoM.otf */,
 				6BADA75C2185F39100177CE1 /* Abel-Regular.ttf */,
@@ -221,6 +252,7 @@
 		6BC01B7D21140CCA00BD81BE /* Hourglass */ = {
 			isa = PBXGroup;
 			children = (
+				6B9347AF21906B4A007ACC19 /* Hourglass.entitlements */,
 				6B93478E218DEE23007ACC19 /* Resources */,
 				6B0D723B217E11EF00F3A0F6 /* CustomFonts */,
 				6B6FEF122154F985000653FF /* Model */,
@@ -290,6 +322,11 @@
 					6BC01B7A21140CCA00BD81BE = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -316,21 +353,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B9347B721909468007ACC19 /* new-standard-regular.otf in Resources */,
 				6B78E920218CB9950082F7FB /* Tall___Lean.ttf in Resources */,
 				6B9347A4218EC302007ACC19 /* success_sound_4.wav in Resources */,
 				6B9347AA218EC35D007ACC19 /* end_sound_5.wav in Resources */,
 				6B9347A3218EC302007ACC19 /* success_sound_2.wav in Resources */,
+				6B9347C221909875007ACC19 /* Assistant-ExtraBold.ttf in Resources */,
 				6BC01B8921140CCB00BD81BE /* LaunchScreen.storyboard in Resources */,
+				6B9347C121909875007ACC19 /* Assistant-Bold.ttf in Resources */,
 				6B78E922218CC6B70082F7FB /* Tall_Films_Expanded.ttf in Resources */,
 				6BF74A7D218D8CDD00D02A73 /* Main.storyboard in Resources */,
 				6B0D723F217E222A00F3A0F6 /* GodoM.otf in Resources */,
+				6B9347B52190945F007ACC19 /* EUR42.otf in Resources */,
 				6B934794218DEE58007ACC19 /* end_sound_4.wav in Resources */,
 				6B934795218DEE58007ACC19 /* end_sound_1.wav in Resources */,
+				6B9347C321909875007ACC19 /* Assistant-Light.ttf in Resources */,
 				6B934793218DEE58007ACC19 /* end_sound_3.wav in Resources */,
+				6B9347BE21909875007ACC19 /* Assistant-Regular.ttf in Resources */,
+				6B9347C021909875007ACC19 /* Assistant-ExtraLight.ttf in Resources */,
+				6B9347B121908B07007ACC19 /* sf-theramin-gothic-condensed.ttf in Resources */,
+				6B9347B321908F07007ACC19 /* standaris-regular.otf in Resources */,
 				6BC01B8621140CCB00BD81BE /* Assets.xcassets in Resources */,
 				6B9347AC218ECCCD007ACC19 /* success_sound_5.wav in Resources */,
 				6B9347A1218EC302007ACC19 /* fail_sound_2.wav in Resources */,
 				6B9347A8218EC340007ACC19 /* fail_sound_1.wav in Resources */,
+				6B9347BF21909875007ACC19 /* Assistant-SemiBold.ttf in Resources */,
 				6BADA75D2185F39200177CE1 /* Abel-Regular.ttf in Resources */,
 				6B9347AE218F1156007ACC19 /* success_sound_1.wav in Resources */,
 				6B9347A2218EC302007ACC19 /* fail_sound_3.wav in Resources */,
@@ -570,6 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hourglass/Hourglass.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L2N9WY9T58;
 				INFOPLIST_FILE = Hourglass/Info.plist;
@@ -593,6 +641,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hourglass/Hourglass.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L2N9WY9T58;

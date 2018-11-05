@@ -24,10 +24,11 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Abel-Regular.ttf</string>
+		<string>Assistant-Light.ttf</string>
+		<string>Assistant-ExtraLight.ttf</string>
 		<string>GodoB.otf</string>
 		<string>GodoM.otf</string>
-		<string>Tall___Lean.ttf</string>
+		<string>new-standard-regular.otf</string>
 		<string>Tall_Films_Expanded.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
