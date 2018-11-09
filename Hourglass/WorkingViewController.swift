@@ -157,6 +157,9 @@ class WorkingViewController: UIViewController {
     
     func pause() {
         
+        // 화면 꺼짐 방지
+        UIApplication.shared.isIdleTimerDisabled = false
+        
         // 남은 시간 타이머 중단
         resumeTimer?.invalidate()
         
@@ -165,6 +168,9 @@ class WorkingViewController: UIViewController {
     }
     
     func resume() {
+        
+        // 화면 꺼짐 방지
+        UIApplication.shared.isIdleTimerDisabled = UserDefaults.standard.bool(forKey: "alwaysOnDisplaySwitchState") ? true : false
         
         // 예상 완료 타이머 중단
         pauseTimer?.invalidate()
@@ -236,7 +242,7 @@ class WorkingViewController: UIViewController {
                 
                 let play = SoundEffect()
                 play.playSound(situation: .timeOver)
-                play.vibrate(situation: .timeOver)
+                play.vibrate()
                 
                 UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: ({
                     
@@ -374,17 +380,17 @@ class WorkingViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        print("WorkingViewController!!!")
-        
-        // 유저에게 알림 허락(권한) 받기
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, Error in
-            print(didAllow)
-            if didAllow {
-                UserDefaults.standard.set(true, forKey: "alertSwitchState")
-            } else {
-                UserDefaults.standard.set(false, forKey: "alertSwitchState")
-            }
-        })
+        if UserDefaults.standard.bool(forKey: "alertSwitchState") {
+            // 유저에게 알림 허락(권한) 받기
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {didAllow, Error in
+                print(didAllow)
+                if didAllow {
+                    UserDefaults.standard.set(true, forKey: "alertSwitchState")
+                } else {
+                    UserDefaults.standard.set(false, forKey: "alertSwitchState")
+                }
+            })
+        }
         
         stopButton.layer.borderWidth = 3.5
         cancelButton.layer.borderWidth = 3.5
@@ -437,19 +443,51 @@ class WorkingViewController: UIViewController {
             let content = UNMutableNotificationContent()
             content.title = fetchResult.workName ?? "시간추정작업"
             content.subtitle = fetchResult.estimatedWorkTime.secondsToString
-            content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 경과하였습니다."
-            content.sound = UNNotificationSound.default
-            content.badge = 1
             
-            guard let triggerTime = remainingTime else { return }
+            let list = SoundEffect()
+            let index = UserDefaults.standard.integer(forKey: "timeOverSoundState")
+            content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(list.timeOverSoundFilename[index]).wav"))
             
-            var date = DateComponents()
-            date.hour = Int(triggerTime/3600)
-            date.minute = Int(triggerTime%3600/60)
-            date.second = Int(triggerTime%3600%60)
+            // 노티피케이션 디자인 커스터마이징
+            let snoozeAction = UNNotificationAction(identifier: "snooze", title:  "스누즈", options: [.authenticationRequired])
+            let completeAction = UNNotificationAction(identifier: "complete", title:  "완료", options: [.authenticationRequired])
+            let newCategory = UNNotificationCategory(identifier: "newCategory", actions: [snoozeAction, completeAction], intentIdentifiers: [], options: [])
+            
+            UNUserNotificationCenter.current().setNotificationCategories([newCategory])
+            
+            content.categoryIdentifier = "newCategory"
+            
+            // 잠금화면에 표시될 알림에 이미지 표시
+//            let fileURL: URL =
+//            let attachement = try? UNNotificationAttachment(identifier: "attachment", url: fileURL, options: nil)
+//            content.attachments = [attachement!]
+            
+            guard var triggerTime = remainingTime else { return }
+            
 
+            var trigger: UNTimeIntervalNotificationTrigger?
+            
             // 알림 트리거 지정
-            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+            switch UserDefaults.standard.integer(forKey: "alertTimeState") {
+            case 0: // 5분전
+                content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 5분 남았습니다."
+                if (triggerTime-(60*5)) < 0 {
+                    fallthrough
+                } else {
+                    triggerTime -= 60*5
+                }
+            case 1: // 1분전
+                content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 1분 남았습니다."
+                if (triggerTime-60) < 0 {
+                    fallthrough
+                } else {
+                    triggerTime -= 60
+                }
+            case 2: // 경과할 때
+                content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 경과하였습니다."
+            default: break
+            }
+            trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(triggerTime), repeats: false)
             
             // 알림 요청
             let request = UNNotificationRequest(identifier: "stopwatchDone", content: content, trigger: trigger)
@@ -511,7 +549,7 @@ class WorkingViewController: UIViewController {
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
         

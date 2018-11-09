@@ -16,6 +16,7 @@ class SoundEffect {
     let failSoundFilename: Array = ["fail_sound_1", "fail_sound_2", "fail_sound_3", "fail_sound_4"]
     
     // 설정에 표시 될 사운드의 이름
+    let alertTimeExplanation: Array = ["예상작업시간 경과 5분 전", "예상작업시간 경과 1분 전", "예상작업시간이 경과할 때"]
     let timeOverSoundExplanation: Array = ["없음", "실로폰", "빈 병 소리", "종 소리", "북 소리", "비트음"]
     let successSoundExplanation: Array = ["없음", "드럼 소리", "피아노 소리 1", "피아노 소리 2", "신나는 멜로디", "긴 종 소리"]
     let failSoundExplanation: Array = ["없음", "낮아지는 음", "비프음", "반복되는 멜로디", "웅장한 음악"]
@@ -28,46 +29,46 @@ class SoundEffect {
         case fail = 2
     }
     
-    enum Vibration {
-        
-        case error
-        case success
-        case warning
-        case light
-        case medium
-        case heavy
-        case selection
-        case oldSchool
-        
-        func vibrate() {
-            
-            switch self {
-            case .error:
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.error)
-            case .success:
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.success)
-            case .warning:
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.warning)
-            case .light:
-                let generator = UIImpactFeedbackGenerator(style: .light)
-                generator.impactOccurred()
-            case .medium:
-                let generator = UIImpactFeedbackGenerator(style: .medium)
-                generator.impactOccurred()
-            case .heavy:
-                let generator = UIImpactFeedbackGenerator(style: .heavy)
-                generator.impactOccurred()
-            case .selection:
-                let generator = UISelectionFeedbackGenerator()
-                generator.selectionChanged()
-            case .oldSchool:
-                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            }
-        }
-    }
+//    enum Vibration {
+//
+//        case error
+//        case success
+//        case warning
+//        case light
+//        case medium
+//        case heavy
+//        case selection
+//        case oldSchool
+//
+//        func vibrate() {
+//
+//            switch self {
+//            case .error:
+//                let generator = UINotificationFeedbackGenerator()
+//                generator.notificationOccurred(.error)
+//            case .success:
+//                let generator = UINotificationFeedbackGenerator()
+//                generator.notificationOccurred(.success)
+//            case .warning:
+//                let generator = UINotificationFeedbackGenerator()
+//                generator.notificationOccurred(.warning)
+//            case .light:
+//                let generator = UIImpactFeedbackGenerator(style: .light)
+//                generator.impactOccurred()
+//            case .medium:
+//                let generator = UIImpactFeedbackGenerator(style: .medium)
+//                generator.impactOccurred()
+//            case .heavy:
+//                let generator = UIImpactFeedbackGenerator(style: .heavy)
+//                generator.impactOccurred()
+//            case .selection:
+//                let generator = UISelectionFeedbackGenerator()
+//                generator.selectionChanged()
+//            case .oldSchool:
+//                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+//            }
+//        }
+//    }
     
     func playSound(situation: Situation) {
         
@@ -110,7 +111,7 @@ class SoundEffect {
         }
     }
     
-    func vibrate(situation: Situation) {
+    func vibrate() {
         
         guard UserDefaults.standard.bool(forKey: "vibrationSwitchState") else { return }
         

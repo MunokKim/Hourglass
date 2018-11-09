@@ -166,10 +166,10 @@ class WorkResultViewController: UIViewController {
         if let situation = situation {
             if situation {
                 play.playSound(situation: .success)
-                play.vibrate(situation: .success)
+                play.vibrate()
             } else {
                 play.playSound(situation: .fail)
-                play.vibrate(situation: .fail)
+                play.vibrate()
             }
         }
     }

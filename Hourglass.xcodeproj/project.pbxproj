@@ -11,6 +11,12 @@
 		6B0D723F217E222A00F3A0F6 /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6B0D723C217E122800F3A0F6 /* GodoM.otf */; };
 		6B0D7241217F22C500F3A0F6 /* WorkInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0D7240217F22C500F3A0F6 /* WorkInfoTableViewController.swift */; };
 		6B20CA0D218D914D00ADB9E3 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B20CA0C218D914D00ADB9E3 /* MoreTableViewController.swift */; };
+		6B38150D21942CCA0024D35F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B38150F21942CCA0024D35F /* Main.storyboard */; };
+		6B38151A219441930024D35F /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B381519219441930024D35F /* UserNotifications.framework */; };
+		6B38151C219441930024D35F /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B38151B219441930024D35F /* UserNotificationsUI.framework */; };
+		6B38151F219441930024D35F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B38151E219441930024D35F /* NotificationViewController.swift */; };
+		6B381522219441930024D35F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B381520219441930024D35F /* MainInterface.storyboard */; };
+		6B381526219441930024D35F /* NotificationViewController.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6B381518219441930024D35F /* NotificationViewController.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6B4DCDC7217CA4E70030196E /* WorkResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4DCDC6217CA4E60030196E /* WorkResultViewController.swift */; };
 		6B55792721481B6700CE51FC /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B55792621481B6700CE51FC /* RecordTableViewController.swift */; };
 		6B55792921481CB100CE51FC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B55792821481CB100CE51FC /* SettingViewController.swift */; };
@@ -63,9 +69,32 @@
 		6BC01B8121140CCA00BD81BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC01B8021140CCA00BD81BE /* ViewController.swift */; };
 		6BC01B8621140CCB00BD81BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC01B8521140CCB00BD81BE /* Assets.xcassets */; };
 		6BC01B8921140CCB00BD81BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC01B8721140CCB00BD81BE /* LaunchScreen.storyboard */; };
-		6BF74A7D218D8CDD00D02A73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BF74A7C218D8CDD00D02A73 /* Main.storyboard */; };
 		826A8AC7829FAD1542F911F9 /* Pods_Hourglass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FAAA2F1A1710213C5A2A2E /* Pods_Hourglass.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6B381524219441930024D35F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BC01B7321140CCA00BD81BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B381517219441930024D35F;
+			remoteInfo = NotificationViewController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6B38152A219441930024D35F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6B381526219441930024D35F /* NotificationViewController.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		48399129BC9C3D5610DFD73B /* Pods-Hourglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hourglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hourglass/Pods-Hourglass.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +102,19 @@
 		6B0D723D217E122800F3A0F6 /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		6B0D7240217F22C500F3A0F6 /* WorkInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkInfoTableViewController.swift; sourceTree = "<group>"; };
 		6B20CA0C218D914D00ADB9E3 /* MoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
+		6B38150E21942CCA0024D35F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6B381518219441930024D35F /* NotificationViewController.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationViewController.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B381519219441930024D35F /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		6B38151B219441930024D35F /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		6B38151E219441930024D35F /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		6B381521219441930024D35F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		6B381523219441930024D35F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B38152B219446AE0024D35F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		6B38152C219446AF0024D35F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		6B38152D219446AF0024D35F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		6B38152E219446B40024D35F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		6B38152F219446B40024D35F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		6B381530219446B40024D35F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		6B4DCDC6217CA4E60030196E /* WorkResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkResultViewController.swift; sourceTree = "<group>"; };
 		6B55792621481B6700CE51FC /* RecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		6B55792821481CB100CE51FC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -128,12 +170,20 @@
 		6BC01B8521140CCB00BD81BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BC01B8821140CCB00BD81BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6BC01B8A21140CCB00BD81BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6BF74A7C218D8CDD00D02A73 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E3FAAA2F1A1710213C5A2A2E /* Pods_Hourglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hourglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFE5B0F2189A611532C8E32 /* Pods-Hourglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hourglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hourglass/Pods-Hourglass.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6B381515219441930024D35F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B38151C219441930024D35F /* UserNotificationsUI.framework in Frameworks */,
+				6B38151A219441930024D35F /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BC01B7821140CCA00BD81BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -165,6 +215,16 @@
 				6B78E921218CC6B70082F7FB /* Tall_Films_Expanded.ttf */,
 			);
 			path = CustomFonts;
+			sourceTree = "<group>";
+		};
+		6B38151D219441930024D35F /* NotificationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B38151E219441930024D35F /* NotificationViewController.swift */,
+				6B381520219441930024D35F /* MainInterface.storyboard */,
+				6B381523219441930024D35F /* Info.plist */,
+			);
+			path = NotificationViewController;
 			sourceTree = "<group>";
 		};
 		6B6FEF122154F985000653FF /* Model */ = {
@@ -225,7 +285,7 @@
 		6BADA76921872A7F00177CE1 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				6BF74A7C218D8CDD00D02A73 /* Main.storyboard */,
+				6B38150F21942CCA0024D35F /* Main.storyboard */,
 				6BC01B8721140CCB00BD81BE /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -235,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				6BC01B7D21140CCA00BD81BE /* Hourglass */,
+				6B38151D219441930024D35F /* NotificationViewController */,
 				6BC01B7C21140CCA00BD81BE /* Products */,
 				BF7B95C6DE35FD73746EFBAC /* Pods */,
 				757511324807B5D15C7E6414 /* Frameworks */,
@@ -245,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				6BC01B7B21140CCA00BD81BE /* Hourglass.app */,
+				6B381518219441930024D35F /* NotificationViewController.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -273,6 +335,8 @@
 			isa = PBXGroup;
 			children = (
 				E3FAAA2F1A1710213C5A2A2E /* Pods_Hourglass.framework */,
+				6B381519219441930024D35F /* UserNotifications.framework */,
+				6B38151B219441930024D35F /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -289,6 +353,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6B381517219441930024D35F /* NotificationViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B381527219441930024D35F /* Build configuration list for PBXNativeTarget "NotificationViewController" */;
+			buildPhases = (
+				6B381514219441930024D35F /* Sources */,
+				6B381515219441930024D35F /* Frameworks */,
+				6B381516219441930024D35F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationViewController;
+			productName = NotificationViewController;
+			productReference = 6B381518219441930024D35F /* NotificationViewController.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		6BC01B7A21140CCA00BD81BE /* Hourglass */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BC01B8D21140CCB00BD81BE /* Build configuration list for PBXNativeTarget "Hourglass" */;
@@ -299,10 +380,12 @@
 				6BC01B7921140CCA00BD81BE /* Resources */,
 				0968E622A4AF27F0FADB92EA /* [CP] Embed Pods Frameworks */,
 				783B112768C958400B01FFCD /* [CP] Copy Pods Resources */,
+				6B38152A219441930024D35F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6B381525219441930024D35F /* PBXTargetDependency */,
 			);
 			name = Hourglass;
 			productName = Hourglass;
@@ -315,10 +398,13 @@
 		6BC01B7321140CCA00BD81BE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "김문옥";
 				TargetAttributes = {
+					6B381517219441930024D35F = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					6BC01B7A21140CCA00BD81BE = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
@@ -335,7 +421,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 6BC01B7221140CCA00BD81BE;
@@ -344,11 +429,20 @@
 			projectRoot = "";
 			targets = (
 				6BC01B7A21140CCA00BD81BE /* Hourglass */,
+				6B381517219441930024D35F /* NotificationViewController */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6B381516219441930024D35F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B381522219441930024D35F /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BC01B7921140CCA00BD81BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,7 +456,7 @@
 				6BC01B8921140CCB00BD81BE /* LaunchScreen.storyboard in Resources */,
 				6B9347C121909875007ACC19 /* Assistant-Bold.ttf in Resources */,
 				6B78E922218CC6B70082F7FB /* Tall_Films_Expanded.ttf in Resources */,
-				6BF74A7D218D8CDD00D02A73 /* Main.storyboard in Resources */,
+				6B38150D21942CCA0024D35F /* Main.storyboard in Resources */,
 				6B0D723F217E222A00F3A0F6 /* GodoM.otf in Resources */,
 				6B9347B52190945F007ACC19 /* EUR42.otf in Resources */,
 				6B934794218DEE58007ACC19 /* end_sound_4.wav in Resources */,
@@ -449,6 +543,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6B381514219441930024D35F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B38151F219441930024D35F /* NotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BC01B7721140CCA00BD81BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -483,11 +585,41 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6B381525219441930024D35F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B381517219441930024D35F /* NotificationViewController */;
+			targetProxy = 6B381524219441930024D35F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		6B38150F21942CCA0024D35F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6B38150E21942CCA0024D35F /* Base */,
+				6B38152B219446AE0024D35F /* ko */,
+				6B38152E219446B40024D35F /* en */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6B381520219441930024D35F /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6B381521219441930024D35F /* Base */,
+				6B38152D219446AF0024D35F /* ko */,
+				6B381530219446B40024D35F /* en */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		6BC01B8721140CCB00BD81BE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6BC01B8821140CCB00BD81BE /* Base */,
+				6B38152C219446AF0024D35F /* ko */,
+				6B38152F219446B40024D35F /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -495,6 +627,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6B381528219441930024D35F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L2N9WY9T58;
+				INFOPLIST_FILE = NotificationViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = HelloWorld.Munok.Hourglass.NotificationViewController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6B381529219441930024D35F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L2N9WY9T58;
+				INFOPLIST_FILE = NotificationViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = HelloWorld.Munok.Hourglass.NotificationViewController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		6BC01B8B21140CCB00BD81BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -615,6 +791,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48399129BC9C3D5610DFD73B /* Pods-Hourglass.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Hourglass/Hourglass.entitlements;
@@ -639,6 +816,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EBFE5B0F2189A611532C8E32 /* Pods-Hourglass.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Hourglass/Hourglass.entitlements;
@@ -662,6 +840,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6B381527219441930024D35F /* Build configuration list for PBXNativeTarget "NotificationViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B381528219441930024D35F /* Debug */,
+				6B381529219441930024D35F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6BC01B7621140CCA00BD81BE /* Build configuration list for PBXProject "Hourglass" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

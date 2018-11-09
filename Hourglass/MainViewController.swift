@@ -68,17 +68,6 @@ class MainViewController: UITableViewController {
         // 셀 구분선 왼쪽 띄움
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 0);
         
-        // userDefaults 가 설정된 적이 한번도 없으면 기본값 설정하기
-        if UserDefaults.standard.object(forKey: "alertSwitchState") == nil {
-            UserDefaults.standard.set(false, forKey: "alertSwitchState")
-            UserDefaults.standard.set(true, forKey: "soundSwitchState")
-            UserDefaults.standard.set(false, forKey: "themeSwitchState")
-            UserDefaults.standard.set(true, forKey: "vibrationSwitchState")
-            UserDefaults.standard.set(0, forKey: "timeOverSoundState")
-            UserDefaults.standard.set(0, forKey: "successSoundState")
-            UserDefaults.standard.set(0, forKey: "failSoundState")
-        }
-        
         // 높이 자동 조절
         //        tableView.estimatedRowHeight = 75;
         //        tableView.rowHeight = UITableView.automaticDimension
