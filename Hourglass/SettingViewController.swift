@@ -157,20 +157,6 @@ class SettingViewController: UITableViewController {
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
-        // userDefaults 가 설정된 적이 한번도 없으면 기본값 설정하기
-        if UserDefaults.standard.object(forKey: "alertSwitchState") == nil {
-            
-            UserDefaults.standard.set(false, forKey: "alertSwitchState")
-            UserDefaults.standard.set(1, forKey: "alertTimeState")
-            UserDefaults.standard.set(true, forKey: "soundSwitchState")
-            UserDefaults.standard.set(false, forKey: "themeSwitchState")
-            UserDefaults.standard.set(true, forKey: "vibrationSwitchState")
-            UserDefaults.standard.set(0, forKey: "timeOverSoundState")
-            UserDefaults.standard.set(0, forKey: "successSoundState")
-            UserDefaults.standard.set(0, forKey: "failSoundState")
-            UserDefaults.standard.set(true, forKey: "alwaysOnDisplaySwitchState")
-        }
-        
         alertSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
         soundSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
         themeSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)

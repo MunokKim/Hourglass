@@ -283,8 +283,8 @@ class WorkingViewController: UIViewController {
             cancelButton.isHidden = false
             completeButton.isHidden = false
             
-            cancelButtonCenterXConstraint.constant = -(UIScreen.main.bounds.width / 4 + 17.5)
-            completeButtonCenterXConstraint.constant = UIScreen.main.bounds.width / 4 + 17.5
+            cancelButtonCenterXConstraint.constant = -(self.view.bounds.width / 4 + 17.5)
+            completeButtonCenterXConstraint.constant = self.view.bounds.width / 4 + 17.5
             
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: ({
                 // 'Moss' 그라디언트

@@ -94,6 +94,10 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         
     }
     
+    override func viewWillLayoutSubviews() {
+        fetchAndRenewal()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -153,9 +157,14 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         
         if workInfoFetch.totalWork == 0 {
             // 진행한 작업이 없을 때
+            
+            // 이미 한번 만들어져 있으면 제거
+            self.tableView.viewWithTag(99)?.removeFromSuperview()
+            
             let noticeView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 45))
             noticeView.mixedBackgroundColor = MixedColor(normal: UIColor.black, night: UIColor.white)
             noticeView.alpha = 0.5
+            noticeView.tag = 99
             
             let noticeLabel = UILabel()
             noticeLabel.center = CGPoint(x: noticeView.frame.size.width / 2, y: noticeView.frame.size.height / 2)
