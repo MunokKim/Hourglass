@@ -36,6 +36,11 @@ class WorkingViewController: UIViewController {
     var fetchResult = WorkInfo()
     var workResultInfo: TimeMeasurementInfo?
     
+    // 싱글톤 객체
+    // 싱글톤 패턴 : 매번 똑같은 하나의 인스턴스만을 반환하도록 하는 클래스 설계 방식
+    static let sharedInstance = WorkingViewController()
+//    private init() {  }
+    
     var isStopwatchRunning: Bool = false
     
     let playImage = UIImage(named: "play.png")
@@ -335,7 +340,7 @@ class WorkingViewController: UIViewController {
         }
     }
     
-    func saveTimeMeasurementInfo() {
+    @objc func saveTimeMeasurementInfo() {
         
         // Core Data 영구 저장소에 TimeMeasurementInfo 데이터 추가하기
         let timeMeasurementInfo = TimeMeasurementInfo(context: context)
@@ -416,6 +421,7 @@ class WorkingViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name:UIApplication.didEnterBackgroundNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name:UIApplication.willEnterForegroundNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(workComplete(_:)), name:UserDefaults(suiteName: "group.Munok.Hourglass")?.change, object: nil)
         
         // 테마 적용 안되게 하기
         self.setNeedsStatusBarAppearanceUpdate()
@@ -423,6 +429,13 @@ class WorkingViewController: UIViewController {
         
         // 스탑워치 줄간격 줄이기
 //        remainingTimeLabel.setLineSpacing(lineSpacing: 111.0)
+        
+        UNUserNotificationCenter.current().delegate = self
+    }
+    
+    func userDefaultsDidChange(_ notification: Notification) {
+        
+        workComplete(<#Any#>)
     }
     
     @objc func didEnterBackground() {
@@ -443,6 +456,7 @@ class WorkingViewController: UIViewController {
             let content = UNMutableNotificationContent()
             content.title = fetchResult.workName ?? "시간추정작업"
             content.subtitle = fetchResult.estimatedWorkTime.secondsToString
+            content.userInfo = ["workID":fetchResult.workID, "workStart":workStart, "momentForEnterBackground":momentForEnterBackground, "elapsedTime":elapsedTime, "remainingTime":remainingTime]
             
             let list = SoundEffect()
             let index = UserDefaults.standard.integer(forKey: "timeOverSoundState")
@@ -464,10 +478,6 @@ class WorkingViewController: UIViewController {
             
             guard var triggerTime = remainingTime else { return }
             
-
-            var trigger: UNTimeIntervalNotificationTrigger?
-            
-            // 알림 트리거 지정
             switch UserDefaults.standard.integer(forKey: "alertTimeState") {
             case 0: // 5분전
                 content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 5분 남았습니다."
@@ -487,7 +497,9 @@ class WorkingViewController: UIViewController {
                 content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 경과하였습니다."
             default: break
             }
-            trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(triggerTime), repeats: false)
+            
+            // 알림 트리거 지정
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(triggerTime), repeats: false)
             
             // 알림 요청
             let request = UNNotificationRequest(identifier: "stopwatchDone", content: content, trigger: trigger)
@@ -498,27 +510,62 @@ class WorkingViewController: UIViewController {
                     print(error)
                 }
             }
-            
-            
         }
-        
     }
     
     @objc func willEnterForeground() {
-        // 백그라운드 복귀 시점 저장
-        momentForEnterForeground = NSDate()
         
-        // 백그라운드 진입 시점과 복귀 시점간의 차이
-        let lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
+        guard let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") else { return }
+        let isCompleted = shareDefaults.bool(forKey: "isCompleted")
         
-        if isStopwatchRunning {
+        if isCompleted {
             
-            elapsedTime = elapsedTime! + Int32(lostTime)
-            resume()
+            shareDefaults.set(false, forKey: "isCompleted")
+            
+            // '완료'알림버튼 누른 시점 저장
+            momentForEnterForeground = shareDefaults.object(forKey: "momentForNotiAction") as? NSDate
+            
+            // 백그라운드 진입 시점과 "완료" 알림버튼 누른 시점 간의 차이
+            var lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
+            
+            if isStopwatchRunning {
+                
+                elapsedTime = elapsedTime! + Int32(lostTime)
+                // 남은 시간 계산
+                remainingTime = (estimatedWorkTime)! - (elapsedTime)!
+            } else {
+                // 남은시간 보다 중지된 갭이 더 크다면 갭을 남은시간까지만 적용한다.
+                if remainingTime! < Int32(lostTime) {
+                    lostTime = TimeInterval(remainingTime!)
+                }
+                estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
+            }
+            
+            self.resumeTimer?.invalidate()
+            self.resumeTimer = nil
+            self.pauseTimer?.invalidate()
+            self.pauseTimer = nil
+            
+            self.saveTimeMeasurementInfo()
+            
+            self.performSegue(withIdentifier: "WorkResultSegue", sender: nil)
+            
         } else {
+            // 백그라운드 복귀 시점 저장
+            momentForEnterForeground = NSDate()
             
-            estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
-            pause()
+            // 백그라운드 진입 시점과 복귀 시점간의 차이
+            var lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
+            
+            if isStopwatchRunning {
+                
+                elapsedTime = elapsedTime! + Int32(lostTime)
+                resume()
+            } else {
+                
+                estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
+                pause()
+            }
         }
     }
     
@@ -620,3 +667,47 @@ extension CGFloat {
 //        self.attributedText = attributedString
 //    }
 //}
+
+extension WorkingViewController: UNUserNotificationCenterDelegate {
+    
+    // 앱이 켜져 있는 상태(foreground)에서 푸시를 받았을 때 호출
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler([.alert, .sound])
+    }
+    
+    // 앱이 켜져 있지는 않지만 백그라운드로 돌고 있는 상태에서 푸시를 클릭하고 들어왔을 때 혹은 알림이 dismiss 될 때 호출
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        if response.notification.request.content.categoryIdentifier == "newCategory" {
+            // Handle the actions for the expired timer.
+            if response.actionIdentifier == "snooze" {
+                // Invalidate the old timer and create a new one. . .
+                
+                let newContent = response.notification.request.content.mutableCopy() as! UNMutableNotificationContent
+                let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                // 알림 요청
+                let newRequest = UNNotificationRequest(identifier: response.notification.request.identifier, content: newContent, trigger: newTrigger)
+                // 알림 요청을 알림센터에 추가
+                UNUserNotificationCenter.current().add(newRequest) { error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
+            else if response.actionIdentifier == "complete" {
+                
+                self.resumeTimer?.invalidate()
+                self.resumeTimer = nil
+                self.pauseTimer?.invalidate()
+                self.pauseTimer = nil
+                
+                self.saveTimeMeasurementInfo()
+            }
+        }
+        completionHandler()
+    }
+    
+}
+
+

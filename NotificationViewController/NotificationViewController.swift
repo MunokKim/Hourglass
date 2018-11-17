@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import UserNotificationsUI
+import CoreData
 
 class NotificationViewController: UIViewController, UNNotificationContentExtension {
     
@@ -30,20 +31,77 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 //        self.label?.text = notification.request.content.body
 //        imageView.image = notification.request.content.
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
+
+    func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        
         if response.notification.request.content.categoryIdentifier == "newCategory" {
+            
             // Handle the actions for the expired timer.
             if response.actionIdentifier == "snooze" {
                 // Invalidate the old timer and create a new one. . .
                 
+                let newContent = response.notification.request.content.mutableCopy() as! UNMutableNotificationContent
+                let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                // 알림 요청
+                let newRequest = UNNotificationRequest(identifier: response.notification.request.identifier, content: newContent, trigger: newTrigger)
+                // 알림 요청을 알림센터에 추가
+                UNUserNotificationCenter.current().add(newRequest) { error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
             }
             else if response.actionIdentifier == "complete" {
                 
+//                let workID = userInfo["workID"] as? Int16
+//                let workStart = userInfo["workStart"] as? NSDate
+//                let elapsedTime = userInfo["elapsedTime"] as? Int32
+//                let remainingTime = userInfo["remaingTime"] as? Int32
                 
+                // App Groups 를 이용한 Extension 과 호스트 앱의 데이터 연동
+                if let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") {
+                    
+                    shareDefaults.set(true, forKey: "isCompleted")
+//                    shareDefaults.set(workID, forKey: "workID")
+//                    shareDefaults.set(workStart, forKey: "workStart")
+//                    shareDefaults.set(elapsedTime, forKey: "elapsedTime")
+//                    shareDefaults.set(remainingTime, forKey: "remainingTime")
+                    shareDefaults.set(NSDate(), forKey: "momentForNotiAction")
+                }
             }
         }
+        completion(.dismiss)
     }
+    
+//    func saveTimeMeasurementInfo() {
+//
+//        // Core Data 영구 저장소에 TimeMeasurementInfo 데이터 추가하기
+//        let timeMeasurementInfo = TimeMeasurementInfo(context: context)
+//
+//        timeMeasurementInfo.workStart = workStart
+//        let now = NSDate()
+//        timeMeasurementInfo.actualCompletion = now
+//        timeMeasurementInfo.goalSuccessOrFailWhether = elapsedTime ?? 0 <= fetchResult.estimatedWorkTime // 목표 달성/실패 여부 = 소요시간 <= 작업예상시간
+//        timeMeasurementInfo.successiveGoalAchievement = timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0 // 연속목표달성
+//        timeMeasurementInfo.estimatedWorkTime = fetchResult.estimatedWorkTime // 예상작업시간
+//        timeMeasurementInfo.elapsedTime = elapsedTime ?? 0
+//        timeMeasurementInfo.remainingTime = remainingTime ?? 0
+//        timeMeasurementInfo.work = fetchResult // 어떤 작업에 해당하는 시간측정정보인지
+//
+//        do {
+//            try context.save()
+//
+//            print("Context Save Success!")
+//            print("timeMeasurementInfo >>>>>>>>>> \(timeMeasurementInfo)")
+//            print("workInfo >>>>>>>>>> \(fetchResult)")
+//
+//            workResultInfo = timeMeasurementInfo
+//
+//        } catch let nserror as NSError {
+//
+//            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//        }
+//    }
 }
