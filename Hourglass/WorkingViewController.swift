@@ -208,6 +208,14 @@ class WorkingViewController: UIViewController {
     
     @objc func renewalForPause() {
         
+        // 노티의 '완료'버튼 눌러졌는지 체크
+        if let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") {
+            if shareDefaults.bool(forKey: "isCompleted") {
+                shareDefaults.set(false, forKey: "isCompleted")
+                workComplete((Any).self)
+            }
+        }
+        
         if remainingTime! >= Int32(0) {
             estimatedCompletion = estimatedCompletion?.addingTimeInterval(1)
         }
@@ -231,6 +239,14 @@ class WorkingViewController: UIViewController {
     }
     
     @objc func renewalForResume() {
+        
+        // 노티의 '완료'버튼 눌러졌는지 체크
+        if let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") {
+            if shareDefaults.bool(forKey: "isCompleted") {
+                shareDefaults.set(false, forKey: "isCompleted")
+                workComplete((Any).self)
+            }
+        }
         
         // 소요 시간 누적
         elapsedTime = (elapsedTime ?? 0) + 1
@@ -418,10 +434,11 @@ class WorkingViewController: UIViewController {
         
         workResumeOrPause((Any).self)
         
+        // Add Observer
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name:UIApplication.didEnterBackgroundNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name:UIApplication.willEnterForegroundNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(workComplete(_:)), name:UserDefaults(suiteName: "group.Munok.Hourglass")?.change, object: nil)
+//        notificationCenter.addObserver(self, selector: #selector(workComplete(_:)), name:UserDefaults(suiteName: "group.Munok.Hourglass")?.change, object: nil)
         
         // 테마 적용 안되게 하기
         self.setNeedsStatusBarAppearanceUpdate()
@@ -433,9 +450,10 @@ class WorkingViewController: UIViewController {
         UNUserNotificationCenter.current().delegate = self
     }
     
-    func userDefaultsDidChange(_ notification: Notification) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        workComplete(<#Any#>)
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func didEnterBackground() {

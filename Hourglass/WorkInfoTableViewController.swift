@@ -135,6 +135,12 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.individualUpdateWorkInfo), name: NSNotification.Name(rawValue: "UpdateWorkInfoNoti"), object: nil)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc func fetchAndRenewal() {
         
         // 메인에서 터치해서 선택된 인덱스로 불러온 WorkInfo객체

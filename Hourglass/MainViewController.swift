@@ -101,6 +101,12 @@ class MainViewController: UITableViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc func contextFetchToResultsArray() {
         
         // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
