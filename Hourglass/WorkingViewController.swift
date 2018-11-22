@@ -14,6 +14,10 @@ import UserNotifications
 
 class WorkingViewController: UIViewController {
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override var preferredStatusBarStyle : UIStatusBarStyle {
         
         return .lightContent
@@ -208,14 +212,6 @@ class WorkingViewController: UIViewController {
     
     @objc func renewalForPause() {
         
-        // 노티의 '완료'버튼 눌러졌는지 체크
-        if let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") {
-            if shareDefaults.bool(forKey: "isCompleted") {
-                shareDefaults.set(false, forKey: "isCompleted")
-                workComplete((Any).self)
-            }
-        }
-        
         if remainingTime! >= Int32(0) {
             estimatedCompletion = estimatedCompletion?.addingTimeInterval(1)
         }
@@ -239,14 +235,6 @@ class WorkingViewController: UIViewController {
     }
     
     @objc func renewalForResume() {
-        
-        // 노티의 '완료'버튼 눌러졌는지 체크
-        if let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") {
-            if shareDefaults.bool(forKey: "isCompleted") {
-                shareDefaults.set(false, forKey: "isCompleted")
-                workComplete((Any).self)
-            }
-        }
         
         // 소요 시간 누적
         elapsedTime = (elapsedTime ?? 0) + 1
@@ -401,18 +389,6 @@ class WorkingViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        if UserDefaults.standard.bool(forKey: "alertSwitchState") {
-            // 유저에게 알림 허락(권한) 받기
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {didAllow, Error in
-                print(didAllow)
-                if didAllow {
-                    UserDefaults.standard.set(true, forKey: "alertSwitchState")
-                } else {
-                    UserDefaults.standard.set(false, forKey: "alertSwitchState")
-                }
-            })
-        }
-        
         stopButton.layer.borderWidth = 3.5
         cancelButton.layer.borderWidth = 3.5
         completeButton.layer.borderWidth = 3.5
@@ -422,7 +398,7 @@ class WorkingViewController: UIViewController {
         workStart = NSDate() // 작업시작은 현재
         estimatedWorkTime = fetchResult.estimatedWorkTime
         elapsedTime = 0
-        remainingTime = fetchResult.estimatedWorkTime // 남은시간의 초기값은 예상작업시간
+        remainingTime = fetchResult.estimatedWorkTime // 남은시간의 초기값은 예$상작업시간
         estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!)) // 예상완료는 작업시작에 예상작업시간을 더한 값
         firstEstimatedCompletion = estimatedCompletion
         
@@ -438,7 +414,6 @@ class WorkingViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name:UIApplication.didEnterBackgroundNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name:UIApplication.willEnterForegroundNotification, object: nil)
-//        notificationCenter.addObserver(self, selector: #selector(workComplete(_:)), name:UserDefaults(suiteName: "group.Munok.Hourglass")?.change, object: nil)
         
         // 테마 적용 안되게 하기
         self.setNeedsStatusBarAppearanceUpdate()
@@ -448,12 +423,6 @@ class WorkingViewController: UIViewController {
 //        remainingTimeLabel.setLineSpacing(lineSpacing: 111.0)
         
         UNUserNotificationCenter.current().delegate = self
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func didEnterBackground() {
@@ -522,6 +491,9 @@ class WorkingViewController: UIViewController {
             // 알림 요청
             let request = UNNotificationRequest(identifier: "stopwatchDone", content: content, trigger: trigger)
             
+            // 위임 세팅
+            UNUserNotificationCenter.current().delegate = self
+            
             // 알림 요청을 알림센터에 추가
             UNUserNotificationCenter.current().add(request) { error in
                 if let error = error {
@@ -533,57 +505,20 @@ class WorkingViewController: UIViewController {
     
     @objc func willEnterForeground() {
         
-        guard let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") else { return }
-        let isCompleted = shareDefaults.bool(forKey: "isCompleted")
+        // 백그라운드 복귀 시점 저장
+        momentForEnterForeground = NSDate()
         
-        if isCompleted {
+        // 백그라운드 진입 시점과 복귀 시점간의 차이
+        var lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
+        
+        if isStopwatchRunning {
             
-            shareDefaults.set(false, forKey: "isCompleted")
-            
-            // '완료'알림버튼 누른 시점 저장
-            momentForEnterForeground = shareDefaults.object(forKey: "momentForNotiAction") as? NSDate
-            
-            // 백그라운드 진입 시점과 "완료" 알림버튼 누른 시점 간의 차이
-            var lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
-            
-            if isStopwatchRunning {
-                
-                elapsedTime = elapsedTime! + Int32(lostTime)
-                // 남은 시간 계산
-                remainingTime = (estimatedWorkTime)! - (elapsedTime)!
-            } else {
-                // 남은시간 보다 중지된 갭이 더 크다면 갭을 남은시간까지만 적용한다.
-                if remainingTime! < Int32(lostTime) {
-                    lostTime = TimeInterval(remainingTime!)
-                }
-                estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
-            }
-            
-            self.resumeTimer?.invalidate()
-            self.resumeTimer = nil
-            self.pauseTimer?.invalidate()
-            self.pauseTimer = nil
-            
-            self.saveTimeMeasurementInfo()
-            
-            self.performSegue(withIdentifier: "WorkResultSegue", sender: nil)
-            
+            elapsedTime = elapsedTime! + Int32(lostTime)
+            resume()
         } else {
-            // 백그라운드 복귀 시점 저장
-            momentForEnterForeground = NSDate()
             
-            // 백그라운드 진입 시점과 복귀 시점간의 차이
-            var lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
-            
-            if isStopwatchRunning {
-                
-                elapsedTime = elapsedTime! + Int32(lostTime)
-                resume()
-            } else {
-                
-                estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
-                pause()
-            }
+            estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
+            pause()
         }
     }
     
@@ -687,21 +622,23 @@ extension CGFloat {
 //}
 
 extension WorkingViewController: UNUserNotificationCenterDelegate {
-    
+
     // 앱이 켜져 있는 상태(foreground)에서 푸시를 받았을 때 호출
+    @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
+
         completionHandler([.alert, .sound])
     }
-    
+
     // 앱이 켜져 있지는 않지만 백그라운드로 돌고 있는 상태에서 푸시를 클릭하고 들어왔을 때 혹은 알림이 dismiss 될 때 호출
+    @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
+
         if response.notification.request.content.categoryIdentifier == "newCategory" {
             // Handle the actions for the expired timer.
             if response.actionIdentifier == "snooze" {
                 // Invalidate the old timer and create a new one. . .
-                
+
                 let newContent = response.notification.request.content.mutableCopy() as! UNMutableNotificationContent
                 let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
                 // 알림 요청
@@ -715,17 +652,38 @@ extension WorkingViewController: UNUserNotificationCenterDelegate {
             }
             else if response.actionIdentifier == "complete" {
                 
+                // '완료'알림버튼 누른 시점 저장
+                momentForEnterForeground = NSDate()
+                
+                // 백그라운드 진입 시점과 "완료" 알림버튼 누른 시점 간의 차이
+                var lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
+                
+                if isStopwatchRunning {
+                    
+                    elapsedTime = elapsedTime! + Int32(lostTime)
+                    // 남은 시간 계산
+                    remainingTime = (estimatedWorkTime)! - (elapsedTime)!
+                } else {
+                    // 남은시간 보다 중지된 갭이 더 크다면 갭을 남은시간까지만 적용한다.
+                    if remainingTime! < Int32(lostTime) {
+                        lostTime = TimeInterval(remainingTime!)
+                    }
+                    estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
+                }
+                
                 self.resumeTimer?.invalidate()
                 self.resumeTimer = nil
                 self.pauseTimer?.invalidate()
                 self.pauseTimer = nil
-                
+
                 self.saveTimeMeasurementInfo()
+
+                self.performSegue(withIdentifier: "WorkResultSegue", sender: nil)
             }
         }
         completionHandler()
     }
-    
+
 }
 
 

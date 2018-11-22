@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        } else {
 //            application.statusBarStyle = .default
 //        }
+        
+        if UserDefaults.standard.bool(forKey: "alertSwitchState") {
+            // 유저에게 알림 허락(권한) 받기
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {didAllow, Error in
+                print(didAllow)
+                if didAllow {
+                    UserDefaults.standard.set(true, forKey: "alertSwitchState")
+                } else {
+                    UserDefaults.standard.set(false, forKey: "alertSwitchState")
+                }
+            })
+        }
+        
+//        UNUserNotificationCenter.current().delegate = self
         
         return true
     }
@@ -124,5 +139,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return persistentContainer.viewContext
     }
 
+//    // 앱이 켜져 있는 상태(foreground)에서 푸시를 받았을 때 호출
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//
+//        print("Test Foreground: \(notification.request.identifier)")
+//        completionHandler([.alert, .sound])
+//    }
+//
+//    // 앱이 켜져 있지는 않지만 백그라운드로 돌고 있는 상태에서 푸시를 클릭하고 들어왔을 때 혹은 알림이 dismiss 될 때 호출
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//
+//        print("Test: \(response.notification.request.identifier)")
+//
+//        if response.notification.request.content.categoryIdentifier == "newCategory" {
+//            // Handle the actions for the expired timer.
+//            if response.actionIdentifier == "snooze" {
+//                // Invalidate the old timer and create a new one. . .
+//
+//                let newContent = response.notification.request.content.mutableCopy() as! UNMutableNotificationContent
+//                let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//                // 알림 요청
+//                let newRequest = UNNotificationRequest(identifier: response.notification.request.identifier, content: newContent, trigger: newTrigger)
+//                // 알림 요청을 알림센터에 추가
+//                UNUserNotificationCenter.current().add(newRequest) { error in
+//                    if let error = error {
+//                        print(error)
+//                    }
+//                }
+//                completionHandler()
+//            }
+//            else if response.actionIdentifier == "complete" {
+//
+//                //                self.resumeTimer?.invalidate()
+//                //                self.resumeTimer = nil
+//                //                self.pauseTimer?.invalidate()
+//                //                self.pauseTimer = nil
+//                //
+//                //                self.saveTimeMeasurementInfo()
+//                //
+//                //                self.performSegue(withIdentifier: "WorkResultSegue", sender: nil)
+//            }
+//            completionHandler()
+//        }
+//        completionHandler()
+//    }
 }
-

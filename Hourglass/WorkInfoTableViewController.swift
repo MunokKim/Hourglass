@@ -13,6 +13,10 @@ import NightNight
 
 class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     var selectedIndex: Int?
     let context = AppDelegate.viewContext
     let workingVC = WorkingViewController()
@@ -133,12 +137,6 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
 //        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.fetchAndRenewal), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
         notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.fetchAndRenewal), name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
         notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.individualUpdateWorkInfo), name: NSNotification.Name(rawValue: "UpdateWorkInfoNoti"), object: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func fetchAndRenewal() {
@@ -325,6 +323,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
             if let vc = segue.destination as? WorkingViewController {
                 
                 print("selectedIndex is : \(self.selectedIndex)")
+                vc.modalTransitionStyle = .crossDissolve
                 vc.selectedIndex = self.selectedIndex
             }
         }

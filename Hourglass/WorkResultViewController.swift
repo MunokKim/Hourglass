@@ -56,6 +56,7 @@ class WorkResultViewController: UIViewController {
     
     @IBAction func closeView(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
+        self.presentingViewController?.modalTransitionStyle = .coverVertical
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
@@ -75,6 +76,7 @@ class WorkResultViewController: UIViewController {
         } else if sender.state == UIGestureRecognizer.State.ended || sender.state == UIGestureRecognizer.State.cancelled {
             if touchPoint.y - initialTouchPoint.y > 100 {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
+                self.presentingViewController?.modalTransitionStyle = .coverVertical
                 self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             } else {
                 UIView.animate(withDuration : 0.3, animations: {
@@ -118,9 +120,6 @@ class WorkResultViewController: UIViewController {
             if let achievement = workResultInfo?.successiveGoalAchievement, achievement >= Int16(2) {
                 
                 goalString = "\(achievement)회 연속 " + goalString!
-                
-                // 레이블 깜빡임
-                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(animateText), userInfo: nil, repeats: true)
                 
                 // 월계수 이미지 표시
                 for laurel in laurels {
@@ -172,6 +171,9 @@ class WorkResultViewController: UIViewController {
                 play.vibrate()
             }
         }
+        
+        // 레이블 깜빡임
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(animateText), userInfo: nil, repeats: true)
     }
     
     func contextFetchFor(ThisWork: WorkInfo) -> [TimeMeasurementInfo] {

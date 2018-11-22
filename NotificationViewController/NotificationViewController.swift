@@ -52,6 +52,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                         print(error)
                     }
                 }
+                completion(.dismiss)
             }
             else if response.actionIdentifier == "complete" {
                 
@@ -70,9 +71,27 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 //                    shareDefaults.set(remainingTime, forKey: "remainingTime")
                     shareDefaults.set(NSDate(), forKey: "momentForNotiAction")
                 }
+                
+                let innerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imageView.frame.size.width, height: 0))
+                innerView.layer.position = CGPoint(x: self.imageView.frame.width/2, y: self.imageView.frame.height)
+                innerView.backgroundColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:0.75)
+//                innerView.layer.cornerRadius = 0
+                innerView.layer.cornerRadius = self.imageView.layer.frame.width / 3
+                innerView.clipsToBounds = true
+                imageView.addSubview(innerView)
+                
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.75, animations: {
+                        innerView.frame.size.height = self.imageView.frame.size.height
+                        innerView.layer.position = CGPoint(x: self.imageView.frame.width/2, y: self.imageView.frame.height/2)
+                        self.view.layoutIfNeeded()
+                    }, completion: { _ in
+                        completion(.dismissAndForwardAction)
+                    })
+                }
             }
         }
-        completion(.dismiss)
+//        completion(.doNotDismiss)
     }
     
 //    func saveTimeMeasurementInfo() {

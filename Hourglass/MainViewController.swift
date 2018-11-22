@@ -13,6 +13,10 @@ import NightNight
 
 class MainViewController: UITableViewController {
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     var selectedIndex: Int?
     
     @IBOutlet var mainTableView: UITableView!
@@ -99,12 +103,6 @@ class MainViewController: UITableViewController {
         notificationCenter.addObserver(self, selector: #selector(contextFetchToResultsArray), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context)
         
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func contextFetchToResultsArray() {
@@ -267,6 +265,7 @@ class MainViewController: UITableViewController {
             if let vc = segue.destination as? WorkingViewController {
                 
                 print("selectedIndex is : \(self.selectedIndex)")
+                vc.modalTransitionStyle = .crossDissolve
                 vc.selectedIndex = self.selectedIndex
             }
         }

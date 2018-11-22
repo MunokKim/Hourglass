@@ -120,7 +120,7 @@
                                     <outlet property="latestTimeLabel" destination="bMo-J0-g9Y" id="WBa-O7-4Ek"/>
                                     <outlet property="workInfoBtn" destination="Fh6-8s-Zo1" id="cOd-C2-1oc"/>
                                     <outlet property="workNameLabel" destination="lE6-Jj-xsC" id="hz9-sh-SmS"/>
-                                    <segue destination="M4F-Va-rGN" kind="presentation" identifier="WorkingSegue" customClass="FadeInSegue" customModule="Hourglass" customModuleProvider="target" modalPresentationStyle="overCurrentContext" id="RPq-cW-jTP"/>
+                                    <segue destination="M4F-Va-rGN" kind="presentation" identifier="WorkingSegue" modalPresentationStyle="overCurrentContext" id="RPq-cW-jTP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -156,6 +156,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vC-m3-S8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1273.913043478261" y="1175.5434782608697"/>
+        </scene>
+        <!--Icon Collection View Controller-->
+        <scene sceneID="u86-GO-5ML">
+            <objects>
+                <collectionViewController id="Zfc-70-obe" customClass="iconCollectionViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Hfl-09-HVC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vvR-eA-R87">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vKl-t4-DuV">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Zfc-70-obe" id="1nZ-oQ-2rP"/>
+                            <outlet property="delegate" destination="Zfc-70-obe" id="b1S-8C-wNl"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hkt-TT-GN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2044" y="-242"/>
         </scene>
         <!--새로운 작업-->
         <scene sceneID="9Ko-4t-aKh">
@@ -618,16 +652,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소요 시간" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJD-8Q-h9x">
-                                        <rect key="frame" x="154" y="300" width="67" height="20"/>
+                                        <rect key="frame" x="154" y="317" width="67" height="20"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="50" translatesAutoresizingMaskIntoConstraints="NO" id="fLg-Kj-SHv">
-                                        <rect key="frame" x="187.5" y="326" width="0.0" height="110"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="k9M-GM-gNm"/>
-                                        </constraints>
+                                        <rect key="frame" x="187.5" y="343" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="60"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -707,7 +738,7 @@
                                     <constraint firstItem="6u1-ff-axj" firstAttribute="bottom" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="1.9" id="9Pn-MQ-uYC"/>
                                     <constraint firstItem="Rpn-Sz-FyH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fjm-Xi-SSo" secondAttribute="leading" constant="3" id="9dT-KP-QUy"/>
                                     <constraint firstItem="M1E-mf-SSs" firstAttribute="centerX" secondItem="Fjm-Xi-SSo" secondAttribute="centerX" id="AU9-jF-hEB"/>
-                                    <constraint firstItem="pJD-8Q-h9x" firstAttribute="top" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="0.9" id="CZu-T6-1Y6"/>
+                                    <constraint firstItem="pJD-8Q-h9x" firstAttribute="top" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="0.95" id="CZu-T6-1Y6"/>
                                     <constraint firstItem="O4K-9X-BLK" firstAttribute="top" secondItem="Fjm-Xi-SSo" secondAttribute="centerY" multiplier="0.1" id="GEs-Hj-6yo"/>
                                     <constraint firstItem="NsT-G2-kxW" firstAttribute="leading" secondItem="pIb-Dn-7Ql" secondAttribute="leading" id="Jfm-Iu-JsB"/>
                                     <constraint firstAttribute="trailing" secondItem="Lvh-zg-PR3" secondAttribute="trailing" constant="24" id="Jps-aa-vH0"/>
@@ -1183,9 +1214,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="작업 정보" id="M0a-fW-4cQ">
-                        <barButtonItem key="rightBarButtonItem" title="작업 시작" id="Z15-t2-QPm">
+                        <barButtonItem key="rightBarButtonItem" title="시작" id="Z15-t2-QPm">
                             <connections>
-                                <segue destination="M4F-Va-rGN" kind="custom" identifier="WorkingSegue" customClass="FadeInSegue" customModule="Hourglass" customModuleProvider="target" id="kQG-6C-KOA"/>
+                                <segue destination="M4F-Va-rGN" kind="presentation" identifier="WorkingSegue" modalPresentationStyle="overCurrentContext" id="kQG-6C-KOA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1248,7 +1279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ppe-9M-v56" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2822" y="1176"/>
+            <point key="canvasLocation" x="2821" y="1175"/>
         </scene>
         <!--더 보기-->
         <scene sceneID="iig-sq-1dw">
