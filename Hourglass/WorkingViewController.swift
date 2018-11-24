@@ -32,18 +32,13 @@ class WorkingViewController: UIViewController {
     var firstEstimatedCompletion: NSDate?
     var resumeTimer: Timer? = Timer()
     var pauseTimer: Timer? = Timer()
-    var momentForEnterBackground: NSDate?
-    var momentForEnterForeground: NSDate?
+    var momentOfEnterBackground: NSDate?
+    var momentOfEnterForeground: NSDate?
     
     let context = AppDelegate.viewContext
     
     var fetchResult = WorkInfo()
     var workResultInfo: TimeMeasurementInfo?
-    
-    // 싱글톤 객체
-    // 싱글톤 패턴 : 매번 똑같은 하나의 인스턴스만을 반환하도록 하는 클래스 설계 방식
-    static let sharedInstance = WorkingViewController()
-//    private init() {  }
     
     var isStopwatchRunning: Bool = false
     
@@ -398,7 +393,7 @@ class WorkingViewController: UIViewController {
         workStart = NSDate() // 작업시작은 현재
         estimatedWorkTime = fetchResult.estimatedWorkTime
         elapsedTime = 0
-        remainingTime = fetchResult.estimatedWorkTime // 남은시간의 초기값은 예$상작업시간
+        remainingTime = fetchResult.estimatedWorkTime // 남은시간의 초기값은 예상작업시간
         estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!)) // 예상완료는 작업시작에 예상작업시간을 더한 값
         firstEstimatedCompletion = estimatedCompletion
         
@@ -433,7 +428,7 @@ class WorkingViewController: UIViewController {
         pauseTimer = nil
         
         // 백그라운드 진입 시점 저장
-        momentForEnterBackground = NSDate()
+        momentOfEnterBackground = NSDate()
         
         let didAllow = UserDefaults.standard.bool(forKey: "alertSwitchState")
         
@@ -443,7 +438,7 @@ class WorkingViewController: UIViewController {
             let content = UNMutableNotificationContent()
             content.title = fetchResult.workName ?? "시간추정작업"
             content.subtitle = fetchResult.estimatedWorkTime.secondsToString
-            content.userInfo = ["workID":fetchResult.workID, "workStart":workStart, "momentForEnterBackground":momentForEnterBackground, "elapsedTime":elapsedTime, "remainingTime":remainingTime]
+            content.userInfo = ["workID":fetchResult.workID, "workStart":workStart, "momentForEnterBackground":momentOfEnterBackground, "elapsedTime":elapsedTime, "remainingTime":remainingTime]
             
             let list = SoundEffect()
             let index = UserDefaults.standard.integer(forKey: "timeOverSoundState")
@@ -506,10 +501,10 @@ class WorkingViewController: UIViewController {
     @objc func willEnterForeground() {
         
         // 백그라운드 복귀 시점 저장
-        momentForEnterForeground = NSDate()
+        momentOfEnterForeground = NSDate()
         
         // 백그라운드 진입 시점과 복귀 시점간의 차이
-        var lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
+        var lostTime: TimeInterval = momentOfEnterForeground!.timeIntervalSinceReferenceDate - momentOfEnterBackground!.timeIntervalSinceReferenceDate
         
         if isStopwatchRunning {
             
@@ -652,11 +647,12 @@ extension WorkingViewController: UNUserNotificationCenterDelegate {
             }
             else if response.actionIdentifier == "complete" {
                 
-                // '완료'알림버튼 누른 시점 저장
-                momentForEnterForeground = NSDate()
+                var lostTime: TimeInterval = 0
                 
-                // 백그라운드 진입 시점과 "완료" 알림버튼 누른 시점 간의 차이
-                var lostTime: TimeInterval = momentForEnterForeground!.timeIntervalSinceReferenceDate - momentForEnterBackground!.timeIntervalSinceReferenceDate
+                if UIApplication.shared.applicationState == .background {
+                    // 백그라운드 진입 시점과 "완료" 알림버튼 누른 시점 간의 차이
+                    lostTime = NSDate().timeIntervalSinceReferenceDate - momentOfEnterBackground!.timeIntervalSinceReferenceDate
+                }
                 
                 if isStopwatchRunning {
                     
@@ -665,7 +661,7 @@ extension WorkingViewController: UNUserNotificationCenterDelegate {
                     remainingTime = (estimatedWorkTime)! - (elapsedTime)!
                 } else {
                     // 남은시간 보다 중지된 갭이 더 크다면 갭을 남은시간까지만 적용한다.
-                    if remainingTime! < Int32(lostTime) {
+                    if remainingTime! < Int32(lostTime) && remainingTime! > 0 {
                         lostTime = TimeInterval(remainingTime!)
                     }
                     estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)

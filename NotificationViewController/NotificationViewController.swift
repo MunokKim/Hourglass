@@ -62,15 +62,15 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 //                let remainingTime = userInfo["remaingTime"] as? Int32
                 
                 // App Groups 를 이용한 Extension 과 호스트 앱의 데이터 연동
-                if let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") {
-                    
-                    shareDefaults.set(true, forKey: "isCompleted")
-//                    shareDefaults.set(workID, forKey: "workID")
-//                    shareDefaults.set(workStart, forKey: "workStart")
-//                    shareDefaults.set(elapsedTime, forKey: "elapsedTime")
-//                    shareDefaults.set(remainingTime, forKey: "remainingTime")
-                    shareDefaults.set(NSDate(), forKey: "momentForNotiAction")
-                }
+//                if let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") {
+//
+//                    shareDefaults.set(true, forKey: "isCompleted")
+////                    shareDefaults.set(workID, forKey: "workID")
+////                    shareDefaults.set(workStart, forKey: "workStart")
+////                    shareDefaults.set(elapsedTime, forKey: "elapsedTime")
+////                    shareDefaults.set(remainingTime, forKey: "remainingTime")
+//                    shareDefaults.set(NSDate(), forKey: "momentForNotiAction")
+//                }
                 
                 let innerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imageView.frame.size.width, height: 0))
                 innerView.layer.position = CGPoint(x: self.imageView.frame.width/2, y: self.imageView.frame.height)

@@ -64,6 +64,9 @@
 		6B9347C221909875007ACC19 /* Assistant-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347BC21909875007ACC19 /* Assistant-ExtraBold.ttf */; };
 		6B9347C321909875007ACC19 /* Assistant-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B9347BD21909875007ACC19 /* Assistant-Light.ttf */; };
 		6B9EF607215A7F1200871E3F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EF606215A7F1200871E3F /* GradientView.swift */; };
+		6BA31EF121A975350048B4B5 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA31EF021A975350048B4B5 /* Settings.storyboard */; };
+		6BA31EF321A975900048B4B5 /* Working.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA31EF221A975900048B4B5 /* Working.storyboard */; };
+		6BA31EF521A977C80048B4B5 /* NewWork.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA31EF421A977C80048B4B5 /* NewWork.storyboard */; };
 		6BADA75D2185F39200177CE1 /* Abel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BADA75C2185F39100177CE1 /* Abel-Regular.ttf */; };
 		6BADA76F2189686100177CE1 /* WorkTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BADA76E2189686100177CE1 /* WorkTimePicker.swift */; };
 		6BC01B7F21140CCA00BD81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC01B7E21140CCA00BD81BE /* AppDelegate.swift */; };
@@ -165,6 +168,9 @@
 		6B9347BC21909875007ACC19 /* Assistant-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Assistant-ExtraBold.ttf"; sourceTree = "<group>"; };
 		6B9347BD21909875007ACC19 /* Assistant-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Assistant-Light.ttf"; sourceTree = "<group>"; };
 		6B9EF606215A7F1200871E3F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		6BA31EF021A975350048B4B5 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		6BA31EF221A975900048B4B5 /* Working.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Working.storyboard; sourceTree = "<group>"; };
+		6BA31EF421A977C80048B4B5 /* NewWork.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewWork.storyboard; sourceTree = "<group>"; };
 		6BADA75C2185F39100177CE1 /* Abel-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Abel-Regular.ttf"; sourceTree = "<group>"; };
 		6BADA76E2189686100177CE1 /* WorkTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimePicker.swift; sourceTree = "<group>"; };
 		6BC01B7B21140CCA00BD81BE /* Hourglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hourglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +255,7 @@
 			children = (
 				6BC01B8021140CCA00BD81BE /* ViewController.swift */,
 				6B8D5A2B2139584F00AB9122 /* NewWorkViewController.swift */,
+				6B018DB321A669000024A960 /* iconCollectionViewController.swift */,
 				6B8D5A292139556400AB9122 /* MainViewController.swift */,
 				6B8D5A2D21395DE800AB9122 /* WorkingViewController.swift */,
 				6B4DCDC6217CA4E60030196E /* WorkResultViewController.swift */,
@@ -261,7 +268,6 @@
 				6B20CA0C218D914D00ADB9E3 /* MoreTableViewController.swift */,
 				6B93478A218DB101007ACC19 /* SoundEffectSelectionTableViewController.swift */,
 				6B93478C218DC49D007ACC19 /* WillUpdateTableViewController.swift */,
-				6B018DB321A669000024A960 /* iconCollectionViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -291,6 +297,9 @@
 			isa = PBXGroup;
 			children = (
 				6B38150F21942CCA0024D35F /* Main.storyboard */,
+				6BA31EF421A977C80048B4B5 /* NewWork.storyboard */,
+				6BA31EF221A975900048B4B5 /* Working.storyboard */,
+				6BA31EF021A975350048B4B5 /* Settings.storyboard */,
 				6BC01B8721140CCB00BD81BE /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -411,7 +420,7 @@
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
@@ -426,7 +435,7 @@
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
@@ -480,8 +489,10 @@
 				6B9347B52190945F007ACC19 /* EUR42.otf in Resources */,
 				6B934794218DEE58007ACC19 /* end_sound_4.wav in Resources */,
 				6B934795218DEE58007ACC19 /* end_sound_1.wav in Resources */,
+				6BA31EF521A977C80048B4B5 /* NewWork.storyboard in Resources */,
 				6B9347C321909875007ACC19 /* Assistant-Light.ttf in Resources */,
 				6B934793218DEE58007ACC19 /* end_sound_3.wav in Resources */,
+				6BA31EF321A975900048B4B5 /* Working.storyboard in Resources */,
 				6B9347BE21909875007ACC19 /* Assistant-Regular.ttf in Resources */,
 				6B9347C021909875007ACC19 /* Assistant-ExtraLight.ttf in Resources */,
 				6B9347B121908B07007ACC19 /* sf-theramin-gothic-condensed.ttf in Resources */,
@@ -490,6 +501,7 @@
 				6B9347AC218ECCCD007ACC19 /* success_sound_5.wav in Resources */,
 				6B9347A1218EC302007ACC19 /* fail_sound_2.wav in Resources */,
 				6B9347A8218EC340007ACC19 /* fail_sound_1.wav in Resources */,
+				6BA31EF121A975350048B4B5 /* Settings.storyboard in Resources */,
 				6B9347BF21909875007ACC19 /* Assistant-SemiBold.ttf in Resources */,
 				6BADA75D2185F39200177CE1 /* Abel-Regular.ttf in Resources */,
 				6B9347AE218F1156007ACC19 /* success_sound_1.wav in Resources */,
