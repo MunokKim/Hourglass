@@ -2,17 +2,20 @@ PODS:
   - MarqueeLabel/Swift (3.2.0)
   - NightNight (0.5.0)
   - SnapKit (4.0.1)
+  - SwiftIcons (2.2.0)
 
 DEPENDENCIES:
   - MarqueeLabel/Swift
   - NightNight
   - SnapKit (~> 4.0.0)
+  - SwiftIcons (~> 2.2.0)
 
 SPEC CHECKSUMS:
   MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
   NightNight: 2a5550fdd9cf424b75ebaab022c26aaba35304c8
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SwiftIcons: e7eb9bf2b475d6bdd8b37c5bdedc6d120aab0829
 
-PODFILE CHECKSUM: f23c0fc41f702fb5e1dbc90795a46b1d0a978d2d
+PODFILE CHECKSUM: aa0537cf195c8292ca9dd6e0b3141b37a38e96dc
 
 COCOAPODS: 1.4.0

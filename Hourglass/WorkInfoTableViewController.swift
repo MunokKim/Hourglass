@@ -98,9 +98,9 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         
     }
     
-    override func viewWillLayoutSubviews() {
-        fetchAndRenewal()
-    }
+//    override func viewWillLayoutSubviews() {
+//        fetchAndRenewal()
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,7 +136,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         let notificationCenter = NotificationCenter.default
 //        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.fetchAndRenewal), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
         notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.fetchAndRenewal), name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
-        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.individualUpdateWorkInfo), name: NSNotification.Name(rawValue: "UpdateWorkInfoNoti"), object: nil)
+//        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.individualUpdateWorkInfo), name: NSNotification.Name(rawValue: "UpdateWorkInfoNoti"), object: nil)
     }
     
     @objc func fetchAndRenewal() {
@@ -344,14 +344,11 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
                 
                 vc.delegation = self as? PopoverPickerViewControllerDelegate
                 
+                // 예상작업시간 팝오버에 넘겨주기
                 vc.estimatedWorkTimeForPopover = workInfoFetch!.estimatedWorkTime
             }
-            
-            // 예상작업시간 팝오버에 넘겨주기
-            
         }
     }
-
 }
 
 extension WorkInfoTableViewController: PopoverPickerViewControllerDelegate {

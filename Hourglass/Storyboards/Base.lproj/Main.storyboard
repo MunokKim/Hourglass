@@ -514,7 +514,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="작업 정보" id="M0a-fW-4cQ">
-                        <barButtonItem key="rightBarButtonItem" title="시작" id="Z15-t2-QPm"/>
+                        <barButtonItem key="rightBarButtonItem" title="시작" id="D1y-zf-IMZ">
+                            <connections>
+                                <segue destination="hHv-Q5-GBj" kind="presentation" identifier="WorkingSegue" id="mnm-PN-l8T"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="averageElapsedTimeLabel" destination="1qF-F6-mNJ" id="IZf-Ks-wyt"/>
@@ -653,4 +657,7 @@
         <image name="iosMore" width="25" height="40"/>
         <image name="pencil" width="28.799999237060547" height="28.799999237060547"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gar-Pl-YAe"/>
+    </inferredMetricsTieBreakers>
 </document>

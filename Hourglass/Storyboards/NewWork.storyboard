@@ -24,7 +24,6 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="D0S-Jz-A7z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z2P-43-5UK">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -32,13 +31,30 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="lOU-6D-Md3" customClass="IconCell">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="iconCell" id="lOU-6D-Md3" customClass="IconCell" customModule="Hourglass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JnZ-r0-qag">
+                                            <rect key="frame" x="2.5" y="2.5" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="kFt-qe-yat"/>
+                                                <constraint firstAttribute="width" constant="60" id="ptj-xQ-Bmf"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="JnZ-r0-qag" firstAttribute="centerY" secondItem="lOU-6D-Md3" secondAttribute="centerY" id="n3n-wi-ggH"/>
+                                    <constraint firstItem="JnZ-r0-qag" firstAttribute="centerX" secondItem="lOU-6D-Md3" secondAttribute="centerX" id="vgA-aD-CIM"/>
+                                </constraints>
+                                <size key="customSize" width="65" height="65"/>
+                                <connections>
+                                    <outlet property="iconImageView" destination="JnZ-r0-qag" id="tlv-29-FPq"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -83,7 +99,7 @@
                                             <outlet property="accessoryView" destination="6be-Dz-bYd" id="ffx-f1-CeR"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="mDB-Xd-h6m" customClass="IconCell" customModule="Hourglass" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="86" id="mDB-Xd-h6m">
                                         <rect key="frame" x="0.0" y="99.5" width="375" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mDB-Xd-h6m" id="gF0-I7-PRG">

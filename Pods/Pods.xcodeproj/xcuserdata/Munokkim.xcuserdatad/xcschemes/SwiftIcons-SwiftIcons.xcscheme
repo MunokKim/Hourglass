@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3D1DF1BAF6C8EEE0BB28D2F58F314116"
-               BuildableName = "Pods_Hourglass.framework"
-               BlueprintName = "Pods-Hourglass"
+               BlueprintIdentifier = "28735379A16F66C872A0F43B766F3FF5"
+               BuildableName = "SwiftIcons.bundle"
+               BlueprintName = "SwiftIcons-SwiftIcons"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D1DF1BAF6C8EEE0BB28D2F58F314116"
-            BuildableName = "Pods_Hourglass.framework"
-            BlueprintName = "Pods-Hourglass"
+            BlueprintIdentifier = "28735379A16F66C872A0F43B766F3FF5"
+            BuildableName = "SwiftIcons.bundle"
+            BlueprintName = "SwiftIcons-SwiftIcons"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

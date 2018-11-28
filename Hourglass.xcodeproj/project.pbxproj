@@ -67,6 +67,7 @@
 		6BA31EF121A975350048B4B5 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA31EF021A975350048B4B5 /* Settings.storyboard */; };
 		6BA31EF321A975900048B4B5 /* Working.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA31EF221A975900048B4B5 /* Working.storyboard */; };
 		6BA31EF521A977C80048B4B5 /* NewWork.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA31EF421A977C80048B4B5 /* NewWork.storyboard */; };
+		6BA31EFA21AE91850048B4B5 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA31EF921AE91850048B4B5 /* IconCell.swift */; };
 		6BADA75D2185F39200177CE1 /* Abel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BADA75C2185F39100177CE1 /* Abel-Regular.ttf */; };
 		6BADA76F2189686100177CE1 /* WorkTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BADA76E2189686100177CE1 /* WorkTimePicker.swift */; };
 		6BC01B7F21140CCA00BD81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC01B7E21140CCA00BD81BE /* AppDelegate.swift */; };
@@ -171,6 +172,7 @@
 		6BA31EF021A975350048B4B5 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		6BA31EF221A975900048B4B5 /* Working.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Working.storyboard; sourceTree = "<group>"; };
 		6BA31EF421A977C80048B4B5 /* NewWork.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewWork.storyboard; sourceTree = "<group>"; };
+		6BA31EF921AE91850048B4B5 /* IconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		6BADA75C2185F39100177CE1 /* Abel-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Abel-Regular.ttf"; sourceTree = "<group>"; };
 		6BADA76E2189686100177CE1 /* WorkTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimePicker.swift; sourceTree = "<group>"; };
 		6BC01B7B21140CCA00BD81BE /* Hourglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hourglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,6 +343,7 @@
 				6B5BAA6F215A4C5800B9A8F1 /* FadeInSegue.swift */,
 				6B9EF606215A7F1200871E3F /* GradientView.swift */,
 				6BADA76E2189686100177CE1 /* WorkTimePicker.swift */,
+				6BA31EF921AE91850048B4B5 /* IconCell.swift */,
 			);
 			path = Hourglass;
 			sourceTree = "<group>";
@@ -526,12 +529,14 @@
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NightNight/NightNight.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftIcons/SwiftIcons.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NightNight.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftIcons.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -606,6 +611,7 @@
 				6B8B3A4C215524C600E682B6 /* TimeMeasurementInfo+CoreDataProperties.swift in Sources */,
 				6B0D7241217F22C500F3A0F6 /* WorkInfoTableViewController.swift in Sources */,
 				6B20CA0D218D914D00ADB9E3 /* MoreTableViewController.swift in Sources */,
+				6BA31EFA21AE91850048B4B5 /* IconCell.swift in Sources */,
 				6B5623A12189E68500E840FA /* PopoverPickerViewController.swift in Sources */,
 				6B018DB421A669000024A960 /* iconCollectionViewController.swift in Sources */,
 				6B5BAA70215A4C5800B9A8F1 /* FadeInSegue.swift in Sources */,
