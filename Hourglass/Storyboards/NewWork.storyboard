@@ -20,7 +20,7 @@
         <!--아이콘 선택-->
         <scene sceneID="Vp1-ih-KU1">
             <objects>
-                <collectionViewController id="U5e-SN-ZL9" customClass="iconCollectionViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="U5e-SN-ZL9" customClass="IconCollectionViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="D0S-Jz-A7z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -127,7 +127,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="U5e-SN-ZL9" kind="show" id="fzI-aB-Gb0"/>
+                                            <segue destination="U5e-SN-ZL9" kind="show" identifier="iconSegue" id="fzI-aB-Gb0"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="oIp-Zn-2G3" detailTextLabel="Q9t-0U-iMx" style="IBUITableViewCellStyleValue1" id="1vH-hc-pcs">

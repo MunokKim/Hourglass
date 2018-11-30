@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nx3-jv-2mN">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -23,19 +23,19 @@
             <objects>
                 <tableViewController id="6GR-79-Gq1" customClass="MainViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dxH-Pc-100">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="mainCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainCell" rowHeight="75" id="BE8-oJ-dao" customClass="WorkCell" customModule="Hourglass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BE8-oJ-dao" id="ZZV-G4-8Lc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="74.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fh6-8s-Zo1">
-                                            <rect key="frame" x="316" y="0.0" width="59" height="74.5"/>
+                                            <rect key="frame" x="355" y="0.0" width="59" height="74.666666666666671"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="59" id="UJ0-zV-C1g"/>
                                                 <constraint firstAttribute="height" constant="74.670000000000002" id="eKX-0u-VeX"/>
@@ -46,18 +46,28 @@
                                                 <segue destination="bUP-lT-cEa" kind="show" identifier="WorkInfoSegue" id="psX-M1-qQS"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Td9-6p-iD9">
-                                            <rect key="frame" x="15" y="13.5" width="47" height="47"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydW-pK-aUY">
+                                            <rect key="frame" x="20" y="14" width="47" height="47"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GVg-gT-ItP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="47" height="47"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="47" id="6V5-Vq-hkK"/>
-                                                <constraint firstAttribute="width" constant="47" id="OoJ-eg-k5f"/>
+                                                <constraint firstAttribute="bottom" secondItem="GVg-gT-ItP" secondAttribute="bottom" id="20C-ot-qFi"/>
+                                                <constraint firstItem="GVg-gT-ItP" firstAttribute="top" secondItem="ydW-pK-aUY" secondAttribute="top" id="EdK-GQ-nwW"/>
+                                                <constraint firstAttribute="height" constant="47" id="aLg-fz-eRk"/>
+                                                <constraint firstAttribute="trailing" secondItem="GVg-gT-ItP" secondAttribute="trailing" id="fx2-f6-HNb"/>
+                                                <constraint firstAttribute="width" constant="47" id="r8t-fs-ibU"/>
+                                                <constraint firstItem="GVg-gT-ItP" firstAttribute="leading" secondItem="ydW-pK-aUY" secondAttribute="leading" id="vGn-DI-0Le"/>
                                             </constraints>
-                                        </imageView>
+                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LtB-68-AhA">
-                                            <rect key="frame" x="70" y="5" width="246" height="64"/>
+                                            <rect key="frame" x="75" y="5.3333333333333357" width="280" height="64"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개와 산책하기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lE6-Jj-xsC" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                                    <rect key="frame" x="8" y="8" width="110.5" height="22"/>
+                                                    <rect key="frame" x="7" y="8" width="110.66666666666667" height="22"/>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -74,13 +84,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1시간 15분" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogX-Qs-Khy">
-                                                    <rect key="frame" x="8" y="36" width="66.5" height="17"/>
+                                                    <rect key="frame" x="7" y="36" width="66.666666666666671" height="17"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="30분 전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMo-J0-g9Y">
-                                                    <rect key="frame" x="207" y="25" width="39" height="14"/>
+                                                    <rect key="frame" x="241" y="25" width="39" height="14"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
                                                     <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -91,7 +101,7 @@
                                                 <constraint firstItem="bMo-J0-g9Y" firstAttribute="centerY" secondItem="LtB-68-AhA" secondAttribute="centerY" id="2Iy-xc-Qs2"/>
                                                 <constraint firstItem="ogX-Qs-Khy" firstAttribute="leading" secondItem="lE6-Jj-xsC" secondAttribute="leading" id="VpG-kS-qML"/>
                                                 <constraint firstItem="lE6-Jj-xsC" firstAttribute="top" secondItem="LtB-68-AhA" secondAttribute="top" constant="8" id="W7r-KC-AAh"/>
-                                                <constraint firstItem="lE6-Jj-xsC" firstAttribute="leading" secondItem="LtB-68-AhA" secondAttribute="leading" constant="8" id="c3X-ID-u0n"/>
+                                                <constraint firstItem="lE6-Jj-xsC" firstAttribute="leading" secondItem="LtB-68-AhA" secondAttribute="leading" constant="7" id="c3X-ID-u0n"/>
                                                 <constraint firstAttribute="height" constant="64" id="hr1-Ai-f0r"/>
                                                 <constraint firstItem="bMo-J0-g9Y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lE6-Jj-xsC" secondAttribute="trailing" constant="5" id="mcR-uv-fhU"/>
                                                 <constraint firstItem="ogX-Qs-Khy" firstAttribute="top" secondItem="lE6-Jj-xsC" secondAttribute="bottom" constant="6" id="poI-rR-noo"/>
@@ -100,20 +110,22 @@
                                         </view>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="ydW-pK-aUY" firstAttribute="centerY" secondItem="ZZV-G4-8Lc" secondAttribute="centerY" id="23l-Lq-WvW"/>
                                         <constraint firstItem="Fh6-8s-Zo1" firstAttribute="top" secondItem="ZZV-G4-8Lc" secondAttribute="top" id="24X-1H-tj4"/>
                                         <constraint firstAttribute="trailing" secondItem="Fh6-8s-Zo1" secondAttribute="trailing" id="4w9-4l-E5n"/>
-                                        <constraint firstItem="Td9-6p-iD9" firstAttribute="centerY" secondItem="ZZV-G4-8Lc" secondAttribute="centerY" id="Eeh-fE-BIC"/>
-                                        <constraint firstItem="Td9-6p-iD9" firstAttribute="top" secondItem="ZZV-G4-8Lc" secondAttribute="top" constant="13.5" id="K2F-gN-zYs"/>
+                                        <constraint firstAttribute="bottom" secondItem="ydW-pK-aUY" secondAttribute="bottom" constant="13.83" id="7b8-82-ngA"/>
+                                        <constraint firstItem="ydW-pK-aUY" firstAttribute="leading" secondItem="ZZV-G4-8Lc" secondAttribute="leadingMargin" id="MMA-e3-Mn3"/>
                                         <constraint firstAttribute="bottom" secondItem="Fh6-8s-Zo1" secondAttribute="bottom" id="MRp-pn-SkQ"/>
-                                        <constraint firstItem="Td9-6p-iD9" firstAttribute="leading" secondItem="ZZV-G4-8Lc" secondAttribute="leading" constant="15" id="acx-WN-FqR"/>
-                                        <constraint firstItem="LtB-68-AhA" firstAttribute="centerY" secondItem="Td9-6p-iD9" secondAttribute="centerY" id="c54-Di-MoC"/>
-                                        <constraint firstItem="LtB-68-AhA" firstAttribute="leading" secondItem="Td9-6p-iD9" secondAttribute="trailing" constant="8" id="wD4-ii-KLB"/>
+                                        <constraint firstItem="ydW-pK-aUY" firstAttribute="top" secondItem="ZZV-G4-8Lc" secondAttribute="top" constant="13.83" id="Ob7-9g-e76"/>
+                                        <constraint firstItem="LtB-68-AhA" firstAttribute="centerY" secondItem="ydW-pK-aUY" secondAttribute="centerY" id="jXI-6c-g5a"/>
+                                        <constraint firstItem="LtB-68-AhA" firstAttribute="leading" secondItem="ydW-pK-aUY" secondAttribute="trailing" constant="8" id="pYz-LP-UPL"/>
                                         <constraint firstItem="Fh6-8s-Zo1" firstAttribute="leading" secondItem="LtB-68-AhA" secondAttribute="trailing" id="xen-M6-Vfn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="estimatedWorkTimeLabel" destination="ogX-Qs-Khy" id="UIY-6N-Jof"/>
-                                    <outlet property="iconImageView" destination="Td9-6p-iD9" id="6Gq-Ln-5Md"/>
+                                    <outlet property="iconImageView" destination="GVg-gT-ItP" id="Ldf-E1-J3c"/>
+                                    <outlet property="iconView" destination="ydW-pK-aUY" id="6XI-de-oRW"/>
                                     <outlet property="latestTimeLabel" destination="bMo-J0-g9Y" id="WBa-O7-4Ek"/>
                                     <outlet property="workInfoBtn" destination="Fh6-8s-Zo1" id="cOd-C2-1oc"/>
                                     <outlet property="workNameLabel" destination="lE6-Jj-xsC" id="hz9-sh-SmS"/>
@@ -152,34 +164,34 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vC-m3-S8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1273.913043478261" y="1175.5434782608697"/>
+            <point key="canvasLocation" x="1273.1884057971015" y="1174.8883928571429"/>
         </scene>
         <!--작업 정보-->
         <scene sceneID="r7n-an-k7H">
             <objects>
                 <tableViewController storyboardIdentifier="WorkInfoViewController" id="bUP-lT-cEa" customClass="WorkInfoTableViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sK7-db-07e">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection id="9M1-nn-PAg">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="ntJ-Td-jNX">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="81" id="ntJ-Td-jNX">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ntJ-Td-jNX" id="9Ib-Wi-mnc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="운동하기" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KOv-Vj-0Bs">
-                                                    <rect key="frame" x="122" y="23" width="131" height="38"/>
+                                                    <rect key="frame" x="141.66666666666666" y="24.666666666666671" width="130.99999999999997" height="38"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="30"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="운동하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-U9-XX4" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                                    <rect key="frame" x="122" y="25" width="131" height="34"/>
+                                                    <rect key="frame" x="141.66666666666666" y="26.666666666666671" width="130.99999999999997" height="34"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="30"/>
                                                     <nil key="textColor"/>
@@ -197,7 +209,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="03b-OV-7jh">
-                                                    <rect key="frame" x="261" y="41" width="18" height="18"/>
+                                                    <rect key="frame" x="280.66666666666669" y="42.666666666666664" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="8bS-Qj-Gu5"/>
                                                         <constraint firstAttribute="width" constant="18" id="gTs-Fl-NcA"/>
@@ -209,8 +221,8 @@
                                                 <constraint firstItem="03b-OV-7jh" firstAttribute="bottom" secondItem="Jze-U9-XX4" secondAttribute="bottom" id="58q-YQ-1OK"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="03b-OV-7jh" secondAttribute="trailing" id="D5d-X7-KuH"/>
                                                 <constraint firstItem="03b-OV-7jh" firstAttribute="leading" secondItem="Jze-U9-XX4" secondAttribute="trailing" constant="8" id="G9F-I4-N7A"/>
-                                                <constraint firstItem="Jze-U9-XX4" firstAttribute="centerY" secondItem="9Ib-Wi-mnc" secondAttribute="centerY" id="Gpe-rQ-PEP"/>
-                                                <constraint firstItem="KOv-Vj-0Bs" firstAttribute="centerY" secondItem="9Ib-Wi-mnc" secondAttribute="centerY" id="NP4-sN-X52"/>
+                                                <constraint firstItem="Jze-U9-XX4" firstAttribute="centerY" secondItem="9Ib-Wi-mnc" secondAttribute="centerY" constant="3" id="Gpe-rQ-PEP"/>
+                                                <constraint firstItem="KOv-Vj-0Bs" firstAttribute="centerY" secondItem="9Ib-Wi-mnc" secondAttribute="centerY" constant="3" id="NP4-sN-X52"/>
                                                 <constraint firstItem="KOv-Vj-0Bs" firstAttribute="centerX" secondItem="9Ib-Wi-mnc" secondAttribute="centerX" id="QBa-zc-0yd"/>
                                                 <constraint firstItem="KOv-Vj-0Bs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9Ib-Wi-mnc" secondAttribute="leadingMargin" id="Slc-zS-M4d"/>
                                                 <constraint firstItem="03b-OV-7jh" firstAttribute="leading" secondItem="KOv-Vj-0Bs" secondAttribute="trailing" constant="8" id="aK6-nU-YDB"/>
@@ -218,22 +230,28 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="125" id="8vo-ms-DPf">
-                                        <rect key="frame" x="0.0" y="84" width="375" height="125"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="135" id="8vo-ms-DPf">
+                                        <rect key="frame" x="0.0" y="81" width="414" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8vo-ms-DPf" id="T4d-gJ-Qma">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x3D-R2-I7C">
-                                                    <rect key="frame" x="125" y="0.0" width="125" height="125"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p15-Dw-pKm">
+                                                    <rect key="frame" x="144.66666666666666" y="5" width="124.99999999999997" height="125"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="125" id="K62-da-TRr"/>
-                                                        <constraint firstAttribute="width" constant="125" id="W8w-XY-a76"/>
+                                                        <constraint firstAttribute="width" constant="125" id="3jH-4t-yg1"/>
+                                                        <constraint firstAttribute="height" constant="125" id="HmC-e7-0Qz"/>
                                                     </constraints>
-                                                </imageView>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <segue destination="Xe7-dC-Udh" kind="popoverPresentation" identifier="popoverIconSegue" popoverAnchorView="p15-Dw-pKm" id="eVO-9p-wQ7">
+                                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                        </segue>
+                                                    </connections>
+                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="yTb-R4-D70">
-                                                    <rect key="frame" x="258" y="107" width="18" height="18"/>
+                                                    <rect key="frame" x="277.66666666666669" y="112" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="9LG-3T-GGS"/>
                                                         <constraint firstAttribute="width" constant="18" id="YJJ-Rc-5Ex"/>
@@ -241,39 +259,39 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yTb-R4-D70" firstAttribute="leading" secondItem="x3D-R2-I7C" secondAttribute="trailing" constant="8" id="ShH-ZO-xM1"/>
-                                                <constraint firstItem="yTb-R4-D70" firstAttribute="bottom" secondItem="x3D-R2-I7C" secondAttribute="bottom" id="g7z-Yy-3dJ"/>
-                                                <constraint firstItem="x3D-R2-I7C" firstAttribute="centerX" secondItem="T4d-gJ-Qma" secondAttribute="centerX" id="lp6-Hw-LQz"/>
-                                                <constraint firstItem="x3D-R2-I7C" firstAttribute="centerY" secondItem="T4d-gJ-Qma" secondAttribute="centerY" id="q1i-tI-Rz5"/>
+                                                <constraint firstItem="yTb-R4-D70" firstAttribute="leading" secondItem="p15-Dw-pKm" secondAttribute="trailing" constant="8.0000000000000568" id="KMF-1f-u9q"/>
+                                                <constraint firstItem="p15-Dw-pKm" firstAttribute="centerX" secondItem="T4d-gJ-Qma" secondAttribute="centerX" id="MCW-e4-uso"/>
+                                                <constraint firstItem="p15-Dw-pKm" firstAttribute="centerY" secondItem="T4d-gJ-Qma" secondAttribute="centerY" id="rft-C4-hWK"/>
+                                                <constraint firstItem="yTb-R4-D70" firstAttribute="bottom" secondItem="p15-Dw-pKm" secondAttribute="bottom" id="sxq-sK-ccF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="120" id="j8g-hd-221">
-                                        <rect key="frame" x="0.0" y="209" width="375" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="117" id="j8g-hd-221">
+                                        <rect key="frame" x="0.0" y="216" width="414" height="117"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j8g-hd-221" id="Mlb-Ic-xQG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="117"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예상 작업 시간" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScS-MK-4VP">
-                                                    <rect key="frame" x="142.5" y="30.5" width="90" height="17"/>
+                                                    <rect key="frame" x="162" y="29" width="90" height="17"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPS-Vu-81B">
-                                                    <rect key="frame" x="131" y="49.5" width="113" height="41"/>
+                                                    <rect key="frame" x="150.66666666666666" y="48" width="112.99999999999997" height="41"/>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="25"/>
                                                     <state key="normal" title="1시간 14분"/>
                                                     <connections>
                                                         <action selector="popoverWorkTimePicker:" destination="bUP-lT-cEa" eventType="touchUpInside" id="n1D-hp-N2u"/>
-                                                        <segue destination="5bo-7H-Pfz" kind="popoverPresentation" identifier="popoverSegue" popoverAnchorView="iPS-Vu-81B" id="xff-9E-cBM">
+                                                        <segue destination="5bo-7H-Pfz" kind="popoverPresentation" identifier="popoverPickerSegue" popoverAnchorView="iPS-Vu-81B" id="xff-9E-cBM">
                                                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                         </segue>
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="4Hg-cU-KAg">
-                                                    <rect key="frame" x="252" y="66.5" width="18" height="18"/>
+                                                    <rect key="frame" x="271.66666666666669" y="65" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="18" id="VwQ-m9-MXA"/>
                                                         <constraint firstAttribute="height" constant="18" id="gp6-DR-e24"/>
@@ -291,21 +309,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="pia-f9-8ns" detailTextLabel="5Y5-GK-862" style="IBUITableViewCellStyleValue1" id="Gtu-vy-Ax2">
-                                        <rect key="frame" x="0.0" y="329" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="333" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gtu-vy-Ax2" id="RkW-bd-P9a">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="현재 연속 달성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pia-f9-8ns">
-                                                    <rect key="frame" x="16" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="20" y="12" width="98" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Y5-GK-862">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -315,21 +333,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="eUG-q1-7Lg" detailTextLabel="3sH-2r-HFX" style="IBUITableViewCellStyleValue1" id="Gyc-Bo-opD">
-                                        <rect key="frame" x="0.0" y="373" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="377" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gyc-Bo-opD" id="cEy-MM-nIn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="연속 달성 최고기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eUG-q1-7Lg">
-                                                    <rect key="frame" x="16" y="12" width="127.5" height="20"/>
+                                                    <rect key="frame" x="19.999999999999993" y="12" width="127.33333333333333" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3sH-2r-HFX">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -339,21 +357,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="aIz-dW-lvD" detailTextLabel="fOb-bg-lGl" style="IBUITableViewCellStyleValue1" id="kKc-KP-h72">
-                                        <rect key="frame" x="0.0" y="417" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="421" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kKc-KP-h72" id="Yp0-e6-VTR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="총 작업" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aIz-dW-lvD">
-                                                    <rect key="frame" x="16" y="12" width="49" height="20"/>
+                                                    <rect key="frame" x="20" y="12" width="49" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fOb-bg-lGl">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -363,21 +381,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="VRE-4r-Bwa" detailTextLabel="rA9-4w-XiV" style="IBUITableViewCellStyleValue1" id="cVw-T2-v1g">
-                                        <rect key="frame" x="0.0" y="461" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="465" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cVw-T2-v1g" id="jjk-Xj-PYB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="목표 달성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VRE-4r-Bwa">
-                                                    <rect key="frame" x="16" y="12" width="64" height="20"/>
+                                                    <rect key="frame" x="19.999999999999996" y="12" width="63.666666666666664" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rA9-4w-XiV">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -387,21 +405,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="joM-Jb-jBG" detailTextLabel="3mr-uF-IWf" style="IBUITableViewCellStyleValue1" id="myO-Wo-81e">
-                                        <rect key="frame" x="0.0" y="505" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="509" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="myO-Wo-81e" id="brL-5M-bGk">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="목표 실패" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="joM-Jb-jBG">
-                                                    <rect key="frame" x="16" y="12" width="64" height="20"/>
+                                                    <rect key="frame" x="19.999999999999996" y="12" width="63.666666666666664" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3mr-uF-IWf">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -411,21 +429,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="B8M-2C-oZa" detailTextLabel="aPY-c5-kdL" style="IBUITableViewCellStyleValue1" id="Wu3-q2-nMa">
-                                        <rect key="frame" x="0.0" y="549" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="553" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wu3-q2-nMa" id="fn0-MV-t3l">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="성공률" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B8M-2C-oZa">
-                                                    <rect key="frame" x="16" y="12" width="44.5" height="20"/>
+                                                    <rect key="frame" x="20.000000000000004" y="12" width="44.333333333333336" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aPY-c5-kdL">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -435,21 +453,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="nD3-hs-qjC" detailTextLabel="1qF-F6-mNJ" style="IBUITableViewCellStyleValue1" id="jZp-Ar-PSg">
-                                        <rect key="frame" x="0.0" y="593" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="597" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jZp-Ar-PSg" id="j0a-ja-lQJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="평균 소요 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nD3-hs-qjC">
-                                                    <rect key="frame" x="16" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="20" y="12" width="98" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1qF-F6-mNJ">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -459,21 +477,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="qUZ-Rp-LpN" detailTextLabel="9cS-NJ-oV5" style="IBUITableViewCellStyleValue1" id="RVS-W0-vfm">
-                                        <rect key="frame" x="0.0" y="637" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="641" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RVS-W0-vfm" id="gMy-yR-zJT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="평균 남은 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qUZ-Rp-LpN">
-                                                    <rect key="frame" x="15" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="20" y="12" width="98" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9cS-NJ-oV5">
-                                                    <rect key="frame" x="316.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="350.66666666666669" y="12" width="43.333333333333336" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -483,14 +501,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="93" id="mfG-ab-VA6">
-                                        <rect key="frame" x="0.0" y="681" width="375" height="93"/>
+                                        <rect key="frame" x="0.0" y="685" width="414" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mfG-ab-VA6" id="gbG-QO-voa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMb-vz-swp">
-                                                    <rect key="frame" x="8" y="25.5" width="359" height="50"/>
+                                                    <rect key="frame" x="8" y="25.666666666666671" width="359" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="axV-DG-AVP"/>
                                                     </constraints>
@@ -531,7 +549,7 @@
                         <outlet property="successRateLabel" destination="aPY-c5-kdL" id="B8o-a3-NX3"/>
                         <outlet property="successiveAchievementHighestRecordLabel" destination="3sH-2r-HFX" id="4FR-zM-ldb"/>
                         <outlet property="totalWorkLabel" destination="fOb-bg-lGl" id="lzx-gA-aCK"/>
-                        <outlet property="workIconImageView" destination="x3D-R2-I7C" id="C5O-L1-D2K"/>
+                        <outlet property="workIconButton" destination="p15-Dw-pKm" id="sSJ-kr-JEN"/>
                         <outlet property="workNameLabel" destination="Jze-U9-XX4" id="XfI-xV-6UT"/>
                         <outlet property="workNameTextField" destination="KOv-Vj-0Bs" id="cBV-XY-3CT"/>
                         <outlet property="workRecordButton" destination="DMb-vz-swp" id="vwh-yV-NXZ"/>
@@ -547,7 +565,57 @@
                 <viewControllerPlaceholder storyboardIdentifier="WorkingStoryboard" storyboardName="Working" id="hHv-Q5-GBj" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4FU-yn-Jiw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2043" y="667"/>
+            <point key="canvasLocation" x="1513" y="667"/>
+        </scene>
+        <!--Popover Collection View Controller-->
+        <scene sceneID="ahN-4w-Vbh">
+            <objects>
+                <collectionViewController storyboardIdentifier="PopoverCollectionViewController" id="Xe7-dC-Udh" customClass="PopoverCollectionViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ZtU-gc-6hD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wb8-Qj-z9t">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="popoverIconCell" id="1uD-cu-g1L" customClass="IconCell" customModule="Hourglass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="urA-4y-hkI">
+                                            <rect key="frame" x="2.6666666666666643" y="2.6666666666666643" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="MWp-y3-BeT"/>
+                                                <constraint firstAttribute="width" constant="60" id="w21-KY-qc7"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="urA-4y-hkI" firstAttribute="centerX" secondItem="1uD-cu-g1L" secondAttribute="centerX" id="7Ar-Mu-vRG"/>
+                                    <constraint firstItem="urA-4y-hkI" firstAttribute="centerY" secondItem="1uD-cu-g1L" secondAttribute="centerY" id="fnc-hw-AL4"/>
+                                </constraints>
+                                <size key="customSize" width="65" height="65"/>
+                                <connections>
+                                    <outlet property="iconImageView" destination="urA-4y-hkI" id="NG2-94-3Uh"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Xe7-dC-Udh" id="DzV-9T-DHv"/>
+                            <outlet property="delegate" destination="Xe7-dC-Udh" id="U1o-Aq-whU"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RFj-vc-2rt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2045" y="480"/>
         </scene>
         <!--Popover Picker View Controller-->
         <scene sceneID="GSU-qW-D83">
@@ -587,22 +655,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ppe-9M-v56" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2821" y="1175"/>
+            <point key="canvasLocation" x="2045" y="1723"/>
         </scene>
         <!--작업 기록-->
         <scene sceneID="Nj1-7J-tTx">
             <objects>
                 <tableViewController storyboardIdentifier="RecordTableViewController" title="작업 기록" id="TWD-RP-IVy" customClass="RecordTableViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nkg-DF-B8z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hSy-9i-3t6">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hSy-9i-3t6" id="egY-wP-kf0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -623,7 +691,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nx3-jv-2mN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xn9-X1-89h">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -649,15 +717,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="NewWorkStoryboard" storyboardName="NewWork" id="W9M-K7-Dgk" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dLM-ml-LKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272" y="667"/>
+            <point key="canvasLocation" x="1038" y="667"/>
         </scene>
     </scenes>
     <resources>
-        <image name="iosInformationOutline" width="27" height="34"/>
-        <image name="iosMore" width="25" height="40"/>
-        <image name="pencil" width="28.799999237060547" height="28.799999237060547"/>
+        <image name="iosInformationOutline" width="41" height="51"/>
+        <image name="iosMore" width="38" height="60"/>
+        <image name="pencil" width="43.200000762939453" height="43.200000762939453"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Gar-Pl-YAe"/>
+        <segue reference="mnm-PN-l8T"/>
     </inferredMetricsTieBreakers>
 </document>

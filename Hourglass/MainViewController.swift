@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import MarqueeLabel
 import NightNight
+import SwiftIcons
 
 class MainViewController: UITableViewController {
     
@@ -17,6 +18,8 @@ class MainViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    static var mixedTextColor = NightNight.theme == .night ? UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00) : UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.00)
+    var iconNumber: Int32?
     var selectedIndex: Int?
     
     @IBOutlet var mainTableView: UITableView!
@@ -67,19 +70,7 @@ class MainViewController: UITableViewController {
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
-        // userDefaults 가 설정된 적이 한번도 없으면 기본값 설정하기
-        if UserDefaults.standard.object(forKey: "alertSwitchState") == nil {
-            
-            UserDefaults.standard.set(false, forKey: "alertSwitchState")
-            UserDefaults.standard.set(1, forKey: "alertTimeState")
-            UserDefaults.standard.set(true, forKey: "soundSwitchState")
-            UserDefaults.standard.set(false, forKey: "themeSwitchState")
-            UserDefaults.standard.set(true, forKey: "vibrationSwitchState")
-            UserDefaults.standard.set(0, forKey: "timeOverSoundState")
-            UserDefaults.standard.set(0, forKey: "successSoundState")
-            UserDefaults.standard.set(0, forKey: "failSoundState")
-            UserDefaults.standard.set(true, forKey: "alwaysOnDisplaySwitchState")
-        }
+        
         
         //        // 셀간 구분선 없애기
         //        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none;
@@ -101,8 +92,12 @@ class MainViewController: UITableViewController {
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(contextFetchToResultsArray), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        
+        self.tableView.reloadData()
     }
     
     @objc func contextFetchToResultsArray() {
@@ -176,25 +171,29 @@ class MainViewController: UITableViewController {
         cell.latestTimeLabel.mixedTextColor = MixedColor(normal: UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0
         ), night: UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0))
         
-        cell.iconImageView.backgroundColor = UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.00)
-        cell.iconImageView.layer.cornerRadius = cell.iconImageView.layer.frame.width / 2.66
-        cell.iconImageView.clipsToBounds = true
+        cell.iconView.mixedBackgroundColor = MixedColor(normal: 0xcbcbcb, night: 0x2b2b2b)
+        cell.iconView.layer.cornerRadius = cell.iconView.layer.frame.width / 2.66
+        cell.iconView.clipsToBounds = true
         
-        cell.iconImageView.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.iconImageView.layer.shadowRadius = 2.0
-        cell.iconImageView.layer.shadowOpacity = 0.5
-        cell.iconImageView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        cell.iconImageView.layer.masksToBounds = false
+        cell.iconView.layer.mixedShadowColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        cell.iconView.layer.shadowRadius = 2.0
+        cell.iconView.layer.shadowOpacity = 0.5
+        cell.iconView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        cell.iconView.layer.masksToBounds = false
         
         cell.estimatedWorkTimeLabel.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
+        if let iconCase = IcofontType(rawValue: Int(resultsArray[indexPath.row].iconNumber)) {
+            cell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: MainViewController.mixedTextColor, backgroundColor: .clear, size: nil)
+        }
         cell.workNameLabel.text = resultsArray[indexPath.row].workName ?? nil
         cell.estimatedWorkTimeLabel.text = resultsArray[indexPath.row].estimatedWorkTime.secondsToString
         
         cell.shouldSelectRow = { (selectedCell) in
             
-            let indexPathRow = self.tableView.indexPath(for: selectedCell)?.row
-            self.selectedIndex = Int(self.resultsArray[indexPathRow!].workID)
+            if let indexPathRow = self.tableView.indexPath(for: selectedCell)?.row {
+                self.selectedIndex = Int(self.resultsArray[indexPathRow].workID)
+            }
         }
         
         return cell
@@ -285,6 +284,7 @@ class MainViewController: UITableViewController {
 
 class WorkCell: UITableViewCell {
     
+    @IBOutlet var iconView: UIView!
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var workNameLabel: UILabel!
     @IBOutlet var estimatedWorkTimeLabel: UILabel!

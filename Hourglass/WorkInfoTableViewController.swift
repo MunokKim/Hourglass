@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import MarqueeLabel
 import NightNight
+import SwiftIcons
 
 class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
     
@@ -22,13 +23,16 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
     let workingVC = WorkingViewController()
     var workInfoFetch: WorkInfo?
     var estimatedWorkTimeForPopover: Int32?
+    var iconNumber: Int32?
     
     @objc func individualUpdateWorkInfo() {
         
         if let workinfo = workInfoFetch {
             
             workinfo.setValue(workNameTextField.text, forKey: "workName")
-            // icon
+            if let value = iconNumber {
+                workinfo.setValue(value, forKey: "iconNumber")
+            }
             if let value = estimatedWorkTimeForPopover {
                 workinfo.setValue(value, forKey: "estimatedWorkTime")
             }
@@ -62,11 +66,16 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
             workNameTextField.isHidden = true
         }
     }
-    @IBOutlet var workIconImageView: UIImageView! {
+    @IBOutlet var workIconButton: UIButton! {
         didSet {
-            workIconImageView.backgroundColor = UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.00)
-            workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
-            workIconImageView.clipsToBounds = true
+            workIconButton.layer.cornerRadius = workIconButton.layer.frame.width / 2.66
+            workIconButton.clipsToBounds = true
+            workIconButton.mixedBackgroundColor = MixedColor(normal: 0xcbcbcb, night: 0x2b2b2b)
+            workIconButton.layer.mixedShadowColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+            workIconButton.layer.shadowRadius = 2.0
+            workIconButton.layer.shadowOpacity = 0.5
+            workIconButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+            workIconButton.layer.masksToBounds = false
         }
     }
     @IBOutlet var justLabel: UILabel!
@@ -135,7 +144,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         // Add Observer
         let notificationCenter = NotificationCenter.default
 //        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.fetchAndRenewal), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.fetchAndRenewal), name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(self.fetchAndRenewal), name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
 //        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.individualUpdateWorkInfo), name: NSNotification.Name(rawValue: "UpdateWorkInfoNoti"), object: nil)
     }
     
@@ -147,7 +156,13 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         guard let workInfoFetch = workInfoFetch else { return }
         
         workNameLabel.text = workInfoFetch.workName
-        // icon
+        
+        let mixedBackgroundColor = NightNight.theme == .night ? UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1.00) : UIColor(red: 203/255, green: 203/255, blue: 203/255, alpha: 1.00)
+        
+        if let iconCase = IcofontType(rawValue: Int(workInfoFetch.iconNumber)) {
+            workIconButton.setIcon(icon: .icofont(iconCase), iconSize: 100, color: MainViewController.mixedTextColor, backgroundColor: mixedBackgroundColor, forState: .normal)
+        }
+        
         estimatedWorkTimePickerButton.setTitle(workInfoFetch.estimatedWorkTime.secondsToString, for: .normal)
         currentSuccessiveAchievementWhetherLabel.text = "\(workInfoFetch.currentSuccessiveAchievementWhether) 회" // 현재 연속 달성 여부
         successiveAchievementHighestRecordLabel.text = "\(workInfoFetch.successiveAchievementHighestRecord) 회" // 연속 달성 최고기록
@@ -159,11 +174,11 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         averageElapsedTimeLabel.text = Int32(workInfoFetch.averageElapsedTime).secondsToString // 평균 소요시간
         averageRemainingTimeLabel.text = Int32(workInfoFetch.averageRemainingTime).secondsToString // 평균 남은 시간
         
+        // 이미 한번 만들어져 있으면 제거
+        self.tableView.viewWithTag(99)?.removeFromSuperview()
+        
         if workInfoFetch.totalWork == 0 {
             // 진행한 작업이 없을 때
-            
-            // 이미 한번 만들어져 있으면 제거
-            self.tableView.viewWithTag(99)?.removeFromSuperview()
             
             let noticeView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 45))
             noticeView.mixedBackgroundColor = MixedColor(normal: UIColor.black, night: UIColor.white)
@@ -328,7 +343,28 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
             }
         }
         
-        if segue.identifier == "popoverSegue" {
+        if segue.identifier == "popoverIconSegue" {
+            
+            if let vc = segue.destination as? PopoverCollectionViewController {
+                
+                vc.modalPresentationStyle = .popover
+                
+                if let popoverVC = vc.popoverPresentationController {
+                    popoverVC.permittedArrowDirections = .any
+                    popoverVC.sourceView = self.workIconButton
+                    popoverVC.sourceRect = CGRect(x: self.workIconButton.bounds.minX, y: self.workIconButton.bounds.minY, width: self.workIconButton.bounds.width, height: self.workIconButton.bounds.height)
+                    popoverVC.presentedView?.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+                    popoverVC.delegate = self
+                }
+                
+                vc.delegation = self as SendValueToViewControllerDelegate
+                
+                // 아이콘번호 팝오버에 넘겨주기
+                vc.iconNumber = workInfoFetch!.iconNumber
+            }
+        }
+        
+        if segue.identifier == "popoverPickerSegue" {
             
             if let vc = segue.destination as? PopoverPickerViewController {
                 
@@ -342,7 +378,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
                     popoverVC.delegate = self
                 }
                 
-                vc.delegation = self as? PopoverPickerViewControllerDelegate
+                vc.delegation = self as SendValueToViewControllerDelegate
                 
                 // 예상작업시간 팝오버에 넘겨주기
                 vc.estimatedWorkTimeForPopover = workInfoFetch!.estimatedWorkTime
@@ -351,12 +387,24 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
     }
 }
 
-extension WorkInfoTableViewController: PopoverPickerViewControllerDelegate {
+extension WorkInfoTableViewController: SendValueToViewControllerDelegate {
     
     func sendValue(value: Int32) {
         
         estimatedWorkTimePickerButton.setTitle(value.secondsToString, for: .normal)
         estimatedWorkTimeForPopover = value
+        
+        individualUpdateWorkInfo()
+    }
+    
+    func sendIconNumber(value: Int32) {
+        
+        let mixedBackgroundColor = NightNight.theme == .night ? UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1.00) : UIColor(red: 203/255, green: 203/255, blue: 203/255, alpha: 1.00)
+        
+        if let iconCase = IcofontType(rawValue: Int(value)) {
+            workIconButton.setIcon(icon: .icofont(iconCase), iconSize: nil, color: MainViewController.mixedTextColor, backgroundColor: mixedBackgroundColor, forState: .normal)
+        }
+        iconNumber = value
         
         individualUpdateWorkInfo()
     }

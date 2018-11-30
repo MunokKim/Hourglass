@@ -124,8 +124,10 @@ class SettingViewController: UITableViewController {
         
         if UserDefaults.standard.bool(forKey: "themeSwitchState") {
             NightNight.theme = .night
+            MainViewController.mixedTextColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00)
         } else {
             NightNight.theme = .normal
+            MainViewController.mixedTextColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.00)
         }
     }
     @IBAction func alwaysOnDisplaySwitchChanged(_ sender: Any) {

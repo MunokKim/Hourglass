@@ -43,19 +43,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            application.statusBarStyle = .default
 //        }
         
-        if UserDefaults.standard.bool(forKey: "alertSwitchState") {
-            // 유저에게 알림 허락(권한) 받기
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {didAllow, Error in
-                print(didAllow)
-                if didAllow {
-                    UserDefaults.standard.set(true, forKey: "alertSwitchState")
-                } else {
-                    UserDefaults.standard.set(false, forKey: "alertSwitchState")
-                }
-            })
-        }
+        // 유저에게 알림 허락(권한) 받기
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {didAllow, Error in
+            print(didAllow)
+            if didAllow {
+                UserDefaults.standard.set(true, forKey: "alertSwitchState")
+            } else {
+                UserDefaults.standard.set(false, forKey: "alertSwitchState")
+            }
+        })
         
-//        UNUserNotificationCenter.current().delegate = self
+        // userDefaults 가 설정된 적이 한번도 없으면 기본값 설정하기
+        if UserDefaults.standard.object(forKey: "alertSwitchState") == nil {
+            
+            UserDefaults.standard.set(false, forKey: "alertSwitchState")
+            UserDefaults.standard.set(1, forKey: "alertTimeState")
+            UserDefaults.standard.set(true, forKey: "soundSwitchState")
+            UserDefaults.standard.set(false, forKey: "themeSwitchState")
+            UserDefaults.standard.set(true, forKey: "vibrationSwitchState")
+            UserDefaults.standard.set(0, forKey: "timeOverSoundState")
+            UserDefaults.standard.set(0, forKey: "successSoundState")
+            UserDefaults.standard.set(0, forKey: "failSoundState")
+            UserDefaults.standard.set(true, forKey: "alwaysOnDisplaySwitchState")
+        }
         
         return true
     }

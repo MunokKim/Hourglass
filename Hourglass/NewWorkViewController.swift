@@ -9,8 +9,11 @@
 import UIKit
 import CoreData
 import NightNight
+import SwiftIcons
 
 class NewWorkViewController: UITableViewController, UITextFieldDelegate {
+    
+    var iconNumber: Int32?
     
     let context = AppDelegate.viewContext
     
@@ -45,6 +48,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
         let workInfo = WorkInfo(context: context)
         
         workInfo.workName = workNameTextField?.text
+        workInfo.iconNumber = iconNumber != nil ? iconNumber! : 1081
         workInfo.estimatedWorkTime = Int32((estimatedWorkTimePicker.selectedHours! * 3600) + (estimatedWorkTimePicker.selectedMinutes! * 60))
         workInfo.createdDate = NSDate().addingTimeInterval(60*60*9)
         
@@ -115,9 +119,10 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
         attributedString.setMixedAttributes([NNForegroundColorAttributeName: MixedColor(normal: 0xdcdcdc, night: 0x2c2c2c)], range: NSRange(location: 0, length: 8))
         workNameTextField.attributedPlaceholder = attributedString
         
-        workIconImageView.backgroundColor = UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.00)
-        workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
-        workIconImageView.clipsToBounds = true
+        workIconImageView.setIcon(icon: .icofont(.hourGlass), textColor: MainViewController.mixedTextColor, backgroundColor: .clear, size: nil)
+        
+//        workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
+//        workIconImageView.clipsToBounds = true
         
         showEstimatedWorkTimeCell.detailTextLabel?.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
         
@@ -236,16 +241,36 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "iconSegue" {
+            
+            if let vc = segue.destination as? IconCollectionViewController {
+                
+                vc.delegation = self as SendValueToViewControllerDelegate
+                vc.iconNumber = iconNumber
+            }
+        }
      }
-     */
+}
+
+extension NewWorkViewController: SendValueToViewControllerDelegate {
     
+    func sendValue(value: Int32) {
+        
+        if let iconCase = IcofontType(rawValue: Int(value)) {
+            
+            self.workIconImageView.setIcon(icon: .icofont(iconCase), textColor: MainViewController.mixedTextColor, backgroundColor: .clear, size: nil)
+            self.tableView.reloadData()
+            self.iconNumber = value
+        }
+    }
 }
 
 extension NewWorkViewController: UIPickerViewDelegate {

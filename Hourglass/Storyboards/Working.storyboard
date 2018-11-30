@@ -45,7 +45,6 @@
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lDD-m3-0w9">
                                         <rect key="frame" x="162.5" y="66.5" width="50" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="lDD-m3-0w9" secondAttribute="height" multiplier="1:1" id="Qdv-Py-awv"/>
                                             <constraint firstAttribute="height" constant="50" id="kOT-IC-xzu"/>
@@ -294,7 +293,6 @@
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qnQ-Rd-QRh">
                                         <rect key="frame" x="162.5" y="116.5" width="50" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qnQ-Rd-QRh" secondAttribute="height" multiplier="1:1" id="TiA-6f-Sak"/>
                                             <constraint firstAttribute="height" constant="50" id="U7h-4H-lhc"/>

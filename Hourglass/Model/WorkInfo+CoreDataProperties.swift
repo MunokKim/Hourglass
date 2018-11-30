@@ -24,7 +24,7 @@ extension WorkInfo {
     @NSManaged public var estimatedWorkTime: Int32
     @NSManaged public var goalFail: Int32
     @NSManaged public var goalSuccess: Int32
-    @NSManaged public var iconImagePath: String?
+    @NSManaged public var iconNumber: Int32
     @NSManaged public var successiveAchievementHighestRecord: Int16
     @NSManaged public var successRate: Float
     @NSManaged public var totalWork: Int32

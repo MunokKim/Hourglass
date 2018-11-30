@@ -9,6 +9,7 @@
 import UIKit
 import MarqueeLabel
 import CoreData
+import SwiftIcons
 
 class WorkResultViewController: UIViewController {
     
@@ -18,12 +19,7 @@ class WorkResultViewController: UIViewController {
         }
     }
     @IBOutlet var gradientView: GradientView!
-    @IBOutlet var workIconImageView: UIImageView! {
-        didSet {
-            workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
-            workIconImageView.clipsToBounds = true
-        }
-    }
+    @IBOutlet var workIconImageView: UIImageView!
     @IBOutlet var workNameLabel: MarqueeLabel! {
         didSet {
             Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(layoutShadows), userInfo: nil, repeats: false)
@@ -143,8 +139,13 @@ class WorkResultViewController: UIViewController {
         
         gradientView.toColors = toColors
         
-        workNameLabel.text = currentWork?.workName
-        // icon
+        guard let currentWork = currentWork else { return }
+        
+        workNameLabel.text = currentWork.workName
+        if let iconCase = IcofontType(rawValue: Int(currentWork.iconNumber)) {
+            workIconImageView.setIcon(icon: .icofont(iconCase), textColor: .white, backgroundColor: .clear
+                , size: nil)
+        }
         workGoalLabel.text = goalString
         elapsedTimeLabel.text = workResultInfo?.elapsedTime.secondsToString
         workStartLabel.text = workResultInfo?.workStart?.stringFromDate
@@ -153,12 +154,10 @@ class WorkResultViewController: UIViewController {
         remainingTextLabel.text = remainingText
         remainingTimeLabel.text = remainingTime
         
-        if let workInfo = currentWork {
-            // 선택된 WorkInfo객체로 불러온 TimeMeasurementInfo객체
-            let timeMeasurementInfoFetchArray = contextFetchFor(ThisWork: workInfo)
-            // 합계, 평균 등을 구한 뒤 WorkInfo 엔티티의 필드 업데이트
-            updateWorkInfo(workInfo: workInfo, timeMeasurementInfo: timeMeasurementInfoFetchArray)
-        }
+        // 선택된 WorkInfo객체로 불러온 TimeMeasurementInfo객체
+        let timeMeasurementInfoFetchArray = contextFetchFor(ThisWork: currentWork)
+        // 합계, 평균 등을 구한 뒤 WorkInfo 엔티티의 필드 업데이트
+        updateWorkInfo(workInfo: currentWork, timeMeasurementInfo: timeMeasurementInfoFetchArray)
         
         // 사운드 재생
         let play = SoundEffect()

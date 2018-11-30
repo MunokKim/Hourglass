@@ -9,14 +9,14 @@
 import UIKit
 import NightNight
 
-protocol PopoverPickerViewControllerDelegate {
+protocol SendValueToViewControllerDelegate {
     
     func sendValue(value: Int32)
 }
 
 class PopoverPickerViewController: UIViewController {
     
-    var delegation: PopoverPickerViewControllerDelegate?
+    var delegation: SendValueToViewControllerDelegate?
     var estimatedWorkTimeForPopover: Int32?
     
     @IBOutlet var popoverPicker: WorkTimePicker!

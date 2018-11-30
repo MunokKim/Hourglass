@@ -11,6 +11,7 @@ import QuartzCore
 import CoreData
 import MarqueeLabel
 import UserNotifications
+import SwiftIcons
 
 class WorkingViewController: UIViewController {
     
@@ -50,12 +51,7 @@ class WorkingViewController: UIViewController {
             zoomOutButton.isHidden = true
         }
     }
-    @IBOutlet var workIconImageView: UIImageView! {
-        didSet {
-            workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
-            workIconImageView.clipsToBounds = true
-        }
-    }
+    @IBOutlet var workIconImageView: UIImageView!
     @IBOutlet var workNameLabel: MarqueeLabel! {
         didSet {
             workNameLabel.layer.shadowColor = UIColor.gray.cgColor
@@ -397,7 +393,10 @@ class WorkingViewController: UIViewController {
         estimatedCompletion = workStart!.addingTimeInterval(TimeInterval((estimatedWorkTime)!)) // 예상완료는 작업시작에 예상작업시간을 더한 값
         firstEstimatedCompletion = estimatedCompletion
         
-        //            iconImagePath = fetchResult.iconImagePath
+        if let iconCase = IcofontType(rawValue: Int(fetchResult.iconNumber)) {
+            workIconImageView.setIcon(icon: .icofont(iconCase), textColor: .white, backgroundColor: .clear
+                , size: nil)
+        }
         workNameLabel.text = fetchResult.workName!
         workStartTimeLabel.text = workStart?.stringFromDate
         remainingTimeLabel.text = estimatedWorkTime?.secondsToStopwatch

@@ -12,7 +12,10 @@ import NightNight
 
 private let reuseIdentifier = "iconCell"
 
-class iconCollectionViewController: UICollectionViewController {
+class IconCollectionViewController: UICollectionViewController {
+    
+    var iconNumber: Int32?
+    var delegation: SendValueToViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,29 @@ class iconCollectionViewController: UICollectionViewController {
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // 초기값 아이템 선택
+        if iconNumber == nil {
+            self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredVertically)
+            self.collectionView.delegate?.collectionView!(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+        } else {
+            self.collectionView.selectItem(at: IndexPath(item: Int(iconNumber!), section: 1), animated: true, scrollPosition: .centeredVertically)
+            self.collectionView(self.collectionView, didSelectItemAt: IndexPath(item: Int(iconNumber!), section: 1))
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if iconNumber == nil {
+            self.delegation?.sendValue(value: 1081)
+        } else {
+            self.delegation?.sendValue(value: iconNumber!)
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -48,13 +74,18 @@ class iconCollectionViewController: UICollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return IcofontType.count
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return IcofontType.count
+        }
+        return Int()
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,23 +97,16 @@ class iconCollectionViewController: UICollectionViewController {
     
         // Configure the cell
         
-        cell.iconImageView.layer.cornerRadius = cell.iconImageView.layer.frame.width / 2.66
-        cell.iconImageView.clipsToBounds = true
+        let mixedTextColor = NightNight.theme == .night ? UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1) : UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
+        var mixedBackgroundColor = NightNight.theme == .night ? UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1) : UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
         
-        var mixedTextColor: UIColor = UIColor.black
-        var mixedBackgroundColor: UIColor = UIColor.white
-        
-        if NightNight.theme == .night {
-            mixedTextColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1)
-        } else if NightNight.theme == .normal {
-            mixedTextColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
-        }
-        
-        if let iconCase = IcofontType(rawValue: indexPath.row) {
-            cell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
-            cell.iconImageView.image!.withAlignmentRectInsets(UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15))
+        if indexPath.section == 0 {
+            cell.iconImageView.setIcon(icon: .icofont(.hourGlass), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
+        } else if indexPath.section == 1 {
+            if let iconCase = IcofontType(rawValue: indexPath.item) {
+                cell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
+                cell.iconImageView.image!.withAlignmentRectInsets(UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15))
+            }
         }
         return cell
     }
@@ -120,19 +144,17 @@ class iconCollectionViewController: UICollectionViewController {
         
         guard let selecedCell = collectionView.cellForItem(at: indexPath) as? IconCell else { return }
         
-        var mixedTextColor: UIColor = UIColor.black
-        var mixedBackgroundColor: UIColor = UIColor.white
+        let mixedTextColor = NightNight.theme == .night ? UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1) : UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
+        let mixedBackgroundColor = NightNight.theme == .night ? UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) : UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
         
-        if NightNight.theme == .night {
-            mixedTextColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        } else if NightNight.theme == .normal {
-            mixedTextColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        }
-        
-        if let iconCase = IcofontType(rawValue: indexPath.row) {
-            selecedCell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
+        if indexPath.section == 0 {
+            selecedCell.iconImageView.setIcon(icon: .icofont(.hourGlass), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
+            iconNumber = 1081 // hourGlass
+        } else if indexPath.section == 1 {
+            if let iconCase = IcofontType(rawValue: indexPath.item) {
+                selecedCell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
+                iconNumber = Int32(indexPath.item)
+            }
         }
     }
     
@@ -140,19 +162,15 @@ class iconCollectionViewController: UICollectionViewController {
         
         guard let selecedCell = collectionView.cellForItem(at: indexPath) as? IconCell else { return }
         
-        var mixedTextColor: UIColor = UIColor.black
-        var mixedBackgroundColor: UIColor = UIColor.white
+        let mixedTextColor = NightNight.theme == .night ? UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1) : UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
+        let mixedBackgroundColor = NightNight.theme == .night ? UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1) : UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
         
-        if NightNight.theme == .night {
-            mixedTextColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1)
-        } else if NightNight.theme == .normal {
-            mixedTextColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
-        }
-        
-        if let iconCase = IcofontType(rawValue: indexPath.row) {
-            selecedCell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
+        if indexPath.section == 0 {
+            selecedCell.iconImageView.setIcon(icon: .icofont(.hourGlass), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
+        } else if indexPath.section == 1 {
+            if let iconCase = IcofontType(rawValue: indexPath.item) {
+                selecedCell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
+            }
         }
     }
 }
