@@ -12,6 +12,7 @@ import NightNight
 protocol SendValueToViewControllerDelegate {
     
     func sendValue(value: Int32)
+    func sendIconNumber(value: Int32)
 }
 
 class PopoverPickerViewController: UIViewController {

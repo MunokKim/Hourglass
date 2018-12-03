@@ -262,7 +262,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
 
 extension NewWorkViewController: SendValueToViewControllerDelegate {
     
-    func sendValue(value: Int32) {
+    func sendIconNumber(value: Int32) {
         
         if let iconCase = IcofontType(rawValue: Int(value)) {
             
@@ -271,6 +271,9 @@ extension NewWorkViewController: SendValueToViewControllerDelegate {
             self.iconNumber = value
         }
     }
+    
+    
+    func sendValue(value: Int32) { }
 }
 
 extension NewWorkViewController: UIPickerViewDelegate {

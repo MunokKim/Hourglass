@@ -47,7 +47,7 @@
                                             </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydW-pK-aUY">
-                                            <rect key="frame" x="20" y="14" width="47" height="47"/>
+                                            <rect key="frame" x="20" y="13.666666666666664" width="47" height="47"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GVg-gT-ItP">
                                                     <rect key="frame" x="0.0" y="0.0" width="47" height="47"/>
@@ -67,7 +67,7 @@
                                             <rect key="frame" x="75" y="5.3333333333333357" width="280" height="64"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개와 산책하기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lE6-Jj-xsC" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                                    <rect key="frame" x="7" y="8" width="110.66666666666667" height="22"/>
+                                                    <rect key="frame" x="7" y="8" width="104" height="22"/>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -84,13 +84,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1시간 15분" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogX-Qs-Khy">
-                                                    <rect key="frame" x="7" y="36" width="66.666666666666671" height="17"/>
+                                                    <rect key="frame" x="7" y="36" width="68.333333333333329" height="17"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="30분 전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMo-J0-g9Y">
-                                                    <rect key="frame" x="241" y="25" width="39" height="14"/>
+                                                    <rect key="frame" x="242.33333333333329" y="25" width="37.666666666666657" height="14"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
                                                     <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -113,7 +113,6 @@
                                         <constraint firstItem="ydW-pK-aUY" firstAttribute="centerY" secondItem="ZZV-G4-8Lc" secondAttribute="centerY" id="23l-Lq-WvW"/>
                                         <constraint firstItem="Fh6-8s-Zo1" firstAttribute="top" secondItem="ZZV-G4-8Lc" secondAttribute="top" id="24X-1H-tj4"/>
                                         <constraint firstAttribute="trailing" secondItem="Fh6-8s-Zo1" secondAttribute="trailing" id="4w9-4l-E5n"/>
-                                        <constraint firstAttribute="bottom" secondItem="ydW-pK-aUY" secondAttribute="bottom" constant="13.83" id="7b8-82-ngA"/>
                                         <constraint firstItem="ydW-pK-aUY" firstAttribute="leading" secondItem="ZZV-G4-8Lc" secondAttribute="leadingMargin" id="MMA-e3-Mn3"/>
                                         <constraint firstAttribute="bottom" secondItem="Fh6-8s-Zo1" secondAttribute="bottom" id="MRp-pn-SkQ"/>
                                         <constraint firstItem="ydW-pK-aUY" firstAttribute="top" secondItem="ZZV-G4-8Lc" secondAttribute="top" constant="13.83" id="Ob7-9g-e76"/>
@@ -508,7 +507,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMb-vz-swp">
-                                                    <rect key="frame" x="8" y="25.666666666666671" width="359" height="50"/>
+                                                    <rect key="frame" x="8" y="25.666666666666671" width="398" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="axV-DG-AVP"/>
                                                     </constraints>
@@ -726,6 +725,6 @@
         <image name="pencil" width="43.200000762939453" height="43.200000762939453"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mnm-PN-l8T"/>
+        <segue reference="Gar-Pl-YAe"/>
     </inferredMetricsTieBreakers>
 </document>

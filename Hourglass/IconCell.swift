@@ -16,4 +16,12 @@ class IconCell: UICollectionViewCell {
             iconImageView.clipsToBounds = true
         }
     }
+    
+    override var isSelected: Bool {
+        didSet {
+            contentView.backgroundColor = isSelected ? UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) : UIColor.clear
+            contentView.layer.cornerRadius = contentView.layer.frame.width / 2.66
+            contentView.layer.masksToBounds = true
+        }
+    }
 }

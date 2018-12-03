@@ -10,11 +10,6 @@ import UIKit
 import NightNight
 import SwiftIcons
 
-extension SendValueToViewControllerDelegate {
-    
-    func sendIconNumber(value: Int32) {}
-}
-
 private let reuseIdentifier = "popoverIconCell"
 
 class PopoverCollectionViewController: UICollectionViewController {
@@ -35,15 +30,34 @@ class PopoverCollectionViewController: UICollectionViewController {
         collectionView.mixedBackgroundColor = MixedColor(normal: UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), night: UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1))
         self.popoverPresentationController?.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x121315)
 
+        if let iconNumber = iconNumber {
+            if iconNumber == 1081 {
+                self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredVertically)
+            } else {
+                self.collectionView.selectItem(at: IndexPath(item: Int(iconNumber), section: 1), animated: true, scrollPosition: .centeredVertically)
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        if let iconNumber = iconNumber {
+            if iconNumber == 1081 {
+                self.collectionView(self.collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+            } else {
+                self.collectionView(self.collectionView, didSelectItemAt: IndexPath(item: Int(iconNumber), section: 1))
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if let value = iconNumber {
-            
-            delegation?.sendIconNumber(value: value)
+        if iconNumber == nil {
+            delegation?.sendIconNumber(value: 1081)
+        } else {
+            delegation?.sendIconNumber(value: iconNumber!)
         }
     }
 
@@ -84,23 +98,14 @@ class PopoverCollectionViewController: UICollectionViewController {
         
         // Configure the cell
         
-        var mixedTextColor: UIColor = UIColor.black
-        var mixedBackgroundColor: UIColor = UIColor.white
-        
-        if NightNight.theme == .night {
-            mixedTextColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1)
-        } else if NightNight.theme == .normal {
-            mixedTextColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
-        }
+        let mixedTextColor = NightNight.theme == .night ? UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1) : UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
         
         if indexPath.section == 0 {
-            cell.iconImageView.setIcon(icon: .icofont(.hourGlass), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
+            cell.iconImageView.setIcon(icon: .icofont(.hourGlass), textColor: mixedTextColor, backgroundColor: .clear, size: nil)
         } else if indexPath.section == 1 {
-            if let iconCase = IcofontType(rawValue: indexPath.row) {
-                cell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
-                cell.iconImageView.image!.withAlignmentRectInsets(UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15))
+            if let iconCase = IcofontType(rawValue: indexPath.item) {
+                cell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: .clear, size: nil)
+//                cell.iconImageView.image!.withAlignmentRectInsets(UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15))
             }
         }
         return cell
@@ -113,12 +118,10 @@ class PopoverCollectionViewController: UICollectionViewController {
         return true
     }
 
-    /*
     // Uncomment this method to specify if the specified item should be selected
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    */
 
     /*
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
@@ -137,51 +140,13 @@ class PopoverCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let selecedCell = collectionView.cellForItem(at: indexPath) as? IconCell else { return }
-        
-        var mixedTextColor: UIColor = UIColor.black
-        var mixedBackgroundColor: UIColor = UIColor.white
-        
-        if NightNight.theme == .night {
-            mixedTextColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        } else if NightNight.theme == .normal {
-            mixedTextColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        }
-        
         if indexPath.section == 0 {
-            selecedCell.iconImageView.setIcon(icon: .icofont(.hourGlass), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
-            iconNumber = 1081 // hourGlass
+            iconNumber = nil
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init(rawValue: 0))
         } else if indexPath.section == 1 {
-            if let iconCase = IcofontType(rawValue: indexPath.row) {
-                selecedCell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
-                iconNumber = Int32(indexPath.row)
-            }
+            iconNumber = Int32(indexPath.item)
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init(rawValue: 0))
         }
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
-        guard let selecedCell = collectionView.cellForItem(at: indexPath) as? IconCell else { return }
-        
-        var mixedTextColor: UIColor = UIColor.black
-        var mixedBackgroundColor: UIColor = UIColor.white
-        
-        if NightNight.theme == .night {
-            mixedTextColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1)
-        } else if NightNight.theme == .normal {
-            mixedTextColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
-            mixedBackgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
-        }
-        
-        if indexPath.section == 0 {
-            selecedCell.iconImageView.setIcon(icon: .icofont(.hourGlass), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
-        } else if indexPath.section == 1 {
-            if let iconCase = IcofontType(rawValue: indexPath.row) {
-                selecedCell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: mixedTextColor, backgroundColor: mixedBackgroundColor, size: CGSize(width: 40, height: 40))
-            }
-        }
+        collectionView.cellForItem(at: indexPath)
     }
 }
