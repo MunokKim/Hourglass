@@ -141,6 +141,8 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         // UIButton의 setBackgroundImage를 이용한 메서드를 익스텐션으로 만들어서 사용
         workRecordButton.setBackgroundColor(color: UIColor(red:0.99, green:0.81, blue:0.64, alpha:1.00), forState: UIControl.State.highlighted)
         
+        workNameTextField.text = workNameLabel.text
+        
         // Add Observer
         let notificationCenter = NotificationCenter.default
 //        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.fetchAndRenewal), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
@@ -236,10 +238,26 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         textField.resignFirstResponder()
         textField.isHidden = true
         workNameLabel.isHidden = false
-        workNameLabel.text = textField.text
         
-        // WorkInfo 업데이트
-        individualUpdateWorkInfo()
+        // 텍스트필드가 공백이거나 글자가 아닌 경우(공백, 특수문자 등)
+        if workNameTextField.text == "" || workNameTextField.text?.rangeOfCharacter(from: CharacterSet.letters) == nil {
+            
+            // 부르르 떠는 애니메이션
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.07
+            animation.repeatCount = 4
+            animation.autoreverses = true
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: self.workNameLabel.center.x - 10, y: self.workNameLabel.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: self.workNameLabel.center.x + 10, y: self.workNameLabel.center.y))
+            
+            self.workNameLabel.layer.add(animation, forKey: "position")
+            
+        } else {
+            workNameLabel.text = textField.text
+            
+            // WorkInfo 업데이트
+            individualUpdateWorkInfo()
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -249,6 +267,11 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
         
         return newString.length <= maxLength
+    }
+    
+    @IBAction func editingChangedInWorkName(_ sender: Any) {
+        
+
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {

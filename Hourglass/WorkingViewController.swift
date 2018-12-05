@@ -121,10 +121,8 @@ class WorkingViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: "작업을 종료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
         let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel, handler: nil)
         let endAction = UIAlertAction(title: "종료", style: UIAlertAction.Style.destructive, handler: { _ in
-            self.resumeTimer?.invalidate()
-            self.resumeTimer = nil
-            self.pauseTimer?.invalidate()
-            self.pauseTimer = nil
+            
+            self.cancelTimerAndNoti()
             
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         })
@@ -184,10 +182,8 @@ class WorkingViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: "작업을 완료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
         let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel, handler: nil)
         let completionAction = UIAlertAction(title: "완료", style: UIAlertAction.Style.default, handler: { _ in
-            self.resumeTimer?.invalidate()
-            self.resumeTimer = nil
-            self.pauseTimer?.invalidate()
-            self.pauseTimer = nil
+            
+            self.cancelTimerAndNoti()
             
             self.saveTimeMeasurementInfo()
             
@@ -260,10 +256,7 @@ class WorkingViewController: UIViewController {
             
             if elapsedTime! >= Int32(36000) {
                 
-                self.resumeTimer?.invalidate()
-                self.resumeTimer = nil
-                self.pauseTimer?.invalidate()
-                self.pauseTimer = nil
+                cancelTimerAndNoti()
                 
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
             }
@@ -431,13 +424,14 @@ class WorkingViewController: UIViewController {
         
         let didAllow = UserDefaults.standard.bool(forKey: "alertSwitchState")
         
+        // 알림설정 켜짐 & 스탑워치 진행중 & 남은시간 남아있음
         if didAllow && isStopwatchRunning && (remainingTime! >= Int32(0)) {
             
             // push 알림 메시지 설정
             let content = UNMutableNotificationContent()
             content.title = fetchResult.workName ?? "시간추정작업"
             content.subtitle = fetchResult.estimatedWorkTime.secondsToString
-            content.userInfo = ["workID":fetchResult.workID, "workStart":workStart, "momentForEnterBackground":momentOfEnterBackground, "elapsedTime":elapsedTime, "remainingTime":remainingTime]
+            content.userInfo = ["workID":fetchResult.workID, "workStart":workStart, "momentForEnterBackground":momentOfEnterBackground, "elapsedTime":elapsedTime, "remainingTime":remainingTime, "NotificationID":"workDoneNoti"]
             
             let list = SoundEffect()
             let index = UserDefaults.standard.integer(forKey: "timeOverSoundState")
@@ -499,6 +493,8 @@ class WorkingViewController: UIViewController {
     
     @objc func willEnterForeground() {
         
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+
         // 백그라운드 복귀 시점 저장
         momentOfEnterForeground = NSDate()
         
@@ -516,12 +512,23 @@ class WorkingViewController: UIViewController {
         }
     }
     
+    func cancelTimerAndNoti() {
+        
+        resumeTimer?.invalidate()
+        resumeTimer = nil
+        pauseTimer?.invalidate()
+        pauseTimer = nil
+        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+    
     func contextFetchToSelectedIndex(_ index: Int?) -> WorkInfo {
         
         // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
         let request: NSFetchRequest<WorkInfo> = WorkInfo.fetchRequest()
         
-        request.predicate = NSPredicate(format: "workID == \(index ?? 1)")
+        guard let index = index else { return WorkInfo() }
+        request.predicate = NSPredicate(format: "workID == \(index)")
         
         do {
             let resultArray = try context.fetch(request)
@@ -665,12 +672,9 @@ extension WorkingViewController: UNUserNotificationCenterDelegate {
                     }
                     estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
                 }
-                
-                self.resumeTimer?.invalidate()
-                self.resumeTimer = nil
-                self.pauseTimer?.invalidate()
-                self.pauseTimer = nil
 
+                cancelTimerAndNoti()
+                
                 self.saveTimeMeasurementInfo()
 
                 self.performSegue(withIdentifier: "WorkResultSegue", sender: nil)

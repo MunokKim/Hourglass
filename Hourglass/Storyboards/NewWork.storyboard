@@ -20,7 +20,7 @@
         <!--아이콘 선택-->
         <scene sceneID="Vp1-ih-KU1">
             <objects>
-                <collectionViewController id="U5e-SN-ZL9" customClass="IconCollectionViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="U5e-SN-ZL9" customClass="NewIconCollectionViewController" customModule="Hourglass" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="D0S-Jz-A7z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -251,7 +251,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
         
         if segue.identifier == "iconSegue" {
             
-            if let vc = segue.destination as? IconCollectionViewController {
+            if let vc = segue.destination as? NewIconCollectionViewController {
                 
                 vc.delegation = self as SendValueToViewControllerDelegate
                 vc.iconNumber = iconNumber

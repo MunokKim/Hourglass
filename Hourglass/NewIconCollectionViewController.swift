@@ -1,5 +1,5 @@
 //
-//  iconCollectionViewController.swift
+//  NewIconCollectionViewController.swift
 //  Hourglass
 //
 //  Created by 김문옥 on 22/11/2018.
@@ -12,7 +12,7 @@ import NightNight
 
 private let reuseIdentifier = "iconCell"
 
-class IconCollectionViewController: UICollectionViewController {
+class NewIconCollectionViewController: UICollectionViewController {
     
     var iconNumber: Int32?
     var delegation: SendValueToViewControllerDelegate?
