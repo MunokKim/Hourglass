@@ -8,9 +8,13 @@
 
 import UIKit
 import NightNight
+import MessageUI
 
-class MoreTableViewController: UITableViewController {
+class MoreTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet var feedbackCell: UITableViewCell!
+    @IBOutlet var appStoreReviewCell: UITableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +29,29 @@ class MoreTableViewController: UITableViewController {
         navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
         tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
     }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        switch result {
+        case .cancelled:
+            print("취소")
+        case .saved:
+            print("임시저장")
+        case .sent:
+            let sendMailErrorAlert = UIAlertController(title: "메일 전송 완료", message: "소중한 의견 감사드립니다. :D", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
+            sendMailErrorAlert.addAction(cancelAction)
+            self.present(sendMailErrorAlert, animated: true, completion: nil)
+        default:
+            let sendMailErrorAlert = UIAlertController(title: "메일 전송 실패", message: "이메일 설정을 확인하고 다시 시도해주세요.", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
+            sendMailErrorAlert.addAction(cancelAction)
+            self.present(sendMailErrorAlert, animated: true, completion: nil)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+
 
     // MARK: - Table view data source
     
@@ -42,6 +69,42 @@ class MoreTableViewController: UITableViewController {
 //        if indexPath.section == 1 {
 //            cell.textLabel?.mixedTextColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
 //        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        
+        switch cell {
+        case feedbackCell:
+            
+            if MFMailComposeViewController.canSendMail() {
+                let mail = MFMailComposeViewController()
+                mail.mailComposeDelegate = self
+                mail.setToRecipients(["wer0222@icloud.com"])
+                mail.setSubject("모래시계에 대한 피드백")
+                mail.setMessageBody("새롭게 추가 할 기능이나 개선이 필요한 사항을 알려주시면 신속하게 반영하겠습니다 :)", isHTML: false)
+                present(mail, animated: true)
+            } else {
+                let sendMailErrorAlert = UIAlertController(title: "메일 전송 실패", message: "이메일 설정을 확인하고 다시 시도해주세요.", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
+                sendMailErrorAlert.addAction(cancelAction)
+                self.present(sendMailErrorAlert, animated: true, completion: nil)
+            }
+        case appStoreReviewCell:
+            
+            let myAppID = "1441559871"
+            
+            if let reviewURL = URL(string: "itms-apps://itunes.apple.com/app/itunes-u/id\(myAppID)?ls=1&mt=8&action=write-review"), UIApplication.shared.canOpenURL(reviewURL) { // 유효한 URL인지 검사합니다.
+                if #available(iOS 10.0, *) { //iOS 10.0부터 URL를 오픈하는 방법이 변경 되었습니다.
+                    UIApplication.shared.open(reviewURL, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(reviewURL)
+                }
+            }
+        default:
+            break
+        }
     }
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {

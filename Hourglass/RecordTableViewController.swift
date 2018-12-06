@@ -8,9 +8,33 @@
 
 import UIKit
 import NightNight
+import ExpandableCell
 
-class RecordTableViewController: UITableViewController {
-
+class RecordTableViewController: UITableViewController, ExpandableDelegate {
+    
+    func expandableTableView(_ expandableTableView: ExpandableTableView, heightsForExpandedRowAt indexPath: IndexPath) -> [CGFloat]? {
+        <#code#>
+    }
+    
+    func expandableTableView(_ expandableTableView: ExpandableTableView, expandedCellsForRowAt indexPath: IndexPath) -> [UITableViewCell]? {
+        <#code#>
+    }
+    
+    func expandableTableView(_ expandableTableView: ExpandableTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        <#code#>
+    }
+    
+    func expandableTableView(_ expandableTableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func expandableTableView(_ expandableTableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+    }
+    
+    @IBOutlet var expandableTableView: ExpandableTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,7 +52,7 @@ class RecordTableViewController: UITableViewController {
         // navigationBar 색상바꾸는 법.
         self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
         
-//        self.navigationController?.navigationItem.title = "작업 기록"
+        expandableTableView.expandableDelegate = self
     }
 
     override func didReceiveMemoryWarning() {

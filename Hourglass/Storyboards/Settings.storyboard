@@ -132,6 +132,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="더 보기" id="vWi-F8-ZAe"/>
+                    <connections>
+                        <outlet property="appStoreReviewCell" destination="0oo-Cl-aEx" id="MmU-QA-NIY"/>
+                        <outlet property="feedbackCell" destination="tev-WU-UAS" id="Rux-Yn-xXf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIP-mm-qsX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

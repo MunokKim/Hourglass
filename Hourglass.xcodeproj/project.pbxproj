@@ -131,7 +131,7 @@
 		6B6FEF052153EB86000653FF /* PreviousBackupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousBackupTableViewController.swift; sourceTree = "<group>"; };
 		6B6FEF072154558E000653FF /* ScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenExtension.swift; sourceTree = "<group>"; };
 		6B6FEF0A2154E3D1000653FF /* Hourglass.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hourglass.xcdatamodel; sourceTree = "<group>"; };
-		6B78E91F218CB9950082F7FB /* Tall___Lean.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tall___Lean.ttf"; sourceTree = "<group>"; };
+		6B78E91F218CB9950082F7FB /* Tall___Lean.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tall___Lean.ttf; sourceTree = "<group>"; };
 		6B78E921218CC6B70082F7FB /* Tall_Films_Expanded.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tall_Films_Expanded.ttf; sourceTree = "<group>"; };
 		6B8B3A47215524C600E682B6 /* TimeMeasurementInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeMeasurementInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6B8B3A48215524C600E682B6 /* TimeMeasurementInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeMeasurementInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -529,6 +529,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hourglass/Pods-Hourglass-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ExpandableCell/ExpandableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NightNight/NightNight.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -536,6 +537,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExpandableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NightNight.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -677,11 +679,7 @@
 				DEVELOPMENT_TEAM = L2N9WY9T58;
 				INFOPLIST_FILE = NotificationViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = HelloWorld.Munok.Hourglass.NotificationViewController;
@@ -701,11 +699,7 @@
 				DEVELOPMENT_TEAM = L2N9WY9T58;
 				INFOPLIST_FILE = NotificationViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = HelloWorld.Munok.Hourglass.NotificationViewController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -842,10 +836,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L2N9WY9T58;
 				INFOPLIST_FILE = Hourglass/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HelloWorld.Munok.Hourglass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = HourglassDevelopmentProfile;
@@ -868,10 +859,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L2N9WY9T58;
 				INFOPLIST_FILE = Hourglass/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HelloWorld.Munok.Hourglass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = HourglassProfile;

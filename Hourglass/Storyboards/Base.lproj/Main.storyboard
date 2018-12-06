@@ -89,23 +89,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="30분 전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMo-J0-g9Y">
-                                                    <rect key="frame" x="241" y="25" width="39" height="14"/>
-                                                    <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
-                                                    <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="bMo-J0-g9Y" firstAttribute="centerY" secondItem="LtB-68-AhA" secondAttribute="centerY" id="2Iy-xc-Qs2"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lE6-Jj-xsC" secondAttribute="trailing" id="8x9-Ec-hrO"/>
                                                 <constraint firstItem="ogX-Qs-Khy" firstAttribute="leading" secondItem="lE6-Jj-xsC" secondAttribute="leading" id="VpG-kS-qML"/>
                                                 <constraint firstItem="lE6-Jj-xsC" firstAttribute="top" secondItem="LtB-68-AhA" secondAttribute="top" constant="8" id="W7r-KC-AAh"/>
                                                 <constraint firstItem="lE6-Jj-xsC" firstAttribute="leading" secondItem="LtB-68-AhA" secondAttribute="leading" constant="7" id="c3X-ID-u0n"/>
                                                 <constraint firstAttribute="height" constant="64" id="hr1-Ai-f0r"/>
-                                                <constraint firstItem="bMo-J0-g9Y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lE6-Jj-xsC" secondAttribute="trailing" constant="5" id="mcR-uv-fhU"/>
                                                 <constraint firstItem="ogX-Qs-Khy" firstAttribute="top" secondItem="lE6-Jj-xsC" secondAttribute="bottom" constant="6" id="poI-rR-noo"/>
-                                                <constraint firstAttribute="trailing" secondItem="bMo-J0-g9Y" secondAttribute="trailing" id="t3l-vV-ph0"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -125,7 +117,6 @@
                                     <outlet property="estimatedWorkTimeLabel" destination="ogX-Qs-Khy" id="UIY-6N-Jof"/>
                                     <outlet property="iconImageView" destination="GVg-gT-ItP" id="Ldf-E1-J3c"/>
                                     <outlet property="iconView" destination="ydW-pK-aUY" id="6XI-de-oRW"/>
-                                    <outlet property="latestTimeLabel" destination="bMo-J0-g9Y" id="WBa-O7-4Ek"/>
                                     <outlet property="workInfoBtn" destination="Fh6-8s-Zo1" id="cOd-C2-1oc"/>
                                     <outlet property="workNameLabel" destination="lE6-Jj-xsC" id="hz9-sh-SmS"/>
                                     <segue destination="hHv-Q5-GBj" kind="presentation" identifier="WorkingSegue" id="Gar-Pl-YAe"/>
@@ -682,10 +673,13 @@
                             <outlet property="delegate" destination="TWD-RP-IVy" id="sOs-lv-uCH"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="expandableTableView" destination="Nkg-DF-B8z" id="bW4-b3-Of6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WsC-vy-6PK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3609" y="1176"/>
+            <point key="canvasLocation" x="2822" y="1175"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NDs-w8-dmS">
@@ -728,6 +722,6 @@
         <image name="pencil" width="43.200000762939453" height="43.200000762939453"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mnm-PN-l8T"/>
+        <segue reference="Gar-Pl-YAe"/>
     </inferredMetricsTieBreakers>
 </document>

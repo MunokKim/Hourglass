@@ -70,8 +70,6 @@ class SettingViewController: UITableViewController {
             UserDefaults.standard.set(alertSwitch.isOn, forKey: "alertSwitchState")
             changeSelection()
         }
-        
-        
     }
     
     @IBAction func soundSwitchChanged(_ sender: Any) {

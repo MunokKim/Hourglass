@@ -111,7 +111,7 @@ class MainViewController: UITableViewController {
             resultsArray = try context.fetch(request)
             
             for work in resultsArray {
-                print("WORK's Name : \(work.workName)") // 한번씩 사용을 해주어야 실제 값이 들어있게 된다.
+                print("WORK's Name : \(work.workName)") // 한번씩 사용을 해주어야 실제 값이 들어가게 된다.
             }
             
             DispatchQueue.main.async {
@@ -168,9 +168,6 @@ class MainViewController: UITableViewController {
         
         // 테마 적용
         cell.workNameLabel.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
-        cell.latestTimeLabel.mixedTextColor = MixedColor(normal: UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0
-        ), night: UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0))
-        
         cell.iconView.mixedBackgroundColor = MixedColor(normal: 0xcbcbcb, night: 0x2b2b2b)
         cell.iconView.layer.cornerRadius = cell.iconView.layer.frame.width / 2.66
         cell.iconView.clipsToBounds = true
@@ -216,35 +213,63 @@ class MainViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            // Core Data 영구 저장소에서 WorkInfo 데이터 삭제하기
+            context.delete(resultsArray[indexPath.row])
+            
+            do {
+                try context.save()
+                
+                print("Context Save(Delete) Success!")
+                tableView.deleteRows(at: [indexPath], with: .fade)
+//                tableView.reloadData()
+            } catch let nserror as NSError {
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+            
         }
     }
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         
+        let itemToMove = resultsArray[fromIndexPath.row]
+        resultsArray.remove(at: fromIndexPath.row)
+        resultsArray.insert(itemToMove, at: to.row)
         
+        // Core Data 영구 저장소에서 WorkInfo workID 갱신하기
+        var workID: Int16 = 1
+        for result in resultsArray {
+            result.setValue(workID, forKey: "workID")
+            workID += 1
+        }
+        
+        do {
+            try context.save()
+            
+            print("Context Save(Replace) Success!")
+            tableView.reloadData()
+            
+        } catch let nserror as NSError {
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
     }
     
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
     
     
     // MARK: - Navigation
@@ -283,7 +308,6 @@ class WorkCell: UITableViewCell {
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var workNameLabel: UILabel!
     @IBOutlet var estimatedWorkTimeLabel: UILabel!
-    @IBOutlet var latestTimeLabel: UILabel!
     @IBOutlet var workInfoBtn: UIButton! {
         didSet {
             // 버튼 이미지 주위의 사각형에 대한 여백

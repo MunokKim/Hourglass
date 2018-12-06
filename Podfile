@@ -14,7 +14,7 @@ pod 'SnapKit', '~> 4.0.0'
 pod 'MarqueeLabel/Swift'
 pod 'NightNight'
 pod 'SwiftIcons', '~> 2.2.0'
-
+pod 'ExpandableCell'
 
 
 
