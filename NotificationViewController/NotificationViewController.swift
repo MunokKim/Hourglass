@@ -9,7 +9,6 @@
 import UIKit
 import UserNotifications
 import UserNotificationsUI
-import CoreData
 
 class NotificationViewController: UIViewController, UNNotificationContentExtension {
     
@@ -34,7 +33,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 
     func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
         
-        let userInfo = response.notification.request.content.userInfo
+//        let userInfo = response.notification.request.content.userInfo
         
         if response.notification.request.content.categoryIdentifier == "newCategory" {
             
@@ -61,17 +60,6 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 //                let elapsedTime = userInfo["elapsedTime"] as? Int32
 //                let remainingTime = userInfo["remaingTime"] as? Int32
                 
-                // App Groups 를 이용한 Extension 과 호스트 앱의 데이터 연동
-//                if let shareDefaults = UserDefaults(suiteName: "group.Munok.Hourglass") {
-//
-//                    shareDefaults.set(true, forKey: "isCompleted")
-////                    shareDefaults.set(workID, forKey: "workID")
-////                    shareDefaults.set(workStart, forKey: "workStart")
-////                    shareDefaults.set(elapsedTime, forKey: "elapsedTime")
-////                    shareDefaults.set(remainingTime, forKey: "remainingTime")
-//                    shareDefaults.set(NSDate(), forKey: "momentForNotiAction")
-//                }
-                
                 let innerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imageView.frame.size.width, height: 0))
                 innerView.layer.position = CGPoint(x: self.imageView.frame.width/2, y: self.imageView.frame.height)
                 innerView.backgroundColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:0.75)
@@ -93,34 +81,4 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         }
 //        completion(.doNotDismiss)
     }
-    
-//    func saveTimeMeasurementInfo() {
-//
-//        // Core Data 영구 저장소에 TimeMeasurementInfo 데이터 추가하기
-//        let timeMeasurementInfo = TimeMeasurementInfo(context: context)
-//
-//        timeMeasurementInfo.workStart = workStart
-//        let now = NSDate()
-//        timeMeasurementInfo.actualCompletion = now
-//        timeMeasurementInfo.goalSuccessOrFailWhether = elapsedTime ?? 0 <= fetchResult.estimatedWorkTime // 목표 달성/실패 여부 = 소요시간 <= 작업예상시간
-//        timeMeasurementInfo.successiveGoalAchievement = timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0 // 연속목표달성
-//        timeMeasurementInfo.estimatedWorkTime = fetchResult.estimatedWorkTime // 예상작업시간
-//        timeMeasurementInfo.elapsedTime = elapsedTime ?? 0
-//        timeMeasurementInfo.remainingTime = remainingTime ?? 0
-//        timeMeasurementInfo.work = fetchResult // 어떤 작업에 해당하는 시간측정정보인지
-//
-//        do {
-//            try context.save()
-//
-//            print("Context Save Success!")
-//            print("timeMeasurementInfo >>>>>>>>>> \(timeMeasurementInfo)")
-//            print("workInfo >>>>>>>>>> \(fetchResult)")
-//
-//            workResultInfo = timeMeasurementInfo
-//
-//        } catch let nserror as NSError {
-//
-//            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-//        }
-//    }
 }

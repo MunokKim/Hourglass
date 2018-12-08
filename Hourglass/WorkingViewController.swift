@@ -127,7 +127,7 @@ class WorkingViewController: UIViewController {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         })
         
-        cancelAction.setValue(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), forKey: "titleTextColor")
+        cancelAction.setValue(AppsConstants.appMainColor, forKey: "titleTextColor")
         alert.addAction(cancelAction)
         alert.addAction(endAction)
         self.present(alert, animated: true, completion: nil)
@@ -190,8 +190,8 @@ class WorkingViewController: UIViewController {
             self.performSegue(withIdentifier: "WorkResultSegue", sender: nil)
         })
         
-        cancelAction.setValue(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), forKey: "titleTextColor")
-        completionAction.setValue(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), forKey: "titleTextColor")
+        cancelAction.setValue(AppsConstants.appMainColor, forKey: "titleTextColor")
+        completionAction.setValue(AppsConstants.appMainColor, forKey: "titleTextColor")
         alert.addAction(cancelAction)
         alert.addAction(completionAction)
         self.present(alert, animated: true, completion: nil)
@@ -338,9 +338,14 @@ class WorkingViewController: UIViewController {
         timeMeasurementInfo.actualCompletion = now
         timeMeasurementInfo.goalSuccessOrFailWhether = elapsedTime ?? 0 <= fetchResult.estimatedWorkTime // 목표 달성/실패 여부 = 소요시간 <= 작업예상시간
         timeMeasurementInfo.successiveGoalAchievement = timeMeasurementInfo.goalSuccessOrFailWhether ? fetchResult.currentSuccessiveAchievementWhether + 1 : 0 // 연속목표달성
-        timeMeasurementInfo.estimatedWorkTime = fetchResult.estimatedWorkTime // 예상작업시간
+        
+        // viewDidLoad에서 estimatedWorkTime을 참조한 뒤 계속 사용했기 때문에 값이 바뀌었다.
+        // Core Data의 estimatedWorkTime를 새로 불러온다. (더 나은 방법을 찾지 못함!!!!!!)
+        let newFetch = fetchToSelectedIndex(selectedIndex)
+        timeMeasurementInfo.estimatedWorkTime = newFetch.estimatedWorkTime // 예상작업시간
         timeMeasurementInfo.elapsedTime = elapsedTime ?? 0
         timeMeasurementInfo.remainingTime = remainingTime ?? 0
+        timeMeasurementInfo.workID = fetchResult.workID // 작업번호
         timeMeasurementInfo.work = fetchResult // 어떤 작업에 해당하는 시간측정정보인지
         
         do {
@@ -377,7 +382,7 @@ class WorkingViewController: UIViewController {
         cancelButton.layer.borderWidth = 3.5
         completeButton.layer.borderWidth = 3.5
         
-        fetchResult = contextFetchToSelectedIndex(selectedIndex)
+        fetchResult = fetchToSelectedIndex(selectedIndex)
         
         workStart = NSDate() // 작업시작은 현재
         estimatedWorkTime = fetchResult.estimatedWorkTime
@@ -522,7 +527,7 @@ class WorkingViewController: UIViewController {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
-    func contextFetchToSelectedIndex(_ index: Int?) -> WorkInfo {
+    func fetchToSelectedIndex(_ index: Int?) -> WorkInfo {
         
         // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
         let request: NSFetchRequest<WorkInfo> = WorkInfo.fetchRequest()

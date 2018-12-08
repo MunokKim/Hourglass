@@ -21,17 +21,22 @@ class SoundEffectSelectionTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         // 테마 적용
-        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x161718)
+        view.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: AppsConstants.night.backViewColor.rawValue)
         navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
-        tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
+        if NightNight.theme == .night {
+            navigationController?.navigationBar.barStyle = .black
+        } else if NightNight.theme == .normal {
+            navigationController?.navigationBar.barStyle = .default
+        }
+        tableView.mixedSeparatorColor = MixedColor(normal: AppsConstants.normal.separatorColor.rawValue, night: AppsConstants.night.separatorColor.rawValue)
     }
 
     // MARK: - Table view data source
     
 //    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //
-//        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
-//        cell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+//        cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
+//        cell.textLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
 //
 //        cell.textLabel?.font = UIFont(name: "GodoM", size: 17)
 //
@@ -145,8 +150,8 @@ class SoundEffectSelectionTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingReuseCell", for: indexPath)
 
         // Configure the cell...
-        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
-        cell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
+        cell.textLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
         
         cell.textLabel?.font = UIFont(name: "GodoM", size: 17)
         

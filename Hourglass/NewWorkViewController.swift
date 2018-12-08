@@ -17,7 +17,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
     
     let context = AppDelegate.viewContext
     
-    internal var isCellHeightExpanded: Bool = false {
+    var isCellHeightExpanded: Bool = false {
         didSet{
             //(own internal logic removed)
             
@@ -96,25 +96,24 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
         addButton.isEnabled = false
         
         // 테마 적용
-        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x161718)
+        view.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: AppsConstants.night.backViewColor.rawValue)
         navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
-        
         if NightNight.theme == .night {
             navigationController?.navigationBar.barStyle = .black
         } else if NightNight.theme == .normal {
             navigationController?.navigationBar.barStyle = .default
         }
         
-        tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
-        iconCellLabel.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        tableView.mixedSeparatorColor = MixedColor(normal: AppsConstants.normal.separatorColor.rawValue, night: AppsConstants.night.separatorColor.rawValue)
+        iconCellLabel.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
         
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+        self.navigationController?.navigationBar.tintColor = AppsConstants.appMainColor // Sunshade
         
         workNameTextField.borderStyle = .none
         workNameTextField.backgroundColor = UIColor.clear
-        workNameTextField.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        workNameTextField.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        workNameTextField.tintColor = AppsConstants.appMainColor
+        workNameTextField.textColor = AppsConstants.appMainColor
         let attributedString = NSMutableAttributedString(string: "작업 이름 입력")
         attributedString.setMixedAttributes([NNForegroundColorAttributeName: MixedColor(normal: 0xdcdcdc, night: 0x2c2c2c)], range: NSRange(location: 0, length: 8))
         workNameTextField.attributedPlaceholder = attributedString
@@ -124,7 +123,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
 //        workIconImageView.layer.cornerRadius = workIconImageView.layer.frame.width / 2.66
 //        workIconImageView.clipsToBounds = true
         
-        showEstimatedWorkTimeCell.detailTextLabel?.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        showEstimatedWorkTimeCell.detailTextLabel?.textColor = AppsConstants.appMainColor
         
         self.hideKeyboardWhenTappedAround()
         tableView.keyboardDismissMode = .interactive
@@ -193,9 +192,9 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
-        cell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
-//        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
+        cell.textLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
+//        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
         
         let viewForSelectedCell = UIView()
         viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)

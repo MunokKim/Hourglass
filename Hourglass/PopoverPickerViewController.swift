@@ -28,8 +28,8 @@ class PopoverPickerViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // 테마 적용
-        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x121315)
-        self.popoverPresentationController?.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x121315)
+        view.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: 0x121315)
+        self.popoverPresentationController?.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: 0x121315)
         
         if let initValue = estimatedWorkTimeForPopover, let row = popoverPicker.rowForValue(value: Int(initValue%3600/60)) {
             

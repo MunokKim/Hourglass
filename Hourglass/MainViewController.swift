@@ -26,7 +26,7 @@ class MainViewController: UITableViewController {
     
     let context = AppDelegate.viewContext
     
-    var resultsArray = [WorkInfo]()
+    var fetchArray = [WorkInfo]()
     
     @IBOutlet var editButton: UIBarButtonItem!
     
@@ -53,29 +53,28 @@ class MainViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         // 테마 적용
-        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x161718)
-//        tableView.mixedBackgroundColor = MixedColor(normal: 0xff0000, night: 0x222222)
+        view.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: AppsConstants.night.backViewColor.rawValue)
+//        tableView.mixedBackgroundColor = MixedColor(normal: 0xff0000, night: AppsConstants.normal.textColor.rawValue)
         navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
-        
         if NightNight.theme == .night {
             navigationController?.navigationBar.barStyle = .black
         } else if NightNight.theme == .normal {
             navigationController?.navigationBar.barStyle = .default
         }
-        tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
+        tableView.mixedSeparatorColor = MixedColor(normal: AppsConstants.normal.separatorColor.rawValue, night: AppsConstants.night.separatorColor.rawValue)
         
         // 네비게이션 컨트롤러에서 large title 켜기
         navigationController?.navigationBar.prefersLargeTitles = true
         
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+        self.navigationController?.navigationBar.tintColor = AppsConstants.appMainColor // Sunshade
         
         
         
         //        // 셀간 구분선 없애기
         //        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none;
         // 셀 구분선 왼쪽 띄움
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 0);
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 0)
         
         // 높이 자동 조절
         //        tableView.estimatedRowHeight = 75;
@@ -108,9 +107,9 @@ class MainViewController: UITableViewController {
         request.sortDescriptors = [NSSortDescriptor(key: "workID", ascending: true)]
         
         do {
-            resultsArray = try context.fetch(request)
+            fetchArray = try context.fetch(request)
             
-            for work in resultsArray {
+            for work in fetchArray {
                 print("WORK's Name : \(work.workName)") // 한번씩 사용을 해주어야 실제 값이 들어가게 된다.
             }
             
@@ -143,7 +142,7 @@ class MainViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+        cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
         
         let viewForSelectedCell = UIView()
         viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)
@@ -153,9 +152,8 @@ class MainViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return resultsArray.count
+        return fetchArray.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -167,8 +165,8 @@ class MainViewController: UITableViewController {
         // Configure the cell...
         
         // 테마 적용
-        cell.workNameLabel.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
-        cell.iconView.mixedBackgroundColor = MixedColor(normal: 0xcbcbcb, night: 0x2b2b2b)
+        cell.workNameLabel.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
+        cell.iconView.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.iconBackgroundColor.rawValue, night: AppsConstants.night.iconBackgroundColor.rawValue)
         cell.iconView.layer.cornerRadius = cell.iconView.layer.frame.width / 2.66
         cell.iconView.clipsToBounds = true
         
@@ -178,18 +176,18 @@ class MainViewController: UITableViewController {
         cell.iconView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         cell.iconView.layer.masksToBounds = false
         
-        cell.estimatedWorkTimeLabel.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+        cell.estimatedWorkTimeLabel.textColor = AppsConstants.appMainColor // Sunshade
         
-        if let iconCase = IcofontType(rawValue: Int(resultsArray[indexPath.row].iconNumber)) {
+        if let iconCase = IcofontType(rawValue: Int(fetchArray[indexPath.row].iconNumber)) {
             cell.iconImageView.setIcon(icon: .icofont(iconCase), textColor: MainViewController.mixedTextColor, backgroundColor: .clear, size: nil)
         }
-        cell.workNameLabel.text = resultsArray[indexPath.row].workName ?? nil
-        cell.estimatedWorkTimeLabel.text = resultsArray[indexPath.row].estimatedWorkTime.secondsToString
+        cell.workNameLabel.text = fetchArray[indexPath.row].workName ?? nil
+        cell.estimatedWorkTimeLabel.text = fetchArray[indexPath.row].estimatedWorkTime.secondsToString
         
         cell.shouldSelectRow = { (selectedCell) in
             
             if let indexPathRow = self.tableView.indexPath(for: selectedCell)?.row {
-                self.selectedIndex = Int(self.resultsArray[indexPathRow].workID)
+                self.selectedIndex = Int(self.fetchArray[indexPathRow].workID)
             }
         }
         
@@ -205,7 +203,7 @@ class MainViewController: UITableViewController {
     //    }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        selectedIndex = Int(resultsArray[indexPath.row].workID)
+        selectedIndex = Int(fetchArray[indexPath.row].workID)
         return indexPath
     }
     
@@ -225,7 +223,7 @@ class MainViewController: UITableViewController {
             // Delete the row from the data source
             
             // Core Data 영구 저장소에서 WorkInfo 데이터 삭제하기
-            context.delete(resultsArray[indexPath.row])
+            context.delete(fetchArray[indexPath.row])
             
             do {
                 try context.save()
@@ -243,13 +241,13 @@ class MainViewController: UITableViewController {
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         
-        let itemToMove = resultsArray[fromIndexPath.row]
-        resultsArray.remove(at: fromIndexPath.row)
-        resultsArray.insert(itemToMove, at: to.row)
+        let itemToMove = fetchArray[fromIndexPath.row]
+        fetchArray.remove(at: fromIndexPath.row)
+        fetchArray.insert(itemToMove, at: to.row)
         
         // Core Data 영구 저장소에서 WorkInfo workID 갱신하기
         var workID: Int16 = 1
-        for result in resultsArray {
+        for result in fetchArray {
             result.setValue(workID, forKey: "workID")
             workID += 1
         }

@@ -7,6 +7,7 @@
         <attribute name="goalSuccessOrFailWhether" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="remainingTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="successiveGoalAchievement" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="workID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="workStart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="work" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkInfo" inverseName="eachTurnsOfWork" inverseEntity="WorkInfo" syncable="YES"/>
     </entity>
@@ -27,7 +28,7 @@
         <relationship name="eachTurnsOfWork" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TimeMeasurementInfo" inverseName="work" inverseEntity="TimeMeasurementInfo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TimeMeasurementInfo" positionX="-452" positionY="8" width="191" height="165"/>
+        <element name="TimeMeasurementInfo" positionX="-452" positionY="8" width="191" height="180"/>
         <element name="WorkInfo" positionX="-171" positionY="-36" width="243" height="255"/>
     </elements>
 </model>

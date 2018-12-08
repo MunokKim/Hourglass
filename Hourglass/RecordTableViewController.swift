@@ -8,32 +8,49 @@
 
 import UIKit
 import NightNight
-import ExpandableCell
+import CoreData
 
-class RecordTableViewController: UITableViewController, ExpandableDelegate {
+class RecordTableViewController: UITableViewController {
+
+    var selectedIndex: Int?
     
-    func expandableTableView(_ expandableTableView: ExpandableTableView, heightsForExpandedRowAt indexPath: IndexPath) -> [CGFloat]? {
-        <#code#>
+    let context = AppDelegate.viewContext
+    
+    var fetchArray = [TimeMeasurementInfo]()
+    
+    var isCellsHeightExpanded: [Bool] = [Bool]() {
+        didSet {
+            // 셀 높이를 확인하고 애니메이션을 적용한다.
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }
     }
     
-    func expandableTableView(_ expandableTableView: ExpandableTableView, expandedCellsForRowAt indexPath: IndexPath) -> [UITableViewCell]? {
-        <#code#>
-    }
-    
-    func expandableTableView(_ expandableTableView: ExpandableTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        <#code#>
-    }
-    
-    func expandableTableView(_ expandableTableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func expandableTableView(_ expandableTableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func fetchTimeMeasurementInfo() {
         
+        // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
+        let request: NSFetchRequest<TimeMeasurementInfo> = TimeMeasurementInfo.fetchRequest()
         
+        guard let index = selectedIndex else { return  }
+        request.predicate = NSPredicate(format: "workID == \(index)")
+        request.sortDescriptors = [NSSortDescriptor(key: "workStart", ascending: false)]
+        
+        do {
+            fetchArray = try context.fetch(request)
+            
+            for info in fetchArray {
+                print("work : \(info.work)") // 한번씩 사용을 해주어야 실제 값이 들어가게 된다.
+                isCellsHeightExpanded.append(false)
+            }
+            
+            DispatchQueue.main.async {
+                
+                self.tableView.reloadData()
+            }
+        } catch let nserror as NSError {
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
     }
-    
-    @IBOutlet var expandableTableView: ExpandableTableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,13 +63,17 @@ class RecordTableViewController: UITableViewController, ExpandableDelegate {
         
         print("RecordTableViewController!!!")
         
-        // 네비게이션 컨트롤러 하위의 뷰에서는 large title 비활성화 하기
-        navigationItem.largeTitleDisplayMode = .never
+        // 테마 적용
+        view.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: AppsConstants.night.backViewColor.rawValue)
+        tableView.mixedSeparatorColor = MixedColor(normal: AppsConstants.normal.separatorColor.rawValue, night: AppsConstants.night.separatorColor.rawValue)
+        
+        // 네비게이션 컨트롤러 하위의 뷰에서는 large title
+        navigationItem.largeTitleDisplayMode = .automatic
         
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+        self.navigationController?.navigationBar.tintColor = AppsConstants.appMainColor // Sunshade
         
-        expandableTableView.expandableDelegate = self
+        fetchTimeMeasurementInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,64 +85,114 @@ class RecordTableViewController: UITableViewController, ExpandableDelegate {
         
         return MixedStatusBarStyle(normal: .default, night: .lightContent).unfold()
     }
-
+    
     // MARK: - Table view data source
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.row % 2 == 0 {
+            return 44
+        } else if indexPath.row % 2 == 1 {
+            if self.isCellsHeightExpanded[indexPath.row/2] { // 확대
+                return 88
+            } else { // 축소
+                return 0
+            }
+        }
+        return UITableView.automaticDimension
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return fetchArray.count * 2
     }
-
-    /*
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.row % 2 == 0 {
+            cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
+        } else if indexPath.row % 2 == 1 {
+            cell.selectionStyle = .none
+            
+            cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: AppsConstants.night.backViewColor.rawValue)
+        }
+        
+        let viewForSelectedCell = UIView()
+        viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)
+        cell.selectedBackgroundView = viewForSelectedCell
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        if indexPath.row % 2 == 0 {
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as? RecordTitleCell else {
+                print("errer! : \(description)")
+                return UITableViewCell()
+            }
+            
+            let labels = cell.contentView.subviews.compactMap { $0 as? UILabel }
+            for label in labels {
+                //Do something with label
+                label.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
+            }
+            
+            cell.elapsedTimeLabel.textColor = AppsConstants.appMainColor
+            cell.workStartLabel.mixedTextColor = MixedColor(normal: AppsConstants.normal.detailTextColor.rawValue, night: AppsConstants.night.detailTextColor.rawValue)
+            
+            // Core Data 값 채워넣기 (timeMeasurementInfo)
+            cell.elapsedTimeLabel.text = fetchArray[indexPath.row/2].elapsedTime.secondsToString
+            cell.workStartLabel.text = fetchArray[indexPath.row/2].workStart?.stringFromDate
+            
+            // Icon with color & colored text around it
+//            label.setIcon(prefixText: "Medal ", prefixTextColor: .red, icon: .ionicons(.ribbonA), iconColor: .red, postfixText: "", postfixTextColor: .red, size: nil, iconSize: 40)
+            
+            return cell
+            
+        } else if indexPath.row % 2 == 1 {
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as? RecordDetailCell else {
+                print("errer! : \(description)")
+                return UITableViewCell()
+            }
+            
+            let labels = cell.contentView.subviews.compactMap { $0 as? UILabel }
+            for label in labels {
+                //Do something with label
+                label.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
+            }
+            
+            cell.successiveGoalAchievementLabel.textColor = AppsConstants.appMainColor
+            cell.estimatedWorkTimeLabel.textColor = AppsConstants.appMainColor
+            cell.workCompleteLabel.textColor = AppsConstants.appMainColor
+            cell.remainingTimeLabel.textColor = AppsConstants.appMainColor
+            
+            // Core Data 값 채워넣기 (timeMeasurementInfo)
+            let sga = fetchArray[indexPath.row/2].successiveGoalAchievement
+            cell.successiveGoalAchievementLabel.text = "\(sga) 회"
+            cell.estimatedWorkTimeLabel.text = fetchArray[indexPath.row/2].estimatedWorkTime.secondsToString
+            cell.workCompleteLabel.text = fetchArray[indexPath.row/2].actualCompletion?.stringFromDate
+            cell.remainingTimeLabel.text = fetchArray[indexPath.row/2].remainingTime.secondsToString
 
-        // Configure the cell...
-
-        return cell
+            return cell
+        }
+        return UITableViewCell()
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.row % 2 == 0 {
+            self.isCellsHeightExpanded[indexPath.row/2] = self.isCellsHeightExpanded[indexPath.row/2] ? false : true
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    
     /*
     // MARK: - Navigation
 

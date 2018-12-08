@@ -48,7 +48,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
     
     @IBOutlet var workNameLabel: MarqueeLabel! {
         didSet {
-            workNameLabel.textColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+            workNameLabel.textColor = AppsConstants.appMainColor // Sunshade
             
             // 레이블을 터치하면 텍스트필드로 바꾸고 입력받기
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.workNameLabelTapped))
@@ -70,7 +70,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         didSet {
             workIconButton.layer.cornerRadius = workIconButton.layer.frame.width / 2.66
             workIconButton.clipsToBounds = true
-            workIconButton.mixedBackgroundColor = MixedColor(normal: 0xcbcbcb, night: 0x2b2b2b)
+            workIconButton.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.iconBackgroundColor.rawValue, night: AppsConstants.night.iconBackgroundColor.rawValue)
             workIconButton.layer.mixedShadowColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
             workIconButton.layer.shadowRadius = 2.0
             workIconButton.layer.shadowOpacity = 0.5
@@ -90,13 +90,13 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
     
     @IBOutlet var estimatedWorkTimePickerButton: UIButton! {
         didSet {
-            estimatedWorkTimePickerButton.setTitleColor(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), for: .normal)
+            estimatedWorkTimePickerButton.setTitleColor(AppsConstants.appMainColor, for: .normal)
         }
     }
     
     @IBOutlet var workRecordButton: UIButton! {
         didSet {
-            workRecordButton.backgroundColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+            workRecordButton.backgroundColor = AppsConstants.appMainColor // Sunshade
             workRecordButton.layer.cornerRadius = 10
             workRecordButton.layer.masksToBounds = true
         }
@@ -120,21 +120,38 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        // 네비게이션 컨트롤러 하위의 뷰에서는 large title
+        navigationItem.largeTitleDisplayMode = .automatic
+        
         // 테마 적용
-        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x161718)
+        view.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: AppsConstants.night.backViewColor.rawValue)
         navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
-        tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
-        justLabel.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
-        workNameTextField.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        if NightNight.theme == .night {
+            navigationController?.navigationBar.barStyle = .black
+        } else if NightNight.theme == .normal {
+            navigationController?.navigationBar.barStyle = .default
+        }
+        tableView.mixedSeparatorColor = MixedColor(normal: AppsConstants.normal.separatorColor.rawValue, night: AppsConstants.night.separatorColor.rawValue)
+        justLabel.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
+        workNameTextField.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
+        
+        // 테마에 따른 pencil 이미지 색상 전환
+        for visibleCell in self.tableView.visibleCells {
+            let imageViews = visibleCell.contentView.subviews.compactMap { $0 as? UIImageView }
+            for imageView in imageViews {
+                imageView.mixedImage = MixedImage(normal: UIImage(named: "pencil_normal.png")!, night: UIImage(named: "pencil.png")!)
+                
+            }
+        }
         
         self.hideKeyboardWhenTappedAround()
         tableView.keyboardDismissMode = .interactive
         
-        // 네비게이션 컨트롤러 하위의 뷰에서는 large title 비활성화 하기
-        navigationItem.largeTitleDisplayMode = .never
+        // 네비게이션 컨트롤러 하위의 뷰에서는 large title
+        navigationItem.largeTitleDisplayMode = .automatic
         
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+        self.navigationController?.navigationBar.tintColor = AppsConstants.appMainColor // Sunshade
         
         fetchAndRenewal()
         
@@ -142,6 +159,8 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         workRecordButton.setBackgroundColor(color: UIColor(red:0.99, green:0.81, blue:0.64, alpha:1.00), forState: UIControl.State.highlighted)
         
         workNameTextField.text = workNameLabel.text
+        workRecordButton.setTitle("기록 보기", for: .normal)
+        workRecordButton.setTitleColor(UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00), for: UIControl.State.normal)
         
         // Add Observer
         let notificationCenter = NotificationCenter.default
@@ -150,16 +169,28 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
 //        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.individualUpdateWorkInfo), name: NSNotification.Name(rawValue: "UpdateWorkInfoNoti"), object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 테마에 따른 pencil 이미지 색상 전환
+        for visibleCell in self.tableView.visibleCells {
+            let imageViews = visibleCell.contentView.subviews.compactMap { $0 as? UIImageView }
+            for imageView in imageViews {
+                imageView.mixedImage = MixedImage(normal: UIImage(named: "pencil_normal.png")!, night: UIImage(named: "pencil.png")!)
+            }
+        }
+    }
+    
     @objc func fetchAndRenewal() {
         
         // 메인에서 터치해서 선택된 인덱스로 불러온 WorkInfo객체
-        workInfoFetch = workingVC.contextFetchToSelectedIndex(selectedIndex)
+        workInfoFetch = workingVC.fetchToSelectedIndex(selectedIndex)
         
         guard let workInfoFetch = workInfoFetch else { return }
         
         workNameLabel.text = workInfoFetch.workName
         
-        let mixedBackgroundColor = NightNight.theme == .night ? UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1.00) : UIColor(red: 203/255, green: 203/255, blue: 203/255, alpha: 1.00)
+        let mixedBackgroundColor = NightNight.theme == .night ? UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1.00) : UIColor(red: 238/255, green: 238/255, blue: 243/255, alpha: 1.00)
         
         if let iconCase = IcofontType(rawValue: Int(workInfoFetch.iconNumber)) {
             workIconButton.setIcon(icon: .icofont(iconCase), iconSize: 100, color: MainViewController.mixedTextColor, backgroundColor: mixedBackgroundColor, forState: .normal)
@@ -176,8 +207,11 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         averageElapsedTimeLabel.text = Int32(workInfoFetch.averageElapsedTime).secondsToString // 평균 소요시간
         averageRemainingTimeLabel.text = Int32(workInfoFetch.averageRemainingTime).secondsToString // 평균 남은 시간
         
-        // 이미 한번 만들어져 있으면 제거
+        // 진행한 작업이 없었는데 지금 진행하고 다시 돌아왔을 경우
         self.tableView.viewWithTag(99)?.removeFromSuperview()
+        workRecordButton.backgroundColor = AppsConstants.appMainColor
+        workRecordButton.isEnabled = true
+        
         
         if workInfoFetch.totalWork == 0 {
             // 진행한 작업이 없을 때
@@ -190,7 +224,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
             let noticeLabel = UILabel()
             noticeLabel.center = CGPoint(x: noticeView.frame.size.width / 2, y: noticeView.frame.size.height / 2)
             noticeLabel.text = "진행한 작업이 없습니다. 작업을 시작해보세요."
-            noticeLabel.mixedTextColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+            noticeLabel.mixedTextColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
             noticeLabel.font = UIFont(name: "GodoM", size: 15)
             noticeLabel.textAlignment = .center
             noticeLabel.frame = noticeView.frame
@@ -199,7 +233,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
             self.tableView.addSubview(noticeView)
             
             workRecordButton.isEnabled = false
-            workRecordButton.backgroundColor = UIColor(red:0.99, green:0.81, blue:0.64, alpha:1.00)
+            workRecordButton.backgroundColor = UIColor(red: 0.99, green: 0.81, blue: 0.64, alpha: 1.00)
         }
     }
     
@@ -283,9 +317,9 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
-        cell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
-        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+        cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
+        cell.textLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
+        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
         
         let viewForSelectedCell = UIView()
         viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)
@@ -356,7 +390,8 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "WorkingSegue" {
+        switch segue.identifier {
+        case "WorkingSegue":
             
             if let vc = segue.destination as? WorkingViewController {
                 
@@ -364,9 +399,16 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
                 vc.modalTransitionStyle = .crossDissolve
                 vc.selectedIndex = self.selectedIndex
             }
-        }
-        
-        if segue.identifier == "popoverIconSegue" {
+            
+        case "RecordSegue":
+            
+            if let vc = segue.destination as? RecordTableViewController {
+                
+                print("selectedIndex is : \(String(describing: self.selectedIndex))")
+                vc.selectedIndex = self.selectedIndex
+            }
+            
+        case "popoverIconSegue":
             
             if let vc = segue.destination as? PopoverCollectionViewController {
                 
@@ -376,7 +418,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
                     popoverVC.permittedArrowDirections = .any
                     popoverVC.sourceView = self.workIconButton
                     popoverVC.sourceRect = CGRect(x: self.workIconButton.bounds.minX, y: self.workIconButton.bounds.minY, width: self.workIconButton.bounds.width, height: self.workIconButton.bounds.height)
-                    popoverVC.presentedView?.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+                    popoverVC.presentedView?.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
                     popoverVC.delegate = self
                 }
                 
@@ -385,9 +427,8 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
                 // 아이콘번호 팝오버에 넘겨주기
                 vc.iconNumber = workInfoFetch!.iconNumber
             }
-        }
-        
-        if segue.identifier == "popoverPickerSegue" {
+            
+        case "popoverPickerSegue":
             
             if let vc = segue.destination as? PopoverPickerViewController {
                 
@@ -397,7 +438,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
                     popoverVC.permittedArrowDirections = .any
                     popoverVC.sourceView = self.estimatedWorkTimePickerButton
                     popoverVC.sourceRect = CGRect(x: self.estimatedWorkTimePickerButton.bounds.minX, y: self.estimatedWorkTimePickerButton.bounds.minY, width: self.estimatedWorkTimePickerButton.bounds.width, height: self.estimatedWorkTimePickerButton.bounds.height)
-                    popoverVC.presentedView?.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
+                    popoverVC.presentedView?.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
                     popoverVC.delegate = self
                 }
                 
@@ -406,6 +447,8 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
                 // 예상작업시간 팝오버에 넘겨주기
                 vc.estimatedWorkTimeForPopover = workInfoFetch!.estimatedWorkTime
             }
+            
+        default : break
         }
     }
 }
@@ -422,7 +465,7 @@ extension WorkInfoTableViewController: SendValueToViewControllerDelegate {
     
     func sendIconNumber(value: Int32) {
         
-        let mixedBackgroundColor = NightNight.theme == .night ? UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1.00) : UIColor(red: 203/255, green: 203/255, blue: 203/255, alpha: 1.00)
+        let mixedBackgroundColor = NightNight.theme == .night ? UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1.00) : UIColor(red: 238/255, green: 238/255, blue: 243/255, alpha: 1.00)
         
         if let iconCase = IcofontType(rawValue: Int(value)) {
             workIconButton.setIcon(icon: .icofont(iconCase), iconSize: nil, color: MainViewController.mixedTextColor, backgroundColor: mixedBackgroundColor, forState: .normal)

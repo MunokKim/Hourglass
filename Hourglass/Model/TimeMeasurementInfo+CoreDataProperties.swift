@@ -19,6 +19,7 @@ extension TimeMeasurementInfo {
 
     @NSManaged public var elapsedTime: Int32
     @NSManaged public var workStart: NSDate?
+    @NSManaged public var workID: Int16
     @NSManaged public var goalSuccessOrFailWhether: Bool
     @NSManaged public var successiveGoalAchievement: Int16
     @NSManaged public var estimatedWorkTime: Int32

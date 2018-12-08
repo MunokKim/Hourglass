@@ -32,9 +32,14 @@ class NewIconCollectionViewController: UICollectionViewController {
         view.mixedBackgroundColor = MixedColor(normal: UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), night: UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1))
         collectionView.mixedBackgroundColor = MixedColor(normal: UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), night: UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1))
         navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
+        if NightNight.theme == .night {
+            navigationController?.navigationBar.barStyle = .black
+        } else if NightNight.theme == .normal {
+            navigationController?.navigationBar.barStyle = .default
+        }
         
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+        self.navigationController?.navigationBar.tintColor = AppsConstants.appMainColor // Sunshade
         
         // 초기값 아이템 선택
         if iconNumber == nil {

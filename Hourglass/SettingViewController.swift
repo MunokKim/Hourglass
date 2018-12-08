@@ -60,7 +60,7 @@ class SettingViewController: UITableViewController {
                             })
                         }
                     }
-                    settingsAction.setValue(UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00), forKey: "titleTextColor")
+                    settingsAction.setValue(AppsConstants.appMainColor, forKey: "titleTextColor")
                     alertController.addAction(settingsAction)
                     
                     self.present(alertController, animated: true, completion: nil)
@@ -83,7 +83,7 @@ class SettingViewController: UITableViewController {
         
         if UserDefaults.standard.bool(forKey: "alertSwitchState") {
             alertTimeCell.selectionStyle = .default
-            alertTimeCell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+            alertTimeCell.textLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
             alertTimeCell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x555555, night: 0xbababa)
             alertTimeCell.accessoryType = .disclosureIndicator
         } else {
@@ -96,7 +96,7 @@ class SettingViewController: UITableViewController {
         for subCell in subCells {
             if UserDefaults.standard.bool(forKey: "soundSwitchState") {
                 subCell.selectionStyle = .default
-                subCell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
+                subCell.textLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
                 subCell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x555555, night: 0xbababa)
                 subCell.accessoryType = .disclosureIndicator
             } else {
@@ -143,25 +143,24 @@ class SettingViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         // 테마 적용
-        view.mixedBackgroundColor = MixedColor(normal: 0xefeff4, night: 0x161718)
+        view.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: AppsConstants.night.backViewColor.rawValue)
         navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
-        
         if NightNight.theme == .night {
             navigationController?.navigationBar.barStyle = .black
         } else if NightNight.theme == .normal {
             navigationController?.navigationBar.barStyle = .default
         }
         
-        tableView.mixedSeparatorColor = MixedColor(normal: 0xC8C8CC, night: 0x38383c)
+        tableView.mixedSeparatorColor = MixedColor(normal: AppsConstants.normal.separatorColor.rawValue, night: AppsConstants.night.separatorColor.rawValue)
         
         // navigationBar 색상바꾸는 법.
-        self.navigationController?.navigationBar.tintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00) // Sunshade
+        self.navigationController?.navigationBar.tintColor = AppsConstants.appMainColor // Sunshade
         
-        alertSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        soundSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        themeSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        vibrationSwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
-        alwaysOnDisplaySwitch.onTintColor = UIColor(red:0.98, green:0.62, blue:0.28, alpha:1.00)
+        alertSwitch.onTintColor = AppsConstants.appMainColor
+        soundSwitch.onTintColor = AppsConstants.appMainColor
+        themeSwitch.onTintColor = AppsConstants.appMainColor
+        vibrationSwitch.onTintColor = AppsConstants.appMainColor
+        alwaysOnDisplaySwitch.onTintColor = AppsConstants.appMainColor
         
         alertSwitch.isOn = UserDefaults.standard.bool(forKey: "alertSwitchState")
         soundSwitch.isOn = UserDefaults.standard.bool(forKey: "soundSwitchState")
@@ -178,7 +177,7 @@ class SettingViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         changeSelection()
     }
 
@@ -210,9 +209,9 @@ class SettingViewController: UITableViewController {
         }
         cell.textLabel?.text = menuList[indexPath.row + arrayIndex]
         
-        cell.mixedBackgroundColor = MixedColor(normal: 0xfafafa, night: 0x1b1c1e)
-        cell.textLabel?.mixedTextColor = MixedColor(normal: 0x222222, night: 0xeaeaea)
-        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: 0x7b7b7b, night: 0x7b7b7b)
+        cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
+        cell.textLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
+        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.detailTextColor.rawValue, night: AppsConstants.night.detailTextColor.rawValue)
         
         cell.textLabel?.font = UIFont(name: "GodoM", size: 17)
         cell.detailTextLabel?.font = UIFont(name: "GodoM", size: 14)

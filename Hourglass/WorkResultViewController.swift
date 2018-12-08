@@ -180,7 +180,7 @@ class WorkResultViewController: UIViewController {
         // Core Data 영구 저장소에서 TimeMeasurementInfo 데이터 가져오기
         let request: NSFetchRequest<TimeMeasurementInfo> = TimeMeasurementInfo.fetchRequest()
         
-        request.predicate = NSPredicate(format: "work == \(ThisWork.workID)")
+        request.predicate = NSPredicate(format: "workID == \(ThisWork.workID)")
         
         do {
             let fetchArray = try context.fetch(request)
