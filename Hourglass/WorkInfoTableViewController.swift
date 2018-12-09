@@ -71,7 +71,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
             workIconButton.layer.cornerRadius = workIconButton.layer.frame.width / 2.66
             workIconButton.clipsToBounds = true
             workIconButton.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.iconBackgroundColor.rawValue, night: AppsConstants.night.iconBackgroundColor.rawValue)
-            workIconButton.layer.mixedShadowColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+            workIconButton.layer.mixedShadowColor = MixedColor(normal: UIColor.lightGray, night: UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0))
             workIconButton.layer.shadowRadius = 2.0
             workIconButton.layer.shadowOpacity = 0.5
             workIconButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
@@ -94,16 +94,102 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         }
     }
     
-    @IBOutlet var workRecordButton: UIButton! {
+    @IBOutlet var deleteButton: UIBarButtonItem! {
         didSet {
-            workRecordButton.backgroundColor = AppsConstants.appMainColor // Sunshade
-            workRecordButton.layer.cornerRadius = 10
-            workRecordButton.layer.masksToBounds = true
+            // Icon with custom cgRect
+            deleteButton.setIcon(icon: .icofont(.uiDelete), iconSize: 25, color: AppsConstants.appMainColor, cgRect: CGRect(x: 0, y: 0, width: 50, height: 25), target: self, action: #selector(deleteButtonTapped(_:)))
         }
     }
     
-    @IBAction func popoverWorkTimePicker(_ sender: UIButton) {
+    @IBOutlet var startButton: UIBarButtonItem! {
+        didSet {
+            // Icon with custom cgRect
+            startButton.setIcon(icon: .icofont(.playAlt2), iconSize: 25, color: AppsConstants.appMainColor, cgRect: CGRect(x: 0, y: 0, width: 25, height: 25), target: self, action: #selector(startButtonTapped(_:)))
+        }
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
         
+        let alert = UIAlertController(title: "\(workInfoFetch?.workName ?? "") 삭제", message: "이 동작은 되돌릴 수 없습니다.", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+            guard let work = self.workInfoFetch else { return }
+            let isDelete = MainViewController().deleteWorkInfo(work: work)
+            if isDelete {
+                // mainVC로 빠져나감
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .default, handler: nil)
+        cancelAction.setValue(AppsConstants.appMainColor, forKey: "titleTextColor")
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        //디바이스 타입이 iPad일때 alert가 popover되는 위치를 지정해 주어야 한다.
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverController = alert.popoverPresentationController { // ActionSheet가 표현되는 위치를 저장해줍니다.
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+        }
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        // 블러 효과를 주기위해 UIView 익스텐션 함
+        if let visualEffectView = alert.view.searchVisualEffectsSubview() {
+            // 테마 적용
+            visualEffectView.effect = NightNight.theme == .night ? UIBlurEffect(style: .dark) : UIBlurEffect(style: .regular)
+        }
+    }
+    
+    @IBAction func startButtonTapped(_ sender: Any) {
+        // WorkingVC로 이동
+        let storyboardName = "Working"
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        if let newVC = storyboard.instantiateViewController(withIdentifier: "WorkingViewController") as? WorkingViewController {
+            newVC.modalPresentationStyle = .fullScreen
+            newVC.modalTransitionStyle = .crossDissolve
+            newVC.selectedIndex = self.selectedIndex
+            self.present(newVC, animated: true)
+        } else {
+            print("Unable to instantiate VC from \(storyboardName) storyboard")
+        }
+    }
+    
+    @IBOutlet var workRecordButton: UIButton! {
+        didSet {
+            // 모서리 둥글게
+            workRecordButton.layer.cornerRadius = 15
+            workRecordButton.layer.masksToBounds = true
+            
+            // 그림자 효과
+            workRecordButton.layer.mixedShadowColor = MixedColor(normal: UIColor.lightGray, night: UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0))
+            workRecordButton.layer.shadowRadius = 2.5
+            workRecordButton.layer.shadowOpacity = 1.0
+            workRecordButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+            workRecordButton.layer.masksToBounds = false
+            
+            
+            // Icon with color & colored text around it
+            workRecordButton.setIcon(prefixText: "", prefixTextColor: .clear, icon: .icofont(.clipBoard), iconColor: UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00), postfixText: " 기록 보기", postfixTextColor: UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00), forState: .normal, textSize: 18, iconSize: nil)
+            // Icon with color & colored text around it
+            workRecordButton.setIcon(prefixText: "", prefixTextColor: .clear, icon: .icofont(.clipBoard), iconColor: UIColor(red: 207/255, green: 207/255, blue: 207/255, alpha: 1.00), postfixText: " 기록 보기", postfixTextColor: UIColor(red: 207/255, green: 207/255, blue: 207/255, alpha: 1.00), forState: .highlighted, textSize: 18, iconSize: nil)
+            
+            workRecordButton.backgroundColor = AppsConstants.appMainColor // Sunshade
+        }
+    }
+    
+    @IBAction func workRecordButton(_ sender: Any) {
+        
+        // RecordVC로 이동
+        let storyboardName = "Main"
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        if let newVC = storyboard.instantiateViewController(withIdentifier: "RecordTableViewController") as? RecordTableViewController {
+            newVC.selectedIndex = self.selectedIndex
+            self.navigationController?.pushViewController(newVC, animated: true)
+        } else {
+            print("Unable to instantiate VC from \(storyboardName) storyboard")
+        }
         
     }
     
@@ -156,11 +242,10 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         fetchAndRenewal()
         
         // UIButton의 setBackgroundImage를 이용한 메서드를 익스텐션으로 만들어서 사용
-        workRecordButton.setBackgroundColor(color: UIColor(red:0.99, green:0.81, blue:0.64, alpha:1.00), forState: UIControl.State.highlighted)
+//        workRecordButton.setBackgroundColor(color: UIColor(red:0.99, green:0.81, blue:0.64, alpha:1.00), forState: UIControl.State.highlighted)
+//        deleteButton.setBackgroundColor(color: UIColor(red:0.99, green:0.81, blue:0.64, alpha:1.00), forState: UIControl.State.highlighted)
         
         workNameTextField.text = workNameLabel.text
-        workRecordButton.setTitle("기록 보기", for: .normal)
-        workRecordButton.setTitleColor(UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00), for: UIControl.State.normal)
         
         // Add Observer
         let notificationCenter = NotificationCenter.default
@@ -209,9 +294,6 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         
         // 진행한 작업이 없었는데 지금 진행하고 다시 돌아왔을 경우
         self.tableView.viewWithTag(99)?.removeFromSuperview()
-        workRecordButton.backgroundColor = AppsConstants.appMainColor
-        workRecordButton.isEnabled = true
-        
         
         if workInfoFetch.totalWork == 0 {
             // 진행한 작업이 없을 때
@@ -231,9 +313,6 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
             
             noticeView.addSubview(noticeLabel)
             self.tableView.addSubview(noticeView)
-            
-            workRecordButton.isEnabled = false
-            workRecordButton.backgroundColor = UIColor(red: 0.99, green: 0.81, blue: 0.64, alpha: 1.00)
         }
     }
     
@@ -391,14 +470,6 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         // Pass the selected object to the new view controller.
         
         switch segue.identifier {
-        case "WorkingSegue":
-            
-            if let vc = segue.destination as? WorkingViewController {
-                
-                print("selectedIndex is : \(self.selectedIndex)")
-                vc.modalTransitionStyle = .crossDissolve
-                vc.selectedIndex = self.selectedIndex
-            }
             
         case "RecordSegue":
             
@@ -487,5 +558,28 @@ extension UIButton {
         UIGraphicsEndImageContext()
 
         self.setBackgroundImage(colorImage, for: forState)
+    }
+}
+
+extension UIView
+{
+    func searchVisualEffectsSubview() -> UIVisualEffectView?
+    {
+        if let visualEffectView = self as? UIVisualEffectView
+        {
+            return visualEffectView
+        }
+        else
+        {
+            for subview in subviews
+            {
+                if let found = subview.searchVisualEffectsSubview()
+                {
+                    return found
+                }
+            }
+        }
+        
+        return nil
     }
 }

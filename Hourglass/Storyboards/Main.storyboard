@@ -154,7 +154,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vC-m3-S8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1273.1884057971015" y="1174.8883928571429"/>
+            <point key="canvasLocation" x="1272.8" y="1174.3628185907048"/>
         </scene>
         <!--작업 정보-->
         <scene sceneID="r7n-an-k7H">
@@ -277,7 +277,6 @@
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="25"/>
                                                     <state key="normal" title="1시간 14분"/>
                                                     <connections>
-                                                        <action selector="popoverWorkTimePicker:" destination="bUP-lT-cEa" eventType="touchUpInside" id="n1D-hp-N2u"/>
                                                         <segue destination="5bo-7H-Pfz" kind="popoverPresentation" identifier="popoverPickerSegue" popoverAnchorView="iPS-Vu-81B" id="xff-9E-cBM">
                                                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                         </segue>
@@ -493,29 +492,29 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="93" id="mfG-ab-VA6">
-                                        <rect key="frame" x="0.0" y="685" width="375" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="mfG-ab-VA6">
+                                        <rect key="frame" x="0.0" y="685" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mfG-ab-VA6" id="gbG-QO-voa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMb-vz-swp">
-                                                    <rect key="frame" x="8" y="25.5" width="359" height="50"/>
+                                                    <rect key="frame" x="15" y="34.5" width="345" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="axV-DG-AVP"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="18"/>
                                                     <state key="normal" title="기록 보기"/>
                                                     <connections>
-                                                        <segue destination="TWD-RP-IVy" kind="show" identifier="RecordSegue" id="OkX-YE-0n9"/>
+                                                        <action selector="workRecordButton:" destination="bUP-lT-cEa" eventType="touchUpInside" id="uLN-FZ-eLG"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="DMb-vz-swp" firstAttribute="leading" secondItem="gbG-QO-voa" secondAttribute="leadingMargin" id="3bx-K7-WCf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="DMb-vz-swp" secondAttribute="trailing" id="6gX-XU-aeF"/>
-                                                <constraint firstItem="DMb-vz-swp" firstAttribute="bottom" secondItem="gbG-QO-voa" secondAttribute="bottom" constant="-17" id="FuI-eD-X5n"/>
+                                                <constraint firstAttribute="trailing" secondItem="DMb-vz-swp" secondAttribute="trailing" constant="15" id="WGw-uU-3LF"/>
+                                                <constraint firstAttribute="bottom" secondItem="DMb-vz-swp" secondAttribute="bottom" constant="15" id="dc0-de-EJR"/>
+                                                <constraint firstItem="DMb-vz-swp" firstAttribute="leading" secondItem="gbG-QO-voa" secondAttribute="leading" constant="15" id="wHf-LI-KoN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -528,20 +527,29 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="작업 정보" id="M0a-fW-4cQ">
-                        <barButtonItem key="rightBarButtonItem" title="시작" id="D1y-zf-IMZ">
-                            <connections>
-                                <segue destination="hHv-Q5-GBj" kind="presentation" identifier="WorkingSegue" id="mnm-PN-l8T"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="시작" id="D1y-zf-IMZ">
+                                <connections>
+                                    <action selector="startButtonTapped:" destination="bUP-lT-cEa" id="tmt-b6-cnS"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="FcT-pW-gBa">
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="bUP-lT-cEa" id="J2J-Yy-7nc"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="averageElapsedTimeLabel" destination="1qF-F6-mNJ" id="IZf-Ks-wyt"/>
                         <outlet property="averageRemainingTimeLabel" destination="9cS-NJ-oV5" id="Qfm-f1-Rc9"/>
                         <outlet property="currentSuccessiveAchievementWhetherLabel" destination="5Y5-GK-862" id="aZe-SF-Bpl"/>
+                        <outlet property="deleteButton" destination="FcT-pW-gBa" id="oFC-7O-u4b"/>
                         <outlet property="estimatedWorkTimePickerButton" destination="iPS-Vu-81B" id="ZRM-an-m4M"/>
                         <outlet property="goalFailLabel" destination="3mr-uF-IWf" id="ZZl-jC-2F8"/>
                         <outlet property="goalSuccessLabel" destination="rA9-4w-XiV" id="zDC-yP-cL7"/>
                         <outlet property="justLabel" destination="ScS-MK-4VP" id="PRW-Vn-oz1"/>
+                        <outlet property="startButton" destination="D1y-zf-IMZ" id="IWP-mT-pt8"/>
                         <outlet property="successRateLabel" destination="aPY-c5-kdL" id="B8o-a3-NX3"/>
                         <outlet property="successiveAchievementHighestRecordLabel" destination="3sH-2r-HFX" id="4FR-zM-ldb"/>
                         <outlet property="totalWorkLabel" destination="fOb-bg-lGl" id="lzx-gA-aCK"/>
@@ -805,6 +813,12 @@
                             <outlet property="delegate" destination="TWD-RP-IVy" id="sOs-lv-uCH"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="작업 기록" id="r3a-mP-VeD">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="fzW-iI-nJA"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="workIconItem" destination="fzW-iI-nJA" id="oYl-sk-ILs"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WsC-vy-6PK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -850,7 +864,4 @@
         <image name="iosMore" width="25" height="40"/>
         <image name="pencil" width="28.799999237060547" height="28.799999237060547"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="mnm-PN-l8T"/>
-    </inferredMetricsTieBreakers>
 </document>

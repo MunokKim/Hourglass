@@ -9,6 +9,7 @@
 import UIKit
 import NightNight
 import CoreData
+import SwiftIcons
 
 class RecordTableViewController: UITableViewController {
 
@@ -23,6 +24,12 @@ class RecordTableViewController: UITableViewController {
             // 셀 높이를 확인하고 애니메이션을 적용한다.
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
+        }
+    }
+    
+    @IBOutlet var workIconItem: UIBarButtonItem! {
+        didSet {
+            workIconItem.isEnabled = false
         }
     }
     
@@ -74,6 +81,40 @@ class RecordTableViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = AppsConstants.appMainColor // Sunshade
         
         fetchTimeMeasurementInfo()
+        
+        // 목록이 비었으면 "기록 없음" 표시
+        if fetchArray.count == 0 {
+            let labelView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: self.tableView.frame.size.height-200))
+            labelView.backgroundColor = .clear
+            labelView.tag = 999
+            
+            let label = UILabel()
+            label.center = CGPoint(x: labelView.frame.size.width / 2, y: labelView.frame.size.height / 2)
+            label.text = "기록 없음"
+            label.font = UIFont(name: "GodoM", size: 25)
+            label.textAlignment = .center
+            label.mixedTextColor = MixedColor(normal: AppsConstants.normal.detailTextColor.rawValue, night: AppsConstants.night.detailTextColor.rawValue)
+            label.frame = labelView.frame
+            labelView.addSubview(label)
+            self.tableView.addSubview(label)
+        }
+        
+        // 셀아래의 빈공간에 separator line 안보이게 하기
+        tableView.tableFooterView = UIView()
+        
+        let workingVC = WorkingViewController()
+        guard let index = selectedIndex else { return }
+        let workInfo = workingVC.fetchToSelectedIndex(index)
+        
+        // 작업제목을 타이틀로
+        self.navigationItem.title = workInfo.workName
+        
+        // rightBarButtonItem에 작업아이콘 출력
+        if let iconCase = IcofontType(rawValue: Int(workInfo.iconNumber)) {
+            let color = NightNight.theme == .night ? UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00) : UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.00)
+            // Icon with colors
+            workIconItem.setIcon(icon: .icofont(iconCase), iconSize: 30, color: color)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -147,7 +188,9 @@ class RecordTableViewController: UITableViewController {
             
             // Core Data 값 채워넣기 (timeMeasurementInfo)
             cell.elapsedTimeLabel.text = fetchArray[indexPath.row/2].elapsedTime.secondsToString
-            cell.workStartLabel.text = fetchArray[indexPath.row/2].workStart?.stringFromDate
+            
+            guard let workStart = fetchArray[indexPath.row/2].workStart else { return cell }
+            cell.workStartLabel.text = NSDate().stringFromDate(date: workStart, formatIndex: .mdahms)
             
             // Icon with color & colored text around it
 //            label.setIcon(prefixText: "Medal ", prefixTextColor: .red, icon: .ionicons(.ribbonA), iconColor: .red, postfixText: "", postfixTextColor: .red, size: nil, iconSize: 40)
@@ -176,7 +219,9 @@ class RecordTableViewController: UITableViewController {
             let sga = fetchArray[indexPath.row/2].successiveGoalAchievement
             cell.successiveGoalAchievementLabel.text = "\(sga) 회"
             cell.estimatedWorkTimeLabel.text = fetchArray[indexPath.row/2].estimatedWorkTime.secondsToString
-            cell.workCompleteLabel.text = fetchArray[indexPath.row/2].actualCompletion?.stringFromDate
+            
+            guard let actualCompletion = fetchArray[indexPath.row/2].actualCompletion else { return cell }
+            cell.workCompleteLabel.text = NSDate().stringFromDate(date: actualCompletion, formatIndex: .ahms)
             cell.remainingTimeLabel.text = fetchArray[indexPath.row/2].remainingTime.secondsToString
 
             return cell

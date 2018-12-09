@@ -103,7 +103,9 @@ class WorkResultViewController: UIViewController {
         let remainingTime: String?
         let situation: Bool?
         
-        if workResultInfo?.goalSuccessOrFailWhether ?? true {
+        guard let workResultInfo = workResultInfo else { return }
+        
+        if workResultInfo.goalSuccessOrFailWhether {
             // 목표 달성
             // 'Atlas' 그라디언트
             toColors = [UIColor(red:75/255, green:192/255, blue:200/255, alpha:1.00),
@@ -113,18 +115,18 @@ class WorkResultViewController: UIViewController {
             situation = true
             
             // 2회 이상 연속 목표 달성
-            if let achievement = workResultInfo?.successiveGoalAchievement, achievement >= Int16(2) {
-                
-                goalString = "\(achievement)회 연속 " + goalString!
-                
-                // 월계수 이미지 표시
-                for laurel in laurels {
-                    laurel.isHidden = false
-                }
-            }
+//            if let achievement = workResultInfo.successiveGoalAchievement, achievement >= Int16(2) {
+//
+//                goalString = "\(achievement)회 연속 " + goalString!
+//
+//                // 월계수 이미지 표시
+//                for laurel in laurels {
+//                    laurel.isHidden = false
+//                }
+//            }
             
             remainingText = "남은 시간"
-            remainingTime = workResultInfo?.remainingTime.secondsToString
+            remainingTime = workResultInfo.remainingTime.secondsToString
         } else {
             // 목표 실패
             // 'sunset' 그라디언트
@@ -134,12 +136,13 @@ class WorkResultViewController: UIViewController {
             goalString = "목표 실패"
             situation = false
             remainingText = "지난 시간"
-            remainingTime = "+ " + abs((workResultInfo?.remainingTime) ?? 0).secondsToString
+            remainingTime = "+ " + abs((workResultInfo.remainingTime) ?? 0).secondsToString
         }
         
         gradientView.toColors = toColors
         
         guard let currentWork = currentWork else { return }
+        guard let workStart = workResultInfo.workStart, let actualCompletion = workResultInfo.actualCompletion  else { return }
         
         workNameLabel.text = currentWork.workName
         if let iconCase = IcofontType(rawValue: Int(currentWork.iconNumber)) {
@@ -147,10 +150,12 @@ class WorkResultViewController: UIViewController {
                 , size: nil)
         }
         workGoalLabel.text = goalString
-        elapsedTimeLabel.text = workResultInfo?.elapsedTime.secondsToString
-        workStartLabel.text = workResultInfo?.workStart?.stringFromDate
-        estimatedCompletionLabel.text = workResultInfo?.workStart?.addingTimeInterval(TimeInterval(workResultInfo?.estimatedWorkTime ?? 0)).stringFromDate
-        actualCompletionLabel.text = workResultInfo?.actualCompletion?.stringFromDate
+        elapsedTimeLabel.text = workResultInfo.elapsedTime.secondsToString
+        workStartLabel.text = NSDate().stringFromDate(date: workStart, formatIndex: .ahms)
+        
+        let ewt = workStart.addingTimeInterval(TimeInterval(workResultInfo.estimatedWorkTime))
+        estimatedCompletionLabel.text = NSDate().stringFromDate(date: ewt, formatIndex: .ahms)
+        actualCompletionLabel.text = NSDate().stringFromDate(date: actualCompletion, formatIndex: .ahms)
         remainingTextLabel.text = remainingText
         remainingTimeLabel.text = remainingTime
         

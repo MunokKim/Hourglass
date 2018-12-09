@@ -23,6 +23,7 @@ class MainViewController: UITableViewController {
     var selectedIndex: Int?
     
     @IBOutlet var mainTableView: UITableView!
+    @IBOutlet var footerView: UIView!
     
     let context = AppDelegate.viewContext
     
@@ -54,7 +55,7 @@ class MainViewController: UITableViewController {
         
         // 테마 적용
         view.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: AppsConstants.night.backViewColor.rawValue)
-//        tableView.mixedBackgroundColor = MixedColor(normal: 0xff0000, night: AppsConstants.normal.textColor.rawValue)
+        //        tableView.mixedBackgroundColor = MixedColor(normal: 0xff0000, night: AppsConstants.normal.textColor.rawValue)
         navigationController?.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
         if NightNight.theme == .night {
             navigationController?.navigationBar.barStyle = .black
@@ -86,6 +87,26 @@ class MainViewController: UITableViewController {
         //        self.searchDisplayController?.setActive(false, animated: true)
         
         contextFetchToResultsArray()
+        
+        // 목록이 비었으면 "작업 없음" 표시
+        if fetchArray.count == 0 {
+            let labelView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: self.tableView.frame.size.height-200))
+            labelView.backgroundColor = .clear
+            labelView.tag = 999
+            
+            let label = UILabel()
+            label.center = CGPoint(x: labelView.frame.size.width / 2, y: labelView.frame.size.height / 2)
+            label.text = "작업 없음"
+            label.font = UIFont(name: "GodoM", size: 25)
+            label.textAlignment = .center
+            label.mixedTextColor = MixedColor(normal: AppsConstants.normal.detailTextColor.rawValue, night: AppsConstants.night.detailTextColor.rawValue)
+            label.frame = labelView.frame
+            labelView.addSubview(label)
+            self.tableView.addSubview(label)
+        }
+        
+        // 셀아래의 빈공간에 separator line 안보이게 하기
+        tableView.tableFooterView = UIView()
         
         // Add Observer
         let notificationCenter = NotificationCenter.default
@@ -140,6 +161,20 @@ class MainViewController: UITableViewController {
     //        return 0
     //    }
     
+    func deleteWorkInfo(work: WorkInfo) -> Bool {
+        // Core Data 영구 저장소에서 WorkInfo 데이터 삭제하기
+        context.delete(work)
+        
+        do {
+            try context.save()
+            
+            print("Context Save(Delete) Success!")
+            return true
+        } catch let nserror as NSError {
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
@@ -147,7 +182,6 @@ class MainViewController: UITableViewController {
         let viewForSelectedCell = UIView()
         viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)
         cell.selectedBackgroundView = viewForSelectedCell
-
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -170,7 +204,7 @@ class MainViewController: UITableViewController {
         cell.iconView.layer.cornerRadius = cell.iconView.layer.frame.width / 2.66
         cell.iconView.clipsToBounds = true
         
-        cell.iconView.layer.mixedShadowColor = MixedColor(normal: UIColor.lightGray, night: UIColor.darkGray)
+        cell.iconView.layer.mixedShadowColor = MixedColor(normal: UIColor.lightGray, night: UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0))
         cell.iconView.layer.shadowRadius = 2.0
         cell.iconView.layer.shadowOpacity = 0.5
         cell.iconView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
@@ -222,19 +256,34 @@ class MainViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             
-            // Core Data 영구 저장소에서 WorkInfo 데이터 삭제하기
-            context.delete(fetchArray[indexPath.row])
+            let alert = UIAlertController(title: "\(fetchArray[indexPath.row].workName ?? "") 삭제", message: "이 동작은 되돌릴 수 없습니다.", preferredStyle: .actionSheet)
+            let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+                let isDelete = self.deleteWorkInfo(work: self.fetchArray[indexPath.row])
+                if isDelete {
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+            let cancelAction = UIAlertAction(title: "취소", style: .default, handler: nil)
+            cancelAction.setValue(AppsConstants.appMainColor, forKey: "titleTextColor")
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
             
-            do {
-                try context.save()
-                
-                print("Context Save(Delete) Success!")
-                tableView.deleteRows(at: [indexPath], with: .fade)
-//                tableView.reloadData()
-            } catch let nserror as NSError {
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            // 디바이스 타입이 iPad일때 alert가 popover되는 위치를 지정해 주어야 한다.
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                if let popoverController = alert.popoverPresentationController { // ActionSheet가 표현되는 위치를 저장해줍니다.
+                    popoverController.sourceView = self.view
+                    popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                    popoverController.permittedArrowDirections = []
+                }
             }
             
+            self.present(alert, animated: true, completion: nil)
+            
+            // 블러 효과를 주기위해 UIView 익스텐션 함
+            if let visualEffectView = alert.view.searchVisualEffectsSubview() {
+                // 테마 적용
+                visualEffectView.effect = NightNight.theme == .night ? UIBlurEffect(style: .dark) : UIBlurEffect(style: .regular)
+            }
         }
     }
     
@@ -423,7 +472,12 @@ extension Int32 {
     }
 }
 
-
+extension String {
+    
+    var localized: String {
+        return NSLocalizedString(self, tableName: "Localizable", value: "**\(self)**", comment: "")
+    }
+}
 
 
 

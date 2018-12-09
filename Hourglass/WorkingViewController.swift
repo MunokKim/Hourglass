@@ -12,6 +12,7 @@ import CoreData
 import MarqueeLabel
 import UserNotifications
 import SwiftIcons
+import NightNight
 
 class WorkingViewController: UIViewController {
     
@@ -205,7 +206,8 @@ class WorkingViewController: UIViewController {
         
         print("<<estimatedWorkTime>> \(estimatedWorkTime?.secondsToStopwatch) <<elapsedTime>> \(elapsedTime!) <<remainingTime>> \(remainingTime!) <<workStart>> \(workStart!) <<estimatedCompletion>> \(estimatedCompletion!)")
         
-        estimatedCompletionTimeLabel.text = estimatedCompletion?.stringFromDate
+        guard let estimatedCompletion = estimatedCompletion else { return }
+        estimatedCompletionTimeLabel.text = NSDate().stringFromDate(date: estimatedCompletion, formatIndex: .ahms)
         view.layoutIfNeeded()
         
         if remainingTime! >= Int32(0) {
@@ -396,9 +398,13 @@ class WorkingViewController: UIViewController {
                 , size: nil)
         }
         workNameLabel.text = fetchResult.workName!
-        workStartTimeLabel.text = workStart?.stringFromDate
+        
+        guard let workStart = workStart else { return }
+        workStartTimeLabel.text = NSDate().stringFromDate(date: workStart, formatIndex: .ahms)
         remainingTimeLabel.text = estimatedWorkTime?.secondsToStopwatch
-        estimatedCompletionTimeLabel.text = estimatedCompletion?.stringFromDate
+        
+        guard let estimatedCompletion = estimatedCompletion else { return }
+        estimatedCompletionTimeLabel.text = NSDate().stringFromDate(date: estimatedCompletion, formatIndex: .ahms)
         
         workResumeOrPause((Any).self)
         
@@ -532,7 +538,10 @@ class WorkingViewController: UIViewController {
         // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
         let request: NSFetchRequest<WorkInfo> = WorkInfo.fetchRequest()
         
-        guard let index = index else { return WorkInfo() }
+        guard let index = index else {
+            print("SelectedIndex is Nil")
+            return WorkInfo()
+        }
         request.predicate = NSPredicate(format: "workID == \(index)")
         
         do {
@@ -574,12 +583,17 @@ class WorkingViewController: UIViewController {
 
 extension NSDate {
     
-    var stringFromDate: String {
+    enum formatIndex: String {
+        case ahms = "a h:mm:ss"
+        case mdahms = "MM월 d일 a h:mm:ss"
+    }
+    
+    func stringFromDate(date: NSDate, formatIndex index: formatIndex) -> String {
         
         let formatter = DateFormatter()
         
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "a h:mm:ss"
+        formatter.dateFormat = index.rawValue
         formatter.amSymbol = "오전"
         formatter.pmSymbol = "오후"
         
