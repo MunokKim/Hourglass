@@ -86,7 +86,15 @@ class WorkResultViewController: UIViewController {
     var currentWork: WorkInfo?
     var workResultInfo: TimeMeasurementInfo?
     var panGesture = UIPanGestureRecognizer()
+    var gradientTimer: Timer? = Timer()
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        gradientTimer?.invalidate()
+        gradientTimer = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -97,7 +105,7 @@ class WorkResultViewController: UIViewController {
         gestureView.isUserInteractionEnabled = true
         gestureView.addGestureRecognizer(panGesture)
         
-        let toColors: [CGColor]?
+        var toColors: [CGColor]?
         var goalString: String? 
         let remainingText: String?
         let remainingTime: String?
@@ -105,41 +113,110 @@ class WorkResultViewController: UIViewController {
         
         guard let workResultInfo = workResultInfo else { return }
         
+        // 목표 달성
         if workResultInfo.goalSuccessOrFailWhether {
-            // 목표 달성
             // 'Atlas' 그라디언트
-            toColors = [UIColor(red:75/255, green:192/255, blue:200/255, alpha:1.00),
-                        UIColor(red:199/255, green:121/255, blue:208/255, alpha:1.00),
-                        UIColor(red:211/255, green:131/255, blue:18/255, alpha:1.00)].map{$0.cgColor}
+            toColors = [UIColor(red:0/255, green:202/255, blue:96/255, alpha:1.00),
+                        UIColor(red:2/255, green:159/255, blue:163/255, alpha:1.00),
+                        UIColor(red:5/255, green:117/255, blue:230/255, alpha:1.00)].map{$0.cgColor}
+            
+            gradientView.toColors = toColors
+            
+            // 반복적인 배경 그라디언트 변경
+            var flag = 0
+            gradientTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (Timer) in
+                print("3 Seconds Gradient Repeating.......")
+                
+                switch flag {
+                case 0:
+                    toColors = [UIColor(red:247/255, green:157/255, blue:0/255, alpha:1.00),
+                                UIColor(red:173/255, green:200/255, blue:70/255, alpha:1.00),
+                                UIColor(red:100/255, green:243/255, blue:140/255, alpha:1.00)].map{$0.cgColor}
+                    flag = 1
+                case 1:
+                    toColors = [UIColor(red:220/255, green:227/255, blue:91/255, alpha:1.00),
+                                UIColor(red:145/255, green:204/255, blue:82/255, alpha:1.00),
+                                UIColor(red:69/255, green:182/255, blue:73/255, alpha:1.00)].map{$0.cgColor}
+                    flag = 2
+                case 2:
+                    toColors = [UIColor(red:75/255, green:192/255, blue:200/255, alpha:1.00),
+                                UIColor(red:199/255, green:121/255, blue:208/255, alpha:1.00),
+                                UIColor(red:211/255, green:131/255, blue:18/255, alpha:1.00)].map{$0.cgColor}
+                    flag = 3
+                case 3:
+                    toColors = [UIColor(red:0/255, green:202/255, blue:96/255, alpha:1.00),
+                                UIColor(red:2/255, green:159/255, blue:163/255, alpha:1.00),
+                                UIColor(red:5/255, green:117/255, blue:230/255, alpha:1.00)].map{$0.cgColor}
+                    flag = 0
+                default: break
+                }
+                
+                self.gradientView.toColors = toColors
+            }
+            
             goalString = "목표 달성"
             situation = true
             
             // 2회 이상 연속 목표 달성
-//            if let achievement = workResultInfo.successiveGoalAchievement, achievement >= Int16(2) {
-//
-//                goalString = "\(achievement)회 연속 " + goalString!
-//
-//                // 월계수 이미지 표시
-//                for laurel in laurels {
-//                    laurel.isHidden = false
-//                }
-//            }
+            let achievement = workResultInfo.successiveGoalAchievement
+            if achievement >= Int16(2) {
+
+                goalString = "\(achievement)회 연속 " + goalString!
+
+                // 월계수 이미지 표시
+                for laurel in laurels {
+                    laurel.isHidden = false
+                }
+            }
             
             remainingText = "남은 시간"
             remainingTime = workResultInfo.remainingTime.secondsToString
-        } else {
-            // 목표 실패
+            
+        } else { // 목표 실패
             // 'sunset' 그라디언트
-            toColors = [UIColor(red:11/255, green:72/255, blue:107/255, alpha:1.00),
+            toColors = [UIColor(red:54/255, green:0/255, blue:51/255, alpha:1.00),
                         UIColor(red:113/255, green:85/255, blue:65/255, alpha:1.00),
-                        UIColor(red:215/255, green:98/255, blue:23/255, alpha:1.00)].map{$0.cgColor}
+                        UIColor(red:11/255, green:135/255, blue:147/255, alpha:1.00)].map{$0.cgColor}
+            
+            gradientView.toColors = toColors
+            
+            // 반복적인 배경 그라디언트 변경
+            var flag = 0
+            gradientTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (Timer) in
+                print("3 Seconds Gradient Repeating.......")
+                
+                switch flag {
+                case 0:
+                    toColors = [UIColor(red:30/255, green:19/255, blue:12/255, alpha:1.00),
+                                UIColor(red:92/255, green:75/255, blue:66/255, alpha:1.00),
+                                UIColor(red:154/255, green:132/255, blue:120/255, alpha:1.00)].map{$0.cgColor}
+                    flag = 1
+                case 1:
+                    toColors = [UIColor(red:148/255, green:142/255, blue:153/255, alpha:1.00),
+                                UIColor(red:97/255, green:76/255, blue:99/255, alpha:1.00),
+                                UIColor(red:46/255, green:20/255, blue:55/255, alpha:1.00)].map{$0.cgColor}
+                    flag = 2
+                case 2:
+                    toColors = [UIColor(red:32/255, green:0/255, blue:44/255, alpha:1.00),
+                                UIColor(red:117/255, green:90/255, blue:128/255, alpha:1.00),
+                                UIColor(red:203/255, green:180/255, blue:212/255, alpha:1.00)].map{$0.cgColor}
+                    flag = 3
+                case 3:
+                    toColors = [UIColor(red:54/255, green:0/255, blue:51/255, alpha:1.00),
+                                UIColor(red:113/255, green:85/255, blue:65/255, alpha:1.00),
+                                UIColor(red:11/255, green:135/255, blue:147/255, alpha:1.00)].map{$0.cgColor}
+                    flag = 0
+                default: break
+                }
+                
+                self.gradientView.toColors = toColors
+            }
+            
             goalString = "목표 실패"
             situation = false
             remainingText = "지난 시간"
             remainingTime = "+ " + abs((workResultInfo.remainingTime) ?? 0).secondsToString
         }
-        
-        gradientView.toColors = toColors
         
         guard let currentWork = currentWork else { return }
         guard let workStart = workResultInfo.workStart, let actualCompletion = workResultInfo.actualCompletion  else { return }

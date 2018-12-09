@@ -5,3 +5,15 @@
   Created by 김문옥 on 09/12/2018.
   Copyright © 2018 김문옥. All rights reserved.
 */
+
+"Complete" = "완료";
+"Edit" = "편집";
+"No Work" = "작업 없음";
+" Delete" = " 삭제";
+"Delete" = "삭제";
+"Cancel" = "취소";
+"hours" = "시간";
+"minutes" = "분";
+"seconds" = "초";
+"0second" = "0초";
+

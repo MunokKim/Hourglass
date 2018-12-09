@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="Hourglass/Localized/en.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="ko">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName">
+        <source>모래시계</source>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Hourglass/Localized/en.lproj/Localizable.strings" source-language="en" datatype="plaintext" target-language="ko">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
+    </header>
+    <body>
+      <trans-unit id=" Delete">
+        <source> Delete</source>
+        <target> 삭제</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="0second">
+        <source>0second</source>
+        <target>0초</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>취소</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Complete">
+        <source>Complete</source>
+        <target>완료</target>
+        <note>Localizable.strings
+  Hourglass
+
+  Created by 김문옥 on 09/12/2018.
+  Copyright © 2018 김문옥. All rights reserved.</note>
+      </trans-unit>
+      <trans-unit id="Delete">
+        <source>Delete</source>
+        <target>삭제</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Edit">
+        <source>Edit</source>
+        <target>편집</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="No Work">
+        <source>No Work</source>
+        <target>작업 없음</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="hours">
+        <source>hours</source>
+        <target>시간</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="minutes">
+        <source>minutes</source>
+        <target>분</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="seconds">
+        <source>seconds</source>
+        <target>초</target>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Hourglass/Storyboards/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="ko">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
+    </header>
+    <body>
+      <trans-unit id="1qF-F6-mNJ.text">
+        <source>Detail</source>
+        <target>Detail</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "1qF-F6-mNJ";</note>
+      </trans-unit>
+      <trans-unit id="3mr-uF-IWf.text">
+        <source>Detail</source>
+        <target>Detail</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "3mr-uF-IWf";</note>
+      </trans-unit>
+      <trans-unit id="3sH-2r-HFX.text">
+        <source>Detail</source>
+        <target>Detail</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "3sH-2r-HFX";</note>
+      </trans-unit>
+      <trans-unit id="5Y5-GK-862.text">
+        <source>Detail</source>
+        <target>Detail</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "5Y5-GK-862";</note>
+      </trans-unit>
+      <trans-unit id="5jk-JB-xwt.title">
+        <source>편집</source>
+        <target>편집</target>
+        <note>Class = "UIBarButtonItem"; title = "편집"; ObjectID = "5jk-JB-xwt";</note>
+      </trans-unit>
+      <trans-unit id="9Lj-91-upS.text">
+        <source>예상작업시간</source>
+        <target>예상작업시간</target>
+        <note>Class = "UILabel"; text = "예상작업시간"; ObjectID = "9Lj-91-upS";</note>
+      </trans-unit>
+      <trans-unit id="9cS-NJ-oV5.text">
+        <source>Detail</source>
+        <target>Detail</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "9cS-NJ-oV5";</note>
+      </trans-unit>
+      <trans-unit id="B8M-2C-oZa.text">
+        <source>성공률</source>
+        <target>성공률</target>
+        <note>Class = "UILabel"; text = "성공률"; ObjectID = "B8M-2C-oZa";</note>
+      </trans-unit>
+      <trans-unit id="D1y-zf-IMZ.title">
+        <source>시작</source>
+        <target>시작</target>
+        <note>Class = "UIBarButtonItem"; title = "시작"; ObjectID = "D1y-zf-IMZ";</note>
+      </trans-unit>
+      <trans-unit id="DMb-vz-swp.normalTitle">
+        <source>기록 보기</source>
+        <target>기록 보기</target>
+        <note>Class = "UIButton"; normalTitle = "기록 보기"; ObjectID = "DMb-vz-swp";</note>
+      </trans-unit>
+      <trans-unit id="FcT-pW-gBa.title">
+        <source>Item</source>
+        <target>Item</target>
+        <note>Class = "UIBarButtonItem"; title = "Item"; ObjectID = "FcT-pW-gBa";</note>
+      </trans-unit>
+      <trans-unit id="Jze-U9-XX4.text">
+        <source>운동하기</source>
+        <target>운동하기</target>
+        <note>Class = "UILabel"; text = "운동하기"; ObjectID = "Jze-U9-XX4";</note>
+      </trans-unit>
+      <trans-unit id="KOv-Vj-0Bs.text">
+        <source>운동하기</source>
+        <target>운동하기</target>
+        <note>Class = "UITextField"; text = "운동하기"; ObjectID = "KOv-Vj-0Bs";</note>
+      </trans-unit>
+      <trans-unit id="M0a-fW-4cQ.title">
+        <source>작업 정보</source>
+        <target>작업 정보</target>
+        <note>Class = "UINavigationItem"; title = "작업 정보"; ObjectID = "M0a-fW-4cQ";</note>
+      </trans-unit>
+      <trans-unit id="ScS-MK-4VP.text">
+        <source>예상 작업 시간</source>
+        <target>예상 작업 시간</target>
+        <note>Class = "UILabel"; text = "예상 작업 시간"; ObjectID = "ScS-MK-4VP";</note>
+      </trans-unit>
+      <trans-unit id="TWD-RP-IVy.title">
+        <source>작업 기록</source>
+        <target>작업 기록</target>
+        <note>Class = "UITableViewController"; title = "작업 기록"; ObjectID = "TWD-RP-IVy";</note>
+      </trans-unit>
+      <trans-unit id="VRE-4r-Bwa.text">
+        <source>목표 달성</source>
+        <target>목표 달성</target>
+        <note>Class = "UILabel"; text = "목표 달성"; ObjectID = "VRE-4r-Bwa";</note>
+      </trans-unit>
+      <trans-unit id="aIz-dW-lvD.text">
+        <source>총 작업</source>
+        <target>총 작업</target>
+        <note>Class = "UILabel"; text = "총 작업"; ObjectID = "aIz-dW-lvD";</note>
+      </trans-unit>
+      <trans-unit id="aPY-c5-kdL.text">
+        <source>Detail</source>
+        <target>Detail</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "aPY-c5-kdL";</note>
+      </trans-unit>
+      <trans-unit id="bYD-Zb-zxf.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "bYD-Zb-zxf";</note>
+      </trans-unit>
+      <trans-unit id="eFS-Hp-o31.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "eFS-Hp-o31";</note>
+      </trans-unit>
+      <trans-unit id="eUG-q1-7Lg.text">
+        <source>연속 달성 최고기록</source>
+        <target>연속 달성 최고기록</target>
+        <note>Class = "UILabel"; text = "연속 달성 최고기록"; ObjectID = "eUG-q1-7Lg";</note>
+      </trans-unit>
+      <trans-unit id="f4j-K6-eMe.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "f4j-K6-eMe";</note>
+      </trans-unit>
+      <trans-unit id="fOb-bg-lGl.text">
+        <source>Detail</source>
+        <target>Detail</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "fOb-bg-lGl";</note>
+      </trans-unit>
+      <trans-unit id="fzW-iI-nJA.title">
+        <source>Item</source>
+        <target>Item</target>
+        <note>Class = "UIBarButtonItem"; title = "Item"; ObjectID = "fzW-iI-nJA";</note>
+      </trans-unit>
+      <trans-unit id="iPS-Vu-81B.normalTitle">
+        <source>1시간 14분</source>
+        <target>1시간 14분</target>
+        <note>Class = "UIButton"; normalTitle = "1시간 14분"; ObjectID = "iPS-Vu-81B";</note>
+      </trans-unit>
+      <trans-unit id="jdI-0K-AqQ.text">
+        <source>소요시간</source>
+        <target>소요시간</target>
+        <note>Class = "UILabel"; text = "소요시간"; ObjectID = "jdI-0K-AqQ";</note>
+      </trans-unit>
+      <trans-unit id="joM-Jb-jBG.text">
+        <source>목표 실패</source>
+        <target>목표 실패</target>
+        <note>Class = "UILabel"; text = "목표 실패"; ObjectID = "joM-Jb-jBG";</note>
+      </trans-unit>
+      <trans-unit id="kb9-lO-ARM.text">
+        <source>남은시간</source>
+        <target>남은시간</target>
+        <note>Class = "UILabel"; text = "남은시간"; ObjectID = "kb9-lO-ARM";</note>
+      </trans-unit>
+      <trans-unit id="lE6-Jj-xsC.text">
+        <source>개와 산책하기</source>
+        <target>개와 산책하기</target>
+        <note>Class = "UILabel"; text = "개와 산책하기"; ObjectID = "lE6-Jj-xsC";</note>
+      </trans-unit>
+      <trans-unit id="nD3-hs-qjC.text">
+        <source>평균 소요 시간</source>
+        <target>평균 소요 시간</target>
+        <note>Class = "UILabel"; text = "평균 소요 시간"; ObjectID = "nD3-hs-qjC";</note>
+      </trans-unit>
+      <trans-unit id="oYc-ne-3DK.text">
+        <source>완료</source>
+        <target>완료</target>
+        <note>Class = "UILabel"; text = "완료"; ObjectID = "oYc-ne-3DK";</note>
+      </trans-unit>
+      <trans-unit id="ogX-Qs-Khy.text">
+        <source>1시간 15분</source>
+        <target>1시간 15분</target>
+        <note>Class = "UILabel"; text = "1시간 15분"; ObjectID = "ogX-Qs-Khy";</note>
+      </trans-unit>
+      <trans-unit id="p15-Dw-pKm.normalTitle">
+        <source>Button</source>
+        <target>Button</target>
+        <note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "p15-Dw-pKm";</note>
+      </trans-unit>
+      <trans-unit id="pia-f9-8ns.text">
+        <source>현재 연속 달성</source>
+        <target>현재 연속 달성</target>
+        <note>Class = "UILabel"; text = "현재 연속 달성"; ObjectID = "pia-f9-8ns";</note>
+      </trans-unit>
+      <trans-unit id="prY-bs-R72.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "prY-bs-R72";</note>
+      </trans-unit>
+      <trans-unit id="qUZ-Rp-LpN.text">
+        <source>평균 남은 시간</source>
+        <target>평균 남은 시간</target>
+        <note>Class = "UILabel"; text = "평균 남은 시간"; ObjectID = "qUZ-Rp-LpN";</note>
+      </trans-unit>
+      <trans-unit id="r3a-mP-VeD.title">
+        <source>작업 기록</source>
+        <target>작업 기록</target>
+        <note>Class = "UINavigationItem"; title = "작업 기록"; ObjectID = "r3a-mP-VeD";</note>
+      </trans-unit>
+      <trans-unit id="rA9-4w-XiV.text">
+        <source>Detail</source>
+        <target>Detail</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "rA9-4w-XiV";</note>
+      </trans-unit>
+      <trans-unit id="uSX-cF-lju.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "uSX-cF-lju";</note>
+      </trans-unit>
+      <trans-unit id="wNx-v0-cXn.title">
+        <source>시간추정</source>
+        <target>시간추정</target>
+        <note>Class = "UINavigationItem"; title = "시간추정"; ObjectID = "wNx-v0-cXn";</note>
+      </trans-unit>
+      <trans-unit id="zQR-A4-OWa.text">
+        <source>연속목표달성</source>
+        <target>연속목표달성</target>
+        <note>Class = "UILabel"; text = "연속목표달성"; ObjectID = "zQR-A4-OWa";</note>
+      </trans-unit>
+      <trans-unit id="zYo-De-E5A.title">
+        <source>Item</source>
+        <target>Item</target>
+        <note>Class = "UIBarButtonItem"; title = "Item"; ObjectID = "zYo-De-E5A";</note>
+      </trans-unit>
+      <trans-unit id="zcz-cf-0mK.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "zcz-cf-0mK";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="NotificationViewController/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ko">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName">
+        <source>NotificationViewController</source>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
