@@ -115,7 +115,7 @@
                                             <action selector="workResumeOrPause:" destination="Dg9-0s-txH" eventType="touchUpInside" id="fUx-Be-rRu"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예상 완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLS-G6-Aq5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="예상 완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iLS-G6-Aq5">
                                         <rect key="frame" x="34" y="608.5" width="87" height="25"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -155,6 +155,7 @@
                                     <constraint firstItem="Kif-KI-7Rn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zba-Rb-fTW" secondAttribute="leading" constant="5" id="Ixk-Bn-kif"/>
                                     <constraint firstItem="iLS-G6-Aq5" firstAttribute="leading" secondItem="Zba-Rb-fTW" secondAttribute="leading" constant="34" id="Jwi-YN-VqB"/>
                                     <constraint firstItem="lDD-m3-0w9" firstAttribute="top" secondItem="Zba-Rb-fTW" secondAttribute="centerY" multiplier="0.2" id="Jys-HL-gbc"/>
+                                    <constraint firstItem="8Mr-51-t0y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iLS-G6-Aq5" secondAttribute="trailing" constant="20" id="Q3m-y8-9yp"/>
                                     <constraint firstItem="iLS-G6-Aq5" firstAttribute="leading" secondItem="M53-0k-9hu" secondAttribute="leading" id="SGP-cf-dGh"/>
                                     <constraint firstItem="Qby-G0-Kfh" firstAttribute="top" secondItem="lDD-m3-0w9" secondAttribute="bottom" constant="5" id="SZ5-Uy-eNU"/>
                                     <constraint firstItem="HoP-T9-OWU" firstAttribute="height" secondItem="HxR-Bx-qCa" secondAttribute="height" id="Sxy-Td-gyw"/>

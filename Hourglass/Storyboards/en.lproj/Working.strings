@@ -1,0 +1,54 @@
+
+/* Class = "UILabel"; text = "오후 1:27:12"; ObjectID = "14I-tN-6ei"; */
+"14I-tN-6ei.text" = "PM 1:27:12";
+
+/* Class = "UILabel"; text = "완료 예상"; ObjectID = "42i-p1-h39"; */
+"42i-p1-h39.text" = "Expected completion";
+
+/* Class = "UILabel"; text = "실제 완료"; ObjectID = "5qU-j9-obV"; */
+"5qU-j9-obV.text" = "Actual completion";
+
+/* Class = "UILabel"; text = "오후 1:57:12"; ObjectID = "8Mr-51-t0y"; */
+"8Mr-51-t0y.text" = "PM 1:57:12";
+
+/* Class = "UILabel"; text = "오후 1:57:12"; ObjectID = "BNY-oZ-CVZ"; */
+"BNY-oZ-CVZ.text" = "PM 1:57:12";
+
+/* Class = "UILabel"; text = "오후 1:57:12"; ObjectID = "EfK-aA-U2C"; */
+"EfK-aA-U2C.text" = "PM 1:57:12";
+
+/* Class = "UILabel"; text = "작업 시작"; ObjectID = "IsI-nQ-upj"; */
+"IsI-nQ-upj.text" = "Start work";
+
+/* Class = "UILabel"; text = "남은 시간"; ObjectID = "JdL-OU-SkG"; */
+"JdL-OU-SkG.text" = "Remaining time";
+
+/* Class = "UILabel"; text = "작업 시작"; ObjectID = "M53-0k-9hu"; */
+"M53-0k-9hu.text" = "Start work";
+
+/* Class = "UILabel"; text = "작업 완료"; ObjectID = "MMV-Wz-zfT"; */
+"MMV-Wz-zfT.text" = "Work Complete";
+
+/* Class = "UILabel"; text = "개와 산책하기"; ObjectID = "OZb-pk-IRq"; */
+"OZb-pk-IRq.text" = "Walk with dog";
+
+/* Class = "UILabel"; text = "개와 산책하기"; ObjectID = "Qby-G0-Kfh"; */
+"Qby-G0-Kfh.text" = "Walk with dog";
+
+/* Class = "UILabel"; text = "소요 시간"; ObjectID = "cOE-SI-byy"; */
+"cOE-SI-byy.text" = "Elapsed time";
+
+/* Class = "UILabel"; text = "예상 완료"; ObjectID = "iLS-G6-Aq5"; */
+"iLS-G6-Aq5.text" = "Expected completion";
+
+/* Class = "UILabel"; text = "개와 산책하기"; ObjectID = "prb-1g-avk"; */
+"prb-1g-avk.text" = "Walk with dog";
+
+/* Class = "UILabel"; text = "오후 1:57:12"; ObjectID = "uQh-nn-pUe"; */
+"uQh-nn-pUe.text" = "PM 1:57:12";
+
+/* Class = "UILabel"; text = "남은 시간"; ObjectID = "x5m-WZ-32Z"; */
+"x5m-WZ-32Z.text" = "Remaining time";
+
+/* Class = "UILabel"; text = "오후 1:57:12"; ObjectID = "xAR-2u-802"; */
+"xAR-2u-802.text" = "PM 1:57:12";

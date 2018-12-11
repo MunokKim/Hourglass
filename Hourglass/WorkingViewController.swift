@@ -119,9 +119,9 @@ class WorkingViewController: UIViewController {
     
     @IBAction func workCancel(_ sender: Any) {
         
-        let alert = UIAlertController(title: nil, message: "작업을 종료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
-        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel, handler: nil)
-        let endAction = UIAlertAction(title: "종료", style: UIAlertAction.Style.destructive, handler: { _ in
+        let alert = UIAlertController(title: nil, message: "작업을 종료하시겠습니까?".localized, preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "취소".localized, style: UIAlertAction.Style.cancel, handler: nil)
+        let endAction = UIAlertAction(title: "종료".localized, style: UIAlertAction.Style.destructive, handler: { _ in
             
             self.cancelTimerAndNoti()
             
@@ -180,9 +180,9 @@ class WorkingViewController: UIViewController {
     
     @IBAction func workComplete(_ sender: Any) {
         
-        let alert = UIAlertController(title: nil, message: "작업을 완료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
-        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel, handler: nil)
-        let completionAction = UIAlertAction(title: "완료", style: UIAlertAction.Style.default, handler: { _ in
+        let alert = UIAlertController(title: nil, message: "작업을 완료하시겠습니까?".localized, preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "취소".localized, style: UIAlertAction.Style.cancel, handler: nil)
+        let completionAction = UIAlertAction(title: "완료2".localized, style: UIAlertAction.Style.default, handler: { _ in
             
             self.cancelTimerAndNoti()
             
@@ -254,7 +254,7 @@ class WorkingViewController: UIViewController {
             }
         } else {
             remainingTimeLabel.text = "+\(abs(remainingTime!).secondsToStopwatch)"
-            remainingTextLabel.text = "지난 시간"
+            remainingTextLabel.text = "지난 시간".localized
             
             if elapsedTime! >= Int32(36000) {
                 
@@ -440,7 +440,7 @@ class WorkingViewController: UIViewController {
             
             // push 알림 메시지 설정
             let content = UNMutableNotificationContent()
-            content.title = fetchResult.workName ?? "시간추정작업"
+            content.title = fetchResult.workName ?? "시간추정작업".localized
             content.subtitle = fetchResult.estimatedWorkTime.secondsToString
             content.userInfo = ["workID":fetchResult.workID, "workStart":workStart, "momentForEnterBackground":momentOfEnterBackground, "elapsedTime":elapsedTime, "remainingTime":remainingTime, "NotificationID":"workDoneNoti"]
             
@@ -449,8 +449,8 @@ class WorkingViewController: UIViewController {
             content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(list.timeOverSoundFilename[index]).wav"))
             
             // 노티피케이션 디자인 커스터마이징
-            let snoozeAction = UNNotificationAction(identifier: "snooze", title:  "스누즈", options: [.authenticationRequired])
-            let completeAction = UNNotificationAction(identifier: "complete", title:  "완료", options: [.authenticationRequired])
+            let snoozeAction = UNNotificationAction(identifier: "snooze", title:  "스누즈".localized, options: [.authenticationRequired])
+            let completeAction = UNNotificationAction(identifier: "complete", title:  "완료2".localized, options: [.authenticationRequired])
             let newCategory = UNNotificationCategory(identifier: "newCategory", actions: [snoozeAction, completeAction], intentIdentifiers: [], options: [])
             
             UNUserNotificationCenter.current().setNotificationCategories([newCategory])
@@ -466,21 +466,21 @@ class WorkingViewController: UIViewController {
             
             switch UserDefaults.standard.integer(forKey: "alertTimeState") {
             case 0: // 5분전
-                content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 5분 남았습니다."
+                content.body = (fetchResult.workName ?? "시간추정작업".localized) + "의 예상 작업 시간이 5분 남았습니다.".localized
                 if (triggerTime-(60*5)) < 0 {
                     fallthrough
                 } else {
                     triggerTime -= 60*5
                 }
             case 1: // 1분전
-                content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 1분 남았습니다."
+                content.body = (fetchResult.workName ?? "시간추정작업".localized) + "의 예상 작업 시간이 1분 남았습니다.".localized
                 if (triggerTime-60) < 0 {
                     fallthrough
                 } else {
                     triggerTime -= 60
                 }
             case 2: // 경과할 때
-                content.body = "\"\(fetchResult.workName ?? "시간추정작업")\"의 예상 작업 시간이 경과하였습니다."
+                content.body = (fetchResult.workName ?? "시간추정작업".localized) + "의 예상 작업 시간이 경과하였습니다.".localized
             default: break
             }
             
@@ -585,17 +585,17 @@ extension NSDate {
     
     enum formatIndex: String {
         case ahms = "a h:mm:ss"
-        case mdahms = "MM월 d일 a h:mm:ss"
+        case mdahms = "M / d a h:mm:ss"
     }
     
     func stringFromDate(date: NSDate, formatIndex index: formatIndex) -> String {
         
         let formatter = DateFormatter()
         
-        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.locale = Locale(identifier: "ko_KR".localized)
         formatter.dateFormat = index.rawValue
-        formatter.amSymbol = "오전"
-        formatter.pmSymbol = "오후"
+        formatter.amSymbol = "오전".localized
+        formatter.pmSymbol = "오후".localized
         
         return formatter.string(from: self as Date)
     }

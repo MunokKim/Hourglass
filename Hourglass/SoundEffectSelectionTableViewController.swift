@@ -150,10 +150,13 @@ class SoundEffectSelectionTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingReuseCell", for: indexPath)
 
         // Configure the cell...
+        
+        // 테마 적용
         cell.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
         cell.textLabel?.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
         
         cell.textLabel?.font = UIFont(name: "GodoM", size: 17)
+        cell.textLabel?.numberOfLines = 0
         
         let viewForSelectedCell = UIView()
         viewForSelectedCell.mixedBackgroundColor = MixedColor(normal: 0xd4d4d4, night: 0x242424)

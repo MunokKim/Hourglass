@@ -90,7 +90,7 @@ class RecordTableViewController: UITableViewController {
             
             let label = UILabel()
             label.center = CGPoint(x: labelView.frame.size.width / 2, y: labelView.frame.size.height / 2)
-            label.text = "기록 없음"
+            label.text = "기록 없음".localized
             label.font = UIFont(name: "GodoM", size: 25)
             label.textAlignment = .center
             label.mixedTextColor = MixedColor(normal: AppsConstants.normal.detailTextColor.rawValue, night: AppsConstants.night.detailTextColor.rawValue)
@@ -217,7 +217,7 @@ class RecordTableViewController: UITableViewController {
             
             // Core Data 값 채워넣기 (timeMeasurementInfo)
             let sga = fetchArray[indexPath.row/2].successiveGoalAchievement
-            cell.successiveGoalAchievementLabel.text = "\(sga) 회"
+            cell.successiveGoalAchievementLabel.text = String(sga)
             cell.estimatedWorkTimeLabel.text = fetchArray[indexPath.row/2].estimatedWorkTime.secondsToString
             
             guard let actualCompletion = fetchArray[indexPath.row/2].actualCompletion else { return cell }

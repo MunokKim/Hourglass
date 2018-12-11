@@ -1,0 +1,108 @@
+/* 
+  Localizable.strings
+  Hourglass
+
+  Created by 김문옥 on 10/12/2018.
+  Copyright © 2018 김문옥. All rights reserved.
+*/
+
+// 문자 앞뒤 뒤바뀐 경우 방법
+// let x = 1.2
+// let y = 2.4
+// let text = String(format: NSLocalizedString("From %@, %@", comment: ""), "\(x)", "\(y)")
+// // Or alternatively:
+// let text = String(format: NSLocalizedString("From %@, %@", comment: ""), NSNumber(double: x), NSNumber(double: y))
+// "From %@, %@" = "从 %@, %@ 得出";
+
+// MainVC
+"완료1" = "Done";
+"편집" = "Edit";
+"작업 없음" = "No Work";
+"삭제" = "Delete";
+"취소" = "Cancel";
+"시간" = "h";
+"분" = "m";
+"초" = "s";
+"이 동작은 되돌릴 수 없습니다." = "This action can not be reversed.";
+
+// NewWorkVC
+"작업 이름 입력" = "Enter Work Name";
+
+// NewIconVC
+
+
+// WorkingVC
+"완료2" = "Complete";
+"작업을 종료하시겠습니까?" = "Do you want to end the work?";
+"종료" = "End";
+"작업을 완료하시겠습니까?" = "Do you want to complete the work?";
+"지난 시간" = "Past time";
+"시간추정작업" = "Time estimation work";
+"스누즈" = "Snooze";
+"의 예상 작업 시간이 5분 남았습니다." = "'s estimated work time is 5 minutes left.";
+"의 예상 작업 시간이 1분 남았습니다." = "'s estimated work time is 1 minutes left.";
+"의 예상 작업 시간이 경과하였습니다." = "'s estimated work time has passed.";
+"ko_KR" = "en_US";
+"오전" = "AM";
+"오후" = "PM";
+
+// WorkResultVC
+"목표 달성" = "Goal Success";
+"회 연속 " = " Successive ";
+"남은 시간" = "Remaining time";
+"목표 실패" = "Goal Failed";
+
+// WorkInfoVC
+" 기록 보기" = " View record";
+"회" = "times";
+"진행한 작업이 없습니다. 작업을 시작해보세요." = "No work has been done. Start the work.";
+
+// PopoverPickerVC
+
+// PopoverIconVC
+
+// RecordVC
+"기록 없음" = "No record";
+
+// SettingVC
+"알림" = "Notifications";
+"알림 시간" = "Notification time";
+"소리" = "Sound";
+"예상시간 경과 알림음" = "Estimated time";
+"달성 효과음" = "Success sound";
+"실패 효과음" = "Failure sound";
+"진동" = "Vibration";
+"다크 모드" = "Dark mode";
+"화면 켜짐 유지" = "Keep screen on";
+"더 보기" = "More";
+"디바이스의 '설정'에서 '모래시계' > '알림' > '알림 허용'을 켜주세요." = "Under 'Settings' on your device, turn on 'Hourglass' > 'Notifications' > 'Allow notifications'.";
+"확인" = "OK";
+
+// SoundEffect.swift
+"예상작업시간 경과 5분 전" = "5 mins before estimated work time has passed";
+"예상작업시간 경과 1분 전" = "1 min before estimated work time has passed";
+"예상작업시간이 경과할 때" = "When the estimated work time has elapsed";
+"없음" = "None";
+"실로폰" = "Xylophones";
+"빈 병 소리" = "Empty bottle";
+"종 소리" = "Bell";
+"북 소리" = "Drum";
+"비트음" = "Beat";
+"드럼 소리" = "Drum";
+"피아노 소리 1" = "Piano 1";
+"피아노 소리 2" = "Piano 2";
+"신나는 멜로디" = "Exciting melody";
+"긴 종 소리" = "Long bell";
+"낮아지는 음" = "Lowering";
+"비프음" = "Beep";
+"반복되는 멜로디" = "Repeated melody";
+"웅장한 음악" = "Magnificent music";
+
+// MoreVC
+"임시저장" = "Temporary Save";
+"메일 전송 완료" = "Complete to send mail";
+"소중한 의견 감사드립니다. :D" = "Thank you for your valuable feedback. :D";
+"메일 전송 실패" = "Failed to send mail";
+"이메일 설정을 확인하고 다시 시도해주세요." = "Please check your email settings and try again.";
+"모래시계에 대한 피드백" = "Feedback on Hourglass";
+"새롭게 추가 할 기능이나 개선이 필요한 사항을 알려주시면 신속하게 반영하겠습니다. :)" = "Please let me know what features you'd like to add or what you need to improve and I’ll be happy to help. :)";

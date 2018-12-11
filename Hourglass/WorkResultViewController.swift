@@ -154,14 +154,14 @@ class WorkResultViewController: UIViewController {
                 self.gradientView.toColors = toColors
             }
             
-            goalString = "목표 달성"
+            goalString = "목표 달성".localized
             situation = true
             
             // 2회 이상 연속 목표 달성
             let achievement = workResultInfo.successiveGoalAchievement
             if achievement >= Int16(2) {
 
-                goalString = "\(achievement)회 연속 " + goalString!
+                goalString = String(achievement) + "회 연속 ".localized + goalString!
 
                 // 월계수 이미지 표시
                 for laurel in laurels {
@@ -169,7 +169,7 @@ class WorkResultViewController: UIViewController {
                 }
             }
             
-            remainingText = "남은 시간"
+            remainingText = "남은 시간".localized
             remainingTime = workResultInfo.remainingTime.secondsToString
             
         } else { // 목표 실패
@@ -212,10 +212,10 @@ class WorkResultViewController: UIViewController {
                 self.gradientView.toColors = toColors
             }
             
-            goalString = "목표 실패"
+            goalString = "목표 실패".localized
             situation = false
-            remainingText = "지난 시간"
-            remainingTime = "+ " + abs((workResultInfo.remainingTime) ?? 0).secondsToString
+            remainingText = "지난 시간".localized
+            remainingTime = "+ " + abs((workResultInfo.remainingTime) ).secondsToString
         }
         
         guard let currentWork = currentWork else { return }

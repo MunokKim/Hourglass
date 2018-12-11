@@ -16,10 +16,10 @@ class SoundEffect {
     let failSoundFilename: Array = ["fail_sound_1", "fail_sound_2", "fail_sound_3", "fail_sound_4"]
     
     // 설정에 표시 될 사운드의 이름
-    let alertTimeExplanation: Array = ["예상작업시간 경과 5분 전", "예상작업시간 경과 1분 전", "예상작업시간이 경과할 때"]
-    let timeOverSoundExplanation: Array = ["없음", "실로폰", "빈 병 소리", "종 소리", "북 소리", "비트음"]
-    let successSoundExplanation: Array = ["없음", "드럼 소리", "피아노 소리 1", "피아노 소리 2", "신나는 멜로디", "긴 종 소리"]
-    let failSoundExplanation: Array = ["없음", "낮아지는 음", "비프음", "반복되는 멜로디", "웅장한 음악"]
+    let alertTimeExplanation: Array = ["예상작업시간 경과 5분 전".localized, "예상작업시간 경과 1분 전".localized, "예상작업시간이 경과할 때".localized]
+    let timeOverSoundExplanation: Array = ["없음".localized, "실로폰".localized, "빈 병 소리".localized, "종 소리".localized, "북 소리".localized, "비트음".localized]
+    let successSoundExplanation: Array = ["없음".localized, "드럼 소리".localized, "피아노 소리 1".localized, "피아노 소리 2".localized, "신나는 멜로디".localized, "긴 종 소리".localized]
+    let failSoundExplanation: Array = ["없음".localized, "낮아지는 음".localized, "비프음".localized, "반복되는 멜로디".localized, "웅장한 음악".localized]
     let ext: String = "wav"
     
     enum Situation: Int {

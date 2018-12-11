@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "제목"; ObjectID = "1EG-eG-Gr7"; */
+"1EG-eG-Gr7.text" = "Title";
+
+/* Class = "UITextField"; placeholder = "작업 이름 입력"; ObjectID = "6be-Dz-bYd"; */
+"6be-Dz-bYd.placeholder" = "Enter Work Name";
+
+/* Class = "UILabel"; text = "아이콘"; ObjectID = "GuE-Zk-y5c"; */
+"GuE-Zk-y5c.text" = "Icon";
+
+/* Class = "UINavigationItem"; title = "새로운 작업"; ObjectID = "ITc-PM-MZi"; */
+"ITc-PM-MZi.title" = "New Work";
+
+/* Class = "UILabel"; text = "시간 선택"; ObjectID = "Q9t-0U-iMx"; */
+"Q9t-0U-iMx.text" = "Select time";
+
+/* Class = "UINavigationItem"; title = "아이콘 선택"; ObjectID = "gTj-6h-Uop"; */
+"gTj-6h-Uop.title" = "Select Icon";
+
+/* Class = "UILabel"; text = "예상 작업 시간"; ObjectID = "oIp-Zn-2G3"; */
+"oIp-Zn-2G3.text" = "Estimated work time";
+
+/* Class = "UITableViewSection"; footerTitle = "작업에 소요될 시간을 직접 예상해보고 실제 경과 시간과 비교하여 시간추정 능력을 기를 수 있습니다."; ObjectID = "qdg-iI-1oW"; */
+"qdg-iI-1oW.footerTitle" = "You can be raised ability to time estimation caused by estimate your time to Work and compared to the actual elapsed time.";
+
+/* Class = "UITableViewSection"; headerTitle = "나만의 작업을 만들고 시간추정을 연습하세요."; ObjectID = "qdg-iI-1oW"; */
+"qdg-iI-1oW.headerTitle" = "Create your own Work and practice time estimates.";

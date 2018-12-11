@@ -12,7 +12,7 @@ import UserNotifications
 
 class SettingViewController: UITableViewController {
     
-    let menuList = ["알림", "알림 시간", "소리", "예상시간 경과 알림음", "달성 효과음", "실패 효과음", "진동", "다크 모드", "화면 켜짐 유지", "더 보기"]
+    let menuList = ["알림".localized, "알림 시간".localized, "소리".localized, "예상시간 경과 알림음".localized, "달성 효과음".localized, "실패 효과음".localized, "진동".localized, "다크 모드".localized, "화면 켜짐 유지".localized, "더 보기".localized]
 
     @IBAction func closeSetting(_ sender: Any) {
         
@@ -47,9 +47,9 @@ class SettingViewController: UITableViewController {
                         self.changeSelection()
                     }
                     
-                    let alertController = UIAlertController (title: nil, message: "디바이스의 '설정'에서 '모래시계' > '알림' > '알림 허용'을 켜주세요.", preferredStyle: .alert)
+                    let alertController = UIAlertController (title: nil, message: "디바이스의 '설정'에서 '모래시계' > '알림' > '알림 허용'을 켜주세요.".localized, preferredStyle: .alert)
                     
-                    let settingsAction = UIAlertAction(title: "확인", style: .default) { (_) -> Void in
+                    let settingsAction = UIAlertAction(title: "확인".localized, style: .default) { (_) -> Void in
                         guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                             return
                         }

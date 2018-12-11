@@ -35,9 +35,9 @@ class MainViewController: UITableViewController {
         
         mainTableView.setEditing(!tableView.isEditing, animated: true)
         if tableView.isEditing == true{
-            editButton.title = "완료"
+            editButton.title = "완료1".localized
         }else{
-            editButton.title = "편집"
+            editButton.title = "편집".localized
         }
     }
     
@@ -96,7 +96,7 @@ class MainViewController: UITableViewController {
             
             let label = UILabel()
             label.center = CGPoint(x: labelView.frame.size.width / 2, y: labelView.frame.size.height / 2)
-            label.text = "작업 없음"
+            label.text = "작업 없음".localized
             label.font = UIFont(name: "GodoM", size: 25)
             label.textAlignment = .center
             label.mixedTextColor = MixedColor(normal: AppsConstants.normal.detailTextColor.rawValue, night: AppsConstants.night.detailTextColor.rawValue)
@@ -256,14 +256,14 @@ class MainViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             
-            let alert = UIAlertController(title: "\(fetchArray[indexPath.row].workName ?? "") 삭제", message: "이 동작은 되돌릴 수 없습니다.", preferredStyle: .actionSheet)
-            let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+            let alert = UIAlertController(title: fetchArray[indexPath.row].workName ?? "", message: "이 동작은 되돌릴 수 없습니다.".localized, preferredStyle: .actionSheet)
+            let deleteAction = UIAlertAction(title: "삭제".localized, style: .destructive) { _ in
                 let isDelete = self.deleteWorkInfo(work: self.fetchArray[indexPath.row])
                 if isDelete {
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
             }
-            let cancelAction = UIAlertAction(title: "취소", style: .default, handler: nil)
+            let cancelAction = UIAlertAction(title: "취소".localized, style: .default, handler: nil)
             cancelAction.setValue(AppsConstants.appMainColor, forKey: "titleTextColor")
             alert.addAction(deleteAction)
             alert.addAction(cancelAction)
@@ -398,22 +398,22 @@ extension Int32 {
         var hms: String = ""
         
         if hours != 0 {
-            hms = "\(String(hours))시간"
+            hms = String(hours) + "시간".localized
         }
         if (hours != 0 && minutes != 0) || (hours != 0 && seconds != 0) {
             hms += " "
         }
         if minutes != 0 {
-            hms += "\(String(minutes))분"
+            hms += String(minutes) + "분".localized
         }
         if minutes != 0 && seconds != 0 {
             hms += " "
         }
         if seconds != 0 {
-            hms += "\(String(seconds))초"
+            hms += String(seconds) + "초".localized
         }
         if hours == 0 && minutes == 0 && seconds == 0 {
-            hms = "0초"
+            hms = "0" + "초".localized
         }
         
         return hms
@@ -472,7 +472,20 @@ extension Int32 {
     }
 }
 
-
+extension String {
+    
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
+    
+    func localized(lang:String) ->String {
+        
+        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+        let bundle = Bundle(path: path!)
+        
+        return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
+    }
+}
 
 
 

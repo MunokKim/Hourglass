@@ -12,22 +12,22 @@
 "5Y5-GK-862.text" = "Detail";
 
 /* Class = "UIBarButtonItem"; title = "편집"; ObjectID = "5jk-JB-xwt"; */
-"5jk-JB-xwt.title" = "편집";
+"5jk-JB-xwt.title" = "Edit";
 
 /* Class = "UILabel"; text = "예상작업시간"; ObjectID = "9Lj-91-upS"; */
-"9Lj-91-upS.text" = "예상작업시간";
+"9Lj-91-upS.text" = "Estimated";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "9cS-NJ-oV5"; */
 "9cS-NJ-oV5.text" = "Detail";
 
 /* Class = "UILabel"; text = "성공률"; ObjectID = "B8M-2C-oZa"; */
-"B8M-2C-oZa.text" = "성공률";
+"B8M-2C-oZa.text" = "Success rate";
 
 /* Class = "UIBarButtonItem"; title = "시작"; ObjectID = "D1y-zf-IMZ"; */
-"D1y-zf-IMZ.title" = "시작";
+"D1y-zf-IMZ.title" = "Start";
 
 /* Class = "UIButton"; normalTitle = "기록 보기"; ObjectID = "DMb-vz-swp"; */
-"DMb-vz-swp.normalTitle" = "기록 보기";
+"DMb-vz-swp.normalTitle" = "View record";
 
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "FcT-pW-gBa"; */
 "FcT-pW-gBa.title" = "Item";
@@ -39,19 +39,19 @@
 "KOv-Vj-0Bs.text" = "운동하기";
 
 /* Class = "UINavigationItem"; title = "작업 정보"; ObjectID = "M0a-fW-4cQ"; */
-"M0a-fW-4cQ.title" = "작업 정보";
+"M0a-fW-4cQ.title" = "Work Info";
 
 /* Class = "UILabel"; text = "예상 작업 시간"; ObjectID = "ScS-MK-4VP"; */
-"ScS-MK-4VP.text" = "예상 작업 시간";
+"ScS-MK-4VP.text" = "Estimated work time";
 
 /* Class = "UITableViewController"; title = "작업 기록"; ObjectID = "TWD-RP-IVy"; */
-"TWD-RP-IVy.title" = "작업 기록";
+"TWD-RP-IVy.title" = "Work Record";
 
 /* Class = "UILabel"; text = "목표 달성"; ObjectID = "VRE-4r-Bwa"; */
-"VRE-4r-Bwa.text" = "목표 달성";
+"VRE-4r-Bwa.text" = "Goal success";
 
 /* Class = "UILabel"; text = "총 작업"; ObjectID = "aIz-dW-lvD"; */
-"aIz-dW-lvD.text" = "총 작업";
+"aIz-dW-lvD.text" = "Total work";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "aPY-c5-kdL"; */
 "aPY-c5-kdL.text" = "Detail";
@@ -63,7 +63,7 @@
 "eFS-Hp-o31.text" = "Label";
 
 /* Class = "UILabel"; text = "연속 달성 최고기록"; ObjectID = "eUG-q1-7Lg"; */
-"eUG-q1-7Lg.text" = "연속 달성 최고기록";
+"eUG-q1-7Lg.text" = "Highest Record";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "f4j-K6-eMe"; */
 "f4j-K6-eMe.text" = "Label";
@@ -75,43 +75,43 @@
 "fzW-iI-nJA.title" = "Item";
 
 /* Class = "UIButton"; normalTitle = "1시간 14분"; ObjectID = "iPS-Vu-81B"; */
-"iPS-Vu-81B.normalTitle" = "1시간 14분";
+"iPS-Vu-81B.normalTitle" = "1 Hour 14 Mins";
 
 /* Class = "UILabel"; text = "소요시간"; ObjectID = "jdI-0K-AqQ"; */
-"jdI-0K-AqQ.text" = "소요시간";
+"jdI-0K-AqQ.text" = "Elapsed";
 
 /* Class = "UILabel"; text = "목표 실패"; ObjectID = "joM-Jb-jBG"; */
-"joM-Jb-jBG.text" = "목표 실패";
+"joM-Jb-jBG.text" = "Goal Failed";
 
 /* Class = "UILabel"; text = "남은시간"; ObjectID = "kb9-lO-ARM"; */
-"kb9-lO-ARM.text" = "남은시간";
+"kb9-lO-ARM.text" = "Remaining";
 
 /* Class = "UILabel"; text = "개와 산책하기"; ObjectID = "lE6-Jj-xsC"; */
-"lE6-Jj-xsC.text" = "개와 산책하기";
+"lE6-Jj-xsC.text" = "Work with dog";
 
 /* Class = "UILabel"; text = "평균 소요 시간"; ObjectID = "nD3-hs-qjC"; */
-"nD3-hs-qjC.text" = "평균 소요 시간";
+"nD3-hs-qjC.text" = "Average elapsed time";
 
 /* Class = "UILabel"; text = "완료"; ObjectID = "oYc-ne-3DK"; */
-"oYc-ne-3DK.text" = "완료";
+"oYc-ne-3DK.text" = "Done";
 
 /* Class = "UILabel"; text = "1시간 15분"; ObjectID = "ogX-Qs-Khy"; */
-"ogX-Qs-Khy.text" = "1시간 15분";
+"ogX-Qs-Khy.text" = "1 Hour 15 Mins";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "p15-Dw-pKm"; */
 "p15-Dw-pKm.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "현재 연속 달성"; ObjectID = "pia-f9-8ns"; */
-"pia-f9-8ns.text" = "현재 연속 달성";
+"pia-f9-8ns.text" = "Current successive";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "prY-bs-R72"; */
 "prY-bs-R72.text" = "Label";
 
 /* Class = "UILabel"; text = "평균 남은 시간"; ObjectID = "qUZ-Rp-LpN"; */
-"qUZ-Rp-LpN.text" = "평균 남은 시간";
+"qUZ-Rp-LpN.text" = "Average remaining time";
 
 /* Class = "UINavigationItem"; title = "작업 기록"; ObjectID = "r3a-mP-VeD"; */
-"r3a-mP-VeD.title" = "작업 기록";
+"r3a-mP-VeD.title" = "Work Record";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "rA9-4w-XiV"; */
 "rA9-4w-XiV.text" = "Detail";
@@ -120,10 +120,10 @@
 "uSX-cF-lju.text" = "Label";
 
 /* Class = "UINavigationItem"; title = "시간추정"; ObjectID = "wNx-v0-cXn"; */
-"wNx-v0-cXn.title" = "시간추정";
+"wNx-v0-cXn.title" = "Time Estimation";
 
 /* Class = "UILabel"; text = "연속목표달성"; ObjectID = "zQR-A4-OWa"; */
-"zQR-A4-OWa.text" = "연속목표달성";
+"zQR-A4-OWa.text" = "Successive";
 
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "zYo-De-E5A"; */
 "zYo-De-E5A.title" = "Item";

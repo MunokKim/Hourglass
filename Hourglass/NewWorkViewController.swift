@@ -114,7 +114,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
         workNameTextField.backgroundColor = UIColor.clear
         workNameTextField.tintColor = AppsConstants.appMainColor
         workNameTextField.textColor = AppsConstants.appMainColor
-        let attributedString = NSMutableAttributedString(string: "작업 이름 입력")
+        let attributedString = NSMutableAttributedString(string: "작업 이름 입력".localized)
         attributedString.setMixedAttributes([NNForegroundColorAttributeName: MixedColor(normal: 0xdcdcdc, night: 0x2c2c2c)], range: NSRange(location: 0, length: 8))
         workNameTextField.attributedPlaceholder = attributedString
         
@@ -291,13 +291,13 @@ extension NewWorkViewController: UIPickerViewDelegate {
         hoursLabel.font = UIFont(name: "GodoM", size: 17)
         hoursLabel.mixedTextColor = MixedColor(normal: UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 1.0), night: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0))
         insertRef.addSubview(hoursLabel)
-        hoursLabel.text = "시간"
+        hoursLabel.text = "시간".localized
         
         minutesLabel.textAlignment = NSTextAlignment.left
         minutesLabel.font = UIFont(name: "GodoM", size: 17)
         minutesLabel.mixedTextColor = MixedColor(normal: UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 1.0), night: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0))
         insertRef.addSubview(minutesLabel)
-        minutesLabel.text = "분"
+        minutesLabel.text = "분".localized
         
         // 피커뷰의 선택된 인덱스 상하에 있는 가로줄 색상 적용
         pickerView.subviews[1].mixedBackgroundColor = MixedColor(normal: UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00), night: UIColor(red:0.14, green:0.14, blue:0.12, alpha:1.00))
@@ -340,10 +340,10 @@ extension NewWorkViewController: UIPickerViewDelegate {
         
         saveButtonValidation()
         
-        var estimatedWorkTimeString: String = "\(estimatedWorkTimePicker.selectedHours!)시간 \(estimatedWorkTimePicker.selectedMinutes!)분"
+        var estimatedWorkTimeString: String = String(estimatedWorkTimePicker.selectedHours!) + "시간".localized + " " + String(estimatedWorkTimePicker.selectedMinutes!) + "분".localized
         
         if estimatedWorkTimePicker.selectedHours == 0 {
-            estimatedWorkTimeString = "\(estimatedWorkTimePicker.selectedMinutes!)분"
+            estimatedWorkTimeString = String(estimatedWorkTimePicker.selectedMinutes!) + "분".localized
         }
         
         showEstimatedWorkTimeCell.detailTextLabel?.text = estimatedWorkTimeString

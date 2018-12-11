@@ -42,17 +42,17 @@ class MoreTableViewController: UITableViewController, MFMailComposeViewControlle
         
         switch result {
         case .cancelled:
-            print("취소")
+            print("취소".localized)
         case .saved:
-            print("임시저장")
+            print("임시저장".localized)
         case .sent:
-            let sendMailErrorAlert = UIAlertController(title: "메일 전송 완료", message: "소중한 의견 감사드립니다. :D", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
+            let sendMailErrorAlert = UIAlertController(title: "메일 전송 완료".localized, message: "소중한 의견 감사드립니다. :D".localized, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "확인".localized, style: UIAlertAction.Style.cancel, handler: nil)
             sendMailErrorAlert.addAction(cancelAction)
             self.present(sendMailErrorAlert, animated: true, completion: nil)
         default:
-            let sendMailErrorAlert = UIAlertController(title: "메일 전송 실패", message: "이메일 설정을 확인하고 다시 시도해주세요.", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
+            let sendMailErrorAlert = UIAlertController(title: "메일 전송 실패".localized, message: "이메일 설정을 확인하고 다시 시도해주세요.".localized, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "확인".localized, style: UIAlertAction.Style.cancel, handler: nil)
             sendMailErrorAlert.addAction(cancelAction)
             self.present(sendMailErrorAlert, animated: true, completion: nil)
         }
@@ -90,12 +90,12 @@ class MoreTableViewController: UITableViewController, MFMailComposeViewControlle
                 let mail = MFMailComposeViewController()
                 mail.mailComposeDelegate = self
                 mail.setToRecipients(["wer0222@icloud.com"])
-                mail.setSubject("모래시계에 대한 피드백")
-                mail.setMessageBody("새롭게 추가 할 기능이나 개선이 필요한 사항을 알려주시면 신속하게 반영하겠습니다 :)", isHTML: false)
+                mail.setSubject("모래시계에 대한 피드백".localized)
+                mail.setMessageBody("새롭게 추가 할 기능이나 개선이 필요한 사항을 알려주시면 신속하게 반영하겠습니다. :)".localized, isHTML: false)
                 present(mail, animated: true)
             } else {
-                let sendMailErrorAlert = UIAlertController(title: "메일 전송 실패", message: "이메일 설정을 확인하고 다시 시도해주세요.", preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
+                let sendMailErrorAlert = UIAlertController(title: "메일 전송 실패".localized, message: "이메일 설정을 확인하고 다시 시도해주세요.".localized, preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "확인".localized, style: UIAlertAction.Style.cancel, handler: nil)
                 sendMailErrorAlert.addAction(cancelAction)
                 self.present(sendMailErrorAlert, animated: true, completion: nil)
             }

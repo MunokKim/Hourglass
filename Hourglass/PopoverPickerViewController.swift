@@ -98,13 +98,13 @@ extension PopoverPickerViewController: UIPickerViewDelegate {
         hoursLabel.font = UIFont(name: "GodoM", size: 17)
         hoursLabel.mixedTextColor = MixedColor(normal: UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 1.0), night: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0))
         insertRef.addSubview(hoursLabel)
-        hoursLabel.text = "시간"
+        hoursLabel.text = "시간".localized
         
         minutesLabel.textAlignment = NSTextAlignment.left
         minutesLabel.font = UIFont(name: "GodoM", size: 17)
         minutesLabel.mixedTextColor = MixedColor(normal: UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 1.0), night: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0))
         insertRef.addSubview(minutesLabel)
-        minutesLabel.text = "분"
+        minutesLabel.text = "분".localized
         
         // 피커뷰의 선택된 인덱스 상하에 있는 가로줄 색상 적용
         pickerView.subviews[1].mixedBackgroundColor = MixedColor(normal: UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00), night: UIColor(red:0.14, green:0.14, blue:0.12, alpha:1.00))
@@ -147,10 +147,10 @@ extension PopoverPickerViewController: UIPickerViewDelegate {
         
         changeButtonValidation()
         
-        var estimatedWorkTimeString: String = "\(popoverPicker.selectedHours!)시간 \(popoverPicker.selectedMinutes!)분"
+        var estimatedWorkTimeString: String = String(popoverPicker.selectedHours!) + "시간".localized + " " + String(popoverPicker.selectedMinutes!) + "분".localized
         
         if popoverPicker.selectedHours == 0 {
-            estimatedWorkTimeString = "\(popoverPicker.selectedMinutes!)분"
+            estimatedWorkTimeString = String(popoverPicker.selectedMinutes!) + "분".localized
         }
         
         // popover를 닫으면 부모VC로 전달하기 위해 담아둔다.

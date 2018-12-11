@@ -110,8 +110,8 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
         
-        let alert = UIAlertController(title: "\(workInfoFetch?.workName ?? "") 삭제", message: "이 동작은 되돌릴 수 없습니다.", preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+        let alert = UIAlertController(title: (workInfoFetch?.workName ?? "") + "삭제".localized, message: "이 동작은 되돌릴 수 없습니다.".localized, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "삭제".localized, style: .destructive) { _ in
             guard let work = self.workInfoFetch else { return }
             let isDelete = MainViewController().deleteWorkInfo(work: work)
             if isDelete {
@@ -119,7 +119,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
                 self.navigationController?.popViewController(animated: true)
             }
         }
-        let cancelAction = UIAlertAction(title: "취소", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소".localized, style: .default, handler: nil)
         cancelAction.setValue(AppsConstants.appMainColor, forKey: "titleTextColor")
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
@@ -171,9 +171,9 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
             
             
             // Icon with color & colored text around it
-            workRecordButton.setIcon(prefixText: "", prefixTextColor: .clear, icon: .icofont(.clipBoard), iconColor: UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00), postfixText: " 기록 보기", postfixTextColor: UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00), forState: .normal, textSize: 18, iconSize: nil)
+            workRecordButton.setIcon(prefixText: "", prefixTextColor: .clear, icon: .icofont(.clipBoard), iconColor: UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00), postfixText: " 기록 보기".localized, postfixTextColor: UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00), forState: .normal, textSize: 18, iconSize: nil)
             // Icon with color & colored text around it
-            workRecordButton.setIcon(prefixText: "", prefixTextColor: .clear, icon: .icofont(.clipBoard), iconColor: UIColor(red: 207/255, green: 207/255, blue: 207/255, alpha: 1.00), postfixText: " 기록 보기", postfixTextColor: UIColor(red: 207/255, green: 207/255, blue: 207/255, alpha: 1.00), forState: .highlighted, textSize: 18, iconSize: nil)
+            workRecordButton.setIcon(prefixText: "", prefixTextColor: .clear, icon: .icofont(.clipBoard), iconColor: UIColor(red: 207/255, green: 207/255, blue: 207/255, alpha: 1.00), postfixText: " 기록 보기".localized, postfixTextColor: UIColor(red: 207/255, green: 207/255, blue: 207/255, alpha: 1.00), forState: .highlighted, textSize: 18, iconSize: nil)
             
             workRecordButton.backgroundColor = AppsConstants.appMainColor // Sunshade
         }
@@ -222,13 +222,13 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         workNameTextField.mixedTextColor = MixedColor(normal: AppsConstants.normal.textColor.rawValue, night: AppsConstants.night.textColor.rawValue)
         
         // 테마에 따른 pencil 이미지 색상 전환
-        for visibleCell in self.tableView.visibleCells {
-            let imageViews = visibleCell.contentView.subviews.compactMap { $0 as? UIImageView }
-            for imageView in imageViews {
-                imageView.mixedImage = MixedImage(normal: UIImage(named: "pencil_normal.png")!, night: UIImage(named: "pencil.png")!)
-                
-            }
-        }
+//        for visibleCell in self.tableView.visibleCells {
+//            let imageViews = visibleCell.contentView.subviews.compactMap { $0 as? UIImageView }
+//            for imageView in imageViews {
+//                imageView.mixedImage = MixedImage(normal: UIImage(named: "pencil_normal.png")!, night: UIImage(named: "pencil.png")!)
+//
+//            }
+//        }
         
         self.hideKeyboardWhenTappedAround()
         tableView.keyboardDismissMode = .interactive
@@ -254,9 +254,9 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
 //        notificationCenter.addObserver(self, selector: #selector(WorkInfoTableViewController.individualUpdateWorkInfo), name: NSNotification.Name(rawValue: "UpdateWorkInfoNoti"), object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         // 테마에 따른 pencil 이미지 색상 전환
         for visibleCell in self.tableView.visibleCells {
             let imageViews = visibleCell.contentView.subviews.compactMap { $0 as? UIImageView }
@@ -282,12 +282,12 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
         }
         
         estimatedWorkTimePickerButton.setTitle(workInfoFetch.estimatedWorkTime.secondsToString, for: .normal)
-        currentSuccessiveAchievementWhetherLabel.text = "\(workInfoFetch.currentSuccessiveAchievementWhether) 회" // 현재 연속 달성 여부
-        successiveAchievementHighestRecordLabel.text = "\(workInfoFetch.successiveAchievementHighestRecord) 회" // 연속 달성 최고기록
+        currentSuccessiveAchievementWhetherLabel.text = String(workInfoFetch.currentSuccessiveAchievementWhether) + " " + "회".localized // 현재 연속 달성 여부
+        successiveAchievementHighestRecordLabel.text = String(workInfoFetch.successiveAchievementHighestRecord) + " " + "회".localized // 연속 달성 최고기록
         
-        totalWorkLabel.text = "\(workInfoFetch.totalWork) 회" // 총 작업
-        goalSuccessLabel.text = "\(workInfoFetch.goalSuccess) 회" // 목표 달성
-        goalFailLabel.text = "\(workInfoFetch.goalFail) 회" // 목표 실패
+        totalWorkLabel.text = String(workInfoFetch.totalWork) + " " + "회".localized // 총 작업
+        goalSuccessLabel.text = String(workInfoFetch.goalSuccess) + " " + "회".localized // 목표 달성
+        goalFailLabel.text = String(workInfoFetch.goalFail) + " " + "회".localized // 목표 실패
         successRateLabel.text = String(format: "%.0f", workInfoFetch.successRate * 100) + " %" // 성공률
         averageElapsedTimeLabel.text = Int32(workInfoFetch.averageElapsedTime).secondsToString // 평균 소요시간
         averageRemainingTimeLabel.text = Int32(workInfoFetch.averageRemainingTime).secondsToString // 평균 남은 시간
@@ -305,7 +305,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
             
             let noticeLabel = UILabel()
             noticeLabel.center = CGPoint(x: noticeView.frame.size.width / 2, y: noticeView.frame.size.height / 2)
-            noticeLabel.text = "진행한 작업이 없습니다. 작업을 시작해보세요."
+            noticeLabel.text = "진행한 작업이 없습니다. 작업을 시작해보세요.".localized
             noticeLabel.mixedTextColor = MixedColor(normal: AppsConstants.normal.backGroundColor.rawValue, night: AppsConstants.night.backGroundColor.rawValue)
             noticeLabel.font = UIFont(name: "GodoM", size: 15)
             noticeLabel.textAlignment = .center

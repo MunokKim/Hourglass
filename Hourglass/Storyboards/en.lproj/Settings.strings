@@ -1,0 +1,114 @@
+
+/* Class = "UINavigationItem"; title = "실패 효과음"; ObjectID = "2a5-Lh-6qV"; */
+"2a5-Lh-6qV.title" = "Failure Effect Sound";
+
+/* Class = "UILabel"; text = "피드백"; ObjectID = "2db-gN-4fP"; */
+"2db-gN-4fP.text" = "Feedback";
+
+/* Class = "UILabel"; text = "더 보기"; ObjectID = "8on-xs-lEQ"; */
+"8on-xs-lEQ.text" = "More";
+
+/* Class = "UINavigationItem"; title = "예상시간 경과 알림음"; ObjectID = "8yd-0X-dDm"; */
+"8yd-0X-dDm.title" = "Estimated time passed sound";
+
+/* Class = "UILabel"; text = "달성 효과음"; ObjectID = "9QQ-b7-ua7"; */
+"9QQ-b7-ua7.text" = "Success effect sound";
+
+/* Class = "UILabel"; text = "iCloud 장치 간 동기화"; ObjectID = "AVp-y7-U28"; */
+"AVp-y7-U28.text" = "iCloud device-to-device synchronization";
+
+/* Class = "UINavigationItem"; title = "저작권 정보"; ObjectID = "Bbp-HT-gQM"; */
+"Bbp-HT-gQM.title" = "License and Copyright";
+
+/* Class = "UINavigationItem"; title = "알림 시간"; ObjectID = "DTY-EP-RcF"; */
+"DTY-EP-RcF.title" = "Notification Time";
+
+/* Class = "UILabel"; text = "앱스토어에 리뷰 남기기 ♥︎"; ObjectID = "E0N-KS-BJ1"; */
+"E0N-KS-BJ1.text" = "Review on the App Store ♥︎";
+
+/* Class = "UILabel"; text = "Apple Watch 앱"; ObjectID = "FGe-Tp-tkl"; */
+"FGe-Tp-tkl.text" = "Apple Watch App";
+
+/* Class = "UITableViewSection"; footerTitle = "기타 다양한 기능들이 제공될 예정입니다."; ObjectID = "JDB-XE-tgu"; */
+"JDB-XE-tgu.footerTitle" = "Various other features will be provided.";
+
+/* Class = "UILabel"; text = "예상시간 경과 알림음"; ObjectID = "Mka-vl-hK1"; */
+"Mka-vl-hK1.text" = "Estimated time passed sound";
+
+/* Class = "UILabel"; text = "실패 효과음"; ObjectID = "NE7-0h-8Bp"; */
+"NE7-0h-8Bp.text" = "Failure effect sound";
+
+/* Class = "UILabel"; text = "작업을 완료하거나 예상시간이 경과할 때 재생됩니다."; ObjectID = "NXF-Oh-smn"; */
+"NXF-Oh-smn.text" = "Played when the task is completed or the expected time elapses.";
+
+/* Class = "UILabel"; text = "알림"; ObjectID = "Ojj-HF-O3H"; */
+"Ojj-HF-O3H.text" = "Notifications";
+
+/* Class = "UILabel"; text = "다크 모드"; ObjectID = "PVS-sV-40k"; */
+"PVS-sV-40k.text" = "Dark Mode";
+
+/* Class = "UILabel"; text = "작업 중복 실행"; ObjectID = "QNy-IB-0Rg"; */
+"QNy-IB-0Rg.text" = "";
+
+/* Class = "UILabel"; text = "도움말"; ObjectID = "RYR-Ga-mBD"; */
+"RYR-Ga-mBD.text" = "Help";
+
+/* Class = "UILabel"; text = "진동"; ObjectID = "Rug-jd-Bft"; */
+"Rug-jd-Bft.text" = "Vibration";
+
+/* Class = "UILabel"; text = "업데이트 예정사항"; ObjectID = "Ueo-Me-eH3"; */
+"Ueo-Me-eH3.text" = "Update schedule";
+
+/* Class = "UILabel"; text = "잠금화면 위젯"; ObjectID = "VrQ-0l-2OW"; */
+"VrQ-0l-2OW.text" = "Lock screen widget";
+
+/* Class = "UILabel"; text = "소리"; ObjectID = "WT6-iQ-I74"; */
+"WT6-iQ-I74.text" = "Sound";
+
+/* Class = "UINavigationItem"; title = "도움말"; ObjectID = "YE9-ug-kHU"; */
+"YE9-ug-kHU.title" = "Help";
+
+/* Class = "UINavigationItem"; title = "달성 효과음"; ObjectID = "Z0i-oD-8fP"; */
+"Z0i-oD-8fP.title" = "Success Effect Sound";
+
+/* Class = "UITableViewSection"; footerTitle = "“Siri야, 모래시계에서 ‘개와 산책하기’을(를) 시작 / 중지 / 완료”"; ObjectID = "Z5r-Vo-v8T"; */
+"Z5r-Vo-v8T.footerTitle" = "\"Hey Siri, start/stop/complete ‘Walking with dogs’ at the Hourglass.\"";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "bCH-Wd-E74"; */
+"bCH-Wd-E74.text" = "Detail";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "fKL-Sa-ecC"; */
+"fKL-Sa-ecC.text" = "Detail";
+
+/* Class = "UILabel"; text = "화면 켜짐 유지"; ObjectID = "fRK-Br-j1A"; */
+"fRK-Br-j1A.text" = "Keep screen on";
+
+/* Class = "UILabel"; text = "\"Siri야\""; ObjectID = "gAz-s0-AxY"; */
+"gAz-s0-AxY.text" = "\"Hey, Siri\"";
+
+/* Class = "UILabel"; text = "저작권 정보"; ObjectID = "kZI-9Y-hQm"; */
+"kZI-9Y-hQm.text" = "License and Copyright";
+
+/* Class = "UINavigationItem"; title = "설정"; ObjectID = "ncR-PU-2Km"; */
+"ncR-PU-2Km.title" = "Settings";
+
+/* Class = "UITableViewSection"; footerTitle = "앱이 마음에 드신다면 앱스토어에 평가를 남겨주세요. 새로운 기능을 추가하고 신속하게 앱을 개선하는 데 큰 도움이 됩니다."; ObjectID = "nhR-Cf-laX"; */
+"nhR-Cf-laX.footerTitle" = "If you like the my app, please rate it in the App Store. It will help me add new features and improve apps quickly.";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "qfp-vH-q0z"; */
+"qfp-vH-q0z.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "업데이트 예정사항"; ObjectID = "sG2-7B-5ZI"; */
+"sG2-7B-5ZI.title" = "Update Schedule";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "tIf-l1-xrP"; */
+"tIf-l1-xrP.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "더 보기"; ObjectID = "vWi-F8-ZAe"; */
+"vWi-F8-ZAe.title" = "More";
+
+/* Class = "UILabel"; text = "알림 시간"; ObjectID = "zVT-vr-ufL"; */
+"zVT-vr-ufL.text" = "Notification time";
+
+/* Class = "UITableViewController"; title = "설정"; ObjectID = "ziD-Am-qft"; */
+"ziD-Am-qft.title" = "Settings";
