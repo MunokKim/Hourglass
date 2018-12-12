@@ -12,6 +12,7 @@ class RecordTitleCell: UITableViewCell {
 
     @IBOutlet var elapsedTimeLabel: UILabel!
     @IBOutlet var workStartLabel: UILabel!
+    @IBOutlet var clampImageView: UIImageView!
     @IBOutlet var labels: [UILabel]!
     
     override func awakeFromNib() {

@@ -115,7 +115,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
         workNameTextField.tintColor = AppsConstants.appMainColor
         workNameTextField.textColor = AppsConstants.appMainColor
         let attributedString = NSMutableAttributedString(string: "작업 이름 입력".localized)
-        attributedString.setMixedAttributes([NNForegroundColorAttributeName: MixedColor(normal: 0xdcdcdc, night: 0x2c2c2c)], range: NSRange(location: 0, length: 8))
+        attributedString.setMixedAttributes([NNForegroundColorAttributeName: MixedColor(normal: 0xdcdcdc, night: 0x2c2c2c)], range: NSRange(location: 0, length: attributedString.length))
         workNameTextField.attributedPlaceholder = attributedString
         
         workIconImageView.setIcon(icon: .icofont(.hourGlass), textColor: MainViewController.mixedTextColor, backgroundColor: .clear, size: nil)

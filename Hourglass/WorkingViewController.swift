@@ -206,8 +206,9 @@ class WorkingViewController: UIViewController {
         
         print("<<estimatedWorkTime>> \(estimatedWorkTime?.secondsToStopwatch) <<elapsedTime>> \(elapsedTime!) <<remainingTime>> \(remainingTime!) <<workStart>> \(workStart!) <<estimatedCompletion>> \(estimatedCompletion!)")
         
-        guard let estimatedCompletion = estimatedCompletion else { return }
-        estimatedCompletionTimeLabel.text = NSDate().stringFromDate(date: estimatedCompletion, formatIndex: .ahms)
+        if let estimatedCompletion = estimatedCompletion {
+            estimatedCompletionTimeLabel.text = estimatedCompletion.stringFromDate(formatIndex: .ahms)
+        }
         view.layoutIfNeeded()
         
         if remainingTime! >= Int32(0) {
@@ -399,12 +400,11 @@ class WorkingViewController: UIViewController {
         }
         workNameLabel.text = fetchResult.workName!
         
-        guard let workStart = workStart else { return }
-        workStartTimeLabel.text = NSDate().stringFromDate(date: workStart, formatIndex: .ahms)
-        remainingTimeLabel.text = estimatedWorkTime?.secondsToStopwatch
+        guard let workStart = workStart, let estimatedCompletion = estimatedCompletion else { return }
         
-        guard let estimatedCompletion = estimatedCompletion else { return }
-        estimatedCompletionTimeLabel.text = NSDate().stringFromDate(date: estimatedCompletion, formatIndex: .ahms)
+        workStartTimeLabel.text = workStart.stringFromDate(formatIndex: .ahms)
+        remainingTimeLabel.text = estimatedWorkTime?.secondsToStopwatch
+        estimatedCompletionTimeLabel.text = estimatedCompletion.stringFromDate(formatIndex: .ahms)
         
         workResumeOrPause((Any).self)
         
@@ -588,7 +588,7 @@ extension NSDate {
         case mdahms = "M / d a h:mm:ss"
     }
     
-    func stringFromDate(date: NSDate, formatIndex index: formatIndex) -> String {
+    func stringFromDate(formatIndex index: formatIndex) -> String {
         
         let formatter = DateFormatter()
         

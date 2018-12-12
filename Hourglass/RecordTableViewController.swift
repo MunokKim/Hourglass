@@ -12,7 +12,7 @@ import CoreData
 import SwiftIcons
 
 class RecordTableViewController: UITableViewController {
-
+    
     var selectedIndex: Int?
     
     let context = AppDelegate.viewContext
@@ -27,11 +27,8 @@ class RecordTableViewController: UITableViewController {
         }
     }
     
-    @IBOutlet var workIconItem: UIBarButtonItem! {
-        didSet {
-            workIconItem.isEnabled = false
-        }
-    }
+    var isOpen: [Bool] = [Bool]()
+    var isOpenAll = false
     
     func fetchTimeMeasurementInfo() {
         
@@ -48,6 +45,7 @@ class RecordTableViewController: UITableViewController {
             for info in fetchArray {
                 print("work : \(info.work)") // 한번씩 사용을 해주어야 실제 값이 들어가게 된다.
                 isCellsHeightExpanded.append(false)
+                isOpen.append(false)
             }
             
             DispatchQueue.main.async {
@@ -61,12 +59,12 @@ class RecordTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         print("RecordTableViewController!!!")
         
@@ -109,14 +107,72 @@ class RecordTableViewController: UITableViewController {
         // 작업제목을 타이틀로
         self.navigationItem.title = workInfo.workName
         
-        // rightBarButtonItem에 작업아이콘 출력
-        if let iconCase = IcofontType(rawValue: Int(workInfo.iconNumber)) {
-            let color = NightNight.theme == .night ? UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00) : UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.00)
-            // Icon with colors
-            workIconItem.setIcon(icon: .icofont(iconCase), iconSize: 30, color: color)
-        }
+        let rightBarClampButton = UIBarButtonItem()
+        
+        // rightBarButtonItem에 꺾쇠 아이콘 출력
+        // Icon with custom cgRect
+        rightBarClampButton.setIcon(icon: .icofont(.roundedDown), iconSize: 30, color: AppsConstants.appMainColor, cgRect: CGRect(x: 0, y: 0, width: 3, height: 30), target: self, action: #selector(expandAndFold))
+        self.navigationItem.rightBarButtonItem = rightBarClampButton
     }
-
+    
+//    @objc func expandAndFold() {
+//
+//        let rows = self.tableView.numberOfRows(inSection: 0)
+//
+//        if isOpenAll { // 축소버튼누름
+//            self.isOpenAll = false
+//
+//            for row in 0..<rows/2 {
+//                self.isCellsHeightExpanded[row] = true
+//                self.tableView.selectRow(at: IndexPath(row: row*2, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.none)
+//                self.tableView(self.tableView, didSelectRowAt: IndexPath(row: row*2, section: 0))
+//            }
+//
+//            UIView.animate(withDuration: 0.3) {[weak self] in
+//
+//                let clamp = self?.navigationItem.rightBarButtonItems?[0].customView
+//                clamp?.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0) // 아래화살표
+//
+////                for row in 0..<rows/2 {
+////                    if let cell = self?.tableView.cellForRow(at: IndexPath(row: row*2, section: 0)) as? RecordTitleCell {
+////                        cell.clampImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0) // 아래화살표
+////                        print("아래화살표 : \(cell.clampImageView.layer.transform)")
+////                    } else{
+////                        print("Not Found RecordTitleCell!")
+////                    }
+////                }
+//            }
+//        } else { // 확대버튼누름
+//            self.isOpenAll = true
+//
+//            for row in 0..<rows/2 {
+//                self.isCellsHeightExpanded[row] = false
+//                self.tableView.selectRow(at: IndexPath(row: row*2, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.none)
+//                self.tableView(self.tableView, didSelectRowAt: IndexPath(row: row*2, section: 0))
+//            }
+//
+//            UIView.animate(withDuration: 0.3) {[weak self] in
+//
+//                let clamp = self?.navigationItem.rightBarButtonItems?[0].customView
+//                clamp?.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 1.0, 0.0, 0.0) // 위화살표
+//
+////                for row in 0..<rows/2 {
+////                    if let cell = self?.tableView.cellForRow(at: IndexPath(row: row*2, section: 0)) as? RecordTitleCell {
+////                        cell.clampImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 1.0, 0.0, 0.0) // 위화살표
+////                        print("위화살표 : \(cell.clampImageView.layer.transform)")
+////                    } else{
+////                        print("Not Found RecordTitleCell!@")
+////                    }
+////                }
+//            }
+//        }
+//
+////        for isOpenOne in 0..<rows/2 {
+////            self.isOpen[isOpenOne] = self.isOpenAll
+////            self.isCellsHeightExpanded[isOpenOne] = self.isOpenAll
+////        }
+//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -189,11 +245,12 @@ class RecordTableViewController: UITableViewController {
             // Core Data 값 채워넣기 (timeMeasurementInfo)
             cell.elapsedTimeLabel.text = fetchArray[indexPath.row/2].elapsedTime.secondsToString
             
-            guard let workStart = fetchArray[indexPath.row/2].workStart else { return cell }
-            cell.workStartLabel.text = NSDate().stringFromDate(date: workStart, formatIndex: .mdahms)
+            if let workStart = fetchArray[indexPath.row/2].workStart {
+                cell.workStartLabel.text = workStart.stringFromDate(formatIndex: .mdahms)
+            }
             
-            // Icon with color & colored text around it
-//            label.setIcon(prefixText: "Medal ", prefixTextColor: .red, icon: .ionicons(.ribbonA), iconColor: .red, postfixText: "", postfixTextColor: .red, size: nil, iconSize: 40)
+            // Icon with colors
+            cell.clampImageView.setIcon(icon: .icofont(.roundedDown), textColor: MainViewController.mixedDetailTextColor, backgroundColor: .clear, size: nil)
             
             return cell
             
@@ -220,32 +277,48 @@ class RecordTableViewController: UITableViewController {
             cell.successiveGoalAchievementLabel.text = String(sga)
             cell.estimatedWorkTimeLabel.text = fetchArray[indexPath.row/2].estimatedWorkTime.secondsToString
             
-            guard let actualCompletion = fetchArray[indexPath.row/2].actualCompletion else { return cell }
-            cell.workCompleteLabel.text = NSDate().stringFromDate(date: actualCompletion, formatIndex: .ahms)
+            if let actualCompletion = fetchArray[indexPath.row/2].actualCompletion {
+                cell.workCompleteLabel.text = actualCompletion.stringFromDate(formatIndex: .ahms)
+            }
             cell.remainingTimeLabel.text = fetchArray[indexPath.row/2].remainingTime.secondsToString
-
+            
             return cell
         }
         return UITableViewCell()
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row % 2 == 1 { return }
         
-        if indexPath.row % 2 == 0 {
-            self.isCellsHeightExpanded[indexPath.row/2] = self.isCellsHeightExpanded[indexPath.row/2] ? false : true
+        if let cell = tableView.cellForRow(at: indexPath) as? RecordTitleCell {
+            
+            // 꺾쇠 아이콘 뒤집기 애니메이션 (하나)
+            if isCellsHeightExpanded[indexPath.row/2] { // 축소버튼누름
+                UIView.animate(withDuration: 0.3) {
+                    cell.clampImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0) // 아래화살표
+                }
+            } else { // 확대버튼누름
+                UIView.animate(withDuration: 0.3) {
+                    cell.clampImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 1.0, 0.0, 0.0) // 위화살표
+                }
+            }
         }
+        
+        self.isCellsHeightExpanded[indexPath.row/2] = self.isCellsHeightExpanded[indexPath.row/2] ? false : true
+        self.isOpen[indexPath.row/2] = self.isCellsHeightExpanded[indexPath.row/2]
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

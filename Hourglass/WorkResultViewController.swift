@@ -218,8 +218,8 @@ class WorkResultViewController: UIViewController {
             remainingTime = "+ " + abs((workResultInfo.remainingTime) ).secondsToString
         }
         
-        guard let currentWork = currentWork else { return }
-        guard let workStart = workResultInfo.workStart, let actualCompletion = workResultInfo.actualCompletion  else { return }
+//        guard let currentWork = currentWork else { return }
+        guard let currentWork = currentWork, let workStart = workResultInfo.workStart, let actualCompletion = workResultInfo.actualCompletion  else { return }
         
         workNameLabel.text = currentWork.workName
         if let iconCase = IcofontType(rawValue: Int(currentWork.iconNumber)) {
@@ -228,11 +228,11 @@ class WorkResultViewController: UIViewController {
         }
         workGoalLabel.text = goalString
         elapsedTimeLabel.text = workResultInfo.elapsedTime.secondsToString
-        workStartLabel.text = NSDate().stringFromDate(date: workStart, formatIndex: .ahms)
+        workStartLabel.text = workStart.stringFromDate(formatIndex: .ahms)
         
         let ewt = workStart.addingTimeInterval(TimeInterval(workResultInfo.estimatedWorkTime))
-        estimatedCompletionLabel.text = NSDate().stringFromDate(date: ewt, formatIndex: .ahms)
-        actualCompletionLabel.text = NSDate().stringFromDate(date: actualCompletion, formatIndex: .ahms)
+        estimatedCompletionLabel.text = ewt.stringFromDate(formatIndex: .ahms)
+        actualCompletionLabel.text = actualCompletion.stringFromDate(formatIndex: .ahms)
         remainingTextLabel.text = remainingText
         remainingTimeLabel.text = remainingTime
         

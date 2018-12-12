@@ -19,6 +19,7 @@ class MainViewController: UITableViewController {
     }
     
     static var mixedTextColor = NightNight.theme == .night ? UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00) : UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.00)
+    static let mixedDetailTextColor = NightNight.theme == .night ? UIColor(red: 107/255, green: 107/255, blue: 107/255, alpha: 1.00) : UIColor(red: 139/255, green: 139/255, blue: 139/255, alpha: 1.00)
     var iconNumber: Int32?
     var selectedIndex: Int?
     

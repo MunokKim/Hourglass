@@ -265,7 +265,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작업 완료" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMV-Wz-zfT">
-                                        <rect key="frame" x="153.5" y="33.5" width="68" height="30"/>
+                                        <rect key="frame" x="155.5" y="33.5" width="64" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="7gn-Tv-9Ee"/>
                                         </constraints>
@@ -300,9 +300,9 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개와 산책하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZb-pk-IRq" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                        <rect key="frame" x="94.5" y="171.5" width="186" height="37"/>
+                                        <rect key="frame" x="75.5" y="171.5" width="224.5" height="37"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="147" id="D0j-IQ-5c7"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="224.5" id="D0j-IQ-5c7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -319,14 +319,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개와 산책하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prb-1g-avk">
-                                        <rect key="frame" x="139" y="213.5" width="97" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999 Successive Goal Achieve" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prb-1g-avk">
+                                        <rect key="frame" x="75.5" y="213.5" width="224.5" height="20"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소요 시간" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOE-SI-byy">
-                                        <rect key="frame" x="154" y="317" width="67" height="20"/>
+                                        <rect key="frame" x="155.5" y="317" width="64" height="20"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -338,62 +338,62 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:57:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAR-2u-802">
-                                        <rect key="frame" x="245.5" y="481.5" width="105.5" height="23"/>
+                                        <rect key="frame" x="244" y="481.5" width="107" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:57:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfK-aA-U2C">
-                                        <rect key="frame" x="245.5" y="524.5" width="105.5" height="23"/>
+                                        <rect key="frame" x="244" y="524.5" width="107" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:57:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQh-nn-pUe">
-                                        <rect key="frame" x="245.5" y="567.5" width="105.5" height="23"/>
+                                        <rect key="frame" x="244" y="567.5" width="107" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 1:57:12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNY-oZ-CVZ">
-                                        <rect key="frame" x="245.5" y="610.5" width="105.5" height="23"/>
+                                        <rect key="frame" x="244" y="610.5" width="107" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작업 시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsI-nQ-upj">
-                                        <rect key="frame" x="24" y="484.5" width="78.5" height="23"/>
+                                        <rect key="frame" x="24" y="484.5" width="75" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="완료 예상" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42i-p1-h39">
-                                        <rect key="frame" x="24" y="526.5" width="79" height="23"/>
+                                        <rect key="frame" x="24" y="526.5" width="75" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="실제 완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qU-j9-obV">
-                                        <rect key="frame" x="24" y="568.5" width="79" height="23"/>
+                                        <rect key="frame" x="24" y="568.5" width="75" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="남은 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5m-WZ-32Z">
-                                        <rect key="frame" x="24" y="610.5" width="78.5" height="23"/>
+                                        <rect key="frame" x="24" y="610.5" width="75" height="23"/>
                                         <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Laurel_right" translatesAutoresizingMaskIntoConstraints="NO" id="6lW-zo-ARS">
-                                        <rect key="frame" x="283.5" y="121.5" width="47" height="100"/>
+                                        <rect key="frame" x="303" y="133.5" width="47" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="47" id="beV-BY-fHQ"/>
                                             <constraint firstAttribute="height" constant="100" id="x1L-3R-Xbt"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Laurel_left" translatesAutoresizingMaskIntoConstraints="NO" id="8wH-TL-NoZ">
-                                        <rect key="frame" x="44.5" y="121.5" width="47" height="100"/>
+                                        <rect key="frame" x="25.5" y="133.5" width="47" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="47" id="eMd-mF-zZF"/>
                                             <constraint firstAttribute="height" constant="100" id="zNu-T1-GfZ"/>
@@ -419,7 +419,7 @@
                                     <constraint firstItem="MMV-Wz-zfT" firstAttribute="centerX" secondItem="ogb-93-feU" secondAttribute="centerX" id="KbO-0D-QQ9"/>
                                     <constraint firstItem="EfK-aA-U2C" firstAttribute="top" secondItem="xAR-2u-802" secondAttribute="bottom" constant="20" id="Mdb-kE-IFB"/>
                                     <constraint firstItem="cOE-SI-byy" firstAttribute="top" secondItem="ogb-93-feU" secondAttribute="centerY" multiplier="0.95" id="MmW-zN-wcb"/>
-                                    <constraint firstItem="6lW-zo-ARS" firstAttribute="centerY" secondItem="OZb-pk-IRq" secondAttribute="top" id="QAz-g3-6Jv"/>
+                                    <constraint firstItem="6lW-zo-ARS" firstAttribute="bottom" secondItem="prb-1g-avk" secondAttribute="bottom" id="QAz-g3-6Jv"/>
                                     <constraint firstItem="BNY-oZ-CVZ" firstAttribute="top" secondItem="uQh-nn-pUe" secondAttribute="bottom" constant="20" id="RQ4-Af-NSH"/>
                                     <constraint firstItem="qnQ-Rd-QRh" firstAttribute="top" secondItem="ogb-93-feU" secondAttribute="centerY" multiplier="0.35" id="UZh-ai-gnh"/>
                                     <constraint firstItem="42i-p1-h39" firstAttribute="leading" secondItem="5qU-j9-obV" secondAttribute="leading" id="WGr-5x-YLp"/>
@@ -434,7 +434,7 @@
                                     <constraint firstItem="hAz-Fl-Jeu" firstAttribute="top" secondItem="cOE-SI-byy" secondAttribute="bottom" constant="6" id="dqX-uL-cpn"/>
                                     <constraint firstItem="qnQ-Rd-QRh" firstAttribute="centerX" secondItem="ogb-93-feU" secondAttribute="centerX" id="eXS-6X-8Mx"/>
                                     <constraint firstItem="uQh-nn-pUe" firstAttribute="trailing" secondItem="BNY-oZ-CVZ" secondAttribute="trailing" id="hIN-IB-JTT"/>
-                                    <constraint firstItem="8wH-TL-NoZ" firstAttribute="centerY" secondItem="OZb-pk-IRq" secondAttribute="top" id="iCz-Jk-0ma"/>
+                                    <constraint firstItem="8wH-TL-NoZ" firstAttribute="bottom" secondItem="prb-1g-avk" secondAttribute="bottom" id="iCz-Jk-0ma"/>
                                     <constraint firstAttribute="trailing" secondItem="BNY-oZ-CVZ" secondAttribute="trailing" constant="24" id="lLc-pA-BrD"/>
                                     <constraint firstItem="EfK-aA-U2C" firstAttribute="trailing" secondItem="uQh-nn-pUe" secondAttribute="trailing" id="nbE-Yf-nqI"/>
                                     <constraint firstItem="MMV-Wz-zfT" firstAttribute="top" secondItem="ogb-93-feU" secondAttribute="centerY" multiplier="0.1" id="qut-4N-QoU"/>

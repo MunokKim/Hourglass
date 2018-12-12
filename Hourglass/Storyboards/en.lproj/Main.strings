@@ -48,7 +48,7 @@
 "TWD-RP-IVy.title" = "Work Record";
 
 /* Class = "UILabel"; text = "목표 달성"; ObjectID = "VRE-4r-Bwa"; */
-"VRE-4r-Bwa.text" = "Goal success";
+"VRE-4r-Bwa.text" = "Goal Achieve";
 
 /* Class = "UILabel"; text = "총 작업"; ObjectID = "aIz-dW-lvD"; */
 "aIz-dW-lvD.text" = "Total work";
@@ -102,7 +102,7 @@
 "p15-Dw-pKm.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "현재 연속 달성"; ObjectID = "pia-f9-8ns"; */
-"pia-f9-8ns.text" = "Current successive";
+"pia-f9-8ns.text" = "Current continuity";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "prY-bs-R72"; */
 "prY-bs-R72.text" = "Label";
@@ -123,7 +123,7 @@
 "wNx-v0-cXn.title" = "Time Estimation";
 
 /* Class = "UILabel"; text = "연속목표달성"; ObjectID = "zQR-A4-OWa"; */
-"zQR-A4-OWa.text" = "Successive";
+"zQR-A4-OWa.text" = "Continuity";
 
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "zYo-De-E5A"; */
 "zYo-De-E5A.title" = "Item";

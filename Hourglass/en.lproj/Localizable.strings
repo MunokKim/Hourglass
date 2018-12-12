@@ -47,8 +47,8 @@
 "오후" = "PM";
 
 // WorkResultVC
-"목표 달성" = "Goal Success";
-"회 연속 " = " Successive ";
+"목표 달성" = "Goal Achieve";
+"회 연속 " = " Continuity ";
 "남은 시간" = "Remaining time";
 "목표 실패" = "Goal Failed";
 
@@ -69,7 +69,7 @@
 "알림 시간" = "Notification time";
 "소리" = "Sound";
 "예상시간 경과 알림음" = "Estimated time";
-"달성 효과음" = "Success sound";
+"달성 효과음" = "Achieve sound";
 "실패 효과음" = "Failure sound";
 "진동" = "Vibration";
 "다크 모드" = "Dark mode";
