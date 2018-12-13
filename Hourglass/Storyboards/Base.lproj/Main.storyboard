@@ -308,14 +308,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="현재 연속 달성" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="pia-f9-8ns">
-                                                    <rect key="frame" x="16" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="16" y="13" width="102.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Y5-GK-862">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="313.5" y="13" width="45.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -332,14 +332,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="연속 달성 최고기록" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="eUG-q1-7Lg">
-                                                    <rect key="frame" x="16" y="12" width="127.5" height="20"/>
+                                                    <rect key="frame" x="16" y="13" width="133" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3sH-2r-HFX">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="313.5" y="13" width="45.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -356,14 +356,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="총 작업" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="aIz-dW-lvD">
-                                                    <rect key="frame" x="16" y="12" width="49" height="20"/>
+                                                    <rect key="frame" x="16" y="13" width="51.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fOb-bg-lGl">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="313.5" y="13" width="45.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -380,14 +380,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="목표 달성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="VRE-4r-Bwa">
-                                                    <rect key="frame" x="16" y="12" width="64" height="20"/>
+                                                    <rect key="frame" x="16" y="13" width="67" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rA9-4w-XiV">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="313.5" y="13" width="45.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -404,14 +404,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="목표 실패" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="joM-Jb-jBG">
-                                                    <rect key="frame" x="16" y="12" width="64" height="20"/>
+                                                    <rect key="frame" x="16" y="13" width="67" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3mr-uF-IWf">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="313.5" y="13" width="45.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -428,14 +428,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="성공률" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="B8M-2C-oZa">
-                                                    <rect key="frame" x="16" y="12" width="44.5" height="20"/>
+                                                    <rect key="frame" x="16" y="13" width="46.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aPY-c5-kdL">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="313.5" y="13" width="45.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -452,14 +452,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="평균 소요 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="nD3-hs-qjC">
-                                                    <rect key="frame" x="16" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="16" y="13" width="103" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="1qF-F6-mNJ">
-                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="313.5" y="13" width="45.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -476,14 +476,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="평균 남은 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="qUZ-Rp-LpN">
-                                                    <rect key="frame" x="15" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="15" y="12" width="103" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="9cS-NJ-oV5">
-                                                    <rect key="frame" x="316.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="314.5" y="12" width="45.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -703,9 +703,12 @@
                                                 <constraint firstAttribute="width" constant="22" id="gx7-cI-bYJ"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Gf-VM-xKk">
-                                            <rect key="frame" x="87" y="-42" width="240" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Gf-VM-xKk">
+                                            <rect key="frame" x="187.5" y="11" width="22" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="DWJ-zS-oJa"/>
+                                                <constraint firstAttribute="width" constant="22" id="sYZ-F4-6Pe"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -716,11 +719,14 @@
                                         <constraint firstItem="1Au-93-a8G" firstAttribute="centerY" secondItem="ib5-2t-P91" secondAttribute="centerY" id="QO8-g7-fe5"/>
                                         <constraint firstItem="1Au-93-a8G" firstAttribute="leading" secondItem="eFS-Hp-o31" secondAttribute="trailing" constant="10" id="RLq-7n-kaR"/>
                                         <constraint firstItem="jdI-0K-AqQ" firstAttribute="centerY" secondItem="ib5-2t-P91" secondAttribute="centerY" id="TRH-v9-OL6"/>
+                                        <constraint firstItem="8Gf-VM-xKk" firstAttribute="centerY" secondItem="ib5-2t-P91" secondAttribute="centerY" id="X76-98-Uyr"/>
                                         <constraint firstItem="1Au-93-a8G" firstAttribute="trailing" secondItem="ib5-2t-P91" secondAttribute="trailingMargin" id="aLT-ua-xrZ"/>
                                         <constraint firstItem="eFS-Hp-o31" firstAttribute="centerY" secondItem="ib5-2t-P91" secondAttribute="centerY" id="j5U-n9-5CH"/>
+                                        <constraint firstItem="8Gf-VM-xKk" firstAttribute="leading" secondItem="ib5-2t-P91" secondAttribute="centerX" id="xn7-9c-Cza"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="checkOrXImageView" destination="8Gf-VM-xKk" id="9Oi-90-9os"/>
                                     <outlet property="clampImageView" destination="1Au-93-a8G" id="C43-a5-n5i"/>
                                     <outlet property="elapsedTimeLabel" destination="prY-bs-R72" id="YXI-NY-eiC"/>
                                     <outlet property="workStartLabel" destination="eFS-Hp-o31" id="LQD-Wb-A6f"/>

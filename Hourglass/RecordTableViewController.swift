@@ -27,9 +27,6 @@ class RecordTableViewController: UITableViewController {
         }
     }
     
-    var isOpen: [Bool] = [Bool]()
-    var isOpenAll = false
-    
     func fetchTimeMeasurementInfo() {
         
         // Core Data 영구 저장소에서 WorkInfo 데이터 가져오기
@@ -45,7 +42,6 @@ class RecordTableViewController: UITableViewController {
             for info in fetchArray {
                 print("work : \(info.work)") // 한번씩 사용을 해주어야 실제 값이 들어가게 된다.
                 isCellsHeightExpanded.append(false)
-                isOpen.append(false)
             }
             
             DispatchQueue.main.async {
@@ -107,12 +103,15 @@ class RecordTableViewController: UITableViewController {
         // 작업제목을 타이틀로
         self.navigationItem.title = workInfo.workName
         
-        let rightBarClampButton = UIBarButtonItem()
-        
-        // rightBarButtonItem에 꺾쇠 아이콘 출력
-        // Icon with custom cgRect
-        rightBarClampButton.setIcon(icon: .icofont(.roundedDown), iconSize: 30, color: AppsConstants.appMainColor, cgRect: CGRect(x: 0, y: 0, width: 3, height: 30), target: self, action: #selector(expandAndFold))
-        self.navigationItem.rightBarButtonItem = rightBarClampButton
+        // rightBarButtonItem에 작업아이콘 출력
+        if let iconCase = IcofontType(rawValue: Int(workInfo.iconNumber)) {
+            let color = NightNight.theme == .night ? UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.00) : UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.00)
+            let rightBarIconButton = UIBarButtonItem()
+            // Icon with colors
+            rightBarIconButton.setIcon(icon: .icofont(iconCase), iconSize: 30, color: color)
+            self.navigationItem.rightBarButtonItem = rightBarIconButton
+            rightBarIconButton.isEnabled = false
+        }
     }
     
 //    @objc func expandAndFold() {
@@ -226,7 +225,7 @@ class RecordTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row % 2 == 0 {
+        if indexPath.row % 2 == 0 { // TitleCell
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as? RecordTitleCell else {
                 print("errer! : \(description)")
@@ -245,6 +244,13 @@ class RecordTableViewController: UITableViewController {
             // Core Data 값 채워넣기 (timeMeasurementInfo)
             cell.elapsedTimeLabel.text = fetchArray[indexPath.row/2].elapsedTime.secondsToString
             
+            if fetchArray[indexPath.row/2].goalSuccessOrFailWhether {
+                // Icon with colors
+                cell.checkOrXImageView.setIcon(icon: .icofont(.check), textColor: MainViewController.mixedTextColor, backgroundColor: .clear, size: nil)
+            } else {
+                cell.checkOrXImageView.setIcon(icon: .icofont(.close), textColor: MainViewController.mixedTextColor, backgroundColor: .clear, size: nil)
+            }
+            
             if let workStart = fetchArray[indexPath.row/2].workStart {
                 cell.workStartLabel.text = workStart.stringFromDate(formatIndex: .mdahms)
             }
@@ -254,7 +260,7 @@ class RecordTableViewController: UITableViewController {
             
             return cell
             
-        } else if indexPath.row % 2 == 1 {
+        } else if indexPath.row % 2 == 1 { // DetailCell
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as? RecordDetailCell else {
                 print("errer! : \(description)")
@@ -298,15 +304,17 @@ class RecordTableViewController: UITableViewController {
                 UIView.animate(withDuration: 0.3) {
                     cell.clampImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0) // 아래화살표
                 }
+                self.isCellsHeightExpanded[indexPath.row/2] = false
+                print("isCellsHeightExpanded : \(self.isCellsHeightExpanded)")
+                
             } else { // 확대버튼누름
                 UIView.animate(withDuration: 0.3) {
                     cell.clampImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 1.0, 0.0, 0.0) // 위화살표
                 }
+                self.isCellsHeightExpanded[indexPath.row/2] = true
+                print("isCellsHeightExpanded : \(self.isCellsHeightExpanded)")
             }
         }
-        
-        self.isCellsHeightExpanded[indexPath.row/2] = self.isCellsHeightExpanded[indexPath.row/2] ? false : true
-        self.isOpen[indexPath.row/2] = self.isCellsHeightExpanded[indexPath.row/2]
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

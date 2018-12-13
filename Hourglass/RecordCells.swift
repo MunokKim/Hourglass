@@ -9,20 +9,20 @@
 import UIKit
 
 class RecordTitleCell: UITableViewCell {
-
+    
     @IBOutlet var elapsedTimeLabel: UILabel!
+    @IBOutlet var checkOrXImageView: UIImageView!
     @IBOutlet var workStartLabel: UILabel!
     @IBOutlet var clampImageView: UIImageView!
-    @IBOutlet var labels: [UILabel]!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 }
