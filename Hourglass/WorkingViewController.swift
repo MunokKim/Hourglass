@@ -13,6 +13,7 @@ import MarqueeLabel
 import UserNotifications
 import SwiftIcons
 import NightNight
+import AVFoundation
 
 class WorkingViewController: UIViewController {
     
@@ -47,6 +48,8 @@ class WorkingViewController: UIViewController {
     let playImage = UIImage(named: "play.png")
     let pauseImage = UIImage(named: "pause.png")
     
+    var player: AVAudioPlayer?
+    
     @IBOutlet var zoomOutButton: UIButton! {
         didSet {
             zoomOutButton.isHidden = true
@@ -63,7 +66,7 @@ class WorkingViewController: UIViewController {
             
             workNameLabel.font = UIFont(name: "GodoB", size: CGFloat(32).sizeByDeviceResolution)
             
-            workNameLabel.tapToScroll = true
+//            workNameLabel.tapToScroll = true
         }
     }
     @IBOutlet var remainingTextLabel: UILabel!
@@ -239,9 +242,11 @@ class WorkingViewController: UIViewController {
             
             if remainingTime == Int32(0) {
                 
-                let play = SoundEffect()
-                play.playSound(situation: .timeOver)
-                play.vibrate()
+                let soundEffect = SoundEffect()
+                player = soundEffect.playSound(situation: .timeOver)
+                player?.delegate = self as? AVAudioPlayerDelegate
+                player?.play()
+                soundEffect.vibrate()
                 
                 UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: ({
                     
@@ -371,10 +376,11 @@ class WorkingViewController: UIViewController {
 //        UIApplication.shared.statusBarStyle = .lightContent
 //    }
 //
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-//    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        player?.stop()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

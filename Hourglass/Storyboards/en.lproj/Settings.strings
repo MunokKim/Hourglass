@@ -24,7 +24,7 @@
 "DTY-EP-RcF.title" = "Notification Time";
 
 /* Class = "UILabel"; text = "앱스토어에 리뷰 남기기 ♥︎"; ObjectID = "E0N-KS-BJ1"; */
-"E0N-KS-BJ1.text" = "Review on the App Store ♥︎";
+"E0N-KS-BJ1.text" = "Rate in the App Store";
 
 /* Class = "UILabel"; text = "Apple Watch 앱"; ObjectID = "FGe-Tp-tkl"; */
 "FGe-Tp-tkl.text" = "Apple Watch App";
@@ -46,9 +46,6 @@
 
 /* Class = "UILabel"; text = "다크 모드"; ObjectID = "PVS-sV-40k"; */
 "PVS-sV-40k.text" = "Dark Mode";
-
-/* Class = "UILabel"; text = "작업 중복 실행"; ObjectID = "QNy-IB-0Rg"; */
-"QNy-IB-0Rg.text" = "";
 
 /* Class = "UILabel"; text = "도움말"; ObjectID = "RYR-Ga-mBD"; */
 "RYR-Ga-mBD.text" = "Help";
@@ -93,7 +90,7 @@
 "ncR-PU-2Km.title" = "Settings";
 
 /* Class = "UITableViewSection"; footerTitle = "앱이 마음에 드신다면 앱스토어에 평가를 남겨주세요. 새로운 기능을 추가하고 신속하게 앱을 개선하는 데 큰 도움이 됩니다."; ObjectID = "nhR-Cf-laX"; */
-"nhR-Cf-laX.footerTitle" = "If you like the my app, please rate it in the App Store. It will help me add new features and improve apps quickly.";
+"nhR-Cf-laX.footerTitle" = "If you like this app, please rate it in the App Store. It will help me add new features and improve apps quickly.";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "qfp-vH-q0z"; */
 "qfp-vH-q0z.text" = "Detail";
@@ -112,3 +109,6 @@
 
 /* Class = "UITableViewController"; title = "설정"; ObjectID = "ziD-Am-qft"; */
 "ziD-Am-qft.title" = "Settings";
+
+/* Class = "UITableViewSection"; footerTitle = "설정한 알림 시간보다 남은시간이 부족하면 예상시간이 경과할 때 알려줍니다."; ObjectID = "gPo-IA-0j8"; */
+"gPo-IA-0j8.footerTitle" = "If the remaining time is less than the set reminder time, it notifies you when the estimated time elapses.";

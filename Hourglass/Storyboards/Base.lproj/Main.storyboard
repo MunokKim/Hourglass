@@ -679,13 +679,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="소요시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="jdI-0K-AqQ">
-                                            <rect key="frame" x="20" y="15" width="42" height="14"/>
+                                            <rect key="frame" x="20" y="15" width="43.5" height="14"/>
                                             <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prY-bs-R72">
-                                            <rect key="frame" x="130.5" y="10.5" width="49" height="23"/>
+                                            <rect key="frame" x="127.5" y="10.5" width="52" height="23"/>
                                             <fontDescription key="fontDescription" name="GodoB" family="Godo" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -740,7 +740,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="연속목표달성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="zQR-A4-OWa">
-                                            <rect key="frame" x="16" y="15" width="62.5" height="14"/>
+                                            <rect key="frame" x="16" y="15" width="65.5" height="14"/>
                                             <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -752,7 +752,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="예상작업시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="9Lj-91-upS">
-                                            <rect key="frame" x="195.5" y="15" width="62.5" height="14"/>
+                                            <rect key="frame" x="195.5" y="15" width="65" height="14"/>
                                             <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -764,7 +764,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="oYc-ne-3DK">
-                                            <rect key="frame" x="16" y="58.5" width="21" height="14"/>
+                                            <rect key="frame" x="16" y="58.5" width="22" height="14"/>
                                             <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -776,7 +776,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="남은시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="kb9-lO-ARM">
-                                            <rect key="frame" x="195.5" y="58.5" width="42" height="14"/>
+                                            <rect key="frame" x="195.5" y="58.5" width="43.5" height="14"/>
                                             <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

@@ -11,8 +11,6 @@ import AVFoundation
 
 class SoundEffect {
     
-    var player: AVAudioPlayer?
-    
     let timeOverSoundFilename: Array = ["end_sound_1", "end_sound_2", "end_sound_3", "end_sound_4", "end_sound_5"]
     let successSoundFilename: Array = ["success_sound_1", "success_sound_2", "success_sound_3", "success_sound_4", "success_sound_5"]
     let failSoundFilename: Array = ["fail_sound_1", "fail_sound_2", "fail_sound_3", "fail_sound_4"]
@@ -34,47 +32,48 @@ class SoundEffect {
 //    enum Vibration {
 //
 //        case error
-//        case success
-//        case warning
-//        case light
-//        case medium
-//        case heavy
-//        case selection
-//        case oldSchool
-//
-//        func vibrate() {
-//
-//            switch self {
-//            case .error:
-//                let generator = UINotificationFeedbackGenerator()
-//                generator.notificationOccurred(.error)
-//            case .success:
-//                let generator = UINotificationFeedbackGenerator()
-//                generator.notificationOccurred(.success)
-//            case .warning:
-//                let generator = UINotificationFeedbackGenerator()
-//                generator.notificationOccurred(.warning)
-//            case .light:
-//                let generator = UIImpactFeedbackGenerator(style: .light)
-//                generator.impactOccurred()
-//            case .medium:
-//                let generator = UIImpactFeedbackGenerator(style: .medium)
-//                generator.impactOccurred()
-//            case .heavy:
-//                let generator = UIImpactFeedbackGenerator(style: .heavy)
-//                generator.impactOccurred()
-//            case .selection:
-//                let generator = UISelectionFeedbackGenerator()
-//                generator.selectionChanged()
-//            case .oldSchool:
-//                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-//            }
-//        }
-//    }
+    //        case success
+    //        case warning
+    //        case light
+    //        case medium
+    //        case heavy
+    //        case selection
+    //        case oldSchool
+    //
+    //        func vibrate() {
+    //
+    //            switch self {
+    //            case .error:
+    //                let generator = UINotificationFeedbackGenerator()
+    //                generator.notificationOccurred(.error)
+    //            case .success:
+    //                let generator = UINotificationFeedbackGenerator()
+    //                generator.notificationOccurred(.success)
+    //            case .warning:
+    //                let generator = UINotificationFeedbackGenerator()
+    //                generator.notificationOccurred(.warning)
+    //            case .light:
+    //                let generator = UIImpactFeedbackGenerator(style: .light)
+    //                generator.impactOccurred()
+    //            case .medium:
+    //                let generator = UIImpactFeedbackGenerator(style: .medium)
+    //                generator.impactOccurred()
+    //            case .heavy:
+    //                let generator = UIImpactFeedbackGenerator(style: .heavy)
+    //                generator.impactOccurred()
+    //            case .selection:
+    //                let generator = UISelectionFeedbackGenerator()
+    //                generator.selectionChanged()
+    //            case .oldSchool:
+    //                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+    //            }
+    //        }
+    //    }
     
-    func playSound(situation: Situation) {
+    func playSound(situation: Situation) -> AVAudioPlayer? {
         
-        guard UserDefaults.standard.bool(forKey: "soundSwitchState") else { return }
+        var player = AVAudioPlayer()
+        var mute = UserDefaults.standard.bool(forKey: "soundSwitchState") ? false : true
         
         var filename = ""
         
@@ -82,47 +81,63 @@ class SoundEffect {
         switch situation {
         case .timeOver:
             let index = UserDefaults.standard.integer(forKey: "timeOverSoundState")
-            guard index >= 0 else { return } // 사용자가 효과음 '없음' 설정했을 경우
-            filename = timeOverSoundFilename[index]
+            if index != -1 { // 사용자가 효과음 '없음' 설정하지 않았을 경우
+                filename = timeOverSoundFilename[index]
+            } else {
+                mute = true
+            }
         case .success:
             let index = UserDefaults.standard.integer(forKey: "successSoundState")
-            guard index >= 0 else { return } // 사용자가 효과음 '없음' 설정했을 경우
-            filename = successSoundFilename[index]
+            if index != -1 { // 사용자가 효과음 '없음' 설정하지 않았을 경우
+                filename = successSoundFilename[index]
+            } else {
+                mute = true
+            }
         case .fail:
             let index = UserDefaults.standard.integer(forKey: "failSoundState")
-            guard index >= 0 else { return } // 사용자가 효과음 '없음' 설정했을 경우
-            filename = failSoundFilename[index]
+            if index != -1 { // 사용자가 효과음 '없음' 설정하지 않았을 경우
+                filename = failSoundFilename[index]
+            } else {
+                mute = true
+            }
         }
         
         // 경로를 문자열로 설정
-        guard let soundUrl = Bundle.main.url(forResource: filename, withExtension: ext) else { return }
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .defaultToSpeaker)
-            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+        if let soundPath = Bundle.main.path(forResource: filename, ofType: ext)  {
+            let soundUrl = URL(fileURLWithPath: soundPath)
             
-            player = try AVAudioPlayer(contentsOf: soundUrl, fileTypeHint: AVFileType.wav.rawValue)
-            
-            guard let player = player else { return }
-            
-            player.play()
-            
-        } catch let error {
-            print(error.localizedDescription)
+            do {
+                //            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .defaultToSpeaker)
+                //            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+                
+                player = try AVAudioPlayer(contentsOf: soundUrl)
+                if player.isPlaying {
+                    player.stop()
+                }
+                player.prepareToPlay()
+                
+            } catch let error {
+                print(error.localizedDescription)
+                mute = true
+            }
+        } else {
+            mute = true
         }
-//            var soundId: SystemSoundID = 0
-//
-//            // 시스템 사운드 객체를 만듭니다.
-//            AudioServicesCreateSystemSoundID(soundUrl as CFURL, &soundId)
-//
-//            // 지정된 시스템 사운드 재생이 완료 될 때 호출되는 콜백 함수를 등록합니다.
-//            AudioServicesAddSystemSoundCompletion(soundId, nil, nil, { (soundId, clientData) -> Void in
-//                // 시스템 사운드 객체 ​​및 관련 자원을 삭제합니다.
-//                AudioServicesDisposeSystemSoundID(soundId)
-//            }, nil)
-//
-//            // 재생
-//            AudioServicesPlaySystemSound(soundId)
+        //            var soundId: SystemSoundID = 0
+        //
+        //            // 시스템 사운드 객체를 만듭니다.
+        //            AudioServicesCreateSystemSoundID(soundUrl as CFURL, &soundId)
+        //
+        //            // 지정된 시스템 사운드 재생이 완료 될 때 호출되는 콜백 함수를 등록합니다.
+        //            AudioServicesAddSystemSoundCompletion(soundId, nil, nil, { (soundId, clientData) -> Void in
+        //                // 시스템 사운드 객체 ​​및 관련 자원을 삭제합니다.
+        //                AudioServicesDisposeSystemSoundID(soundId)
+        //            }, nil)
+        //
+        //            // 재생
+        //            AudioServicesPlaySystemSound(soundId)
+        
+        return mute ? nil : player
     }
     
     func vibrate() {

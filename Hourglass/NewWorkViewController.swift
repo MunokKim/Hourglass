@@ -137,6 +137,12 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
 //        estimatedWorkTimePicker.selectRow(pickerViewMiddle, inComponent: 1, animated: false)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        workNameTextField.becomeFirstResponder()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -8,8 +8,11 @@
 
 import UIKit
 import NightNight
+import AVFoundation
 
 class SoundEffectSelectionTableViewController: UITableViewController {
+    
+    var player: AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,15 @@ class SoundEffectSelectionTableViewController: UITableViewController {
             navigationController?.navigationBar.barStyle = .default
         }
         tableView.mixedSeparatorColor = MixedColor(normal: AppsConstants.normal.separatorColor.rawValue, night: AppsConstants.night.separatorColor.rawValue)
+        
+        // 셀아래의 빈공간에 separator line 안보이게 하기
+        tableView.tableFooterView = UIView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        player?.stop()
     }
 
     // MARK: - Table view data source
@@ -97,7 +109,7 @@ class SoundEffectSelectionTableViewController: UITableViewController {
         imgView.image = UIImage(named: "Icon-eto-check.png")
         tableView.cellForRow(at: indexPath)?.accessoryView = imgView
         
-        let list = SoundEffect()
+        let soundEffect = SoundEffect()
         
         // '없음' 선택시 -1이 저장되어 사운드 재생할 때 사운드가 나오지 않게한다.
         
@@ -106,15 +118,19 @@ class SoundEffectSelectionTableViewController: UITableViewController {
             UserDefaults.standard.set(indexPath.row, forKey: "alertTimeState")
         case 1:
             UserDefaults.standard.set(indexPath.row - 1, forKey: "timeOverSoundState")
-            list.playSound(situation: .timeOver)
-            
+            player = soundEffect.playSound(situation: .timeOver)
+            player?.delegate = self as? AVAudioPlayerDelegate
+            player?.play()
         case 2:
             UserDefaults.standard.set(indexPath.row - 1, forKey: "successSoundState")
-            list.playSound(situation: .success)
-            
+            player = soundEffect.playSound(situation: .success)
+            player?.delegate = self as? AVAudioPlayerDelegate
+            player?.play()
         case 3:
             UserDefaults.standard.set(indexPath.row - 1, forKey: "failSoundState")
-            list.playSound(situation: .fail)
+            player = soundEffect.playSound(situation: .fail)
+            player?.delegate = self as? AVAudioPlayerDelegate
+            player?.play()
         default: break
         }
         tableView.deselectRow(at: indexPath, animated: true)

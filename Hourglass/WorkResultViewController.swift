@@ -10,8 +10,11 @@ import UIKit
 import MarqueeLabel
 import CoreData
 import SwiftIcons
+import AVFoundation
 
 class WorkResultViewController: UIViewController {
+    
+    var player: AVAudioPlayer?
     
     @IBOutlet var subviews: [UIView]! {
         didSet {
@@ -63,9 +66,18 @@ class WorkResultViewController: UIViewController {
         shareButton.isHidden = true
         closeButton.isHidden = true
         workGoalLabel.alpha = 1.0
+        
+        guard let workResultInfo = workResultInfo else { return }
+        
+        if workResultInfo.goalSuccessOrFailWhether { // success
         gradientView.startColor = UIColor(red:235/255, green:163/255, blue:74/255, alpha:1.00)
         gradientView.middleColor = UIColor(red:236/255, green:153/255, blue:38/255, alpha:1.00)
         gradientView.endColor = UIColor(red:237/255, green:143/255, blue:3/255, alpha:1.00)
+        } else { // failure
+            gradientView.startColor = UIColor(red:30/255, green:19/255, blue:12/255, alpha:1.00)
+            gradientView.middleColor = UIColor(red:92/255, green:75/255, blue:66/255, alpha:1.00)
+            gradientView.endColor = UIColor(red:154/255, green:132/255, blue:120/255, alpha:1.00)
+        }
         
         view.layer.render(in: context)
         guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return }
@@ -130,6 +142,7 @@ class WorkResultViewController: UIViewController {
         
         gradientTimer?.invalidate()
         gradientTimer = nil
+        player?.stop()
     }
     
     override func viewDidLoad() {
@@ -172,7 +185,7 @@ class WorkResultViewController: UIViewController {
                     flag = 1
                 case 1:
                     toColors = [UIColor(red:131/255, green:96/255, blue:195/255, alpha:1.00),
-                                UIColor(red:145/255, green:204/255, blue:82/255, alpha:1.00),
+                                UIColor(red:88/255, green:143/255, blue:170/255, alpha:1.00),
                                 UIColor(red:46/255, green:191/255, blue:145/255, alpha:1.00)].map{$0.cgColor}
                     flag = 2
                 case 2:
@@ -279,14 +292,18 @@ class WorkResultViewController: UIViewController {
         updateWorkInfo(workInfo: currentWork, timeMeasurementInfo: timeMeasurementInfoFetchArray)
         
         // 사운드 재생
-        let play = SoundEffect()
+        let soundEffect = SoundEffect()
         if let situation = situation {
             if situation {
-                play.playSound(situation: .success)
-                play.vibrate()
+                player = soundEffect.playSound(situation: .success)
+                player?.delegate = self as? AVAudioPlayerDelegate
+                player?.play()
+                soundEffect.vibrate()
             } else {
-                play.playSound(situation: .fail)
-                play.vibrate()
+                player = soundEffect.playSound(situation: .fail)
+                player?.delegate = self as? AVAudioPlayerDelegate
+                player?.play()
+                soundEffect.vibrate()
             }
         }
         

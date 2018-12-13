@@ -24,7 +24,7 @@
 "DTY-EP-RcF.title" = "알림 시간";
 
 /* Class = "UILabel"; text = "앱스토어에 리뷰 남기기 ♥︎"; ObjectID = "E0N-KS-BJ1"; */
-"E0N-KS-BJ1.text" = "앱스토어에 리뷰 남기기 ♥︎";
+"E0N-KS-BJ1.text" = "앱스토어에 리뷰 남기기";
 
 /* Class = "UILabel"; text = "Apple Watch 앱"; ObjectID = "FGe-Tp-tkl"; */
 "FGe-Tp-tkl.text" = "Apple Watch 앱";
@@ -46,9 +46,6 @@
 
 /* Class = "UILabel"; text = "다크 모드"; ObjectID = "PVS-sV-40k"; */
 "PVS-sV-40k.text" = "다크 모드";
-
-/* Class = "UILabel"; text = "작업 중복 실행"; ObjectID = "QNy-IB-0Rg"; */
-"QNy-IB-0Rg.text" = "작업 중복 실행";
 
 /* Class = "UILabel"; text = "도움말"; ObjectID = "RYR-Ga-mBD"; */
 "RYR-Ga-mBD.text" = "도움말";
@@ -115,3 +112,6 @@
 
 /* Class = "UITableViewController"; title = "설정"; ObjectID = "ziD-Am-qft"; */
 "ziD-Am-qft.title" = "설정";
+
+/* Class = "UITableViewSection"; footerTitle = "설정한 알림 시간보다 남은시간이 부족하면 예상시간이 경과할 때 알려줍니다."; ObjectID = "gPo-IA-0j8"; */
+"gPo-IA-0j8.footerTitle" = "설정한 알림 시간보다 남은시간이 부족하면 예상시간이 경과할 때 알려줍니다.";
