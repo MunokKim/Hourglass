@@ -50,6 +50,43 @@ class WorkResultViewController: UIViewController {
     }
     @IBOutlet var gestureView: UIView!
     
+    @IBOutlet var closeButton: UIButton!
+    @IBOutlet var shareButton: UIButton!
+    
+    @IBAction func shareButtonTapped(_ sender: UIButton) {
+        
+        //Create the UIImage to share
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, 0)
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        
+        // 캡처하기위해 촬영구도 맞춰놓기
+        shareButton.isHidden = true
+        closeButton.isHidden = true
+        workGoalLabel.alpha = 1.0
+        gradientView.startColor = UIColor(red:235/255, green:163/255, blue:74/255, alpha:1.00)
+        gradientView.middleColor = UIColor(red:236/255, green:153/255, blue:38/255, alpha:1.00)
+        gradientView.endColor = UIColor(red:237/255, green:143/255, blue:3/255, alpha:1.00)
+        
+        view.layer.render(in: context)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return }
+        UIGraphicsEndImageContext()
+        
+        // set up activity view controller
+        let imageToShare = [ image ]
+        let activityVC = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view // 아이패드일때 크래시 나지 않도록
+        
+        // 일부 활동 유형을 목록에서 제외합니다 (선택 사항)
+//        activityVC.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityVC, animated: true, completion: nil)
+        
+        // 다시 원래대로 돌려놓기
+        shareButton.isHidden = false
+        closeButton.isHidden = false
+    }
+    
     @IBAction func closeView(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FetchAndRenewalNoti"), object: nil)
         self.presentingViewController?.modalTransitionStyle = .coverVertical
@@ -134,9 +171,9 @@ class WorkResultViewController: UIViewController {
                                 UIColor(red:100/255, green:243/255, blue:140/255, alpha:1.00)].map{$0.cgColor}
                     flag = 1
                 case 1:
-                    toColors = [UIColor(red:220/255, green:227/255, blue:91/255, alpha:1.00),
+                    toColors = [UIColor(red:131/255, green:96/255, blue:195/255, alpha:1.00),
                                 UIColor(red:145/255, green:204/255, blue:82/255, alpha:1.00),
-                                UIColor(red:69/255, green:182/255, blue:73/255, alpha:1.00)].map{$0.cgColor}
+                                UIColor(red:46/255, green:191/255, blue:145/255, alpha:1.00)].map{$0.cgColor}
                     flag = 2
                 case 2:
                     toColors = [UIColor(red:75/255, green:192/255, blue:200/255, alpha:1.00),

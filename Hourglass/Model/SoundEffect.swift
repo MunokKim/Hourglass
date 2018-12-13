@@ -7,9 +7,11 @@
 //
 
 import UIKit
-import AudioToolbox
+import AVFoundation
 
 class SoundEffect {
+    
+    var player: AVAudioPlayer?
     
     let timeOverSoundFilename: Array = ["end_sound_1", "end_sound_2", "end_sound_3", "end_sound_4", "end_sound_5"]
     let successSoundFilename: Array = ["success_sound_1", "success_sound_2", "success_sound_3", "success_sound_4", "success_sound_5"]
@@ -93,22 +95,34 @@ class SoundEffect {
         }
         
         // 경로를 문자열로 설정
-        if let soundUrl = Bundle.main.url(forResource: filename, withExtension: ext) {
+        guard let soundUrl = Bundle.main.url(forResource: filename, withExtension: ext) else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .defaultToSpeaker)
+            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
             
-            var soundId: SystemSoundID = 0
+            player = try AVAudioPlayer(contentsOf: soundUrl, fileTypeHint: AVFileType.wav.rawValue)
             
-            // 시스템 사운드 객체를 만듭니다.
-            AudioServicesCreateSystemSoundID(soundUrl as CFURL, &soundId)
+            guard let player = player else { return }
             
-            // 지정된 시스템 사운드 재생이 완료 될 때 호출되는 콜백 함수를 등록합니다.
-            AudioServicesAddSystemSoundCompletion(soundId, nil, nil, { (soundId, clientData) -> Void in
-                // 시스템 사운드 객체 ​​및 관련 자원을 삭제합니다.
-                AudioServicesDisposeSystemSoundID(soundId)
-            }, nil)
+            player.play()
             
-            // 재생
-            AudioServicesPlaySystemSound(soundId)
+        } catch let error {
+            print(error.localizedDescription)
         }
+//            var soundId: SystemSoundID = 0
+//
+//            // 시스템 사운드 객체를 만듭니다.
+//            AudioServicesCreateSystemSoundID(soundUrl as CFURL, &soundId)
+//
+//            // 지정된 시스템 사운드 재생이 완료 될 때 호출되는 콜백 함수를 등록합니다.
+//            AudioServicesAddSystemSoundCompletion(soundId, nil, nil, { (soundId, clientData) -> Void in
+//                // 시스템 사운드 객체 ​​및 관련 자원을 삭제합니다.
+//                AudioServicesDisposeSystemSoundID(soundId)
+//            }, nil)
+//
+//            // 재생
+//            AudioServicesPlaySystemSound(soundId)
     }
     
     func vibrate() {
