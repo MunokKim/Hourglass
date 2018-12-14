@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABE43D9885BEA096E87FBC95D9318C2D"
+               BlueprintIdentifier = "A4178588DB0F066ED170357A17C3A548"
                BuildableName = "SwiftIcons.bundle"
                BlueprintName = "SwiftIcons-SwiftIcons"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABE43D9885BEA096E87FBC95D9318C2D"
+            BlueprintIdentifier = "A4178588DB0F066ED170357A17C3A548"
             BuildableName = "SwiftIcons.bundle"
             BlueprintName = "SwiftIcons-SwiftIcons"
             ReferencedContainer = "container:Pods.xcodeproj">

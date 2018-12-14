@@ -18,19 +18,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jX1-eg-YUc">
-                                <rect key="frame" x="5" y="10" width="310" height="310"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bwe-PK-987">
+                                <rect key="frame" x="0.0" y="10" width="320" height="310"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jX1-eg-YUc">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nJh-g3-1V7">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="jX1-eg-YUc" secondAttribute="height" multiplier="1:1" id="TFE-la-3v0"/>
+                                    <constraint firstAttribute="trailing" secondItem="nJh-g3-1V7" secondAttribute="trailing" id="78p-GZ-xPk"/>
+                                    <constraint firstItem="jX1-eg-YUc" firstAttribute="top" secondItem="Bwe-PK-987" secondAttribute="top" id="NGc-fH-Z5d"/>
+                                    <constraint firstItem="jX1-eg-YUc" firstAttribute="leading" secondItem="Bwe-PK-987" secondAttribute="leading" id="ZDF-AD-Vo7"/>
+                                    <constraint firstItem="nJh-g3-1V7" firstAttribute="leading" secondItem="Bwe-PK-987" secondAttribute="leading" id="b1k-oU-wdO"/>
+                                    <constraint firstAttribute="bottom" secondItem="jX1-eg-YUc" secondAttribute="bottom" id="b7n-Ye-no4"/>
+                                    <constraint firstItem="nJh-g3-1V7" firstAttribute="top" secondItem="Bwe-PK-987" secondAttribute="top" id="c4M-Dc-ZyF"/>
+                                    <constraint firstAttribute="bottom" secondItem="nJh-g3-1V7" secondAttribute="bottom" id="d1H-8j-Bkz"/>
+                                    <constraint firstAttribute="trailing" secondItem="jX1-eg-YUc" secondAttribute="trailing" id="dut-U8-Pfr"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="jX1-eg-YUc" secondAttribute="bottom" id="5Ny-mF-HRU"/>
-                            <constraint firstItem="jX1-eg-YUc" firstAttribute="top" secondItem="2BE-c3-nQJ" secondAttribute="top" constant="10" id="FZi-LH-pmf"/>
-                            <constraint firstItem="jX1-eg-YUc" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="Kfd-3Q-DrB"/>
-                            <constraint firstItem="jX1-eg-YUc" firstAttribute="height" secondItem="S3S-Oj-5AN" secondAttribute="height" constant="-10" id="kda-If-9sE"/>
+                            <constraint firstItem="Bwe-PK-987" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="Mnk-Cz-RpF"/>
+                            <constraint firstItem="Bwe-PK-987" firstAttribute="height" secondItem="S3S-Oj-5AN" secondAttribute="height" constant="-10" id="ZcW-Pc-3aX"/>
+                            <constraint firstAttribute="bottom" secondItem="Bwe-PK-987" secondAttribute="bottom" id="aeX-6d-xIE"/>
+                            <constraint firstItem="Bwe-PK-987" firstAttribute="top" secondItem="2BE-c3-nQJ" secondAttribute="top" constant="10" id="cMd-hm-8z0"/>
+                            <constraint firstItem="Bwe-PK-987" firstAttribute="width" secondItem="S3S-Oj-5AN" secondAttribute="height" multiplier="1:1" id="xLx-uh-x38"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2BE-c3-nQJ"/>
                     </view>
@@ -38,12 +55,14 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="320"/>
                     <connections>
-                        <outlet property="imageView" destination="jX1-eg-YUc" id="6P3-mR-6pe"/>
+                        <outlet property="checkImageView" destination="nJh-g3-1V7" id="Bfg-dD-E4A"/>
+                        <outlet property="iconImageView" destination="jX1-eg-YUc" id="ylT-up-Ghl"/>
+                        <outlet property="iconView" destination="Bwe-PK-987" id="4mH-6D-17l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="54.399999999999999" y="26.53673163418291"/>
+            <point key="canvasLocation" x="54.399999999999999" y="26.086956521739133"/>
         </scene>
     </scenes>
 </document>

@@ -12,7 +12,7 @@ import UserNotifications
 
 class SettingViewController: UITableViewController {
     
-    let menuList = ["알림".localized, "알림 시간".localized, "소리".localized, "예상시간 경과 알림음".localized, "달성 효과음".localized, "실패 효과음".localized, "진동".localized, "다크 모드".localized, "화면 켜짐 유지".localized, "더 보기".localized]
+    let menuList = ["알림".localized, "알림 시간".localized, "소리".localized, "예상시간 경과 알림음".localized, "달성 효과음".localized, "실패 효과음".localized, "진동".localized, "다크 모드".localized, "자동 잠금 방지".localized, "더 보기".localized]
 
     @IBAction func closeSetting(_ sender: Any) {
         

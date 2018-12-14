@@ -10,18 +10,18 @@ target 'Hourglass' do
 
 
 
-pod 'SnapKit', '~> 4.0.0'
-pod 'MarqueeLabel/Swift'
-pod 'NightNight'
-pod 'SwiftIcons', '~> 2.2.0'
-pod 'ExpandableCell'
+	pod 'MarqueeLabel/Swift'
+	pod 'NightNight'
+	pod 'SwiftIcons', '~> 2.2.0'
 
 
 
 
 
 
-
+	target 'NotificationViewController' do
+		pod 'SwiftIcons', '~> 2.2.0'
+	end
 
 
 

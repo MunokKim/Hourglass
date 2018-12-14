@@ -126,8 +126,6 @@ class WorkingViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "취소".localized, style: UIAlertAction.Style.cancel, handler: nil)
         let endAction = UIAlertAction(title: "종료".localized, style: UIAlertAction.Style.destructive, handler: { _ in
             
-            self.cancelTimerAndNoti()
-            
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         })
         
@@ -186,8 +184,6 @@ class WorkingViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: "작업을 완료하시겠습니까?".localized, preferredStyle: UIAlertController.Style.alert)
         let cancelAction = UIAlertAction(title: "취소".localized, style: UIAlertAction.Style.cancel, handler: nil)
         let completionAction = UIAlertAction(title: "완료2".localized, style: UIAlertAction.Style.default, handler: { _ in
-            
-            self.cancelTimerAndNoti()
             
             self.saveTimeMeasurementInfo()
             
@@ -263,8 +259,6 @@ class WorkingViewController: UIViewController {
             remainingTextLabel.text = "지난 시간".localized
             
             if elapsedTime! >= Int32(36000) {
-                
-                cancelTimerAndNoti()
                 
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
             }
@@ -379,7 +373,13 @@ class WorkingViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        resumeTimer?.invalidate()
+        resumeTimer = nil
+        pauseTimer?.invalidate()
+        pauseTimer = nil
+        
         player?.stop()
+    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     override func viewDidLoad() {
@@ -448,7 +448,7 @@ class WorkingViewController: UIViewController {
             let content = UNMutableNotificationContent()
             content.title = fetchResult.workName ?? "시간추정작업".localized
             content.subtitle = fetchResult.estimatedWorkTime.secondsToString
-            content.userInfo = ["workID":fetchResult.workID, "workStart":workStart, "momentForEnterBackground":momentOfEnterBackground, "elapsedTime":elapsedTime, "remainingTime":remainingTime, "NotificationID":"workDoneNoti"]
+            content.userInfo = ["workID":fetchResult.workID, "iconNumber":fetchResult.iconNumber, "workStart":workStart, "momentForEnterBackground":momentOfEnterBackground, "elapsedTime":elapsedTime, "remainingTime":remainingTime, "NotificationID":"workDoneNoti"]
             
             let list = SoundEffect()
             let index = UserDefaults.standard.integer(forKey: "timeOverSoundState")
@@ -527,16 +527,6 @@ class WorkingViewController: UIViewController {
             estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
             pause()
         }
-    }
-    
-    func cancelTimerAndNoti() {
-        
-        resumeTimer?.invalidate()
-        resumeTimer = nil
-        pauseTimer?.invalidate()
-        pauseTimer = nil
-        
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     func fetchToSelectedIndex(_ index: Int?) -> WorkInfo {
@@ -697,8 +687,6 @@ extension WorkingViewController: UNUserNotificationCenterDelegate {
                     }
                     estimatedCompletion = estimatedCompletion?.addingTimeInterval(lostTime)
                 }
-
-                cancelTimerAndNoti()
                 
                 self.saveTimeMeasurementInfo()
 

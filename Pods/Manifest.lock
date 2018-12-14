@@ -1,24 +1,24 @@
 PODS:
-  - ExpandableCell (1.2.5)
   - MarqueeLabel/Swift (3.2.0)
   - NightNight (0.5.0)
-  - SnapKit (4.0.1)
   - SwiftIcons (2.2.0)
 
 DEPENDENCIES:
-  - ExpandableCell
   - MarqueeLabel/Swift
   - NightNight
-  - SnapKit (~> 4.0.0)
   - SwiftIcons (~> 2.2.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MarqueeLabel
+    - NightNight
+    - SwiftIcons
+
 SPEC CHECKSUMS:
-  ExpandableCell: 90a71446957327c2dda0677174db0a6858d4df65
   MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
   NightNight: 2a5550fdd9cf424b75ebaab022c26aaba35304c8
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftIcons: e7eb9bf2b475d6bdd8b37c5bdedc6d120aab0829
 
-PODFILE CHECKSUM: 33ac6b747088c3ee5a31b7c51d48a90bfa8bd228
+PODFILE CHECKSUM: 65bbaafce636957b74574e0c6819301bbd8fa18a
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

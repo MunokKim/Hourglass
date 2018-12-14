@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F22973E7817A803817092AB /* Pods_Hourglass_NotificationViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6627DF0EA172FE8328F48C0 /* Pods_Hourglass_NotificationViewController.framework */; };
 		6B018DB421A669000024A960 /* NewIconCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B018DB321A669000024A960 /* NewIconCollectionViewController.swift */; };
 		6B0AF13D21BE0E4A00857473 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B0AF13F21BE0E4A00857473 /* Localizable.strings */; };
 		6B0AF14121BE103C00857473 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B0AF14321BE103C00857473 /* InfoPlist.strings */; };
@@ -148,7 +149,7 @@
 		6B6FEF052153EB86000653FF /* PreviousBackupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousBackupTableViewController.swift; sourceTree = "<group>"; };
 		6B6FEF072154558E000653FF /* ScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenExtension.swift; sourceTree = "<group>"; };
 		6B6FEF0A2154E3D1000653FF /* Hourglass.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hourglass.xcdatamodel; sourceTree = "<group>"; };
-		6B78E91F218CB9950082F7FB /* Tall___Lean.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tall___Lean.ttf"; sourceTree = "<group>"; };
+		6B78E91F218CB9950082F7FB /* Tall___Lean.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tall___Lean.ttf; sourceTree = "<group>"; };
 		6B78E921218CC6B70082F7FB /* Tall_Films_Expanded.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tall_Films_Expanded.ttf; sourceTree = "<group>"; };
 		6B8B3A47215524C600E682B6 /* TimeMeasurementInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeMeasurementInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6B8B3A48215524C600E682B6 /* TimeMeasurementInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeMeasurementInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -199,7 +200,10 @@
 		6BC01B8A21140CCB00BD81BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BCCCF1621B91CB30055724E /* RecordCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCells.swift; sourceTree = "<group>"; };
 		6BCCCF1A21B949BF0055724E /* AppsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsConstants.swift; sourceTree = "<group>"; };
+		97AEFA79C5180DD17ACD0BDD /* Pods-Hourglass-NotificationViewController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hourglass-NotificationViewController.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hourglass-NotificationViewController/Pods-Hourglass-NotificationViewController.debug.xcconfig"; sourceTree = "<group>"; };
+		9AFA8CE207456141144E8733 /* Pods-Hourglass-NotificationViewController.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hourglass-NotificationViewController.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hourglass-NotificationViewController/Pods-Hourglass-NotificationViewController.release.xcconfig"; sourceTree = "<group>"; };
 		E3FAAA2F1A1710213C5A2A2E /* Pods_Hourglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hourglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6627DF0EA172FE8328F48C0 /* Pods_Hourglass_NotificationViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hourglass_NotificationViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFE5B0F2189A611532C8E32 /* Pods-Hourglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hourglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hourglass/Pods-Hourglass.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,6 +214,7 @@
 			files = (
 				6B38151C219441930024D35F /* UserNotificationsUI.framework in Frameworks */,
 				6B38151A219441930024D35F /* UserNotifications.framework in Frameworks */,
+				1F22973E7817A803817092AB /* Pods_Hourglass_NotificationViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +382,7 @@
 				E3FAAA2F1A1710213C5A2A2E /* Pods_Hourglass.framework */,
 				6B381519219441930024D35F /* UserNotifications.framework */,
 				6B38151B219441930024D35F /* UserNotificationsUI.framework */,
+				E6627DF0EA172FE8328F48C0 /* Pods_Hourglass_NotificationViewController.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -386,6 +392,8 @@
 			children = (
 				48399129BC9C3D5610DFD73B /* Pods-Hourglass.debug.xcconfig */,
 				EBFE5B0F2189A611532C8E32 /* Pods-Hourglass.release.xcconfig */,
+				97AEFA79C5180DD17ACD0BDD /* Pods-Hourglass-NotificationViewController.debug.xcconfig */,
+				9AFA8CE207456141144E8733 /* Pods-Hourglass-NotificationViewController.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -397,6 +405,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B381527219441930024D35F /* Build configuration list for PBXNativeTarget "NotificationViewController" */;
 			buildPhases = (
+				0329C38879573948AA5F47CA /* [CP] Check Pods Manifest.lock */,
 				6B381514219441930024D35F /* Sources */,
 				6B381515219441930024D35F /* Frameworks */,
 				6B381516219441930024D35F /* Resources */,
@@ -419,7 +428,6 @@
 				6BC01B7821140CCA00BD81BE /* Frameworks */,
 				6BC01B7921140CCA00BD81BE /* Resources */,
 				0968E622A4AF27F0FADB92EA /* [CP] Embed Pods Frameworks */,
-				783B112768C958400B01FFCD /* [CP] Copy Pods Resources */,
 				6B38152A219441930024D35F /* Embed App Extensions */,
 				6B63087621BD44A600A3AA09 /* ShellScript */,
 			);
@@ -547,6 +555,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0329C38879573948AA5F47CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hourglass-NotificationViewController-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0968E622A4AF27F0FADB92EA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -554,18 +584,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hourglass/Pods-Hourglass-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ExpandableCell/ExpandableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NightNight/NightNight.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftIcons/SwiftIcons.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExpandableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NightNight.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftIcons.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,21 +615,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\necho \"generating I18N.swift\"\n\ntouch tempI18N.swift\necho \"struct I18N {\" >> tempI18N.swift\n\ninputfile=${SRCROOT}/Hourglass/en.lproj/Localizable.strings\nwhile IFS= read -r line\n\ndo\necho $line\npattern='^[a-zA-Z]+(.*)[\\\\s]*=[\\\\s]*(.*);$'\n\nif [[ $line =~ $pattern ]]\nthen\necho \"Yes👌\"\nvariableName=$(echo ${line%%=*})\necho $variableName\nif [ \"$variableName\" != \"\" ]; then\necho \"    static let $variableName = \\\"$variableName\\\".localized\" >> tempI18N.swift\nfi\nelse\necho \"No👎\"\nfi\ndone <\"$inputfile\"\n\necho \"}\" >> tempI18N.swift\ncat tempI18N.swift > ${SRCROOT}/Hourglass/Localized/I18N.swift\nrm tempI18N.swift\n\necho \"-------------\"\ncat $inputfile\ncat ${SRCROOT}/Hourglass/Localized/I18N.swift\necho \"-------------\"\n";
-		};
-		783B112768C958400B01FFCD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hourglass/Pods-Hourglass-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		7F2A32FA990FBBC8654FEE68 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -765,6 +776,7 @@
 /* Begin XCBuildConfiguration section */
 		6B381528219441930024D35F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97AEFA79C5180DD17ACD0BDD /* Pods-Hourglass-NotificationViewController.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotificationViewController/NotificationViewController.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -788,6 +800,7 @@
 		};
 		6B381529219441930024D35F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AFA8CE207456141144E8733 /* Pods-Hourglass-NotificationViewController.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotificationViewController/NotificationViewController.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
