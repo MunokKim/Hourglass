@@ -265,7 +265,7 @@ class WorkResultViewController: UIViewController {
             goalString = "목표 실패".localized
             situation = false
             remainingText = "지난 시간".localized
-            remainingTime = "+ " + abs((workResultInfo.remainingTime) ).secondsToString
+            remainingTime = "+ " + (abs(workResultInfo.remainingTime)).secondsToString
         }
         
 //        guard let currentWork = currentWork else { return }

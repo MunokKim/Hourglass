@@ -115,3 +115,9 @@
 
 /* Class = "UITableViewSection"; footerTitle = "설정한 알림 시간보다 남은시간이 부족하면 예상시간이 경과할 때 알려줍니다."; ObjectID = "gPo-IA-0j8"; */
 "gPo-IA-0j8.footerTitle" = "설정한 알림 시간보다 남은시간이 부족하면 예상시간이 경과할 때 알려줍니다.";
+
+/* Class = "UINavigationItem"; title = "오픈소스 라이센스와 저작권 정보"; ObjectID = "r0H-fa-Ttz"; */
+"r0H-fa-Ttz.title" = "오픈소스 라이센스와 저작권 정보";
+
+/* Class = "UINavigationItem"; title = "도움말"; ObjectID = "r0H-fa-Ttz"; */
+"oPC-t6-Z7z.title" = "도움말"

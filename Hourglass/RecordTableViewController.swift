@@ -286,7 +286,13 @@ class RecordTableViewController: UITableViewController {
             if let actualCompletion = fetchArray[indexPath.row/2].actualCompletion {
                 cell.workCompleteLabel.text = actualCompletion.stringFromDate(formatIndex: .ahms)
             }
-            cell.remainingTimeLabel.text = fetchArray[indexPath.row/2].remainingTime.secondsToString
+            let remainingTime = fetchArray[indexPath.row/2].remainingTime
+            if remainingTime >= 0 {
+                cell.remainingTimeLabel.text = remainingTime.secondsToString
+            } else {
+                cell.remainingTextLabel.text = "지난 시간".localized
+                cell.remainingTimeLabel.text = "+ " + (abs(remainingTime)).secondsToString
+            }
             
             return cell
         }

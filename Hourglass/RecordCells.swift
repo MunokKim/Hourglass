@@ -32,6 +32,7 @@ class RecordDetailCell: UITableViewCell {
     @IBOutlet var successiveGoalAchievementLabel: UILabel!
     @IBOutlet var estimatedWorkTimeLabel: UILabel!
     @IBOutlet var workCompleteLabel: UILabel!
+    @IBOutlet var remainingTextLabel: UILabel!
     @IBOutlet var remainingTimeLabel: UILabel!
     
     override func awakeFromNib() {

@@ -472,18 +472,18 @@
                                         <rect key="frame" x="0.0" y="641" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RVS-W0-vfm" id="gMy-yR-zJT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="평균 남은 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="qUZ-Rp-LpN">
-                                                    <rect key="frame" x="15" y="12" width="98" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="98" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" id="9cS-NJ-oV5">
-                                                    <rect key="frame" x="316.5" y="12" width="43.5" height="20"/>
+                                                    <rect key="frame" x="315.5" y="12" width="43.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="GodoM" family="Godo" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -496,11 +496,11 @@
                                         <rect key="frame" x="0.0" y="685" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mfG-ab-VA6" id="gbG-QO-voa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMb-vz-swp">
-                                                    <rect key="frame" x="15" y="34.5" width="345" height="50"/>
+                                                    <rect key="frame" x="23" y="26.5" width="329" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="axV-DG-AVP"/>
                                                     </constraints>
@@ -512,9 +512,9 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="DMb-vz-swp" secondAttribute="trailing" constant="15" id="WGw-uU-3LF"/>
-                                                <constraint firstAttribute="bottom" secondItem="DMb-vz-swp" secondAttribute="bottom" constant="15" id="dc0-de-EJR"/>
-                                                <constraint firstItem="DMb-vz-swp" firstAttribute="leading" secondItem="gbG-QO-voa" secondAttribute="leading" constant="15" id="wHf-LI-KoN"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="DMb-vz-swp" secondAttribute="bottom" constant="15" id="3oa-dI-xjg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DMb-vz-swp" secondAttribute="trailing" constant="15" id="EVK-KU-Yg7"/>
+                                                <constraint firstItem="DMb-vz-swp" firstAttribute="leading" secondItem="gbG-QO-voa" secondAttribute="leadingMargin" constant="15" id="HE7-GP-9NV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -813,6 +813,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="estimatedWorkTimeLabel" destination="f4j-K6-eMe" id="ZfU-qC-vrA"/>
+                                    <outlet property="remainingTextLabel" destination="kb9-lO-ARM" id="c0M-Z4-qtN"/>
                                     <outlet property="remainingTimeLabel" destination="uSX-cF-lju" id="7rb-cv-iFA"/>
                                     <outlet property="successiveGoalAchievementLabel" destination="bYD-Zb-zxf" id="3r7-Ac-0ch"/>
                                     <outlet property="workCompleteLabel" destination="zcz-cf-0mK" id="5w3-ZU-Utb"/>

@@ -106,3 +106,42 @@
 "이메일 설정을 확인하고 다시 시도해주세요." = "Please check your email settings and try again.";
 "모래시계에 대한 피드백" = "Feedback for Hourglass";
 "새롭게 추가 할 기능이나 개선이 필요한 사항을 알려주시면 신속하게 반영하겠습니다. :)" = "Please let me know what features you'd like to add or what you need to improve and I’ll be happy to help. :)";
+
+// HelpVC
+"helpText" = "What is the 'Estimated work time'❓
+
+It is the period of time expected to be required to carry out all kinds of work such as exercise, walking, washing dishes, laundry, cleaning and so on.
+With this app, you can estimate your time by directly estimating the time it will take to work.
+You can select up to 1 minute and set a time limit of up to 9 hours and 59 minutes.
+
+
+
+What is the 'Time estimate'❓
+
+It is a time management method that directly estimates the time required for the operation and compares it with the actual elapsed time.
+
+
+
+How do I create a new Work❓
+
+Press the '+' button on the top right of the main screen.
+Enter a title for the Work.
+Click on the Hourglass icon to select one of many other icons.
+Set the estimated time for the hour and minute as desired.
+Click the 'Done' button.
+
+
+
+How does the operation work when I start❓
+
+When you start Work, the stopwatch will start as much as the estimated work time you set up.
+Try to get things done faster than you expected!
+If you need to pause while you are working, press the 'Abort' button
+* The remaining time is stopped and the completion expectation starts to increase.
+* The 'Abort' button changes to the 'Resume' button.
+* 'Cancel' and 'Done' buttons will appear on the left and right, so you can select as you like.
+When you are ready to proceed again, press the 'Resume' button
+* The remaining time starts to decrease and the completion is stopped.
+* The 'Resume' button is replaced with the 'Abort' button.
+When you are done, press the 'Finish' button
+* The history of the operation is saved and the operation is terminated. You can check the result of the operation on the screen.";
