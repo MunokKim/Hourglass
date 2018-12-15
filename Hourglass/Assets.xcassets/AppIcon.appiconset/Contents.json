@@ -3,109 +3,109 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "HourglassAppIconiPhoneNoti@2x.png",
+      "filename" : "HourglassAppIconiPhoneNoti@2x.jpg",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "HourglassAppIconiPhoneNoti@3x.png",
+      "filename" : "HourglassAppIconiPhoneNoti@3x.jpg",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "HourglassAppIconiPhoneSettings@2x.png",
+      "filename" : "HourglassAppIconiPhoneSettings@2x.jpg",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "HourglassAppIconiPhoneSettings@3x.png",
+      "filename" : "HourglassAppIconiPhoneSettings@3x.jpg",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "HourglassAppIconIPhoneSpotlight@2x.png",
+      "filename" : "HourglassAppIconIPhoneSpotlight@2x.jpg",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "HourglassAppIconIPhoneSpotlight@3x.png",
+      "filename" : "HourglassAppIconIPhoneSpotlight@3x.jpg",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "HourglassAppIconIPhoneApp@2x.png",
+      "filename" : "HourglassAppIconIPhoneApp@2x.jpg",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "HourglassAppIconIPhoneApp@3x.png",
+      "filename" : "HourglassAppIconIPhoneApp@3x.jpg",
       "scale" : "3x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "HourglassAppIconiPadNoti.png",
+      "filename" : "HourglassAppIconiPadNoti.jpg",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "HourglassAppIconiPadNoti@2x.png",
+      "filename" : "HourglassAppIconiPadNoti@2x.jpg",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "HourglassAppIconiPadSettings.png",
+      "filename" : "HourglassAppIconiPadSettings.jpg",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "HourglassAppIconiPadSettings@2x.png",
+      "filename" : "HourglassAppIconiPadSettings@2x.jpg",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "HourglassAppIconiPadSpotlight.png",
+      "filename" : "HourglassAppIconiPadSpotlight.jpg",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "HourglassAppIconIPadSpotlight@2x.png",
+      "filename" : "HourglassAppIconIPadSpotlight@2x.jpg",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "HourglassAppIconiPadApp.png",
+      "filename" : "HourglassAppIconiPadApp.jpg",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "HourglassAppIconiPadApp@2x.png",
+      "filename" : "HourglassAppIconiPadApp@2x.jpg",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "HourglassAppIconiPadProApp@2x.png",
+      "filename" : "HourglassAppIconiPadProApp@2x.jpg",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "HourglassAppIcon.png",
+      "filename" : "HourglassAppIcon.jpg",
       "scale" : "1x"
     }
   ],
