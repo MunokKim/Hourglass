@@ -17,6 +17,11 @@ class NewIconCollectionViewController: UICollectionViewController {
     var iconNumber: Int32?
     var delegation: SendValueToViewControllerDelegate?
     
+    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -62,7 +62,13 @@
                             <outlet property="delegate" destination="U5e-SN-ZL9" id="H6g-jJ-rNL"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="아이콘 선택" id="gTj-6h-Uop"/>
+                    <navigationItem key="navigationItem" title="아이콘 선택" id="gTj-6h-Uop">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="xgj-p9-sTP">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="U5e-SN-ZL9" id="UoU-YS-cQv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqK-0W-hAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

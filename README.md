@@ -1,8 +1,14 @@
-# Hourglass (모래시계) 앱 프로젝트  
+# Hourglass (모래시계) 앱 개인 프로젝트
 
-## 서비스 소개  
+## 서비스 소개
 
-### 기획 의도  
+### 기간 : 2018/11/30~2018/12/15 (1개월 17일)
+
+### 사용 기술 : Swift, Core Data
+
+### App Store (https://itunes.apple.com/kr/app/%EB%AA%A8%EB%9E%98%EC%8B%9C%EA%B3%84/id1441559871?mt=8)
+
+### 기획 의도
 
 * Hourglass - Time Management Exercises (모래시계 - 시간 관리 연습)  
     * 이름후보 2  
@@ -14,8 +20,6 @@
         * 항상 시간이 부족한 직장인들이 시간관리 연습을 하면 여가시간을 효율적으로 사용할 수 있고 자기계발을 할 수 있는 시간도 활용할 수 있습니다.  
         * 이외에도 시간 개념이 부족한 많은 사람들에게 시간 관리 연습은 꼭 필요합니다.  
     * 동기  
-        링크: [shoveller.tistory.com/48][1]  
-
         * …  
             * 어떤 자기계발서에서 '시간추정'이라고 해서 시간관리를 하는 노하우를 알려주는데 매일 따라하다 보면 시간관리를 잘 할 수 있게 된다고 했다.  
             * 한두번 따라해보니까 확실히 내가 시간을 많이 낭비하고 있고 어떠한 일을 할때 예상보다 더 많은 시간이 걸린다는 걸 알게 됐다.  
@@ -45,7 +49,7 @@
             * **Backup**ViewController  
                 * **PreviousBackup**ViewController  
 * 프로토타입  
-    * 카카오 <u>**‘Oven’**</u>으로 만든 프로토타입 보기!  
+    * 카카오 <u>**‘Oven’**</u>으로 만든 프로토타입 보기! 
         * https://ovenapp.io/view/IpJjo9GtPCarDCQzpSbaNVEVJfr62aK2/dMIOH  
             링크: [ovenapp.io/view/IpJjo9GtPCarDCQzpSbaNVEVJfr62aK2/dMIOH][2]  
 
@@ -300,133 +304,6 @@
         * <u>workID</u>  
             - <u>작업 고유 번호</u>  
 
-
-            * Int16  
-        * workName  
-            - 작업 이름  
-
-
-            * String  
-        * iconImagePath  
-            - 작업 아이콘 경로  
-
-
-            * String  
-        * estimatedWorkTime  
-            - 예상 작업 시간  
-
-
-            * Int32  
-        * currentSuccessiveAchievementWhether  
-            - 현재 연속 달성 여부  
-
-            * 작업의 각 회차가 완료될 때  
-                * goalSuccessOrFailWhether의 값이  
-                    * TRUE  
-                        * ++1  
-                    * FALSE  
-                        * 0  
-            * Int16  
-        * successiveAchievementHighestRecord  
-            - 연속 달성 최고기록  
-
-            * 작업의 각 회차가 완료될 때  
-                * currentSuccessiveAchievementWhether **<u>>=</u>** successiveAchievementHighestRecord  
-                    * TRUE  
-                        * successiveAchievementHighestRecord **<u>=</u>** currentSuccessiveAchievementWhether  
-            * Int16  
-        * totalWork  
-            - 총 작업  
-
-            * 해당 작업과 workID가 같은 회차들의 갯수  
-            * Int32  
-        * goalSuccess  
-            - 목표 달성  
-
-            * 해당 작업과 workID가 같으면서 goalSuccessOrFailWhether가 TRUE인 회차들의 갯수  
-            * Int32  
-        * goalFail  
-            - 목표 실패  
-
-            * 해당 작업과 workID가 같으면서 goalSuccessOrFailWhether가 FALSE인 회차들의 갯수  
-            * Int32  
-        * successRate  
-            - 성공률  
-
-            * goalSuccess **<u>/</u>** totalWork  
-            * Float  
-        * averageElapsedTime  
-            - 평균 소요시간  
-
-            * 해당 작업과 workID가 같은 회차들의 elapsedTime을 평균낸다.  
-            * Float  
-        * averageRemainingTime  
-            - 평균 남은시간  
-
-            * 해당 작업과 workID가 같은 회차들의 remainingTime을 평균낸다.  
-            * Float  
-        * eachTurnsOfWork  
-            - ‘To one’ Relationship  
-
-
-            * NSSet  
-    * TimeMeasurementInfo  
-        - 시간 측정 정보  
-
-        * <u>eachTurnOfWorkID</u>  
-            - <u>작업의 각 회차에 대한 고유 번호</u>  
-
-
-            * Int32  
-        * workID  
-
-            - 작업 고유 번호  
-
-        * elapsedTime  
-            - 소요 시간  
-
-
-            * Int32  
-        * workStart  
-            - 작업 시작  
-
-
-            * Date  
-        * goalSuccessOrFailWhether  
-            - 목표 달성/실패 여부  
-
-
-            * Boolean  
-        * successiveGoalAchievement  
-            - 연속목표달성  
-
-            * goalSuccessOrFailWhether의 값이  
-                * TRUE  
-                    * successiveGoalAchievement **<u>=</u>** currentSuccessiveAchievementWhether **<u>+ 1</u>**  
-                * FALSE  
-                    * 0  
-            * Int16  
-        * estimatedWorkTime  
-            - 예상 작업 시간  
-              진행률: 0%  
-
-
-            * Int32  
-        * actualCompletion  
-            - 실제 완료  
-
-
-            * Date  
-        * remainingTime  
-            - 남은 시간  
-
-
-            * Int32  
-        * work  
-            - ‘To many’ Relationship  
-
-
-            * NSManagedObject  
 
 ## 기술상세  
 

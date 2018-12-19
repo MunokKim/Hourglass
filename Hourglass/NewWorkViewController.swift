@@ -17,7 +17,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
     
     let context = AppDelegate.viewContext
     
-    var isCellHeightExpanded: Bool = false {
+    var isCellHeightExpanded: Bool = true {
         didSet{
             //(own internal logic removed)
             
@@ -131,6 +131,7 @@ class NewWorkViewController: UITableViewController, UITextFieldDelegate {
         let initValue = 30 // 분단위 초기값
         if let row = estimatedWorkTimePicker.rowForValue(value: initValue) {
             estimatedWorkTimePicker.selectRow(row, inComponent: 1, animated: false)
+            pickerView(estimatedWorkTimePicker, didSelectRow: row, inComponent: 1)
         }
         
         // 그냥 가운데에서 시작

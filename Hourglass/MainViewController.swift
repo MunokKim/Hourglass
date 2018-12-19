@@ -89,23 +89,6 @@ class MainViewController: UITableViewController {
         
         contextFetchToResultsArray()
         
-        // 목록이 비었으면 "작업 없음" 표시
-        if fetchArray.count == 0 {
-            let labelView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: self.tableView.frame.size.height-200))
-            labelView.backgroundColor = .clear
-            labelView.tag = 999
-            
-            let label = UILabel()
-            label.center = CGPoint(x: labelView.frame.size.width / 2, y: labelView.frame.size.height / 2)
-            label.text = "작업 없음".localized
-            label.font = UIFont(name: "GodoM", size: 25)
-            label.textAlignment = .center
-            label.mixedTextColor = MixedColor(normal: AppsConstants.normal.detailTextColor.rawValue, night: AppsConstants.night.detailTextColor.rawValue)
-            label.frame = labelView.frame
-            labelView.addSubview(label)
-            self.tableView.addSubview(label)
-        }
-        
         // 셀아래의 빈공간에 separator line 안보이게 하기
         tableView.tableFooterView = UIView()
         
@@ -119,6 +102,32 @@ class MainViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.tableView.reloadData()
+        
+        // 진행한 작업이 없었는데 지금 생성하고 다시 돌아왔을 경우
+        self.tableView.viewWithTag(999)?.removeFromSuperview()
+        
+        // 목록이 비었으면 "작업 없음" 표시
+        if fetchArray.count == 0 {
+            
+            addNoWorkLabel()
+        }
+    }
+    
+    func addNoWorkLabel() {
+        
+        let labelView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: self.tableView.frame.size.height-200))
+        labelView.backgroundColor = .clear
+        labelView.tag = 999
+        
+        let label = UILabel()
+        label.center = CGPoint(x: labelView.frame.size.width / 2, y: labelView.frame.size.height / 2)
+        label.text = "작업 없음".localized
+        label.font = UIFont(name: "GodoM", size: 25)
+        label.textAlignment = .center
+        label.mixedTextColor = MixedColor(normal: AppsConstants.normal.detailTextColor.rawValue, night: AppsConstants.night.detailTextColor.rawValue)
+        label.frame = labelView.frame
+        labelView.addSubview(label)
+        self.tableView.addSubview(labelView)
     }
     
     @objc func contextFetchToResultsArray() {
@@ -257,11 +266,19 @@ class MainViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             
+            // 마지막 작업까지 모두 삭제한 경우
+            tableView.viewWithTag(999)?.removeFromSuperview()
+            
             let alert = UIAlertController(title: fetchArray[indexPath.row].workName ?? "", message: "이 동작은 되돌릴 수 없습니다.".localized, preferredStyle: .actionSheet)
             let deleteAction = UIAlertAction(title: "삭제".localized, style: .destructive) { _ in
                 let isDelete = self.deleteWorkInfo(work: self.fetchArray[indexPath.row])
                 if isDelete {
                     tableView.deleteRows(at: [indexPath], with: .fade)
+                    
+                    // 마지막 작업까지 모두 삭제한 경우
+                    if self.fetchArray.count == 0 {
+                        self.addNoWorkLabel()
+                    }
                 }
             }
             let cancelAction = UIAlertAction(title: "취소".localized, style: .default, handler: nil)

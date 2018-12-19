@@ -25,3 +25,6 @@
 
 /* Class = "UITableViewSection"; headerTitle = "나만의 작업을 만들고 시간추정을 연습하세요."; ObjectID = "qdg-iI-1oW"; */
 "qdg-iI-1oW.headerTitle" = "Create your own Work and practice time estimates.";
+
+/* Class = "UIBarButtonItem"; title = "선택"; ObjectID = "xgj-p9-sTP"; */
+"xgj-p9-sTP.title" = "Select";
