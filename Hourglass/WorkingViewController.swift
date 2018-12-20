@@ -175,6 +175,10 @@ class WorkingViewController: UIViewController {
         // 예상 완료 타이머 중단
         pauseTimer?.invalidate()
         
+        ///////////////////////// TEST
+//        elapsedTime = (elapsedTime ?? 0) + 7632
+        ///////////////////////// TEST
+        
         // 남은 시간 타이머 재개
         resumeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(renewalForResume), userInfo: nil, repeats: true)
     }

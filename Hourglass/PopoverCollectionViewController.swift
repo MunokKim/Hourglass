@@ -26,7 +26,7 @@ class PopoverCollectionViewController: UICollectionViewController {
         // Do any additional setup after loading the view.
         
         // 테마 적용
-        view.mixedBackgroundColor = MixedColor(normal: UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), night: UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1))
+        view.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: 0x121315)
         collectionView.mixedBackgroundColor = MixedColor(normal: UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), night: UIColor(red: 27/255, green: 28/255, blue: 30/255, alpha: 1))
         self.popoverPresentationController?.mixedBackgroundColor = MixedColor(normal: AppsConstants.normal.backViewColor.rawValue, night: 0x121315)
         
