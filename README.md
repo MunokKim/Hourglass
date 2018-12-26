@@ -383,6 +383,118 @@
 
 ### <del>애플워치 앱</del> (추후 개발 예정)  
 
+## 클래스 구성  
+
+### ViewControllers  
+
+#### MainVC  
+
+#### NewWorkVC  
+
+#### NewIconVC  
+
+#### WorkingVC  
+
+- workResumeOrPause  
+  - pause  
+    - renewalForPause  
+      - animateBy  
+  - resume  
+    - renewalForResume  
+      - animateBy  
+- workComplete  
+  - saveTimeMeasurementInfo  
+    - fetchToSelectedIndex  
+      - prpare(for segue:)  
+- viewWillDisappear  
+- viewDidLoad  
+  - fetchToSelectedIndex  
+- didEnterBackground  
+- willEnterForeground  
+  - pause  
+    - renewalForPause  
+      - animateBy  
+  - resume  
+    - renewalForResume  
+      - animateBy  
+
+#### WorkResultVC  
+
+#### WorkInfoVC  
+
+#### PopoverPickerVC  
+
+#### PopoverIconVC  
+
+#### RecordVC  
+
+- 테이블뷰 셀 확장/축소  
+  - var isCellsHeightExpanded: [Bool] = [Bool]()  
+    - 프로퍼티 감시자가 설정됨.  
+      - tableView.beginUpdates()  
+        tableView.endUpdates()  
+        - 셀 높이를 확인하고 애니메이션을 적용한다.  
+        - 테이블 뷰의 행 및 섹션을 삽입, 삭제 또는 선택하는 일련의 메서드 호출을 시작/완료합니다.  
+  - UITableView(didSelectRowAt:)  
+    - isCellsHeightExpanded의 값을 반전함.  
+  - UITableView(heightForRowAt:)  
+    - isCellsHeightExpanded  
+      - TRUE  
+        - 확장  
+      - FALSE  
+        - 축소  
+
+#### SettingVC  
+
+#### MoreVC  
+
+#### SoundEffectSelectionVC  
+
+#### WillUpdateVC  
+
+#### HelpVC  
+
+### Model  
+
+#### WorkInfo  
+
+- 작업 정보  
+
+#### TimeMeasurementInfo  
+
+- 시간 측정 정보  
+
+### ETC  
+
+#### GradientView  
+
+- 원하는 UIView에 GradientView를 상속하면 그라데이션 색상을 줄 수 있다.  
+- self.layer as! CAGradientLayer  
+  - 해당 UIView의 레이어를 CAGradientLayer로 타입캐스팅한다.  
+- toColor의 프로퍼티 감시자를 통해 색상 값을 새로 할당해서 원하는 때에 색상의 변환 애니메이션을 줄 수 있다.  
+- CAGradientLayer  
+  - 배경색 위에 색상 그라디언트를 그리고 레이어의 모양을 채우는 레이어 (둥근 모서리 포함)  
+- CABasicAnimation  
+  - 레이어 속성에 기본 단일 키 프레임 애니메이션 기능을 제공하는 객체입니다.  
+
+#### WorkTimePicker  
+
+- 작업시간피커 동작을 위한 프로퍼티들  
+- valueForRow  
+  - UIPickerView의 viewForRow 메소드에서 사용함.  
+  - 400개의 전체 row 중에 해당하는 row에 0~59의 분단위 값을 구한다.  
+- rowForValue  
+  - 작업시간피커의 초기값을 세팅할 때나 원하는 시간 값으로 row를 선택하려고 할 때 사용.  
+  - 0~59의 분단위 값을 입력 받아 해당하는 row의 값을 출력한다.  
+
+#### IconCell  
+
+#### RecordCell  
+
+#### AppsConstants  
+
+
+
 
 [1]: http://shoveller.tistory.com/48
 [2]: https://ovenapp.io/view/IpJjo9GtPCarDCQzpSbaNVEVJfr62aK2/dMIOH

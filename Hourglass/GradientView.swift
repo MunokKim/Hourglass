@@ -39,8 +39,8 @@ class GradientView: UIView {
     enum Directions: Int {
         case Horizontal
         case Vertical
-        case Diagonal_1
-        case Diagonal_2
+        case Diagonal_1 // 대각선1
+        case Diagonal_2 // 대각선2
     }
     
     var direction: Directions = .Horizontal {
@@ -67,7 +67,7 @@ class GradientView: UIView {
     
     var fromColors: [CGColor]?
     
-    var toColors: [CGColor]? {
+    var toColors: [CGColor]? { // 원할 때 이 프로퍼티의 값을 변경해주면 그라데이션 색상 전환 애니메이션 효과를 얻을 수 있다.
         didSet {
             updateView()
         }
@@ -121,10 +121,10 @@ class GradientView: UIView {
         
         let animation : CABasicAnimation = CABasicAnimation(keyPath: "colors")
         
-        if self.viewWithTag(1) == nil {
+        if self.viewWithTag(1) == nil { // WorkResultVC
             animation.duration = 0.275
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        } else {
+        } else { // WorkingVC
             animation.duration = 2.5
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         }

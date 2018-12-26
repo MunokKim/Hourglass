@@ -22,11 +22,15 @@ class WorkTimePicker: UIPickerView {
     var selectedHours: Int?
     var selectedMinutes: Int?
     
+    // 400개의 전체 row 중에 해당하는 row에 0~59의 분단위 값을 구한다.
+    // UIPickerView의 viewForRow 메소드에서 사용함.
     func valueForRow(row: Int) -> Int {
         // the rows repeat every `pickerViewData.count` items
         return minutesPickerData[row % minutesPickerData.count]
     }
     
+    // 0~59의 분단위 값을 입력 받아 해당하는 row의 값을 출력한다.
+    // 작업시간피커의 초기값을 세팅할 때나 원하는 시간 값으로 row를 선택하려고 할 때 사용.
     func rowForValue(value: Int) -> Int? {
         if let valueIndex = minutesPickerData.firstIndex(of: value) {
             return pickerViewMiddle + value

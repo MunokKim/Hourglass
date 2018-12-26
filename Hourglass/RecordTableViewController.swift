@@ -22,6 +22,7 @@ class RecordTableViewController: UITableViewController {
     var isCellsHeightExpanded: [Bool] = [Bool]() {
         didSet {
             // 셀 높이를 확인하고 애니메이션을 적용한다.
+            // 테이블 뷰의 행 및 섹션을 삽입, 삭제 또는 선택하는 일련의 메서드 호출을 시작/완료합니다.
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
         }
