@@ -660,7 +660,7 @@ extension WorkingViewController: UNUserNotificationCenterDelegate {
                 // Invalidate the old timer and create a new one. . .
 
                 let newContent = response.notification.request.content.mutableCopy() as! UNMutableNotificationContent
-                let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 60*5, repeats: false)
                 // 알림 요청
                 let newRequest = UNNotificationRequest(identifier: response.notification.request.identifier, content: newContent, trigger: newTrigger)
                 // 알림 요청을 알림센터에 추가
