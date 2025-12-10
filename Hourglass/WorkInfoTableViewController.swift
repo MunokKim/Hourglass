@@ -132,7 +132,7 @@ class WorkInfoTableViewController: UITableViewController, UITextFieldDelegate, U
                 popoverController.permittedArrowDirections = []
             }
         }
-        
+    
         self.present(alert, animated: true, completion: nil)
         
         // 블러 효과를 주기위해 UIView 익스텐션 함

@@ -288,7 +288,7 @@ extension NewWorkViewController: UIPickerViewDelegate {
         
         // "시간", "분" 레이블 삽입
         let viewWidth = self.view.bounds.width
-        let insertRef = pickerView.subviews[0].subviews[0].subviews[2]
+        let insertRef = pickerView.subviews[0].subviews[0].subviews[safe: 2]!
         //        let hoursLabel: UILabel = UILabel(frame: CGRect(x: 130.5, y: 0, width: 60, height: componentHeight))
         //        let minutesLabel: UILabel = UILabel(frame: CGRect(x: 239.5, y: 0, width: 60, height: componentHeight))
         let hoursLabel: UILabel = UILabel(frame: CGRect(x: viewWidth/2 - 60, y: 0, width: 60, height: estimatedWorkTimePicker.componentHeight))
@@ -308,7 +308,7 @@ extension NewWorkViewController: UIPickerViewDelegate {
         
         // 피커뷰의 선택된 인덱스 상하에 있는 가로줄 색상 적용
         pickerView.subviews[1].mixedBackgroundColor = MixedColor(normal: UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00), night: UIColor(red:0.14, green:0.14, blue:0.12, alpha:1.00))
-        pickerView.subviews[2].mixedBackgroundColor = MixedColor(normal: UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00), night: UIColor(red:0.14, green:0.14, blue:0.12, alpha:1.00))
+//        pickerView.subviews[safe: 2]!.mixedBackgroundColor = MixedColor(normal: UIColor(red:0.86, green:0.86, blue:0.88, alpha:1.00), night: UIColor(red:0.14, green:0.14, blue:0.12, alpha:1.00))
         
         var viewWithLabel: UIView?
         

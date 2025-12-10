@@ -75,6 +75,7 @@
 		6BA31EFC21B164400048B4B5 /* PopoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA31EFB21B164400048B4B5 /* PopoverCollectionViewController.swift */; };
 		6BADA75D2185F39200177CE1 /* Abel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BADA75C2185F39100177CE1 /* Abel-Regular.ttf */; };
 		6BADA76F2189686100177CE1 /* WorkTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BADA76E2189686100177CE1 /* WorkTimePicker.swift */; };
+		6BBA9D902686377A00727A5F /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBA9D8F2686377A00727A5F /* ArrayExtension.swift */; };
 		6BC01B7F21140CCA00BD81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC01B7E21140CCA00BD81BE /* AppDelegate.swift */; };
 		6BC01B8121140CCA00BD81BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC01B8021140CCA00BD81BE /* ViewController.swift */; };
 		6BC01B8621140CCB00BD81BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC01B8521140CCB00BD81BE /* Assets.xcassets */; };
@@ -194,6 +195,7 @@
 		6BA31EFB21B164400048B4B5 /* PopoverCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverCollectionViewController.swift; sourceTree = "<group>"; };
 		6BADA75C2185F39100177CE1 /* Abel-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Abel-Regular.ttf"; sourceTree = "<group>"; };
 		6BADA76E2189686100177CE1 /* WorkTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimePicker.swift; sourceTree = "<group>"; };
+		6BBA9D8F2686377A00727A5F /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		6BC01B7B21140CCA00BD81BE /* Hourglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hourglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC01B7E21140CCA00BD81BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BC01B8021140CCA00BD81BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				6BCCCF1A21B949BF0055724E /* AppsConstants.swift */,
 				6B0AF13F21BE0E4A00857473 /* Localizable.strings */,
 				6B0AF14321BE103C00857473 /* InfoPlist.strings */,
+				6BBA9D8F2686377A00727A5F /* ArrayExtension.swift */,
 			);
 			path = Hourglass;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				6B55792921481CB100CE51FC /* SettingViewController.swift in Sources */,
 				6B55792721481B6700CE51FC /* RecordTableViewController.swift in Sources */,
 				6BADA76F2189686100177CE1 /* WorkTimePicker.swift in Sources */,
+				6BBA9D902686377A00727A5F /* ArrayExtension.swift in Sources */,
 				6B93478D218DC49D007ACC19 /* WillUpdateTableViewController.swift in Sources */,
 				6B8B3A4B215524C600E682B6 /* TimeMeasurementInfo+CoreDataClass.swift in Sources */,
 				6B9EF607215A7F1200871E3F /* GradientView.swift in Sources */,
