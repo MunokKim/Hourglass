@@ -1,35 +1,34 @@
 # Hourglass (모래시계)
 
-> 시간 추정 능력 향상을 위한 시간 관리 훈련 애플리케이션
+> 시간 추정 능력 향상을 위한 시간 관리 훈련 앱
 
 [![Swift](https://img.shields.io/badge/Swift-4.0+-orange.svg)](https://swift.org)
 [![iOS](https://img.shields.io/badge/iOS-12.0+-lightgrey.svg)](https://www.apple.com/ios/)
-[![App Store](https://img.shields.io/badge/App%20Store-Available-blue.svg)](https://itunes.apple.com/kr/app/%EB%AA%A8%EB%9E%98%EC%8B%9C%EA%B3%84/id1441559871?mt=8)
+[![App Store](https://img.shields.io/badge/App%20Store-Archived-red)](https://itunes.apple.com/kr/app/%EB%AA%A8%EB%9E%98%EC%8B%9C%EA%B3%84/id1441559871?mt=8)
 
 ---
 
 ## 스크린샷
 
-<img width="270" alt="스크린샷 2021-06-26 오전 2 40 59" src="https://user-images.githubusercontent.com/15843714/123466058-d88c2b00-d629-11eb-8b40-73c7ecefd207.png"><img width="270" alt="스크린샷 2021-06-26 오전 2 28 47" src="https://user-images.githubusercontent.com/15843714/123466138-f22d7280-d629-11eb-9a95-4dfa43316572.png"><img width="270" alt="스크린샷 2021-06-26 오전 2 28 27" src="https://user-images.githubusercontent.com/15843714/123466168-fa85ad80-d629-11eb-8fbd-f5fbe8c1386e.png"><img width="270" alt="스크린샷 2021-06-26 오전 2 38 55" src="https://user-images.githubusercontent.com/15843714/123466318-2a34b580-d62a-11eb-81fe-e571f446a32e.png"><img width="270" alt="스크린샷 2021-06-26 오전 2 41 22" src="https://user-images.githubusercontent.com/15843714/123466348-33258700-d62a-11eb-85d2-2af206089b4f.png"><img width="270" alt="스크린샷 2021-06-26 오전 2 44 32" src="https://user-images.githubusercontent.com/15843714/123466401-420c3980-d62a-11eb-8148-479a6862cde8.png"><img width="270" alt="스크린샷 2021-06-26 오전 2 43 22" src="https://user-images.githubusercontent.com/15843714/123466428-49334780-d62a-11eb-923f-de658382f1bd.png"><img width="270" alt="스크린샷 2021-06-26 오전 2 48 57" src="https://user-images.githubusercontent.com/15843714/123466514-5fd99e80-d62a-11eb-8838-dcb585c5eef7.png"><img width="270" alt="스크린샷 2021-06-26 오전 2 52 42" src="https://user-images.githubusercontent.com/15843714/123466537-67994300-d62a-11eb-8ad7-9376bac6b1d9.png">
+<img width="200" alt="스크린샷 2021-06-26 오전 2 40 59" src="https://user-images.githubusercontent.com/15843714/123466058-d88c2b00-d629-11eb-8b40-73c7ecefd207.png"><img width="200" alt="스크린샷 2021-06-26 오전 2 28 47" src="https://user-images.githubusercontent.com/15843714/123466138-f22d7280-d629-11eb-9a95-4dfa43316572.png"><img width="200" alt="스크린샷 2021-06-26 오전 2 28 27" src="https://user-images.githubusercontent.com/15843714/123466168-fa85ad80-d629-11eb-8fbd-f5fbe8c1386e.png"><img width="200" alt="스크린샷 2021-06-26 오전 2 38 55" src="https://user-images.githubusercontent.com/15843714/123466318-2a34b580-d62a-11eb-81fe-e571f446a32e.png"><img width="200" alt="스크린샷 2021-06-26 오전 2 41 22" src="https://user-images.githubusercontent.com/15843714/123466348-33258700-d62a-11eb-85d2-2af206089b4f.png"><img width="200" alt="스크린샷 2021-06-26 오전 2 44 32" src="https://user-images.githubusercontent.com/15843714/123466401-420c3980-d62a-11eb-8148-479a6862cde8.png"><img width="200" alt="스크린샷 2021-06-26 오전 2 43 22" src="https://user-images.githubusercontent.com/15843714/123466428-49334780-d62a-11eb-923f-de658382f1bd.png"><img width="200" alt="스크린샷 2021-06-26 오전 2 48 57" src="https://user-images.githubusercontent.com/15843714/123466514-5fd99e80-d62a-11eb-8838-dcb585c5eef7.png"><img width="200" alt="스크린샷 2021-06-26 오전 2 52 42" src="https://user-images.githubusercontent.com/15843714/123466537-67994300-d62a-11eb-8ad7-9376bac6b1d9.png">
 
 ---
 
 ## 프로젝트 소개
 
-"작업에 소요될 시간을 직접 예상해보고 실제 경과 시간과 비교하는" **시간 추정(Time Estimation)** 훈련을 통해 시간 관리 능력을 향상시킬 수 있는 iOS 애플리케이션입니다.
+"작업에 소요될 시간을 직접 예상해보고 실제 경과 시간과 비교하는" **시간 추정(Time Estimation)** 훈련을 통해 시간 관리 능력을 향상시킬 수 있는 iOS 앱입니다.
 
-**제작 기간**: 2018년 10월 30일 ~ 2018년 12월 15일 (약 1개월 17일)
-**개발**: 100% 1인 기획 및 개발
-**App Store**: [다운로드 링크](https://itunes.apple.com/kr/app/%EB%AA%A8%EB%9E%98%EC%8B%9C%EA%B3%84/id1441559871?mt=8)
+- **제작 기간**: 2018년 10월 30일 ~ 2018년 12월 15일 (약 1개월 17일)
+- **개발**: 100% 1인 기획 및 개발
+- **App Store**: [다운로드 링크](https://itunes.apple.com/kr/app/%EB%AA%A8%EB%9E%98%EC%8B%9C%EA%B3%84/id1441559871?mt=8) (현재 다운로드 불가)
 
 ### 제작 배경
 
-자기계발서에서 소개된 '시간 추정' 기법을 실천하면서 확실히 효과를 체감했지만, 노트에 손으로 적거나 엑셀로 관리하기에는 번거로워 습관화에 실패했습니다.
-
-그래서 **"간편하게 시간 추정 훈련을 할 수 있는 앱"**을 직접 만들기로 결심했습니다.
+다양한 자기계발서에서 알게 된 '시간 추정' 기법을 실천하면서 확실히 효과를 체감했지만, 노트에 손으로 적거나 엑셀로 관리하기에는 번거로워 습관화 하기가 어렵다고 생각했습니다.
+그래서 "**간편하게 시간 추정 훈련을 할 수 있는 앱**"을 직접 만들기로 결심했습니다.
 
 **핵심 동기:**
-- 내가 쓰기 위한 앱 (Personal Use)
+- 내가 쓰기 위한 앱
 - 시중에 동일한 컨셉의 앱이 없음
 - 기능적으로 효과가 검증됨 (개인 경험)
 - 초보 개발자가 만들기에 적절한 난이도
@@ -45,15 +44,19 @@
 
 ### 1. 작업 관리
 - 작업 생성 (제목, 아이콘, 예상 소요 시간 설정)
-- 작업 목록 조회 및 검색
+- 작업 목록 조회
 - 작업 정보 수정 (제목, 아이콘, 예상 시간)
 - 작업 삭제 및 정렬
+
+<img width="150" alt="스크린샷 2021-06-26 오전 2 40 59" src="https://user-images.githubusercontent.com/15843714/123466058-d88c2b00-d629-11eb-8b40-73c7ecefd207.png"><img width="150" alt="스크린샷 2021-06-26 오전 2 28 47" src="https://user-images.githubusercontent.com/15843714/123466138-f22d7280-d629-11eb-9a95-4dfa43316572.png"><img width="150" alt="스크린샷 2021-06-26 오전 2 28 27" src="https://user-images.githubusercontent.com/15843714/123466168-fa85ad80-d629-11eb-8fbd-f5fbe8c1386e.png"><img width="150" alt="스크린샷 2021-06-26 오전 2 41 22" src="https://user-images.githubusercontent.com/15843714/123466348-33258700-d62a-11eb-85d2-2af206089b4f.png"><img width="150" alt="스크린샷 2021-06-26 오전 2 44 32" src="https://user-images.githubusercontent.com/15843714/123466401-420c3980-d62a-11eb-8148-479a6862cde8.png">
 
 ### 2. 시간 추정 타이머
 - **예상 시간 설정** - 작업에 소요될 시간을 직접 예상
 - **실시간 타이머** - 남은 시간 표시 및 완료 예상 시간 계산
 - **중단/재개** - 작업 중단 시 완료 예상 시간 자동 조정
 - **조기 완료 방지** - 최소 작업 시간 강제 (예상 시간의 1/10)
+
+<img width="150" alt="스크린샷 2021-06-26 오전 2 43 22" src="https://user-images.githubusercontent.com/15843714/123466428-49334780-d62a-11eb-923f-de658382f1bd.png">
 
 ### 3. 작업 결과 및 통계
 - **목표 달성/실패 여부** - 예상 시간 내 완료 여부 표시
@@ -65,6 +68,8 @@
   - 평균 소요 시간
   - 평균 남은 시간
 
+<img width="150" alt="스크린샷 2021-06-26 오전 2 48 57" src="https://user-images.githubusercontent.com/15843714/123466514-5fd99e80-d62a-11eb-8838-dcb585c5eef7.png">
+
 ### 4. 작업 기록
 - 월별로 구분된 작업 기록 조회
 - 필터 기능 (전체 보기 / 특정 작업만 보기)
@@ -75,13 +80,16 @@
   - 연속 목표 달성
   - 예상 vs 실제 완료 시간
 
+<img width="150" alt="스크린샷 2021-06-26 오전 2 52 42" src="https://user-images.githubusercontent.com/15843714/123466537-67994300-d62a-11eb-8ad7-9376bac6b1d9.png">
+
 ### 5. 설정 및 부가 기능
 - **다크 모드** 지원
-- **iCloud 백업** - CloudKit을 통한 데이터 백업 및 복원
 - **다양한 아이콘** - 600개 이상의 아이콘 선택 가능
-- **알림** - 작업 완료 시 알림
-- **사운드** - 작업 완료 시 효과음 재생
-- **인앱 결제** - 프리미엄 업그레이드 (무제한 작업 등록)
+- **알림** - 작업 예상시간 경과, 작업 완료 시 알림
+- **사운드 및 진동** - 작업 완료 시 원하는 종류의 효과음 및 햅틱 피드백 선택 가능
+- 화면 켜짐 유지, 도움말, 피드백 전송, 앱스토어 리뷰 남기기, 업데이트 예정사항 표기, 저작권 정보 표기
+
+<img width="150" alt="스크린샷 2021-06-26 오전 2 38 55" src="https://user-images.githubusercontent.com/15843714/123466318-2a34b580-d62a-11eb-81fe-e571f446a32e.png">
 
 ---
 
@@ -292,6 +300,7 @@ var isCellsHeightExpanded: [Bool] = [] {
 - [ ] Combine 프레임워크 적용
 - [ ] Widget 지원 (홈 화면에서 바로 작업 시작)
 - [ ] Apple Watch 앱
+- [ ] CloudKit을 통한 데이터 백업 및 복원
 - [ ] SiriKit 통합
   - "시리야, 모래시계에서 '운동하기' 시작"
   - "시리야, 모래시계에서 '운동하기' 완료"
@@ -319,9 +328,7 @@ var isCellsHeightExpanded: [Bool] = [] {
 ### 배운 점
 
 - iOS 앱 전체 개발 사이클 경험
-- Core Data를 활용한 복잡한 데이터 관계 설계
-- CloudKit을 통한 데이터 백업 구현
-- StoreKit 인앱 결제 구현
+- Core Data를 활용한 데이터 관계 설계
 - App Store 심사 및 출시 프로세스
 - 1인 개발의 어려움과 한계
 - 기획의 중요성 (프로토타입, 요구사항 정의)
